@@ -55,7 +55,8 @@ public class PredaplantOphrysScorpio extends DuelistCard {
 
     @Override
     public void customOnTribute(DuelistCard tc) {
-        if (tc.hasTag(Tags.PLANT)) {
+        super.customOnTribute(tc);
+        if (tc != null && tc.hasTag(Tags.PLANT)) {
             addCardToHand(returnTrulyRandomFromSet(Tags.PREDAPLANT));
         }
     }

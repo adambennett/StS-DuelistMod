@@ -30,6 +30,7 @@ public class CyberneticOverflowDebuffA extends NoStackDuelistPower
 	
 	public CyberneticOverflowDebuffA() 
 	{
+		super(AbstractDungeon.player, AbstractDungeon.player);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = AbstractDungeon.player;        

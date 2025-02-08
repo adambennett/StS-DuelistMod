@@ -418,7 +418,7 @@ public class RandomizedHandAction extends AbstractGameAction
     				{
     					if (summonChangeCombatCheck && dC.isSummonCard())
     	    			{
-    	    				dC.modifySummons(randomNum);
+    	    				dC.modifySummonsForCombat(randomNum);
     	    			}
     	    			else if (dC.isSummonCard())
     	    			{
@@ -430,7 +430,7 @@ public class RandomizedHandAction extends AbstractGameAction
     			{
 	    			if (summonChangeCombatCheck && dC.isSummonCard())
 	    			{
-	    				dC.modifySummons(randomNum);
+	    				dC.modifySummonsForCombat(randomNum);
 	    			}
 	    			else if (dC.isSummonCard())
 	    			{
@@ -449,7 +449,7 @@ public class RandomizedHandAction extends AbstractGameAction
     				{
     					if (tributeChangeCombatCheck && dC.isTributeCard())
     	    			{
-    	    				dC.modifyTributes(-randomNum);
+    	    				dC.modifyTributesForCombat(-randomNum);
     	    			}
     	    			else if (dC.isTributeCard())
     	    			{
@@ -461,7 +461,7 @@ public class RandomizedHandAction extends AbstractGameAction
     			{
 	    			if (tributeChangeCombatCheck && dC.isTributeCard())
 	    			{
-	    				dC.modifyTributes(-randomNum);
+	    				dC.modifyTributesForCombat(-randomNum);
 	    			}
 	    			else if (dC.isTributeCard())
 	    			{

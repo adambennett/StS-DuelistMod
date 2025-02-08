@@ -90,6 +90,7 @@ public class HaneHane extends DuelistCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
+        super.customOnTribute(tc);
     	DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new HaneToken());
 		summon(player(), 1, tok);
 	    block(this.block);

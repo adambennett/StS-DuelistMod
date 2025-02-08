@@ -35,8 +35,8 @@ public class StarBoy extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+        
+        
         this.originalName = this.name;
         this.baseTributes = this.tributes = 2;
         this.summons = this.baseSummons = 1;
@@ -59,7 +59,8 @@ public class StarBoy extends DuelistCard
     
     @Override
     public void customOnTribute(DuelistCard tc) 
-    { 
+    {
+        super.customOnTribute(tc);
     	draw(1);
     }
 

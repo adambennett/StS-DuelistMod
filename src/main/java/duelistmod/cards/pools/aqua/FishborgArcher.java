@@ -38,7 +38,7 @@ public class FishborgArcher extends DuelistCard
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.FLUVIAL);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
     }

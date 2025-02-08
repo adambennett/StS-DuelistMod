@@ -227,7 +227,7 @@ public class MonsterTypeConfigs extends SpecificConfigMenuPage implements Refres
 
         LINEBREAK();
 
-        settingElements.add(new ModLabel("increases the Block and damage of Dragons by", DuelistMod.xLabPos, DuelistMod.yPos, DuelistMod.settingsPanel, (me)->{}));
+        settingElements.add(new ModLabel("increase the Block and damage of Dragons by", DuelistMod.xLabPos, DuelistMod.yPos, DuelistMod.settingsPanel, (me)->{}));
 
         ArrayList<String> mods = new ArrayList<>();
         for (int i = 0; i < 1001; i++) { mods.add(String.valueOf(i)); }
@@ -499,15 +499,15 @@ public class MonsterTypeConfigs extends SpecificConfigMenuPage implements Refres
     }
 
     private void toonPage(ArrayList<IUIElement> settingElements) {
-        settingElements.add(new ModLabel("Vulnerable per Tribute", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+        settingElements.add(new ModLabel("Revenge Triggers per Tribute", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
         ArrayList<String> thornsOptions = new ArrayList<>();
         for (int i = 0; i < 1001; i++) { thornsOptions.add(i+""); }
-        String tooltip = "Modify the amount of #yVulnerable you apply each time you #yTribute one #yToon for another. Set to #b1 by default.";
+        String tooltip = "Modify the number of #yRevenge cards that trigger in your hand each time you #yTribute one #yToon for another. Set to #b1 by default.";
         DuelistDropdown thornsSelector = new DuelistDropdown(tooltip, thornsOptions, Settings.scale * (DuelistMod.xLabPos + 490), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            put(MonsterType.toonVulnKey, i);
+            put(MonsterType.toonRevengeKey, i);
             DuelistMod.configSettingsLoader.save();
         });
-        thornsSelector.setSelected(getSelected(MonsterType.toonVulnKey, MonsterType.toonDefaultVuln));
+        thornsSelector.setSelected(getSelected(MonsterType.toonRevengeKey, MonsterType.toonDefaultRevenge));
         settingElements.add(thornsSelector);
     }
 

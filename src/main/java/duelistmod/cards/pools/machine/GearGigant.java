@@ -37,8 +37,8 @@ public class GearGigant extends DuelistCard
         this.baseDamage = this.damage = 14;
         this.tributes = this.baseTributes = 2;
         this.summons = this.baseSummons = 1;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;

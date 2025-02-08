@@ -27,7 +27,8 @@ public class VampireRetainerPower extends NoStackDuelistPower
 	}
 	
 	public VampireRetainerPower(AbstractCreature source, AbstractCreature owner) 
-	{ 
+	{
+		super(owner, source);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        

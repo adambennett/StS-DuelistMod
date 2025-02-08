@@ -63,7 +63,7 @@ public class TranceArchfiend extends DuelistCard {
 			}
 		}
 		for (DuelistCard dc : handTribs) {
-			dc.modifyTributes(this.magicNumber);
+			dc.modifyTributesForCombat(this.magicNumber);
 		}
 		postDuelistUseCard(owner, targets);
 	}

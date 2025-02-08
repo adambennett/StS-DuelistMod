@@ -31,6 +31,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import duelistmod.DuelistMod;
 import duelistmod.enums.DeathType;
 import duelistmod.helpers.Util;
+import duelistmod.patches.crossmod.TogetherInSpirePatches;
 import duelistmod.ui.gameOver.DuelistDeathScreen;
 import duelistmod.ui.gameOver.DuelistVictoryScreen;
 import duelistmod.variables.VictoryDeathScreens;
@@ -92,6 +93,11 @@ public class VictoryDeathScreenPatches {
     @SpirePatch(clz = AbstractRoom.class, method = "render")
     public static class RoomRenderPatch {
         public static SpireReturn<Void> Prefix(AbstractRoom __instance, SpriteBatch sb) {
+
+            if (TogetherInSpirePatches.shouldReturnEarlyInAbstractRoomRender()) {
+                return SpireReturn.Return();
+            }
+
             if (__instance instanceof EventRoom || __instance instanceof VictoryRoom) {
                 if (__instance.event != null && (!(__instance.event instanceof AbstractImageEvent) || __instance.event.combatTime)) {
                     __instance.event.renderRoomEventPanel(sb);

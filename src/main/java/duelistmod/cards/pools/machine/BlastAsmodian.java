@@ -45,7 +45,7 @@ public class BlastAsmodian extends DuelistCard
         this.baseDamage = this.damage = 11;
         this.baseMagicNumber = this.magicNumber = this.detonationCheckForSummonZones = 4;
         this.baseSummons = this.summons = 1;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
 		this.cardsToPreview = new ExplosiveToken();
     }

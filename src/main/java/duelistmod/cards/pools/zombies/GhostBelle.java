@@ -40,7 +40,7 @@ public class GhostBelle extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.baseMagicNumber = this.magicNumber = 4;
-        this.specialCanUseLogic = true;
+
     }
     
     @Override

@@ -43,8 +43,8 @@ public class GhostrickSkeleton extends DuelistCard
         this.baseTributes = this.tributes = 4;
         this.baseDamage = this.damage = 14; 
         this.baseMagicNumber = this.magicNumber = 3;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
     }
 
     // Actions the card should do.

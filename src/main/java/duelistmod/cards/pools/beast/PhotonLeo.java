@@ -39,8 +39,6 @@ public class PhotonLeo extends DuelistCard {
         this.baseSummons = this.summons = 3;
         this.baseDamage = this.damage = 17;
         this.baseMagicNumber = this.magicNumber = 3;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
     	this.setupStartingCopies();
     }
 

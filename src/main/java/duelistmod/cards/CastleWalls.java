@@ -43,7 +43,7 @@ public class CastleWalls extends DuelistCard
         this.tags.add(Tags.DRAGON_DECK);
         this.tags.add(Tags.SPELLCASTER_DECK);
         this.tags.add(Tags.NATURIA_DECK);
-        this.tags.add(Tags.TOON_DECK);
+        //this.tags.add(Tags.TOON_DECK);
         this.tags.add(Tags.ORB_DECK);
         this.tags.add(Tags.RESUMMON_DECK);
         this.tags.add(Tags.HEAL_DECK);
@@ -82,7 +82,7 @@ public class CastleWalls extends DuelistCard
         this.dragonDeckCopies = 2;
         this.spellcasterDeckCopies = 2;
         this.natureDeckCopies = 3;
-        this.toonDeckCopies = 2;
+        //this.toonDeckCopies = 1;
         this.creatorDeckCopies = 3;
         this.orbDeckCopies = 2;
         this.resummonDeckCopies = 2;
@@ -90,7 +90,7 @@ public class CastleWalls extends DuelistCard
         this.aquaDeckCopies = 2;
         this.p1DeckCopies = 4;
         this.p2DeckCopies = 5;
-        this.p3DeckCopies = 4;
+        this.p3DeckCopies = 3;
         this.originalName = this.name;
         this.setupStartingCopies();
         this.enemyIntent = AbstractMonster.Intent.DEFEND;

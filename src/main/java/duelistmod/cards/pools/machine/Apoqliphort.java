@@ -40,8 +40,8 @@ public class Apoqliphort extends DuelistCard
         this.baseTributes = this.tributes = 2;
         this.baseDamage = this.damage = 35;
         this.baseMagicNumber = this.magicNumber = 1;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.misc = 0;
         this.originalName = this.name;
     }
@@ -65,7 +65,7 @@ public class Apoqliphort extends DuelistCard
     	this.rawDescription = desc;
     	if (this.isEthereal) { this.rawDescription = "Ethereal NL " + this.rawDescription; }
     	if (this.purgeOnUse) { this.rawDescription = "Purge NL " + this.rawDescription;}
-    	else if (this.exhaust) { this.rawDescription = this.rawDescription + " NL Exhaust"; }
+    	else if (this.exhaust) { this.rawDescription = this.rawDescription + " NL Exhaust."; }
     	this.initializeDescription();
     }
 

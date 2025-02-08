@@ -62,7 +62,7 @@ public class PredaplantDarlingtoniaCobra extends DuelistCard implements RevengeC
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
-        tribute();
+        summon();
         if (targets.size() > 0) {
             attack(targets.get(0), AFX, this.damage);
         }

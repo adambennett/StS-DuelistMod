@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
@@ -79,7 +80,7 @@ public class HauntedReductionAction extends AbstractGameAction
     		trap.setCostForTurn(-trap.cost);
     		trap.isCostModifiedForTurn = true;
 			DuelistMod.currentlyHaunted.add(trap);
-    		AbstractDungeon.player.hand.glowCheck();
+			DuelistCard.glowCheck();
     	}
     	
     	// Set amount to 0 so update() knows to return

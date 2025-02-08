@@ -41,7 +41,7 @@ public class OboroGuruma extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.baseMagicNumber = this.magicNumber = 3;       
-        this.specialCanUseLogic = true;
+        
     }
 
     // Actions the card should do.

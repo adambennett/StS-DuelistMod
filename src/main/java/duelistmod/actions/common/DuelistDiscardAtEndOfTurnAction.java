@@ -2,7 +2,6 @@ package duelistmod.actions.common;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
-import com.megacrit.cardcrawl.actions.unique.RestoreRetainedCardsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,11 +10,13 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.interfaces.EndureCard;
 import duelistmod.powers.duelistPowers.BeastBattlefieldBarrierPower;
+import duelistmod.powers.duelistPowers.DoubleAttackPower;
 import duelistmod.variables.Tags;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 public class DuelistDiscardAtEndOfTurnAction extends AbstractGameAction {
     private static final float DURATION;
@@ -29,12 +30,18 @@ public class DuelistDiscardAtEndOfTurnAction extends AbstractGameAction {
     public void update() {
         if (this.duration == DURATION) {
             final Iterator<AbstractCard> c = AbstractDungeon.player.hand.group.iterator();
+            List<AbstractCard> retainOverflows = new ArrayList<>();
             while (c.hasNext()) {
                 final AbstractCard e = c.next();
                 if (isRetain(e)) {
                     AbstractDungeon.player.limbo.addToTop(e);
+                    retainOverflows.add(e);
                     c.remove();
                 }
+            }
+            if (AbstractDungeon.player.hasPower(DoubleAttackPower.POWER_ID)) {
+                DoubleAttackPower power = (DoubleAttackPower) AbstractDungeon.player.getPower(DoubleAttackPower.POWER_ID);
+                power.removeAfterRetain();
             }
             this.addToTop(new DuelistRestoreRetainedCardsAction(AbstractDungeon.player.limbo));
             if (!AbstractDungeon.player.hasRelic("Runic Pyramid") && !AbstractDungeon.player.hasPower("Equilibrium")) {
@@ -46,6 +53,11 @@ public class DuelistDiscardAtEndOfTurnAction extends AbstractGameAction {
             Collections.shuffle(cards);
             for (final AbstractCard c2 : cards) {
                 c2.triggerOnEndOfPlayerTurn();
+            }
+            for (final AbstractCard r2 : retainOverflows) {
+                if (r2 instanceof DuelistCard) {
+                    ((DuelistCard)r2).triggerOverflowEffects(null);
+                }
             }
             for (DuelistCard enduring : DuelistMod.enduringCards) {
                 if (enduring instanceof EndureCard) {
@@ -63,7 +75,12 @@ public class DuelistDiscardAtEndOfTurnAction extends AbstractGameAction {
             return true;
         }
 
-        if (c.hasTag(Tags.BEAST) && AnyDuelist.from(c).hasPower(BeastBattlefieldBarrierPower.POWER_ID)) {
+        AnyDuelist duelist = AnyDuelist.from(c);
+        if (duelist.hasPower(DoubleAttackPower.POWER_ID)) {
+            return true;
+        }
+
+        if (c.hasTag(Tags.BEAST) && duelist.hasPower(BeastBattlefieldBarrierPower.POWER_ID)) {
             return true;
         }
 

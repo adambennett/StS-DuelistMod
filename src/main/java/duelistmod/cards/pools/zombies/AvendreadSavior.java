@@ -44,8 +44,8 @@ public class AvendreadSavior extends DuelistCard
         this.baseBlock = this.block = 35;
         this.baseMagicNumber = this.magicNumber = 3;
         this.exhaust = true;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
     }
     
     @Override

@@ -36,8 +36,8 @@ public class AirCrackingStorm extends DuelistCard
         this.baseDamage = this.damage = 14;
         this.baseMagicNumber = this.magicNumber = 1;
         this.tributes = this.baseTributes = 3;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;

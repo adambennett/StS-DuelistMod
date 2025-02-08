@@ -21,7 +21,8 @@ public class NatureReflectionPower extends NoStackDuelistPower
     public static final String IMG = DuelistMod.makePowerPath("NatureReflectionPower.png");
 	
 	public NatureReflectionPower() 
-	{ 
+	{
+		super(AbstractDungeon.player, AbstractDungeon.player);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = AbstractDungeon.player;        

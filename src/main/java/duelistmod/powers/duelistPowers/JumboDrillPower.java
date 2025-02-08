@@ -30,6 +30,7 @@ public class JumboDrillPower extends NoStackDuelistPower
 	
 	public JumboDrillPower(final AbstractCreature owner, final AbstractCreature source) 
 	{
+		super(owner, source);
 		this.name = NAME;
 		this.ID = POWER_ID;
 		this.owner = owner;

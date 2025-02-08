@@ -36,7 +36,7 @@ public class Dorover extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.TIDAL);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
         this.damage = this.baseDamage = 3;
         this.baseSummons = this.summons = 4;

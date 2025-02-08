@@ -68,6 +68,7 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
     private boolean isAutoConfirm = true;
 
     private Consumer<ArrayList<AbstractCard>> onConfirmBehavior;
+    private Function<ArrayList<AbstractCard>, ArrayList<AbstractCard>> preFilterConfirmedCardsBeforeOnConfirmBehavior;
     
     public DuelistCardSelectScreen(boolean allowUpgrades) {
         this.grabStartY = 0.0f;
@@ -155,7 +156,7 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         if (((this.anyNumber || this.forClarity) && this.confirmButton.hb.clicked) || (this.isAutoConfirm && this.selectedCards.size() == this.numCards)) {
             this.confirmButton.hb.clicked = false;
             if (this.onConfirmBehavior != null) {
-                this.onConfirmBehavior.accept(this.selectedCards);
+                runAccept();
                 this.onConfirmBehavior = null;
             } else {
                 AbstractDungeon.gridSelectScreen.selectedCards.addAll(this.selectedCards);
@@ -308,7 +309,7 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
                 this.confirmScreenUp = false;
                 this.selectedCards.add(this.hoveredCard);
                 if (this.onConfirmBehavior != null) {
-                    this.onConfirmBehavior.accept(this.selectedCards);
+                    runAccept();
                     this.onConfirmBehavior = null;
                 }
                 CInputActionSet.select.unpress();
@@ -497,12 +498,28 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
         this.open(allowUpgrades, group, numCards, msg, onConfirmBehavior, false);
     }
 
-    public void open(boolean allowUpgrades, final CardGroup group, final int numCards, final String msg, Consumer<ArrayList<AbstractCard>> onConfirmBehavior, boolean isAutoConfirm) {
+    public void open(boolean allowUpgrades, final CardGroup group, final int numCards, final String msg, Consumer<ArrayList<AbstractCard>> onConfirmBehavior, Function<ArrayList<AbstractCard>, ArrayList<AbstractCard>> preFilterConfirmedCardsBeforeOnConfirmBehavior, boolean isAutoConfirm) {
         this.selectedCards.clear();
         this.allowUpgrades = allowUpgrades;
         this.onConfirmBehavior = onConfirmBehavior;
         this.isAutoConfirm = isAutoConfirm;
+        this.preFilterConfirmedCardsBeforeOnConfirmBehavior = preFilterConfirmedCardsBeforeOnConfirmBehavior;
         this.open(group, numCards, msg);
+    }
+
+    public void openWithNoConfirmButton(boolean allowUpgrades, final CardGroup group, final int numCards, final String msg, Consumer<ArrayList<AbstractCard>> onConfirmBehavior, Function<ArrayList<AbstractCard>, ArrayList<AbstractCard>> preFilterConfirmedCardsBeforeOnConfirmBehavior, boolean isAutoConfirm) {
+        this.selectedCards.clear();
+        this.allowUpgrades = allowUpgrades;
+        this.onConfirmBehavior = onConfirmBehavior;
+        this.isAutoConfirm = isAutoConfirm;
+        this.preFilterConfirmedCardsBeforeOnConfirmBehavior = preFilterConfirmedCardsBeforeOnConfirmBehavior;
+        this.open(group, numCards, msg);
+        this.confirmButton.hideInstantly();
+        this.confirmButton.isDisabled = true;
+    }
+
+    public void open(boolean allowUpgrades, final CardGroup group, final int numCards, final String msg, Consumer<ArrayList<AbstractCard>> onConfirmBehavior, boolean isAutoConfirm) {
+        this.open(allowUpgrades, group, numCards, msg, onConfirmBehavior, null, isAutoConfirm);
     }
 
     @Override
@@ -848,6 +865,15 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
     
     private boolean shouldShowScrollBar() {
         return !this.confirmScreenUp && this.scrollUpperBound > DuelistCardSelectScreen.SCROLL_BAR_THRESHOLD && !PeekButton.isPeeking;
+    }
+
+    private void runAccept() {
+        ArrayList<AbstractCard> filtered = this.preFilterConfirmedCardsBeforeOnConfirmBehavior != null
+                ? this.preFilterConfirmedCardsBeforeOnConfirmBehavior.apply(this.selectedCards)
+                : this.selectedCards;
+        if (filtered.isEmpty()) return;
+
+        this.onConfirmBehavior.accept(filtered);
     }
 
     static {

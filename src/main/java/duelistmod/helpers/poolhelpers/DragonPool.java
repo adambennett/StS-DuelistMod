@@ -16,6 +16,7 @@ import duelistmod.cards.pools.insects.TornadoDragon;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.SeismicShockwave;
 import duelistmod.cards.pools.plant.GreedyVenomFusionDragon;
+import duelistmod.cards.pools.toon.*;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.OvertexQoatlus;
 import duelistmod.cards.pools.zombies.RedEyesZombie;
@@ -23,7 +24,7 @@ import duelistmod.cards.pools.zombies.TyrantDinoFusion;
 
 public class DragonPool 
 {
-	private static String deckName = "Dragon Deck";
+	private static final String deckName = "Dragon Deck";
 	
 	public static ArrayList<AbstractCard> oneRandom()
 	{
@@ -93,7 +94,7 @@ public class DragonPool
 		dragonCards.add(new CyberDragonCore());
 		dragonCards.add(new CyberDragonDrei());
 		//dragonCards.add(new CyberDragonHerz());
-		dragonCards.add(new CyberDragonInfinity());
+		//dragonCards.add(new CyberDragonInfinity());
 		dragonCards.add(new CyberDragonNachster());
 		//dragonCards.add(new CyberDragonNova());
 		dragonCards.add(new CyberDragonSieger());
@@ -103,7 +104,7 @@ public class DragonPool
 		dragonCards.add(new CyberEndDragon());
 		dragonCards.add(new CyberLaserDragon());
 		//dragonCards.add(new CyberPharos());
-		//dragonCards.add(new CyberPhoenix());
+		dragonCards.add(new CyberPhoenix());
 		//dragonCards.add(new CyberRepairPlant());
 		dragonCards.add(new CyberRevsystem());
 		dragonCards.add(new CyberTwinDragon());
@@ -222,6 +223,7 @@ public class DragonPool
 		dragonCards.add(new GreedyVenomFusionDragon());
 		dragonCards.add(new FiresOfDoomsday());
 
+		// Dinosaur
 		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveDinosaurs()) {
 			dragonCards.add(new SuperancientDinobeast());
 			dragonCards.add(new Anthrosaurus());
@@ -255,6 +257,35 @@ public class DragonPool
 			dragonCards.add(new SeismicShockwave());
 			dragonCards.add(new OvertexQoatlus());
 			dragonCards.add(new TyrantDinoFusion());
+		}
+
+		// Toon
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveToons()) {
+			// Toon Dragons
+			dragonCards.add(new ToonBarrelDragon());
+			dragonCards.add(new ToonCyberDragon());
+			dragonCards.add(new ToonBlueEyesUltimate());
+			dragonCards.add(new ToonBabyDragon());
+
+			// Dragon synergy
+			dragonCards.add(new ToonBusterBlader());
+			dragonCards.add(new ToonBlackLusterSoldier());
+			dragonCards.add(new GaiaTheToonKnight());
+
+			// Other
+			dragonCards.add(new ToonDefense());
+			dragonCards.add(new ToonMermaid());
+			dragonCards.add(new ToonBriefcase());
+			dragonCards.add(new ToonPageFlip());
+			dragonCards.add(new MangaMonsterReborn());
+			dragonCards.add(new ToonBookmark());
+			dragonCards.add(new ToonKuriboh());
+			dragonCards.add(new ToonAlligator());
+			dragonCards.add(new ToonHarpieLady());
+			dragonCards.add(new ToonExplosion());
+			dragonCards.add(new ToonTable());
+			dragonCards.add(new ToonMask());
+			dragonCards.add(new ToonWorld());
 		}
 
 

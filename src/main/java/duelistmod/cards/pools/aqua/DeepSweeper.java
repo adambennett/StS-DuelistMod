@@ -37,7 +37,7 @@ public class DeepSweeper extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.magicNumber = this.baseMagicNumber = 2;

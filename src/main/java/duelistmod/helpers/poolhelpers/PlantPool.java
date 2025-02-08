@@ -9,6 +9,7 @@ import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.fiend.AcidTrapHole;
 import duelistmod.cards.pools.fiend.CheerfulCoffin;
+import duelistmod.cards.pools.gusto.DustStormOfGusto;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
@@ -143,8 +144,9 @@ public class PlantPool {
 		cards.add(new PredaplantBanksiogre());
 		cards.add(new Predapractice());
 		cards.add(new PredaplantAmbulomelides());
+		cards.add(new DustStormOfGusto());
 
-		// 4 new plants
+		// 3 new plants
 		//
 		//
 		//

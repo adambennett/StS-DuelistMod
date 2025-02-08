@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.variables.Strings;
+import duelistmod.helpers.Util;
 
 public class ZoneToken extends DuelistRelic {
 
@@ -24,6 +24,13 @@ public class ZoneToken extends DuelistRelic {
 
 	public ZoneToken() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
+	}
+
+	@Override
+	public boolean canSpawn() {
+		boolean superCheck = super.canSpawn();
+		if (!superCheck) return false;
+        return !Util.deckIs("Toon Deck");
 	}
 
 	@Override

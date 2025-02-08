@@ -1,14 +1,12 @@
 package duelistmod.actions.unique;
 
 import java.util.*;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.SelectScreenHelper;
 import duelistmod.variables.Tags;
@@ -39,9 +37,8 @@ public class VendreadNightmareAction extends AbstractGameAction
 		CardGroup tmp;
 		if (this.duration == Settings.ACTION_DUR_MED)
 		{
-			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);	
-			
-			ArrayList<AbstractCard> list = DuelistCard.findAllOfTypeForResummon(Tags.VENDREAD, this.zombieChoices);
+			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+			ArrayList<AbstractCard> list = DuelistCard.findAllOfTypeForResummonWithPredicate(Tags.VENDREAD, this.zombieChoices, c -> !c.hasTag(Tags.TOKEN));
 			this.mutatePool = new ArrayList<>();
 			this.mutatePool.addAll(list);
 			for (AbstractCard c : this.mutatePool)

@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.powers.duelistPowers.BurningDebuff;
+import duelistmod.powers.duelistPowers.DampDebuff;
 import duelistmod.powers.duelistPowers.FrozenDebuff;
 import duelistmod.variables.Tags;
 
@@ -29,9 +31,11 @@ public class ElementalBurstAction extends AbstractGameAction
     	if (duration == DURATION)  
         {
         	boolean frozenEnemies = false;
-        	for (AbstractMonster mon : DuelistCard.getAllMons())
-        	{
-        		if (mon.hasPower(FrozenDebuff.POWER_ID)) { frozenEnemies = true; break; }
+        	for (AbstractMonster mon : DuelistCard.getAllMons()) {
+        		if (mon.hasPower(FrozenDebuff.POWER_ID) || mon.hasPower(BurningDebuff.POWER_ID) || mon.hasPower(DampDebuff.POWER_ID)) {
+					frozenEnemies = true;
+					break;
+				}
         	}
         	
         	if (frozenEnemies)

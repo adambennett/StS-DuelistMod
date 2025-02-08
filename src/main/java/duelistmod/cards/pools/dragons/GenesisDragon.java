@@ -40,8 +40,8 @@ public class GenesisDragon extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage 				= 12;		// dmg
         this.tributes = this.baseTributes 			= 1;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card       
-        this.useBothCanUse      = true;							// for hybrid tribute/summon cards
+        							// for any summon or tribute card
+        							// for hybrid tribute/summon cards
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.misc = 0;

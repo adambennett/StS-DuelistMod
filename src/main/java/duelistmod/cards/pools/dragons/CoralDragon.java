@@ -36,8 +36,8 @@ public class CoralDragon extends DuelistCard
     public CoralDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes 			= 1;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
+        							// for any summon or tribute card
+        
         this.baseMagicNumber = this.magicNumber 	= 8;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);

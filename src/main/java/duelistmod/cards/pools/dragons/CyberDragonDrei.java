@@ -37,7 +37,7 @@ public class CyberDragonDrei extends DuelistCard
     public CyberDragonDrei() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 1;
-        this.specialCanUseLogic = true;	
+
         this.baseMagicNumber = this.magicNumber = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
@@ -46,6 +46,7 @@ public class CyberDragonDrei extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.cardsToPreview = new PowerWall();
+        this.exhaust = true;
     }
 
     // Actions the card should do.

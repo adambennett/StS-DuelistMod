@@ -38,7 +38,7 @@ public class Tuningware extends DuelistCard
         this.baseBlock = this.block = 7;
         this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 1;
-        this.specialCanUseLogic = true;
+
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.IS_OVERFLOW);
         this.tags.add(Tags.MACHINE);

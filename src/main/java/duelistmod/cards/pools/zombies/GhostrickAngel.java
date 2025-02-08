@@ -42,8 +42,8 @@ public class GhostrickAngel extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 1;
         this.exhaust = true;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
     }
 
     // Actions the card should do.

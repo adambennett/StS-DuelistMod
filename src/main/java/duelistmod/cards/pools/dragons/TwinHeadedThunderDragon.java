@@ -79,7 +79,8 @@ public class TwinHeadedThunderDragon extends DuelistCard {
     
     @Override
     public void customOnTribute(DuelistCard tc) {
-    	if (tc.hasTag(Tags.DRAGON)) {
+        super.customOnTribute(tc);
+    	if (tc != null && tc.hasTag(Tags.DRAGON)) {
             AnyDuelist.from(this).channel(new Lightning(), this.magicNumber);
 		}
     }

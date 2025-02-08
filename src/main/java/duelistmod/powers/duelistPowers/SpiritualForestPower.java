@@ -18,8 +18,10 @@ public class SpiritualForestPower extends NoStackDuelistPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("SpiritualForestPower.png");
 	private boolean ready = false;
+
 	public SpiritualForestPower() 
-	{ 
+	{
+		super(AbstractDungeon.player, AbstractDungeon.player);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = AbstractDungeon.player;        

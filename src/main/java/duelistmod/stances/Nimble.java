@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.stance.*;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistStance;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.helpers.Util;
@@ -85,7 +86,7 @@ public class Nimble extends DuelistStance
 				rand.setCostForTurn(rand.cost - 1);
 				rand.isCostModifiedForTurn = true;
 				Util.log("Nimble: reduced the cost of " + rand.name);
-				AbstractDungeon.player.hand.glowCheck();
+				DuelistCard.glowCheck();
 			}
 		}
 		else { Util.log("Nimble: missed the roll"); }

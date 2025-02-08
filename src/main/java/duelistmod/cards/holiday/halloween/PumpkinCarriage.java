@@ -40,7 +40,6 @@ public class PumpkinCarriage extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons	= 1;
         this.magicNumber = this.baseMagicNumber = 1;
-        this.specialCanUseLogic = true;							
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PLANT);
         this.tags.add(Tags.EXEMPT);

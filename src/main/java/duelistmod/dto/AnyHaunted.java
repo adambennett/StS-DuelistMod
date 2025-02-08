@@ -4,11 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.powers.incomplete.HauntedDebuff;
 import duelistmod.powers.incomplete.HauntedPower;
-import duelistmod.variables.Tags;
-
 import java.util.List;
-
-import static com.megacrit.cardcrawl.cards.AbstractCard.*;
 
 public class AnyHaunted {
 
@@ -40,10 +36,10 @@ public class AnyHaunted {
     }
 
     public void triggerHaunt(AbstractCard card) {
-        if (this.buff != null && ((!this.buff.hauntedCardBaseType.equals(CardType.CURSE) && card.type.equals(this.buff.hauntedCardBaseType)) || (!this.buff.hauntedCardType.equals(Tags.DRAGON) && card.hasTag(this.buff.hauntedCardType)))) {
+        if (this.buff != null && ((card.type.equals(this.buff.hauntedCardBaseType)) || (card.hasTag(this.buff.hauntedCardType)))) {
             this.buff.triggerHaunt(card);
         }
-        if (this.debuff != null && ((!this.debuff.hauntedCardBaseType.equals(CardType.CURSE) && card.type.equals(this.debuff.hauntedCardBaseType) || (!this.debuff.hauntedCardType.equals(Tags.DRAGON) && card.hasTag(this.debuff.hauntedCardType))))) {
+        if (this.debuff != null && ((card.type.equals(this.debuff.hauntedCardBaseType) || (card.hasTag(this.debuff.hauntedCardType))))) {
             this.debuff.triggerHaunt(card);
         }
     }

@@ -37,8 +37,8 @@ public class CyberTwinDragon extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage 				= 13;			
         this.tributes = this.baseTributes 			= 4;		
-        this.specialCanUseLogic = true;							
-        this.useTributeCanUse   = true;							     
+        							
+        							     
         this.baseMagicNumber = this.magicNumber 	= 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.CYBER);

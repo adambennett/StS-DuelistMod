@@ -40,8 +40,8 @@ public class GhostrickSocuteboss extends DuelistCard
         this.baseTributes = this.tributes = 3;
         this.baseDamage = this.damage = 20; 
         this.baseMagicNumber = this.magicNumber = 16;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
     }
 
     // Actions the card should do.

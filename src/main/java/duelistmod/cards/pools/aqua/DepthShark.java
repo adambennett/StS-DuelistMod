@@ -36,7 +36,7 @@ public class DepthShark extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.damage = this.baseDamage = 8;

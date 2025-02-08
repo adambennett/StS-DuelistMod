@@ -43,8 +43,8 @@ public class GhostrickWitch extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 3;
         this.baseMagicNumber = this.magicNumber = 2;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
     }
 
     // Actions the card should do.

@@ -35,9 +35,9 @@ public class LadyOfTheLake extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
-        this.useBothCanUse = true;
+
+        
+        
         this.originalName = this.name;
         this.damage = this.baseDamage = 1;
         this.block = this.baseBlock = 1;

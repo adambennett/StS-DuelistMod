@@ -38,7 +38,7 @@ public class CannonballSpearShellfish extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 3;
-        this.specialCanUseLogic = true;
+
         this.summons = this.baseSummons = 1;
         this.baseDamage = this.damage = 6;
         this.misc = 0;

@@ -39,7 +39,7 @@ public class Deskbot008 extends DuelistCard
         this.baseDamage = this.damage = 6;
         this.baseMagicNumber = this.magicNumber = 4;
         this.summons = this.baseSummons = 1;
-        this.specialCanUseLogic = true;
+
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.DESKBOT);

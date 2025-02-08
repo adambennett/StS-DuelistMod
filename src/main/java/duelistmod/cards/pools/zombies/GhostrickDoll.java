@@ -30,7 +30,7 @@ public class GhostrickDoll extends DuelistCard {
         this.misc = 0;
         this.originalName = this.name;
         this.baseSummons = this.summons = 5;
-        this.specialCanUseLogic = true;
+        
         this.showEvokeValue = true;
         this.showEvokeOrbCount = 1;
     }

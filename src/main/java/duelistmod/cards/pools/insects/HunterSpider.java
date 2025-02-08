@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.insects;
 
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -12,6 +13,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HunterSpider extends DuelistCard {
@@ -38,6 +40,13 @@ public class HunterSpider extends DuelistCard {
         this.tags.add(Tags.INSECT);
         this.originalName = this.name;
         this.isSummon = true;
+    }
+
+    @Override
+    public List<TooltipInfo> getCustomTooltips() {
+        List<TooltipInfo> retVal = new ArrayList<>();
+        retVal.add(new TooltipInfo("Spider", "The #b3rd #ySpider you play each combat gives you #b7 #yTemporary #yHP."));
+        return retVal;
     }
 
     @Override

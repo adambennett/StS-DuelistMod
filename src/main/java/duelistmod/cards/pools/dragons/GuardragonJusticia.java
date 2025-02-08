@@ -36,7 +36,7 @@ public class GuardragonJusticia extends DuelistCard
     public GuardragonJusticia() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons				= 1;		// summons
-        this.specialCanUseLogic = true;							// for any summon or tribute card        
+        							// for any summon or tribute card
         this.baseMagicNumber = this.magicNumber 	= 3;		
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);

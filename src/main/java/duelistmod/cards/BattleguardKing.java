@@ -1,6 +1,5 @@
 package duelistmod.cards;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,7 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
@@ -62,7 +61,7 @@ public class BattleguardKing extends DuelistCard implements EndureCard {
 
     @Override
     public void onEndure(AnyDuelist duelist) {
-        duelist.gainEnergy(1);
+        duelist.applyPowerToSelf(new EnergizedBluePower(duelist.creature(), 1));
     }
 
     @Override

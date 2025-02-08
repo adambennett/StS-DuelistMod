@@ -37,7 +37,7 @@ public class ArmedDragon3 extends ArmedDragonCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.block = this.baseBlock = 5;
         this.summons = this.baseSummons				= 1;		// summons
-        this.specialCanUseLogic = true;							// for any summon or tribute card
+        							// for any summon or tribute card
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.misc = 0;
@@ -72,6 +72,15 @@ public class ArmedDragon3 extends ArmedDragonCard
     @Override
     public AbstractCard makeCopy() {
         return new ArmedDragon3();
+    }
+
+    @Override
+    public AbstractCard nextLevel() {
+        AbstractCard next = new ArmedDragon5();
+        if (upgraded) {
+            next.upgrade();
+        }
+        return next;
     }
 
     // Upgraded stats.

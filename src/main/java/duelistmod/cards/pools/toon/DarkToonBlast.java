@@ -1,0 +1,109 @@
+package duelistmod.cards.pools.toon;
+
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.DynamicDamageCard;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.Tags;
+import java.util.ArrayList;
+import java.util.List;
+
+public class DarkToonBlast extends DynamicDamageCard {
+
+    public static final String ID = DuelistMod.makeID("DarkToonBlast");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+    public static final String IMG = DuelistMod.makeCardPath("DarkToonBlast.png");
+    public static final String NAME = cardStrings.NAME;
+    public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
+    private static final int COST = 1;
+
+    public DarkToonBlast() {
+        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.baseDamage = this.damage = this.originalDamage = 0;
+        this.baseMagicNumber = this.magicNumber = 6; // Damage per Toon
+        this.baseSecondMagic = this.secondMagic = 2; // Last X turns
+        this.baseThirdMagic = this.thirdMagic = 10; // Extra Fiend damage
+        this.tags.add(Tags.SPELL);
+		this.originalName = this.name;
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        if (targets.size() > 0) {
+            attack(targets.get(0));
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        int lastTurn = GameActionManager.turn - 1;
+        if (lastTurn > 0 && duelist.getCardsPlayedByTurnThisCombat().getOrDefault(lastTurn, new ArrayList<>()).stream().anyMatch(c -> c.hasTag(Tags.FIEND))) {
+            this.glowColor = Color.GOLD;
+        }
+    }
+
+    @Override
+    public int damageFunction() {
+        AnyDuelist duelist = AnyDuelist.from(this);
+        int total = 0;
+        int downCounter = this.secondMagic;
+        int currentTurn = GameActionManager.turn;
+
+        long toonsPlayedThisTurn = duelist.getCardsPlayedThisTurn().stream().filter(c -> c.hasTag(Tags.TOON)).count();
+        total += (int) (this.magicNumber * toonsPlayedThisTurn);
+        currentTurn--;
+        downCounter--;
+
+        while (currentTurn > 0 && downCounter > 0) {
+            long toonsPlayedOnTurn = duelist.getCardsPlayedByTurnThisCombat().getOrDefault(currentTurn, new ArrayList<>()).stream().filter(c -> c.hasTag(Tags.TOON)).count();
+            total += (int) (this.magicNumber * toonsPlayedOnTurn);
+            currentTurn--;
+            downCounter--;
+        }
+        int lastTurn = GameActionManager.turn - 1;
+        if (lastTurn > 0 && duelist.getCardsPlayedByTurnThisCombat().getOrDefault(lastTurn, new ArrayList<>()).stream().anyMatch(c -> c.hasTag(Tags.FIEND))) {
+            total += this.thirdMagic;
+        }
+        return Math.max(0, total);
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new DarkToonBlast();
+    }
+
+    @Override
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeSecondMagic(1);
+            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
+            this.initializeDescription();
+        }
+    }
+
+}

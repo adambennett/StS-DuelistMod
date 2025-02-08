@@ -47,9 +47,8 @@ public class SkilledDarkMagician extends DuelistCard
     
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute();
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    	summon();
         attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_DIAGONAL, (attacked) -> {
             for (int i = 0; i < attacked; i++) {
                 channelRandom();

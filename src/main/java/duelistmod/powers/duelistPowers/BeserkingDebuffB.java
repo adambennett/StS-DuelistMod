@@ -22,6 +22,7 @@ public class BeserkingDebuffB extends NoStackDuelistPower
 	
 	public BeserkingDebuffB() 
 	{
+		super(AbstractDungeon.player, AbstractDungeon.player);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = AbstractDungeon.player;        

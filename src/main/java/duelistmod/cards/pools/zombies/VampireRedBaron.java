@@ -45,8 +45,8 @@ public class VampireRedBaron extends DuelistCard
         this.baseTributes = this.tributes = 3;
         this.baseMagicNumber = this.magicNumber = 1;
         this.baseDamage = this.damage = 9;           
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
     }
 
     // Actions the card should do.

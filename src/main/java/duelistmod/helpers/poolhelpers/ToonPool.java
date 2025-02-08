@@ -1,142 +1,113 @@
 package duelistmod.helpers.poolhelpers;
 
 import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.blue.*;
-import com.megacrit.cardcrawl.cards.green.*;
-import com.megacrit.cardcrawl.cards.red.*;
-
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
-import duelistmod.cards.incomplete.*;
-import duelistmod.cards.pools.aqua.Slushy;
-import duelistmod.cards.pools.beast.FlyingElephant;
-import duelistmod.cards.pools.beast.UnicornBeacon;
-import duelistmod.cards.pools.fiend.CheerfulCoffin;
-import duelistmod.cards.pools.fiend.PutridPudding;
-import duelistmod.cards.pools.machine.*;
-import duelistmod.cards.pools.pharaoh.PlasmaBall;
-import duelistmod.cards.pools.zombies.HumptyGrumpty;
-import duelistmod.cards.pools.zombies.TributeDoomed;
+import duelistmod.cards.pools.toon.Abaki;
+import duelistmod.cards.pools.dragons.SpiralFlameStrike;
+import duelistmod.cards.pools.toon.*;
+import duelistmod.cards.pools.warrior.LegendarySword;
 
-public class ToonPool 
-{
-	private static String deckName = "Toon Deck";
-	
-	public static ArrayList<AbstractCard> oneRandom()
-	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.oneRandom(13));
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		//deck.fillPoolCards(pool);	
-		return pool;
+public class ToonPool {
+
+	public static ArrayList<AbstractCard> oneRandom() {
+        return new ArrayList<>(GlobalPoolHelper.oneRandom(13));
 	}
 	
-	public static ArrayList<AbstractCard> twoRandom()
-	{
-		ArrayList<AbstractCard> pool = new ArrayList<>();		
-		pool.addAll(GlobalPoolHelper.twoRandom(13));
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		//deck.fillPoolCards(pool);	
-		return pool;
+	public static ArrayList<AbstractCard> twoRandom() {
+        return new ArrayList<>(GlobalPoolHelper.twoRandom(13));
 	}
 	
-	public static ArrayList<AbstractCard> deck()
-	{
-		StarterDeck toonDeck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> toonCards = new ArrayList<AbstractCard>();
-		toonCards.add(new ToadallyAwesome());
-		toonCards.add(new ToonWorld());
-		toonCards.add(new ToonBarrelDragon());
-		toonCards.add(new ToonMaskedSorcerer());
-		toonCards.add(new ToonSummonedSkull());
-		toonCards.add(new ToonRollback());
-		toonCards.add(new ToonMermaid());
-		toonCards.add(new ToonMask());
-		toonCards.add(new ToonMagic());
-		toonCards.add(new ToonKingdom());
-		toonCards.add(new ToonGoblinAttack());
-		toonCards.add(new ToonGeminiElf());
-		toonCards.add(new ToonDarkMagicianGirl());
-		toonCards.add(new ToonDarkMagician());
-		toonCards.add(new ToonAncientGear());
-		toonCards.add(new RedEyesToon());
-		toonCards.add(new MangaRyuRan());
+	public static ArrayList<AbstractCard> deck() {
+		ArrayList<AbstractCard> toonCards = new ArrayList<>();
+
+		toonCards.add(new Abaki());
+		toonCards.add(new AgnimalCandle());
+		toonCards.add(new Bagooska());
+		toonCards.add(new BannerOfCourage());
 		toonCards.add(new BlueEyesToon());
-		toonCards.add(new ToonTable());
-		toonCards.add(new ToonCannonSoldier());
-		toonCards.add(new ToonDefense());
+		toonCards.add(new Bunilla());
+		toonCards.add(new CandleOfFate());
+		toonCards.add(new CardOfLastWill());
+		toonCards.add(new ChainDog());
 		toonCards.add(new ComicHand());
-		toonCards.add(new ShadowToon());
-		toonCards.add(new ToonBriefcase());
-		toonCards.add(new HeartUnderdog());
-		toonCards.add(new MagicCylinder());
-		toonCards.add(new GracefulCharity());
-		toonCards.add(new ToonGoblinAttack());
-		toonCards.add(new SpellShatteringArrow());
-		toonCards.add(new FeatherShot());
+		toonCards.add(new LegendarySword());
+		toonCards.add(new DarkBribe());
+		toonCards.add(new DarkToonBlast());
+		toonCards.add(new DoubleAttack());
+		toonCards.add(new GaiaTheToonKnight());
+		toonCards.add(new GoddessOfSweetRevenge());
+		toonCards.add(new HiddenFangsOfRevenge());
+		toonCards.add(new HungryBurger());
+		toonCards.add(new InfernoidSeitsemas());
+		toonCards.add(new JarRobber());
+		toonCards.add(new MangaMonsterReborn());
+		toonCards.add(new MangaRyuRan());
+		toonCards.add(new MasterOfOz());
+		toonCards.add(new Mimiclay());
+		toonCards.add(new MineMole());
+		toonCards.add(new FlamvellBaby());
 		toonCards.add(new PotGreed());
-		toonCards.add(new HumptyGrumpty());
-		toonCards.add(new Slushy());
-		//toonCards.add(new ToonCyberDragon());
-		//toonCards.add(new BagooskaTheTerribleTiredTapir());
-		toonCards.add(new FlyingElephant());
-		//toonCards.add(new ThereCanOnlyBeOne());
-		//toonCards.add(new ToonBookmark());
-		//toonCards.add(new ToonBusterBlader());
-		//toonCards.add(new ToonExplosion());
-		//toonCards.add(new ToonGiant());
-		//toonCards.add(new ToonHarpieLady());
-		//toonCards.add(new ToonPageFlip());
-		//toonCards.add(new ToonTerror());
-		//toonCards.add(new ToonZombie());
+		toonCards.add(new RedEyesToon());
+		toonCards.add(new RemoteRevenge());
+		toonCards.add(new RevengeRally());
+		toonCards.add(new ShadowToon());
+		toonCards.add(new SpiralFlameStrike());
+		toonCards.add(new SwiftBirdmanJoe());
+		toonCards.add(new TardyOrc());
+		toonCards.add(new Tatsunootoshigo());
+		toonCards.add(new ThereCanBeOnlyOne());
+		toonCards.add(new TimeWizardOfTomorrow());
+		toonCards.add(new ToadallyAwesome());
+		toonCards.add(new ToonAncientGear());
+		toonCards.add(new ToonAppleMagicianGirl());
+		toonCards.add(new ToonBabyDragon());
+		toonCards.add(new ToonBarrelDragon());
+		toonCards.add(new ToonBerryMagicianGirl());
+		toonCards.add(new ToonBlackLusterSoldier());
+		toonCards.add(new ToonBlueEyesUltimate());
+		toonCards.add(new ToonBookmark());
+		toonCards.add(new ToonBriefcase());
+		toonCards.add(new ToonBusterBlader());
+		toonCards.add(new ToonCannonSoldier());
+		toonCards.add(new ToonChocolateMagicianGirl());
+		toonCards.add(new ToonCyberDragon());
+		toonCards.add(new ToonDarkMagician());
+		toonCards.add(new ToonDarkMagicianGirl());
+		toonCards.add(new ToonDefense());
+		toonCards.add(new ToonExodiaIncarnate());
+		toonCards.add(new ToonExplosion());
+		toonCards.add(new ToonGeminiElf());
+		toonCards.add(new ToonGoblinAttackForce());
+		toonCards.add(new ToonGodStrike());
+		toonCards.add(new ToonHarpieLady());
+		toonCards.add(new ToonKingdom());
+		toonCards.add(new ToonKiwiMagicianGirl());
+		toonCards.add(new ToonKuriboh());
+		toonCards.add(new ToonLemonMagicianGirl());
+		toonCards.add(new ToonMagic());
+		toonCards.add(new ToonMask());
+		toonCards.add(new ToonMaskedSorcerer());
+		toonCards.add(new ToonMermaid());
+		toonCards.add(new ToonPageFlip());
+		toonCards.add(new ToonRelinquished());
+		toonCards.add(new ToonRollback());
+		toonCards.add(new ToonTable());
+		toonCards.add(new ToonTerror());
+		toonCards.add(new ToonWorld());
+		toonCards.add(new TransmissionGear());
+
 		//toonCards.add(new PotProsperity());
 		//toonCards.add(new PotDesires());
 		//toonCards.add(new PotAcquisitiveness());
 		//toonCards.add(new PotRiches());
 		//toonCards.add(new PotBenevloence());
 		//toonCards.add(new PotExtravagance());
-		//toonCards.add(new JarRobber());
-		//toonCards.add(new GoblinOutOfTheFryingPan());
-		//toonCards.add(new GoblinThief());
-		//toonCards.add(new TardyOrc());
-		//toonCards.add(new MineMole()); // Beast
-		//toonCards.add(new Bunilla()); // Beast
-		//toonCards.add(new DBoyz());
-		//toonCards.add(new HungryBurger());
-		//toonCards.add(new Tatsunootoshigo());
-		//toonCards.add(new ChainDog()); // Beast
-		//toonCards.add(new MasterOfOz()); // Beast
-		//toonCards.add(new InterplanetarypurplythornyDragon()); // Beast
-		//toonCards.add(new TransmissionGear());
-		//toonCards.add(new Mimiclay());
-		//toonCards.add(new TerribleDeal());
-		//toonCards.add(new Oops());
-		//toonCards.add(new DarkBribe());
-		//toonCards.add(new CardOfLastWill());
-		//toonCards.add(new TimeMagicHammer());
-		//toonCards.add(new CreepyConey()); // Beast
-		//toonCards.add(new Aitsu());
-		//toonCards.add(new FlyingPenguin());
-		//toonCards.add(new GagagaCowboy());
-
-		// Temp cards until pool is fixed
-		toonCards.add(new TributeDoomed());
-		toonCards.add(new GiantTrunade());
-		toonCards.add(new SwordsConcealing());
-		toonCards.add(new TrapHole());
-		toonCards.add(new CheerfulCoffin());
-		toonCards.add(new AncientGearFist());
-		toonCards.add(new FlyingSaucer());
-		toonCards.add(new UnicornBeacon());
-		toonCards.add(new PutridPudding());
-		toonCards.add(new PlasmaBall());
 
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
-			toonCards.add(new Entrench());
+			/*toonCards.add(new Entrench());
 			toonCards.add(new Reaper());
 			toonCards.add(new BurningPact());
 			toonCards.add(new DemonForm());
@@ -196,20 +167,14 @@ public class ToonPool
 			toonCards.add(new Storm());
 			toonCards.add(new Equilibrium());
 			toonCards.add(new ReinforcedBody());
-			toonCards.add(new Heatsinks());			
+			toonCards.add(new Heatsinks());		*/
 		}
-		//toonDeck.fillPoolCards(toonCards);
-		//DuelistMod.archetypeCards.addAll(toonCards);
 		return toonCards;
 	}
 	
-	public static  ArrayList<AbstractCard> basic()
-	{
-		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) { pool.addAll(BasicPool.smallBasic("")); }
-		else { pool.addAll(BasicPool.fullBasic("")); }
-		//deck.fillPoolCards(pool); 
-		return pool;
+	public static  ArrayList<AbstractCard> basic() {
+		return DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()
+				? new ArrayList<>(BasicPool.smallBasic("Toon Deck"))
+				: new ArrayList<>(BasicPool.fullBasic("Toon Deck"));
 	}
 }

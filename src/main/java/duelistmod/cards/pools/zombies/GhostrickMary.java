@@ -40,8 +40,8 @@ public class GhostrickMary extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 6;
         this.baseMagicNumber = this.magicNumber = 3;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
     }
 
     // Actions the card should do.

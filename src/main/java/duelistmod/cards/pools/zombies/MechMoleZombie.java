@@ -41,8 +41,8 @@ public class MechMoleZombie extends DuelistCard
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 8; 
         this.baseBlock = this.block = 9;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
     }
 
     // Actions the card should do.

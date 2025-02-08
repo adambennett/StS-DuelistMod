@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.GridSort;
 import duelistmod.helpers.SelectScreenHelper;
@@ -74,7 +75,7 @@ public class DiamondDustAction extends AbstractGameAction
 			}
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 			this.p.hand.refreshHandLayout();
-			this.p.hand.glowCheck();
+			DuelistCard.glowCheck();
 		}
 		tickDuration();
 	}

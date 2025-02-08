@@ -12,6 +12,7 @@
           <option name="goals">
             <list>
               <option value="clean" />
+              <option value="package" />
               <option value="install" />
               <option value="-T" />
               <option value="8C" />
@@ -19,6 +20,7 @@
               <option value="-Dmaven.test.skip=true" />
             </list>
           </option>
+          <option name="multimoduleDir" />
           <option name="pomFileName" />
           <option name="profilesMap">
             <map />

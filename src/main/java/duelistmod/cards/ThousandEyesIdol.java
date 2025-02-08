@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class ThousandEyesIdol extends DuelistCard 
@@ -36,6 +35,7 @@ public class ThousandEyesIdol extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.PHARAOH_SERVANT);
+		this.tags.add(Tags.ILLUSION_SET);
 		this.tributes = this.baseTributes = 1;
 		this.showInvertValue = true;
 		this.showInvertOrbs = 1;

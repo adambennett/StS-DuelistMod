@@ -64,7 +64,7 @@ public class GiantTrapHole extends DuelistCard
     	{
     		this.modifyCostForCombat(-this.magicNumber);
     		this.isCostModified = true;
-    		AbstractDungeon.player.hand.glowCheck();
+            DuelistCard.glowCheck();
     	}
     }
     
@@ -75,7 +75,7 @@ public class GiantTrapHole extends DuelistCard
     	{
     		this.modifyCostForCombat(-this.magicNumber);
     		this.isCostModified = true;
-    		AbstractDungeon.player.hand.glowCheck();
+            DuelistCard.glowCheck();
     	}
     }
     

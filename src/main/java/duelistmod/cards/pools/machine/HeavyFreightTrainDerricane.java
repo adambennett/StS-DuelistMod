@@ -38,8 +38,8 @@ public class HeavyFreightTrainDerricane extends DuelistCard
         this.baseDamage = this.damage = 25;
         this.tributes = this.baseTributes = 2;
         this.isMultiDamage = true;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;

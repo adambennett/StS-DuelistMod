@@ -44,8 +44,8 @@ public class Wightprince extends DuelistCard
         this.baseDamage = this.damage = 22; 
         this.isMultiDamage = true;
         this.baseMagicNumber = this.magicNumber = 12;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
     }
 
     // Actions the card should do.

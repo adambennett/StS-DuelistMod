@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 
 public class FabledDeathCheckAction extends AbstractGameAction
 {
@@ -23,9 +24,9 @@ public class FabledDeathCheckAction extends AbstractGameAction
     public void update()
     {
         if (duration == DURATION && target != null) {
-            if (target.isDying || target.currentHealth <= 0) 
+            if (target.isDying || target.currentHealth <= 0)
             {
-               DuelistCard.tributeChecker(AbstractDungeon.player, card.tributes, card, true);
+               DuelistCard.runTributeLogicWithoutRemovingSummons(AnyDuelist.from(this.card), card.tributes, card, true);
             }
             else
             {

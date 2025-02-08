@@ -117,7 +117,10 @@ public class SolderAction extends AbstractGameAction
 				{
 					soldered = true;
 					AbstractCard original = originalMap.get(c.uuid);
-					if (this.magicBonus != 0) { DuelistCard.handleOnSolderForAllAbstracts(); }
+					if (original instanceof DuelistCard) {
+						DuelistCard dc = (DuelistCard)original;
+						dc.handleOnSolderForAllAbstracts(this.magicBonus);
+					}
 					if (original instanceof DuelistCard)
 					{
 						modify((DuelistCard) original, this.magicBonus);
@@ -140,7 +143,7 @@ public class SolderAction extends AbstractGameAction
 			}
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 			this.p.hand.refreshHandLayout();
-			this.p.hand.glowCheck();
+			DuelistCard.glowCheck();
 			if (this.canSolderAgain && AbstractDungeon.player.hasPower(RoboticKnightPower.POWER_ID) && this.iteration == 0) {
 				AbstractDungeon.actionManager.addToBottom(new SolderAction(this.cards, this.amount, this.magicBonus, this.canCancel, this.iteration, this.fromRelic));
 				this.isDone = true;

@@ -38,7 +38,7 @@ public class Skystarray extends DuelistCard
         this.tags.add(Tags.THALASSIC);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
         this.block = this.baseBlock = 20;
         this.baseSummons = this.summons = 2;

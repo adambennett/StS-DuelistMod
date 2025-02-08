@@ -28,8 +28,8 @@ public class DespairFromDarkPower extends NoStackDuelistPower
 	}
 	
 	public DespairFromDarkPower(AbstractCreature owner, AbstractCreature source) 
-	{ 
-		//super(owner, source, stacks);
+	{
+		super(owner, source);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        

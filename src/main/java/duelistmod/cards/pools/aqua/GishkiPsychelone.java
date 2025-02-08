@@ -40,8 +40,8 @@ public class GishkiPsychelone extends DuelistCard
         this.tags.add(Tags.IS_OVERFLOW);
         this.tags.add(Tags.PELAGIC);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.originalName = this.name;
         this.baseTributes = this.tributes = 2;
         this.magicNumber = this.baseMagicNumber = 3;

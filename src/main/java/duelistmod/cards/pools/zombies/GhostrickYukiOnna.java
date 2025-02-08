@@ -39,8 +39,8 @@ public class GhostrickYukiOnna extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 1;
         this.baseBlock = this.block = 4;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.exhaust = true;
     }
 

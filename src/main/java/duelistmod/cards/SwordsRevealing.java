@@ -7,33 +7,31 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
-import duelistmod.variables.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.EmperorPower;
+import duelistmod.powers.SummonPower;
+import duelistmod.powers.SwordsRevealPower;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class SwordsRevealing extends DuelistCard 
-{
-	// TEXT DECLARATION
+public class SwordsRevealing extends DuelistCard {
 	public static final String ID = DuelistMod.makeID("SwordsRevealing");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makePath(Strings.SWORDS_REVEALING);
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-	// /TEXT DECLARATION/
 
-	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.RARE;
 	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 3;
-	// /STAT DECLARATION/
 
 	public SwordsRevealing() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -45,7 +43,6 @@ public class SwordsRevealing extends DuelistCard
 		this.exhaust = true;
 	}
 
-	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
@@ -55,19 +52,17 @@ public class SwordsRevealing extends DuelistCard
 	@Override
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
 		preDuelistUseCard(owner, targets);
-		tribute();
+		xCostTribute();
 		AnyDuelist duelist = AnyDuelist.from(this);
 		duelist.applyPowerToSelf(new SwordsRevealPower(duelist.creature(), duelist.creature(), this.magicNumber + 1));
 		postDuelistUseCard(owner, targets);
 	}
 
-	// Which card to return when making a copy of this card.
 	@Override
 	public AbstractCard makeCopy() {
 		return new SwordsRevealing();
 	}
 
-	// Upgraded stats.
 	@Override
 	public void upgrade() {
 		if (!this.upgraded) {
@@ -79,26 +74,14 @@ public class SwordsRevealing extends DuelistCard
 		}
 	}
 
-	
-
+	@Override
 	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "Requires 3+ tributes"; }
 
+	@Override
 	public boolean cardSpecificCanUse(final AbstractCreature owner) {
 		boolean mausoActive = (owner.hasPower(EmperorPower.POWER_ID) && (!((EmperorPower) owner.getPower(EmperorPower.POWER_ID)).flag));
 		boolean atLeastOneTribute = (owner.hasPower(SummonPower.POWER_ID) && (owner.getPower(SummonPower.POWER_ID).amount) > 2);
 		return mausoActive || atLeastOneTribute;
 	}
-	
-
-
-
-	
-
-
-
-
-
-
-
 
 }

@@ -37,8 +37,8 @@ public class Submarineroid extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 9;
         this.tributes = this.baseTributes = 2;
         this.summons = this.baseSummons = 2;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.MACHINE);

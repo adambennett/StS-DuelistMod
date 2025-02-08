@@ -38,8 +38,8 @@ public class Deskbot007 extends DuelistCard
         this.baseDamage = this.damage = 3;
         this.tributes = this.baseTributes = 3;
         this.summons = this.baseSummons = 1;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
         this.selfRetain = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);

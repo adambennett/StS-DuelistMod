@@ -36,7 +36,7 @@ public class Ameba extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.misc = 0;
         this.isEthereal = true;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.magicNumber = this.baseMagicNumber = 4;

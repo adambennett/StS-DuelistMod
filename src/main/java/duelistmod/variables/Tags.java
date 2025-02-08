@@ -67,7 +67,10 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags GOD;
 	@SpireEnum public static AbstractCard.CardTags GOOD_TRIB;
 	@SpireEnum public static AbstractCard.CardTags GUARDIAN;
+	@SpireEnum public static AbstractCard.CardTags GUSTO;
 	@SpireEnum public static AbstractCard.CardTags HEAL_DECK;
+	@SpireEnum public static AbstractCard.CardTags ILLUSION;
+	@SpireEnum public static AbstractCard.CardTags ILLUSION_SET;
 	@SpireEnum public static AbstractCard.CardTags IMMORTAL;
 	@SpireEnum public static AbstractCard.CardTags INCREMENT_DECK;
 	@SpireEnum public static AbstractCard.CardTags INSECT;
@@ -79,6 +82,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags LEGACY_DARKNESS;
 	@SpireEnum public static AbstractCard.CardTags LEGEND_BLUE_EYES;
 	@SpireEnum public static AbstractCard.CardTags LIMITED;
+	@SpireEnum public static AbstractCard.CardTags LIMIT_ONE_PER_DECK;
 	@SpireEnum public static AbstractCard.CardTags MACHINE;
 	@SpireEnum public static AbstractCard.CardTags MACHINE_DECK;
 	@SpireEnum public static AbstractCard.CardTags MAGICIANS_FORCE;
@@ -140,6 +144,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_SMALL;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_UPGRADE;
 	@SpireEnum public static AbstractCard.CardTags RECKLESS;
+	@SpireEnum public static AbstractCard.CardTags RED_EYES;
 	@SpireEnum public static AbstractCard.CardTags REDUCED;
 	@SpireEnum public static AbstractCard.CardTags REPTILE;
 	@SpireEnum public static AbstractCard.CardTags RESUMMON_DECK;
@@ -161,10 +166,11 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags THUNDER;
 	@SpireEnum public static AbstractCard.CardTags TIDAL;
 	@SpireEnum public static AbstractCard.CardTags TOKEN;
-	@SpireEnum public static AbstractCard.CardTags TOON_WORLD;
-	@SpireEnum public static AbstractCard.CardTags TOON_POOL;
+	@SpireEnum public static AbstractCard.CardTags REQUIRES_TOON_WORLD;
+	@SpireEnum public static AbstractCard.CardTags TOON;
+	@SpireEnum public static AbstractCard.CardTags TOON_WITHOUT_KEYWORD;
 	@SpireEnum public static AbstractCard.CardTags TOON_DECK;
-	@SpireEnum public static AbstractCard.CardTags TOON_DONT_TRIG;
+	@SpireEnum public static AbstractCard.CardTags TOON_WORLD_CARD;
 	@SpireEnum public static AbstractCard.CardTags TRAP;
 	@SpireEnum public static AbstractCard.CardTags TRI_BRIGADE;
 	@SpireEnum public static AbstractCard.CardTags UNDEAD;
@@ -175,6 +181,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags WINGED_BEAST;
 	@SpireEnum public static AbstractCard.CardTags WYRM;
 	@SpireEnum public static AbstractCard.CardTags X_COST;
+	@SpireEnum public static AbstractCard.CardTags ZOA;
 	@SpireEnum public static AbstractCard.CardTags ZOMBIE;
 	@SpireEnum public static AbstractCard.CardTags ZOMBIE_DECK;
 }

@@ -33,7 +33,7 @@ public class GhostrickDollBasic extends DuelistCard {
         this.misc = 0;
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
-        this.specialCanUseLogic = true;
+        this.baseBlock = this.block = 4;
         this.showEvokeValue = true;
         this.showEvokeOrbCount = 1;
         this.setupStartingCopies();
@@ -42,6 +42,7 @@ public class GhostrickDollBasic extends DuelistCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
     	summon();
+        block();
     	evokeMult(2);
     }
 

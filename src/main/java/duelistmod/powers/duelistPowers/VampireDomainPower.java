@@ -30,7 +30,8 @@ public class VampireDomainPower extends NoStackDuelistPower
 	}
 	
 	public VampireDomainPower(AbstractCreature source, AbstractCreature owner) 
-	{ 
+	{
+		super(owner, source);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        

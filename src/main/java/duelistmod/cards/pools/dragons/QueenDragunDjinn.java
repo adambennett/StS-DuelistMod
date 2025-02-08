@@ -58,17 +58,9 @@ public class QueenDragunDjinn extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	boolean hadNoOrbs = (p.filledOrbCount() == 0);
     	tribute(p, this.tributes, false, this);
-    	invertQueenDragon(2, this.magicNumber);
-    	if (hadNoOrbs)
-    	{
-    		for (int i = 0; i < this.magicNumber; i++)
-        	{
-    	    	AbstractOrb frost = new FireOrb();
-    	    	channel(frost);
-        	}
-    	}
+    	invert(2);
+    	channel(new FireOrb(), magicNumber);
     }
 
     // Which card to return when making a copy of this card.

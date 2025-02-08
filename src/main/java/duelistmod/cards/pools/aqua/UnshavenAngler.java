@@ -37,7 +37,7 @@ public class UnshavenAngler extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
         this.block = this.baseBlock = 6;
         this.baseSummons = this.summons = 1;

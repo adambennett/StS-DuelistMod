@@ -3,7 +3,6 @@ package duelistmod.actions.enemyDuelist;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
@@ -11,10 +10,12 @@ import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 import duelistmod.actions.common.DuelistDiscardAtEndOfTurnAction;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.interfaces.EndureCard;
+import duelistmod.powers.duelistPowers.DoubleAttackPower;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 public class EnemyDiscardAtEndOfTurnAction extends AbstractGameAction
 {
@@ -33,12 +34,18 @@ public class EnemyDiscardAtEndOfTurnAction extends AbstractGameAction
     public void update() {
         if (this.duration == EnemyDiscardAtEndOfTurnAction.DURATION) {
             final Iterator<AbstractCard> c = this.boss.hand.group.iterator();
+            List<AbstractCard> retainOverflows = new ArrayList<>();
             while (c.hasNext()) {
                 final AbstractCard e = c.next();
                 if (DuelistDiscardAtEndOfTurnAction.isRetain(e)) {
                     this.boss.limbo.addToTop(e);
+                    retainOverflows.add(e);
                     c.remove();
                 }
+            }
+            if (this.boss.hasPower(DoubleAttackPower.POWER_ID)) {
+                DoubleAttackPower power = (DoubleAttackPower) this.boss.getPower(DoubleAttackPower.POWER_ID);
+                power.removeAfterRetain();
             }
             this.addToTop(new EnemyRestoreRetainedCardsAction(this.boss, this.boss.limbo));
             if (!this.boss.hasRelic("Runic Pyramid") && !this.boss.hasPower("Equilibrium")) {
@@ -51,6 +58,11 @@ public class EnemyDiscardAtEndOfTurnAction extends AbstractGameAction
             for (final AbstractCard c2 : cards) {
                 EnemyDuelistCard ac = AbstractEnemyDuelist.fromCard(c2);
                 ac.triggerOnEndOfPlayerTurn();
+            }
+            for (final AbstractCard r2 : retainOverflows) {
+                if (r2 instanceof DuelistCard) {
+                    ((DuelistCard)r2).triggerOverflowEffects(null);
+                }
             }
             for (DuelistCard enduring : DuelistMod.enemyDuelistEnduringCards) {
                 if (enduring instanceof EndureCard) {

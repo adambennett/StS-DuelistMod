@@ -39,8 +39,8 @@ public class LichLord extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 4;
         this.baseDamage = this.damage = 55; 
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
     }
 
     // Actions the card should do.

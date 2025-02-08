@@ -72,19 +72,19 @@ import static com.megacrit.cardcrawl.cards.AbstractCard.*;
 
 public enum StartingDeck {
 
-    STANDARD("standard", "Standard Deck", "Standard", null, Tags.STANDARD_DECK, StandardPool::deck, StandardPool::basic, false, false),
+    BEAST("beast", "Beast Deck", "Beast", Tags.BEAST, Tags.BEAST_DECK, BeastPool::deck, BeastPool::basic, false, false),
     DRAGON("dragon", "Dragon Deck", "Dragon", Tags.DRAGON, Tags.DRAGON_DECK, DragonPool::deck, DragonPool::basic, false, false),
     SPELLCASTER("spellcaster", "Spellcaster Deck", "Spellcaster", Tags.SPELLCASTER, Tags.SPELLCASTER_DECK, SpellcasterPool::deck, SpellcasterPool::basic, false, false),
-    AQUA("aqua", "Aqua Deck", "Aqua", Tags.AQUA, Tags.AQUA_DECK, AquaPool::deck, AquaPool::basic, false, false),
-    FIEND("fiend", "Fiend Deck", "Fiend", Tags.FIEND, Tags.FIEND_DECK, FiendPool::deck, FiendPool::basic, false, false),
-    ZOMBIE("zombie", "Zombie Deck", "Zombie", Tags.ZOMBIE, Tags.ZOMBIE_DECK, ZombiePool::deck, ZombiePool::basic, false, false),
     MACHINE("machine", "Machine Deck", "Machine", Tags.MACHINE, Tags.MACHINE_DECK, MachinePool::deck, MachinePool::basic, false, false),
-    BEAST("beast", "Beast Deck", "Beast", Tags.BEAST, Tags.BEAST_DECK, BeastPool::deck, BeastPool::basic, false, false),
+    AQUA("aqua", "Aqua Deck", "Aqua", Tags.AQUA, Tags.AQUA_DECK, AquaPool::deck, AquaPool::basic, false, false),
+    ZOMBIE("zombie", "Zombie Deck", "Zombie", Tags.ZOMBIE, Tags.ZOMBIE_DECK, ZombiePool::deck, ZombiePool::basic, false, false),
+    TOON("toon", "Toon Deck", "Toon", Tags.TOON, Tags.TOON_DECK, ToonPool::deck, ToonPool::basic, false, false),
+    FIEND("fiend", "Fiend Deck", "Fiend", Tags.FIEND, Tags.FIEND_DECK, FiendPool::deck, FiendPool::basic, false, false),
     INSECT("insect", "Insect Deck", "Insect", Tags.INSECT, Tags.INSECT_DECK, InsectPool::deck, InsectPool::basic, false, false),
     PLANT("plant", "Plant Deck", "Plant", Tags.PLANT, Tags.PLANT_DECK, PlantPool::deck, PlantPool::basic, false, false),
     NATURIA("naturia", "Naturia Deck", "Naturia", Tags.NATURIA, Tags.NATURIA_DECK, NaturiaPool::deck, NaturiaPool::basic, false, false,Tags.INSECT, Tags.PLANT, Tags.PREDAPLANT),
     WARRIOR("warrior", "Warrior Deck", "Warrior", Tags.WARRIOR, Tags.WARRIOR_DECK, WarriorPool::deck, WarriorPool::basic, false, false, Tags.SUPERHEAVY),
-    TOON("toon", "Toon Deck", "Toon", Tags.TOON_POOL, Tags.TOON_DECK, ToonPool::deck, ToonPool::basic, false, false),
+    STANDARD("standard", "Standard Deck", "Standard", null, Tags.STANDARD_DECK, StandardPool::deck, StandardPool::basic, false, false),
     MEGATYPE("megatype", "Megatype Deck", "Megatype", Tags.MEGATYPED, Tags.MEGATYPE_DECK, MegatypePool::deck, MegatypePool::basic, false, false),
     INCREMENT("increment", "Increment Deck", "Increment", null, Tags.INCREMENT_DECK, IncrementPool::deck, IncrementPool::basic, false, false),
     CREATOR("creator", "Creator Deck", "Creator", null, Tags.CREATOR_DECK, CreatorPool::deck, CreatorPool::basic, false, false),
@@ -128,7 +128,7 @@ public enum StartingDeck {
     public static final ArrayList<StartingDeck> nonHidden;
     public static final LinkedHashMap<String, DuelistCard> tokenMap;
 
-    public static StartingDeck currentDeck = STANDARD;
+    public static StartingDeck currentDeck = BEAST;
     private static int currentDeckIndex = 0;
     private final static List<StartingDeck> selectScreenList;
 
@@ -285,7 +285,7 @@ public enum StartingDeck {
                 break;
             case TOON:
                 builder = builder.setTokenType("theDuelist:ToonToken");
-                builder = builder.setApplyToonWorld(true);
+                builder = builder.setAddBixi(true);
                 break;
             case ZOMBIE:
                 builder = builder.setTokenType("theDuelist:ZombieToken");
@@ -865,10 +865,10 @@ public enum StartingDeck {
                 }));
                 break;
             case TOON:
-                tooltip = "When disabled, the #yMillennium #yPuzzle will not grant #yToon #yWorld. Enabled by default.";
-                settingElements.add(new DuelistLabeledToggleButton("Toon World", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getApplyToonWorld(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not add #yStanley's #ySketchbook to your deck. Enabled by default.";
+                settingElements.add(new DuelistLabeledToggleButton("Stanley's Sketchbook", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getAddBixi(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
                     PuzzleConfigData data = this.getActiveConfig();
-                    data.setApplyToonWorld(button.enabled);
+                    data.setAddBixi(button.enabled);
                     this.updateConfigSettings(data);
                 }));
                 break;
@@ -1083,7 +1083,7 @@ public enum StartingDeck {
             case BEAST:
                 return this.getDisplayName() + ": #yApex cards are only free to play on the first #b2 turns of combat.";
             case TOON:
-                return this.getDisplayName() + ": #yToon #yWorld always has a damage cap #b2 points higher than normal.";
+                return this.getDisplayName() + ": At the end of each Boss fight, remove ALL copies of #yToon #yWorld and #yToon #yKingdom from your deck. If you're playing on #yAscension #b20+, lose #b1 #rMax #rHP for each card removed this way.";
             case PLANT:
             case WARRIOR:
             case MEGATYPE:
@@ -1250,11 +1250,10 @@ public enum StartingDeck {
                 }
                 return defaultDesc;
             case TOON:
-                String tw = bonus ? "#yToon #yKingdom." : "#yToon #yWorld.";
-                if (config.getApplyToonWorld() && summoning) {
-                    return base + summonTxt + " and gain " + tw;
-                } else if (config.getApplyToonWorld()) {
-                    return base + "gain " + tw;
+                if (config.getAddBixi() && summoning) {
+                    return base + summonTxt + ". At the start of the run, add a copy of #yStanley's #ySketchbook to your deck.";
+                } else if (config.getAddBixi()) {
+                    return "At the start of the run, add a copy of #yStanley's #ySketchbook to your deck.";
                 } else if (summoning) {
                     return base + summonTxt + ".";
                 }
@@ -1423,22 +1422,22 @@ public enum StartingDeck {
                 boolean soulBound = config.getApplySoulbound() != null && config.getApplySoulbound();
                 boolean drawHead = config.getDrawExodiaHead() != null && config.getDrawExodiaHead();
                 if (summoning && cannotObtainCards && soulBound && drawHead) {
-                    return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. You cannot obtain any cards. At the start of each turn, draw the #yHead #yof #yExodia.";
+                    return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. You cannot obtain cards (except Curses). At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (summoning && cannotObtainCards && soulBound) {
-                    return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. You cannot obtain any cards.";
+                    return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. You cannot obtain cards (except Curses).";
                 }
                 else if (summoning && cannotObtainCards && drawHead) {
-                    return base + summonTxt + ". NL You cannot obtain any cards. NL At the start of each turn, draw the #yHead #yof #yExodia.";
+                    return base + summonTxt + ". NL You cannot obtain cards (except Curses). NL At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (summoning && soulBound && drawHead) {
                     return base + summonTxt + ". NL All cards in your starter deck have #ySoulbound. At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (cannotObtainCards && soulBound && drawHead) {
-                    return "All cards in your starter deck have #ySoulbound. You cannot obtain any cards. At the start of each turn, draw the #yHead #yof #yExodia.";
+                    return "All cards in your starter deck have #ySoulbound. You cannot obtain cards (except Curses). At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (summoning && cannotObtainCards) {
-                    return base + summonTxt + ". You cannot obtain any cards.";
+                    return base + summonTxt + ". You cannot obtain cards (except Curses).";
                 }
                 else if (summoning && soulBound) {
                     return base + summonTxt + ". All cards in your starter deck have #ySoulbound.";
@@ -1447,10 +1446,10 @@ public enum StartingDeck {
                     return base + summonTxt + ". At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (cannotObtainCards && soulBound) {
-                    return "All cards in your starter deck have #ySoulbound. You cannot obtain any cards.";
+                    return "All cards in your starter deck have #ySoulbound. You cannot obtain cards (except Curses).";
                 }
                 else if (cannotObtainCards && drawHead) {
-                    return "You cannot obtain any cards. At the start of each turn, draw the #yHead #yof #yExodia.";
+                    return "You cannot obtain cards (except Curses). At the start of each turn, draw the #yHead #yof #yExodia.";
                 }
                 else if (soulBound && drawHead) {
                     return "All cards in your starter deck have #ySoulbound. At the start of each turn, draw the #yHead #yof #yExodia.";
@@ -1459,7 +1458,7 @@ public enum StartingDeck {
                     return base + summonTxt + ".";
                 }
                 else if (cannotObtainCards) {
-                    return "You cannot obtain any cards.";
+                    return "You cannot obtain cards (except Curses).";
                 }
                 else if (soulBound) {
                     return "All cards in your starter deck have #ySoulbound.";
@@ -1928,7 +1927,7 @@ public enum StartingDeck {
         ArrayList<AbstractCard> newRandomCardList = new ArrayList<>();
         for (AbstractCard c : DuelistMod.myCards) {
             if (!c.hasTag(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL)) {
-                boolean toonCard = c.hasTag(Tags.TOON_POOL);
+                boolean toonCard = c.hasTag(Tags.TOON);
                 boolean ojamaCard = c.hasTag(Tags.OJAMA);
                 boolean exodiaCard = c.hasTag(Tags.EXODIA);
                 boolean creatorCard = (c instanceof TheCreator || c instanceof DarkCreator);
@@ -2007,7 +2006,7 @@ public enum StartingDeck {
         refreshSelectScreen(null);
         for (StartingDeck deck : StartingDeck.values()) {
             if (deck.unlockLevel == null) break;
-            if (deck != STANDARD) {
+            if (deck != BEAST) {
                 unlockOrderInfo.put(deck.deckName, deck.unlockLevel);
             }
         }

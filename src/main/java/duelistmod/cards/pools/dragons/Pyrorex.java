@@ -43,8 +43,8 @@ public class Pyrorex extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage 				= 14;
         this.tributes = this.baseTributes 			= 2;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse   = true;
+
+        
         this.baseMagicNumber = this.magicNumber 	= 10;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DINOSAUR);

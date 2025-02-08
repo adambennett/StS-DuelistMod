@@ -25,6 +25,7 @@ public class CastleDragonSoulsPower extends NoStackDuelistPower
 	
 	public CastleDragonSoulsPower() 
 	{
+		super(AbstractDungeon.player, AbstractDungeon.player);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = AbstractDungeon.player;        

@@ -16,7 +16,6 @@ import duelistmod.abstracts.DuelistRelic;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.CardFinderHelper;
 import duelistmod.helpers.SelectScreenHelper;
-import duelistmod.helpers.Util;
 import duelistmod.variables.Strings;
 import duelistmod.variables.Tags;
 
@@ -55,7 +54,7 @@ public class RandomTributeMonsterRelic extends DuelistRelic {
 			screenOpen = true;
 			for (DuelistCard c : newList) {
 				if (c.tributes != 1) {
-					c.modifyTributesPerm(-c.tributes + 1);
+					c.modifyTributesPermanent(-c.tributes + 1);
 				}
 			}
 

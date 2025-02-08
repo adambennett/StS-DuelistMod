@@ -37,8 +37,7 @@ public class ArmedDragon10 extends ArmedDragonCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage 				= 75;
         this.tributes = this.baseTributes 			= 6;
-        this.useTributeCanUse   = true;	
-        this.specialCanUseLogic   = true;
+        
         this.isMultiDamage = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
@@ -60,6 +59,11 @@ public class ArmedDragon10 extends ArmedDragonCard
     @Override
     public AbstractCard makeCopy() {
         return new ArmedDragon10();
+    }
+
+    @Override
+    public AbstractCard nextLevel() {
+        return null;
     }
 
     // Upgraded stats.

@@ -43,7 +43,7 @@ public class SkullConductor extends DuelistCard
         this.baseDamage = this.damage = 4; 
         this.baseMagicNumber = this.magicNumber = 1;
         this.exhaust = true;
-        this.specialCanUseLogic = true;
+
         this.setupStartingCopies();
     }
 

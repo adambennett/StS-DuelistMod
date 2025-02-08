@@ -70,7 +70,7 @@ public class BufferBottle extends OrbPotion {
         else { this.description = DESCRIPTIONS[0]; }
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
-        this.tips.add(new PowerTip("Buffer", DESCRIPTIONS[3]));
+        this.tips.add(new PowerTip("BufferOrb", DESCRIPTIONS[3]));
         this.tips.add(new PowerTip("Invert", DESCRIPTIONS[4]));
     }
     
@@ -83,6 +83,6 @@ public class BufferBottle extends OrbPotion {
       }
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
-      this.tips.add(new PowerTip("Buffer", DESCRIPTIONS[3]));
+      this.tips.add(new PowerTip("BufferOrb", DESCRIPTIONS[3]));
     }
 }

@@ -45,6 +45,9 @@ public class GifSpireHelper
 		//rainbowMedicine.addAsCardAnimation("theDuelist:RainbowMedicine");
 		orbMetronome.addAsCardAnimation("theDuelist:OrbMetronome");	
 		attackMetronome.addAsCardAnimation("theDuelist:AttackMetronome");
+		attackMetronome.addAsCardAnimation("theDuelist:CommonAttackMetronome");
+		attackMetronome.addAsCardAnimation("theDuelist:RevengeMetronome");
+		attackMetronome.addAsCardAnimation("theDuelist:RevengeAttackMetronome");
 		attackMetronome.addAsCardAnimation("theDuelist:UncommonAttackMetronome");
 		attackMetronome.addAsCardAnimation("theDuelist:WarriorMetronome");
 		attackMetronome.addAsCardAnimation("theDuelist:RareAttackMetronome");

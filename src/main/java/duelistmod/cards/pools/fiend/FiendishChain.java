@@ -3,13 +3,11 @@ package duelistmod.cards.pools.fiend;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
@@ -55,7 +53,7 @@ public class FiendishChain extends DuelistCard
 				DuelistCard dC = (DuelistCard)c;
 				if (dC.isTributeCard())
 				{
-					AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, this.magicNumber, true));
+					dC.modifyTributesForCombat(this.magicNumber);
 				}
 			}
 		}

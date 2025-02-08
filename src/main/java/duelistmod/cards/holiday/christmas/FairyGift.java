@@ -40,7 +40,6 @@ public class FairyGift extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 2;
-        this.specialCanUseLogic = true;
         this.baseSummons = this.summons = 1;
         this.exhaust = true;
     }

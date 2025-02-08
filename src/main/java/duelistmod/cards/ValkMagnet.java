@@ -86,8 +86,10 @@ public class ValkMagnet extends DuelistCard
         }
     }
 
+    @Override
 	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "Need all 3 Magnets"; }
 
+    @Override
 	public boolean cardSpecificCanUse(final AbstractCreature owner) {
 		return owner.hasPower(AlphaMagPower.POWER_ID) && owner.hasPower(BetaMagPower.POWER_ID) && owner.hasPower(GammaMagPower.POWER_ID);
 	}

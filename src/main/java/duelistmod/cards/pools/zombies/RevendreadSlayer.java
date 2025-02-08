@@ -42,8 +42,8 @@ public class RevendreadSlayer extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 3;
         this.baseDamage = this.damage = 32; 
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
     }
     
     @Override

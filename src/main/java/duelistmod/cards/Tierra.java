@@ -5,15 +5,12 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class Tierra extends DuelistCard 
@@ -108,7 +105,7 @@ public class Tierra extends DuelistCard
 			{
 				for (DuelistCard pick : handTribs)
 				{
-					AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(pick, this.magicNumber, true));
+					pick.modifyTributesForCombat(this.magicNumber);
 				}
 			}
 		}

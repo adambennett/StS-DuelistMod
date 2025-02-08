@@ -86,8 +86,8 @@ public class CardPool extends SpecificConfigMenuPage implements RefreshablePage 
 
         LINEBREAK();
 
-        tooltip = "When enabled, all Toon-related cards will be removed from the Spellcaster Deck card pool. Disabled by default.";
-        settingElements.add(new DuelistLabeledToggleButton("Remove Toons from Spellcaster Pool",tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, settings().getRemoveToons(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
+        tooltip = "When enabled, all Toon-related cards will be removed from the Spellcaster and Dragon card pools. Disabled by default.";
+        settingElements.add(new DuelistLabeledToggleButton("Remove Toons from Other Pools",tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, settings().getRemoveToons(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             settings().setRemoveToons(button.enabled);
             DuelistMod.configSettingsLoader.save();

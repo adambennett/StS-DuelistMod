@@ -36,8 +36,8 @@ public class AbyssDweller extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.THALASSIC);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.originalName = this.name;
         this.baseTributes = this.tributes = 14;
         this.damage = this.baseDamage = 55;

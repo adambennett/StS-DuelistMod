@@ -204,7 +204,7 @@ public class RandomActionHelper
 				break;	
 			case "#yUpgrade your hand":
 				for (AbstractCard c : p.hand.group) { if (c.canUpgrade()) { c.upgrade(); }}
-				p.hand.glowCheck();
+				DuelistCard.glowCheck();
 				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Upgrade your hand", 1.0F, 2.0F)); }
 				break;	
 			case "#yWeaken ALL enemies":

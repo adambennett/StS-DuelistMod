@@ -42,6 +42,7 @@ public class PredaplantTriphyoverutum extends DuelistCard implements RevengeCard
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.PLANT);
         this.tags.add(Tags.GOOD_TRIB);
+        this.tags.add(Tags.EXEMPT);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.baseTributes = this.tributes = 1;

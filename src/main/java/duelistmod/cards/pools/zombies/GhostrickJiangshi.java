@@ -40,8 +40,8 @@ public class GhostrickJiangshi extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseTributes = this.tributes = 2;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
     }
 
     // Actions the card should do.

@@ -42,7 +42,7 @@ public class VendreadCore extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 10; 
-        this.specialCanUseLogic = true;
+
     }
     
     @Override

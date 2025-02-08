@@ -4,18 +4,16 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
-
 import java.util.List;
 
 public class GiantRat extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("GiantRat");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("GiantRat.png");
@@ -59,8 +57,8 @@ public class GiantRat extends DuelistCard {
     }
 
     private void cardDrawn(AbstractCard drawnCard) {
-        if (this.tributes > 0 && drawnCard.hasTag(Tags.BEAST)) {
-            AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
+        if (drawnCard.hasTag(Tags.BEAST)) {
+            this.modifyGiantTributes(-this.magicNumber);
         }
     }
 
@@ -74,10 +72,7 @@ public class GiantRat extends DuelistCard {
         preDuelistUseCard(owner, targets);
         tribute();
         block();
-        if (this.tributes == 0 || this.tributes != baseTrib) {
-            AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, baseTrib - this.tributes, true));
-            this.initializeDescription();
-        }
+        this.resetGiantTributes();
         postDuelistUseCard(owner, targets);
     }
 
@@ -96,4 +91,5 @@ public class GiantRat extends DuelistCard {
             this.initializeDescription();
         }
     }
+
 }

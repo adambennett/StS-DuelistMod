@@ -21,6 +21,7 @@ public class NoResummoningTrapsCombatPower extends NoStackDuelistPower
 
     public NoResummoningTrapsCombatPower(final AbstractCreature owner, final AbstractCreature source) 
     {
+        super(owner, source);
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        

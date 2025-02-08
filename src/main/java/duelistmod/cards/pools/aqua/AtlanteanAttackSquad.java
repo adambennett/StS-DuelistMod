@@ -39,7 +39,7 @@ public class AtlanteanAttackSquad extends DuelistCard
         this.damage = this.baseDamage = 20;
         this.summons = this.baseSummons = 3;
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.THALASSIC);

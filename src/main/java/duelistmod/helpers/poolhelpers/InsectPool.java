@@ -130,6 +130,7 @@ public class InsectPool
 		cards.add(new Zektahawk());
 		cards.add(new Zektarrow());
 		cards.add(new Zektkaliber());
+		cards.add(new MaxxC());
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType())
 		{
 			cards.add(new NoxiousFumes());

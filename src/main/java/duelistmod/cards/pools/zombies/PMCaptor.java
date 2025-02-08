@@ -39,8 +39,8 @@ public class PMCaptor extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 1;
         this.baseDamage = this.damage = 22; 
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
         this.exhaust = true;
     }
 

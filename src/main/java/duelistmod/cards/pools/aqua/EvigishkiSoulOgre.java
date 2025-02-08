@@ -38,8 +38,8 @@ public class EvigishkiSoulOgre extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+        
+        
         this.originalName = this.name;
         this.damage = this.baseDamage = 12;
         this.baseTributes = this.tributes = 2;

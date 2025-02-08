@@ -64,6 +64,7 @@ import duelistmod.cards.pools.fiend.SkullArchfiend;
 import duelistmod.cards.pools.fiend.SlateWarrior;
 import duelistmod.cards.pools.fiend.SummonedSkull;
 import duelistmod.cards.pools.fiend.TranceArchfiend;
+import duelistmod.cards.pools.gusto.*;
 import duelistmod.cards.pools.increment.Ankuriboh;
 import duelistmod.cards.pools.increment.AstralKuriboh;
 import duelistmod.cards.pools.increment.FiveStarTwilight;
@@ -101,6 +102,7 @@ import duelistmod.cards.pools.pharaoh.MirageDragonBasic;
 import duelistmod.cards.pools.pharaoh.PlasmaBall;
 import duelistmod.cards.pools.pharaoh.VampireFrauleinBasic;
 import duelistmod.cards.pools.pharaoh.VoidApocalypse;
+import duelistmod.cards.pools.spellcaster.MaskedSorcerer;
 import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
 import duelistmod.cards.pools.pharaoh.PharaohBlessing;
 import duelistmod.cards.pools.pharaoh.RainbowMedicine;
@@ -133,6 +135,7 @@ import duelistmod.cards.pools.plant.Predaponics;
 import duelistmod.cards.pools.plant.Predapractice;
 import duelistmod.cards.pools.plant.Predapruning;
 import duelistmod.cards.pools.plant.StarvingVenomPredapowerFusionDragon;
+import duelistmod.cards.pools.toon.*;
 import duelistmod.cards.pools.zombies.EternalSoul;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
@@ -920,7 +923,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BigDesFrog());
 		DuelistMod.myCards.add(new AtlanteanAttackSquad());
 		DuelistMod.myCards.add(new DarklordSuperbia());
-		DuelistMod.myCards.add(new ToonGoblinAttack());
+		DuelistMod.myCards.add(new ToonGoblinAttackForce());
 		DuelistMod.myCards.add(new ToonMaskedSorcerer());
 		DuelistMod.myCards.add(new MillenniumSpellbook());
 		DuelistMod.myCards.add(new LightningVortex());
@@ -1613,7 +1616,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new FreezingBeast());
 		DuelistMod.myCards.add(new GamecieltheSeaTurtleKaiju());
 		DuelistMod.myCards.add(new GeneralGantal());
-		DuelistMod.myCards.add(new GiantPairfish());
 		DuelistMod.myCards.add(new GiantRedSeasnake());
 		DuelistMod.myCards.add(new GiantTurtle());
 		DuelistMod.myCards.add(new GishkiAquamirror());
@@ -2034,11 +2036,111 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new InfernityPawn());
 		DuelistMod.myCards.add(new InfernoidDevyaty());
 		DuelistMod.myCards.add(new FlyingElephant());
+		DuelistMod.myCards.add(new CreepyConey());
+		DuelistMod.myCards.add(new MaskedSorcerer());
+		DuelistMod.myCards.add(new MaxxC());
+		DuelistMod.myCards.add(new ToonBusterBlader());
+		DuelistMod.myCards.add(new ToonBlackLusterSoldier());
+		DuelistMod.myCards.add(new TardyOrc());
+		DuelistMod.myCards.add(new DBoyz());
+		DuelistMod.myCards.add(new ToonExplosion());
+		DuelistMod.myCards.add(new ToonHarpieLady());
+		DuelistMod.myCards.add(new MineMole());
+		DuelistMod.myCards.add(new Bagooska());
+		DuelistMod.myCards.add(new MasterOfOz());
+		DuelistMod.myCards.add(new DarkToonBlast());
+		DuelistMod.myCards.add(new GaiaTheToonKnight());
+		DuelistMod.myCards.add(new ToonGodStrike());
+		DuelistMod.myCards.add(new ToonBlueEyesUltimate());
+		DuelistMod.myCards.add(new SwiftBirdmanJoe());
+		DuelistMod.myCards.add(new DoubleAttack());
+		DuelistMod.myCards.add(new ToonCyberDragon());
+		DuelistMod.myCards.add(new CardOfLastWill());
+		DuelistMod.myCards.add(new ToonAlligator());
+		DuelistMod.myCards.add(new Oops());
+		DuelistMod.myCards.add(new ToonTerror());
+		DuelistMod.myCards.add(new ToonRelinquished());
+		DuelistMod.myCards.add(new ToonBookmark());
+		DuelistMod.myCards.add(new TransmissionGear());
+		DuelistMod.myCards.add(new ToonExodiaIncarnate());
+		DuelistMod.myCards.add(new ToonLegendaryFisherman());
+		DuelistMod.myCards.add(new Tatsunootoshigo());
+		DuelistMod.myCards.add(new Bunilla());
+		DuelistMod.myCards.add(new ChainDog());
+		DuelistMod.myCards.add(new ToonBabyDragon());
+		DuelistMod.myCards.add(new DarkBribe());
+		DuelistMod.myCards.add(new MangaMonsterReborn());
+		DuelistMod.myCards.add(new ToonGreenBaboon());
+		DuelistMod.myCards.add(new Mimiclay());
+		DuelistMod.myCards.add(new TimeWizardOfTomorrow());
+		DuelistMod.myCards.add(new ThereCanBeOnlyOne());
+		DuelistMod.myCards.add(new ToonMetalzoa());
+		DuelistMod.myCards.add(new HungryBurger());
+		DuelistMod.myCards.add(new BannerOfCourage());
+		DuelistMod.myCards.add(new ToonKuriboh());
+		DuelistMod.myCards.add(new JarRobber());
+		DuelistMod.myCards.add(new ToonLemonMagicianGirl());
+		DuelistMod.myCards.add(new ToonChocolateMagicianGirl());
+		DuelistMod.myCards.add(new ToonKiwiMagicianGirl());
+		DuelistMod.myCards.add(new ToonBerryMagicianGirl());
+		DuelistMod.myCards.add(new ToonAppleMagicianGirl());
+		DuelistMod.myCards.add(new ToonPageFlip());
+		DuelistMod.myCards.add(new Salamandra());
+		DuelistMod.myCards.add(new RedEyesBabyDragon());
+		DuelistMod.myCards.add(new BabySpider());
+		DuelistMod.myCards.add(new BabyTiragon());
+		DuelistMod.myCards.add(new BabyRaccoonTantan());
+		DuelistMod.myCards.add(new BabyRaccoonPonpoko());
+		DuelistMod.myCards.add(new FlamvellBaby());
+		DuelistMod.myCards.add(new MistValleyBabyRoc());
+		DuelistMod.myCards.add(new RemoteRevenge());
+		DuelistMod.myCards.add(new RevengeRally());
+		DuelistMod.myCards.add(new HiddenFangsOfRevenge());
+		DuelistMod.myCards.add(new RoseWarriorOfRevenge());
+		DuelistMod.myCards.add(new GoddessOfSweetRevenge());
+		DuelistMod.myCards.add(new Zoa());
+		DuelistMod.myCards.add(new Metalzoa());
+		DuelistMod.myCards.add(new Metalmorph());
+		DuelistMod.myCards.add(new RedEyesBlackMetalDragon());
+		DuelistMod.myCards.add(new CyberPhoenix());
+		DuelistMod.myCards.add(new JunkGiant());
+		DuelistMod.myCards.add(new AgnimalCandle());
+		DuelistMod.myCards.add(new CandleOfFate());
+		DuelistMod.myCards.add(new IceKnight());
+		DuelistMod.myCards.add(new EmperorOfLightning());
+		DuelistMod.myCards.add(new DelgTheDarkMonarch());
+		DuelistMod.myCards.add(new Abaki());
+		DuelistMod.myCards.add(new InfernoidSeitsemas());
+
+		DuelistMod.myCards.add(new StanleysSketchbook(10));
+		DuelistMod.myCards.add(new StanleysSketchbookAddToonWorld(false));
+		DuelistMod.myCards.add(new StanleysSketchbookRemoveCard());
 
 		DuelistMod.myCards.add(new FinalFlameBasic());
 		DuelistMod.myCards.add(new GhostrickDollBasic());
 		DuelistMod.myCards.add(new MirageDragonBasic());
 		DuelistMod.myCards.add(new VampireFrauleinBasic());
+		DuelistMod.myCards.add(new SpiritHarpBasic());
+		DuelistMod.myCards.add(new EvilswarmHeliotropeBasic());
+
+		//Gustos
+		DuelistMod.myCards.add(new MustoOracleOfGusto());
+		DuelistMod.myCards.add(new WindaarSageOfGusto());
+		DuelistMod.myCards.add(new GustoEgul());
+		DuelistMod.myCards.add(new ContactWithGusto());
+		DuelistMod.myCards.add(new BlessingsForGusto());
+		DuelistMod.myCards.add(new DescendantOfGusto());
+		DuelistMod.myCards.add(new GustoSquirro());
+		DuelistMod.myCards.add(new GustoGulldo());
+		DuelistMod.myCards.add(new GustoGriffin());
+		DuelistMod.myCards.add(new GustoThunbolt());
+		DuelistMod.myCards.add(new WindaPriestessOfGusto());
+		DuelistMod.myCards.add(new DustStormOfGusto());
+		DuelistMod.myCards.add(new GustoFalco());
+		DuelistMod.myCards.add(new GustoCodor());
+		DuelistMod.myCards.add(new CaamSerenityOfGusto());
+		DuelistMod.myCards.add(new DaigustoSphreez());
+		DuelistMod.myCards.add(new DaigustoGulldos());
 
 		//DuelistMod.myCards.add(new LightningDarts());
 		//DuelistMod.myCards.add(new AncientFairyDragon());
@@ -2060,7 +2162,6 @@ public class DuelistCardLibrary
 		//DuelistMod.myCards.add(new TidalWaterfall());
 		//DuelistMod.myCards.add(new UltimateTyranno());
 		//DuelistMod.myCards.add(new CyberPharos());
-		//DuelistMod.myCards.add(new CyberPhoenix());
 		//DuelistMod.myCards.add(new CyberloadFusion());
 		//DuelistMod.myCards.add(new DragonShrine());
 		//DuelistMod.myCards.add(new CyberDragonHerz());
@@ -2152,6 +2253,9 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new WarriorMetronome());
 		DuelistMod.myCards.add(new WyrmMetronome());
 		DuelistMod.myCards.add(new ZombieMetronome());
+		DuelistMod.myCards.add(new RevengeMetronome());
+		DuelistMod.myCards.add(new RevengeAttackMetronome());
+		DuelistMod.myCards.add(new CommonAttackMetronome());
 
 		if (Util.halloweenCheck())
 		{
@@ -2310,19 +2414,19 @@ public class DuelistCardLibrary
 		{
 			if (!c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
 			{
-				if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+				if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 				{
 					DuelistMod.rareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 					if (!c.type.equals(CardType.POWER)) { DuelistMod.rareNonPowers.add((DuelistCard) c.makeStatEquivalentCopy()); }
 				}
 
-				else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+				else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 				{
 					DuelistMod.uncommonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 					DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 				}
 
-				else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.COMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+				else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.COMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 				{
 					DuelistMod.commonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 					DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());
@@ -2336,7 +2440,7 @@ public class DuelistCardLibrary
 						DuelistMod.merchantPendantPowers.add((DuelistCard)c.makeStatEquivalentCopy());
 					}
 				}
-				else if (!c.color.equals(AbstractCardEnum.DUELIST_SPECIAL) && !c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+				else if (!c.color.equals(AbstractCardEnum.DUELIST_SPECIAL) && !c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 				{
 					DuelistMod.nonPowers.add((DuelistCard)c.makeStatEquivalentCopy());
 				}
@@ -2536,6 +2640,7 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Undead Token", new UndeadToken());
 		DuelistMod.summonMap.put("Beast Token", new BeastToken());
 		DuelistMod.summonMap.put("Ferret Token", new FerretToken());
+		DuelistMod.summonMap.put("Bunny Token", new BunnyToken());
 	}
 
 	// MUST INSERT NEW TOKENS AT END OF LIST - due to puzzle configurations using the position to display in menu dropdowns
@@ -2596,6 +2701,7 @@ public class DuelistCardLibrary
 		tokens.add(new MegaGlitchToken());
 		tokens.add(new FreezeToken());
 		tokens.add(new BurnToken());
+		tokens.add(new BunnyToken());
 		tokens.add(new RobotToken());
 		tokens.add(new GreaseToken());
 		tokens.add(new ArmoredToken());
@@ -2615,6 +2721,7 @@ public class DuelistCardLibrary
 		tokens.add(new MutateToken());
 		tokens.add(new UndeadToken());
 		tokens.add(new FerretToken());
+		tokens.add(new BunnyToken());
 		return tokens;
 	}
 
@@ -2674,6 +2781,7 @@ public class DuelistCardLibrary
 		tokens.add(new FocusToken());
 		tokens.add(new TrapToken());
 		tokens.add(new JamToken());
+		tokens.add(new BunnyToken());
 		if (Util.deckIs("Aqua Deck") || Util.deckIs("Machine Deck"))
 		{
 			tokens.add(new AquaToken());
@@ -2961,18 +3069,18 @@ public class DuelistCardLibrary
 
 		for (DuelistCard c : DuelistMod.myCards)
 		{
-			if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+			if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 			{
 				DuelistMod.rareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 			}
 
-			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 			{
 				DuelistMod.uncommonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 				DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 			}
 
-			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.COMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON_POOL) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.COMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 			{
 				DuelistMod.commonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 				DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());

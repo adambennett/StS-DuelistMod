@@ -38,8 +38,8 @@ public class LostBlueBreaker extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes = 3;
         this.baseDamage = this.damage = 20;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.baseMagicNumber = this.magicNumber = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);

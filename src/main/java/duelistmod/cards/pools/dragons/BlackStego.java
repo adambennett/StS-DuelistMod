@@ -37,7 +37,7 @@ public class BlackStego extends DuelistCard
         this.baseBlock = this.block 				= 9;		// blk
         this.baseDamage = this.damage 				= 5;		// dmg
         this.summons = this.baseSummons				= 2;		// summons
-        this.specialCanUseLogic = true;							// for any summon or tribute card
+        							// for any summon or tribute card
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DINOSAUR);
         this.tags.add(Tags.STAMPEDING);

@@ -2,6 +2,7 @@ package duelistmod.characters;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 import basemod.ReflectionHacks;
 import basemod.animations.AbstractAnimation;
@@ -30,6 +31,8 @@ import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import duelistmod.cards.curses.CurseRoyal;
 import duelistmod.cards.pools.fiend.SummonedSkull;
+import duelistmod.cards.pools.toon.ToonKingdom;
+import duelistmod.cards.pools.toon.ToonWorld;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.enums.CardPoolType;
 import duelistmod.enums.DeathType;
@@ -218,8 +221,8 @@ public class TheDuelist extends CustomPlayer {
 		}
 		DuelistMod.unblockedDamageTriggerCheck = false;
 
-		DuelistMod.beastsDrawnByTurn.add(DuelistMod.beastsDrawnThisTurn);
-		DuelistMod.enemyBeastsDrawnByTurn.add(DuelistMod.enemyBeastsDrawnThisTurn);
+		DuelistMod.beastsDrawnByTurnThisCombat.add(DuelistMod.beastsDrawnThisTurn);
+		DuelistMod.enemyBeastsDrawnByTurnThisCombat.add(DuelistMod.enemyBeastsDrawnThisTurn);
 		DuelistMod.beastsDrawnThisTurn = 0;
 		DuelistMod.enemyBeastsDrawnThisTurn = 0;
 		DuelistMod.uniqueBeastsPlayedThisTurn.clear();
@@ -232,9 +235,6 @@ public class TheDuelist extends CustomPlayer {
 		PuzzleHelper.runStartOfBattlePostDrawEffects();
 		if (DuelistMod.drawExtraCardsAtTurnStart > 0) {
 			AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, DuelistMod.drawExtraCardsAtTurnStart));
-		}
-		if (DuelistMod.drawExtraCardsAtTurnStartThisBattle > 0) {
-			AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, DuelistMod.drawExtraCardsAtTurnStartThisBattle));
 		}
 		super.applyStartOfTurnPostDrawRelics();
 	}
@@ -506,6 +506,15 @@ public class TheDuelist extends CustomPlayer {
 		boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;
 		boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
 		BoosterHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, boss);
+		if (boss && Util.getChallengeLevel() > 3 && Util.deckIs("Toon Deck")) {
+			List<AbstractCard> removals = masterDeck.group.stream().filter(c -> c instanceof ToonWorld || c instanceof ToonKingdom).collect(Collectors.toList());
+			for (AbstractCard c : removals) {
+				masterDeck.removeCard(c);
+			}
+			if (AbstractDungeon.ascensionLevel > 19 && !removals.isEmpty()) {
+				decreaseMaxHealth(removals.size());
+			}
+		}
 	}
 
 	// Character Select screen effect
@@ -671,7 +680,9 @@ public class TheDuelist extends CustomPlayer {
 			{
 				DuelistMod.firstCardResummonedThisCombat = c.makeStatEquivalentCopy();
 			}
-			this.hand.glowCheck();
+			try {
+				this.hand.glowCheck();
+			} catch (Exception ignored) {}
 		}
 		if (c.type == AbstractCard.CardType.ATTACK) {
 	        this.useFastAttackAnimation();
@@ -711,7 +722,9 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public void loseEnergy(int e) {
 		super.loseEnergy(e);
-		this.hand.glowCheck();
+		try {
+			this.hand.glowCheck();
+		} catch (Exception ignored) {}
 	}
 
 	@Override
@@ -834,6 +847,21 @@ public class TheDuelist extends CustomPlayer {
 			}
 			for (final AbstractRelic r : this.relics) {
 				r.wasHPLost(damageAmount);
+			}
+			if (hasPower(SummonPower.POWER_ID)) {
+				HashMap<String, DuelistCard> uniqueTriggerMap = new HashMap<>();
+				SummonPower summonPower = (SummonPower) getPower(SummonPower.POWER_ID);
+				for (DuelistCard summoned : summonPower.getCardsSummoned()) {
+					summoned.onUnblockedDamageTakenWhileSummoned(damageAmount);
+					if (!uniqueTriggerMap.containsKey(summoned.cardID)) {
+						uniqueTriggerMap.put(summoned.cardID, summoned);
+					} else if (!uniqueTriggerMap.get(summoned.cardID).upgraded && summoned.upgraded) {
+						uniqueTriggerMap.put(summoned.cardID, summoned);
+					}
+				}
+				for (DuelistCard uniqueSummon : uniqueTriggerMap.values()) {
+					uniqueSummon.onUnblockedDamageTakenWhileSummonedUniqueByCardId(damageAmount);
+				}
 			}
 			if (info.owner != null) {
 				for (final AbstractPower p : info.owner.powers) {
@@ -1097,5 +1125,17 @@ public class TheDuelist extends CustomPlayer {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void applyStartOfTurnRelics() {
+		super.applyStartOfTurnRelics();
+		DuelistMod.tardyOrcsDrawnThisTurn.clear();
+		DuelistMod.allTributedCardsThisTurn.clear();
+		DuelistMod.allSummonedCardsThisTurn.clear();
+		DuelistMod.revengeTriggersThisTurn = 0;
+		List<AbstractCard> cardsPlayedThisTurn = AbstractDungeon.actionManager.cardsPlayedThisTurn == null ? new ArrayList<>() : AbstractDungeon.actionManager.cardsPlayedThisTurn;
+		DuelistMod.cardsPlayedByTurnThisCombat.put(GameActionManager.turn, new ArrayList<>());
+		DuelistMod.cardsPlayedByTurnThisCombat.get(GameActionManager.turn).addAll(cardsPlayedThisTurn);
 	}
 }

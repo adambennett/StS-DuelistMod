@@ -40,8 +40,8 @@ public class Skelesaurus extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 3;
         this.baseDamage = this.damage = 22; 
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
     }
 
     // Actions the card should do.

@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.NoStackDuelistPower;
+import duelistmod.abstracts.DuelistPower;
 import duelistmod.dto.AnyDuelist;
 
-public class IronChainDragonPower extends NoStackDuelistPower {
+public class IronChainDragonPower extends DuelistPower {
 	public AbstractCreature source;
 
     public static final String POWER_ID = DuelistMod.makeID("IronChainDragonPower");

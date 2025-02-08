@@ -46,8 +46,8 @@ public class VendreadRevenants extends DuelistCard
         this.baseTributes = this.tributes = 3;
         this.baseDamage = this.damage = 12; 
         this.baseMagicNumber = this.magicNumber = 10;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
     }
     
     @Override

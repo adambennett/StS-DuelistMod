@@ -40,7 +40,7 @@ public class GhostReaper extends DuelistCard
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 9; 
         this.isMultiDamage = true;
-        this.specialCanUseLogic = true;
+
     }
     
     @Override

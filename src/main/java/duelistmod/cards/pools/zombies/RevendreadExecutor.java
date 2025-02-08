@@ -44,8 +44,8 @@ public class RevendreadExecutor extends DuelistCard
         this.baseTributes = this.tributes = 1;
         this.baseDamage = this.damage = 18; 
         this.exhaust = true;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
     }
     
     @Override

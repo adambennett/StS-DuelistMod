@@ -41,8 +41,8 @@ public class HeavyMetalRaiders extends DuelistCard
         this.tributes = this.baseTributes = 3;
         this.baseMagicNumber = this.magicNumber = 3;
         this.baseSecondMagic = this.secondMagic = 2;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;

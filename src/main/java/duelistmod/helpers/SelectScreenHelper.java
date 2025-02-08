@@ -7,6 +7,7 @@ import duelistmod.DuelistMod;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class SelectScreenHelper {
 
@@ -39,7 +40,16 @@ public class SelectScreenHelper {
     }
 
     public static void open(CardGroup cards, int amount, String msg, boolean autoConfirm, Consumer<ArrayList<AbstractCard>> onConfirmBehavior) {
-        DuelistMod.duelistCardSelectScreen.open(true, cards, amount,  msg, onConfirmBehavior, autoConfirm);
+        open(cards, amount, msg, autoConfirm, onConfirmBehavior, null);
+    }
+
+    public static void open(CardGroup cards, int amount, String msg, boolean autoConfirm, Consumer<ArrayList<AbstractCard>> onConfirmBehavior, Function<ArrayList<AbstractCard>, ArrayList<AbstractCard>> preFilterConfirmedCardsBeforeOnConfirmBehavior) {
+        DuelistMod.duelistCardSelectScreen.open(true, cards, amount,  msg, onConfirmBehavior, preFilterConfirmedCardsBeforeOnConfirmBehavior, autoConfirm);
+        AbstractDungeon.overlayMenu.cancelButton.show("Cancel");
+    }
+
+    public static void openWithNoConfirmButton(CardGroup cards, int amount, String msg, Consumer<ArrayList<AbstractCard>> onConfirmBehavior, Function<ArrayList<AbstractCard>, ArrayList<AbstractCard>> preFilterConfirmedCardsBeforeOnConfirmBehavior) {
+        DuelistMod.duelistCardSelectScreen.openWithNoConfirmButton(true, cards, amount,  msg, onConfirmBehavior, preFilterConfirmedCardsBeforeOnConfirmBehavior, true);
         AbstractDungeon.overlayMenu.cancelButton.show("Cancel");
     }
 

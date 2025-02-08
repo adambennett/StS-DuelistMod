@@ -33,8 +33,7 @@ public abstract class DynamicDamageCard extends DuelistCard {
         int standardVal = (this.originalDamage + this.damageFunction()) * this.damageFunctionMultiplier();
         this.damage = this.baseDamage = standardVal;
         super.applyPowers();
-        int diff = this.damage - standardVal;
-        this.damage = ((this.originalDamage + this.damageFunction()) * this.damageFunctionMultiplier()) + diff + this.extraFinalDamage();
+        this.damage += this.extraFinalDamage();
         this.isDamageModified = this.damage != standardVal;
         this.initializeDescription();
     }
@@ -44,8 +43,7 @@ public abstract class DynamicDamageCard extends DuelistCard {
         int standardVal = (this.originalDamage + this.damageFunction()) * this.damageFunctionMultiplier();
         this.damage = this.baseDamage = standardVal;
         super.calculateCardDamage(mo);
-        int diff = this.damage - standardVal;
-        this.damage = ((this.originalDamage + this.damageFunction()) * this.damageFunctionMultiplier()) + diff + this.extraFinalDamage();
+        this.damage += this.extraFinalDamage();
         this.isDamageModified = this.damage != standardVal;
         this.initializeDescription();
     }

@@ -36,9 +36,9 @@ public class GishkiMollusk extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.PELAGIC);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
-        this.useBothCanUse = true;
+        
+        
+        
         this.originalName = this.name;
         this.baseSummons = this.summons = 3;
         this.block = this.baseBlock = 8;

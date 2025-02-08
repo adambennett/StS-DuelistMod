@@ -36,8 +36,8 @@ public class SauropodBrachion extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block 				= 40;	
         this.tributes = this.baseTributes 			= 5;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
+        							// for any summon or tribute card
+        
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DINOSAUR);
         this.misc = 0;

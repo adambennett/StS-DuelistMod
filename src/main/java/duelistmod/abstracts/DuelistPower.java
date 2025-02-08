@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.interfaces.RevengeCard;
 
 public abstract class DuelistPower extends TwoAmountPower implements OnLoseTempHpPower
 {
@@ -64,8 +65,10 @@ public abstract class DuelistPower extends TwoAmountPower implements OnLoseTempH
 	public void onGainFangs(int amt) {}
 	
 	public void onLoseArtifact() { }
-	
+
 	public void onOverflow(int amt) { }
+	
+	public void onEnemyOverflow(int amt) { }
 	
     public int modifyShadowDamage() { return 0; }
     
@@ -122,5 +125,9 @@ public abstract class DuelistPower extends TwoAmountPower implements OnLoseTempH
 	public int onLoseTempHp(DamageInfo info, int damageAmount) {
 		return damageAmount;
 	}
+
+	public void onRevengeTriggered(DuelistCard duelistCard) {}
+
+	public void onAddCardToHand(AbstractCard c) { }
 
 }

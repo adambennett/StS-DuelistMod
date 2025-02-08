@@ -38,8 +38,8 @@ public class GenexNeutron extends DuelistCard
         this.tributes = this.baseTributes = 4;
         this.summons = this.baseSummons = 2;
         this.baseMagicNumber = this.magicNumber = 2;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;

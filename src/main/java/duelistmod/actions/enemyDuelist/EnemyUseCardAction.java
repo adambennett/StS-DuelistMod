@@ -14,6 +14,10 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
+import duelistmod.actions.unique.ToonBriefcaseAction;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.powers.duelistPowers.ToonBriefcasePower;
+import duelistmod.variables.Tags;
 
 public class EnemyUseCardAction extends AbstractGameAction {
     public AbstractCreature target;
@@ -108,19 +112,29 @@ public class EnemyUseCardAction extends AbstractGameAction {
             if (this.exhaustCard && AbstractEnemyDuelist.enemyDuelist.hasRelic("Strange Spoon") && this.targetCard.type != AbstractCard.CardType.POWER) {
                 spoonProc = AbstractDungeon.cardRandomRng.randomBoolean();
             }
-            if (!this.exhaustCard || spoonProc) {
+
+            boolean exhaustThis = false;
+            ToonBriefcasePower toonBriefcasePower = null;
+            if (this.targetCard.hasTag(Tags.TOON) && AbstractEnemyDuelist.enemyDuelist.hasPower(ToonBriefcasePower.POWER_ID)) {
+                toonBriefcasePower = (ToonBriefcasePower) AbstractEnemyDuelist.enemyDuelist.getPower(ToonBriefcasePower.POWER_ID);
+                if (toonBriefcasePower.getToonsPlayedThisTurn().size() == toonBriefcasePower.getAmountCheck() - 1) {
+                    exhaustThis = true;
+                }
+            }
+
+            if ((!this.exhaustCard && !exhaustThis) || spoonProc) {
                 if (spoonProc) {
                     AbstractEnemyDuelist.enemyDuelist.getRelic("Strange Spoon").flash();
                 }
                 if (this.reboundCard) {
                     AbstractEnemyDuelist.enemyDuelist.hand.moveToDeck(this.targetCard, false);
                 }
-                else if (this.targetCard.shuffleBackIntoDrawPile) {
-                    AbstractEnemyDuelist.enemyDuelist.hand.moveToDeck(this.targetCard, true);
-                }
                 else if (this.targetCard.returnToHand) {
                     AbstractEnemyDuelist.enemyDuelist.hand.moveToHand(this.targetCard);
                     AbstractEnemyDuelist.enemyDuelist.onCardDrawOrDiscard();
+                }
+                else if (this.targetCard.shuffleBackIntoDrawPile) {
+                    AbstractEnemyDuelist.enemyDuelist.hand.moveToDeck(this.targetCard, true);
                 }
                 else {
                     AbstractEnemyDuelist.enemyDuelist.hand.moveToDiscardPile(this.targetCard);
@@ -132,6 +146,9 @@ public class EnemyUseCardAction extends AbstractGameAction {
             this.targetCard.exhaustOnUseOnce = false;
             this.targetCard.dontTriggerOnUseCard = false;
             this.addToBot(new EnemyHandCheckAction());
+            if (toonBriefcasePower != null && exhaustThis && toonBriefcasePower.getToonsPlayedThisTurn().size() == toonBriefcasePower.getAmountCheck()) {
+                this.addToBot(new ToonBriefcaseAction(AnyDuelist.from(AbstractEnemyDuelist.enemyDuelist), toonBriefcasePower.getToonsPlayedThisTurn()));
+            }
         }
         this.tickDuration();
     }

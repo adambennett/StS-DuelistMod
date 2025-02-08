@@ -38,7 +38,7 @@ public class Cryomancer extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
         this.summons = this.baseSummons = 2;
         this.magicNumber = this.baseMagicNumber = 2;
@@ -54,6 +54,7 @@ public class Cryomancer extends DuelistCard
     @Override
     public void customOnTribute(DuelistCard tributing)
     {
+        super.customOnTribute(tributing);
     	this.addToBot(new CryomancerTribAction(1));
     }
     

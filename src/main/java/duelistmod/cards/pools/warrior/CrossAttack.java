@@ -29,7 +29,7 @@ public class CrossAttack extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
@@ -48,8 +48,8 @@ public class CrossAttack extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (GameActionManager.turn % 2 == 0) { attack(m); }
-    	else { block(); }
+    	if (GameActionManager.turn % 2 == 0) { block(); }
+    	else { attack(m); }
     }
     
     public void update() 
@@ -72,7 +72,7 @@ public class CrossAttack extends DuelistCard
     public void updateCA() {
 		if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) 
 		{
-			if (GameActionManager.turn % 2 == 0) 
+			if (GameActionManager.turn % 2 == 1)
 			{
 				if (this.rawDescription == EXTENDED_DESCRIPTION[0]) { return; }
 				this.superFlash(Color.CORAL.cpy());
@@ -81,7 +81,7 @@ public class CrossAttack extends DuelistCard
 				this.loadCardImage(IMG);
 				this.rawDescription = EXTENDED_DESCRIPTION[0];
 			} 
-			else if (GameActionManager.turn % 2 == 1) 
+			else if (GameActionManager.turn % 2 == 0)
 			{
 				if (this.rawDescription == EXTENDED_DESCRIPTION[1]) { return; }
 				this.superFlash(Color.LIME.cpy());
@@ -113,8 +113,8 @@ public class CrossAttack extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeDamage(3);
-        	this.upgradeBlock(3);
+        	this.upgradeDamage(2);
+        	this.upgradeBlock(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

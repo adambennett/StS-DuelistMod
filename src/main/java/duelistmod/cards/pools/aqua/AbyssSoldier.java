@@ -38,8 +38,8 @@ public class AbyssSoldier extends DuelistCard
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
         this.baseTributes = this.tributes = 1;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.originalName = this.name;
         this.damage = this.baseDamage = 13;
         this.magicNumber = this.baseMagicNumber = 8;

@@ -37,8 +37,8 @@ public class DrillBarnacle extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 2;
         this.damage = this.baseDamage = 4;
         this.tributes = this.baseTributes = 3;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
     }

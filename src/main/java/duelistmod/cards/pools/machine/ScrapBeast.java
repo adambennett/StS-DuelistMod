@@ -39,7 +39,7 @@ public class ScrapBeast extends DuelistCard
         this.baseDamage = this.damage = 10;
         this.summons = this.baseSummons = 1;
         this.isMultiDamage = true;
-        this.specialCanUseLogic = true;
+
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.BEAST);

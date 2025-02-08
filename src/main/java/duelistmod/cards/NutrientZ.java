@@ -80,8 +80,10 @@ public class NutrientZ extends DuelistCard
         }
     }
 
+    @Override
     public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return DuelistMod.nutrientZString; }
 
+    @Override
     public boolean cardSpecificCanUse(final AbstractCreature owner) {
         return owner.currentHealth < 40;
     }

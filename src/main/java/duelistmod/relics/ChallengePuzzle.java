@@ -154,7 +154,7 @@ public class ChallengePuzzle extends DuelistRelic implements VisitFromAnubisRemo
 				if (drawnCard.cost > 4) { costCap = drawnCard.cost; }
 				int costRoll = AbstractDungeon.cardRandomRng.random(cardCost, costCap);
 				drawnCard.setCostForTurn(-drawnCard.costForTurn + costRoll);
-				AbstractDungeon.player.hand.glowCheck();
+				DuelistCard.glowCheck();
 			}
 		}
     }

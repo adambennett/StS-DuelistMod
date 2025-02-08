@@ -37,7 +37,7 @@ public class BlackBrachios extends DuelistCard implements RevengeCard {
         this.baseDamage = this.damage = 9;		
         this.summons = this.baseSummons	= 2;
         this.baseMagicNumber = this.magicNumber = 1;
-        this.specialCanUseLogic = true;							
+        							
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DINOSAUR);
         this.tags.add(Tags.RECKLESS);

@@ -39,8 +39,8 @@ public class SkullServant extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 5;
         this.baseDamage = this.damage = 16; 
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
     }
 
     // Actions the card should do.

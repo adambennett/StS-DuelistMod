@@ -74,6 +74,8 @@ public class ChangeHeart extends DuelistCard
         return 0;
     }
 
+    // Prevent enemy duelists from using this unless it helps them
+    @Override
     public boolean cardSpecificCanUse(final AbstractCreature owner) {
         AnyDuelist duelist = AnyDuelist.from(owner);
         if (duelist.getEnemy() != null && duelist.getEnemy().hasPower(SummonPower.POWER_ID)) {

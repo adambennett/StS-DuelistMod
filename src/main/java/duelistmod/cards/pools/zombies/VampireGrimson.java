@@ -40,7 +40,7 @@ public class VampireGrimson extends DuelistCard
         this.baseSummons = this.summons = 1;
         this.baseMagicNumber = this.magicNumber = 4;
         this.baseDamage = this.damage = 12;          
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

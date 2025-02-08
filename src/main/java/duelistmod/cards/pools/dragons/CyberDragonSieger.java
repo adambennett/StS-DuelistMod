@@ -41,8 +41,8 @@ public class CyberDragonSieger extends DuelistCard
     public CyberDragonSieger() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes 			= 4;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
+        							// for any summon or tribute card
+        
         this.baseMagicNumber = this.magicNumber 	= 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.CYBER);

@@ -39,7 +39,7 @@ public class VampireDuke extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.baseBlock = this.block = 4;    
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

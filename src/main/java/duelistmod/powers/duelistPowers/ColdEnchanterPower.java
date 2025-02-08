@@ -27,7 +27,8 @@ public class ColdEnchanterPower extends NoStackDuelistPower
 	}
 	
 	public ColdEnchanterPower(AbstractCreature owner, AbstractCreature source) 
-	{ 
+	{
+		super(owner, source);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        

@@ -35,7 +35,7 @@ public class CyberValley extends DuelistCard {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage 				= 8;		// dmg
         this.summons = this.baseSummons				= 1;		// summons
-        this.specialCanUseLogic = true;							// for any summon or tribute card
+        							// for any summon or tribute card
         this.baseMagicNumber = this.magicNumber 	= 1;		// 
         this.baseSecondMagic = this.secondMagic 	= 1;		//
         this.baseThirdMagic = this.thirdMagic 		= 1;		//

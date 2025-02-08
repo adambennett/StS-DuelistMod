@@ -38,7 +38,7 @@ public class PhantomGhost extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 9; 
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

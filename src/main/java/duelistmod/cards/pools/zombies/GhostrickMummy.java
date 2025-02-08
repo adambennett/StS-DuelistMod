@@ -39,7 +39,7 @@ public class GhostrickMummy extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 2;
         this.baseDamage = this.damage = 3; 
-        this.specialCanUseLogic = true;
+        
     }
 
     // Actions the card should do.

@@ -38,8 +38,8 @@ public class MermailAbyssalacia extends DuelistCard
         this.tags.add(Tags.THALASSIC);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
         this.originalName = this.name;
         this.block = this.baseBlock = 8;
         this.baseTributes = this.tributes = 2;

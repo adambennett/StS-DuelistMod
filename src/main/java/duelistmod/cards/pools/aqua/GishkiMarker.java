@@ -36,8 +36,8 @@ public class GishkiMarker extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.PELAGIC);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.originalName = this.name;
         this.damage = this.baseDamage = 32;
         this.baseTributes = this.tributes = 13;

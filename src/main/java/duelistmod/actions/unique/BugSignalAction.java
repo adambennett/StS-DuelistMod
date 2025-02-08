@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.variables.Tags;
 
 public class BugSignalAction extends AbstractGameAction
@@ -30,7 +31,7 @@ public class BugSignalAction extends AbstractGameAction
             		c.modifyCostForCombat(-this.mag);
             	}
             }
-            AbstractDungeon.player.hand.glowCheck();
+            DuelistCard.glowCheck();
         }
         tickDuration();
     }

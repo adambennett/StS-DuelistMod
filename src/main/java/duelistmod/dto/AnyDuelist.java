@@ -37,14 +37,9 @@ import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.abstracts.enemyDuelist.EnemyDuelistCard;
 import duelistmod.actions.common.DrawFromRarityAction;
 import duelistmod.actions.common.DrawFromTagAction;
-import duelistmod.actions.common.ModifyTributeAction;
+import duelistmod.actions.common.DrawFromTypeAction;
 import duelistmod.actions.common.TsunamiAction;
-import duelistmod.actions.enemyDuelist.EnemyChannelAction;
-import duelistmod.actions.enemyDuelist.EnemyDiscardAction;
-import duelistmod.actions.enemyDuelist.EnemyDrawActualCardsAction;
-import duelistmod.actions.enemyDuelist.EnemyDrawFromRarityAction;
-import duelistmod.actions.enemyDuelist.EnemyDrawFromTagAction;
-import duelistmod.actions.enemyDuelist.EnemyIncreaseMaxOrbAction;
+import duelistmod.actions.enemyDuelist.*;
 import duelistmod.actions.unique.PlayRandomFromDiscardAction;
 import duelistmod.cards.EarthGiant;
 import duelistmod.cards.GiantOrc;
@@ -54,6 +49,7 @@ import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.cards.pools.dragons.ArmageddonDragonEmp;
 import duelistmod.cards.pools.dragons.GiantRex;
 import duelistmod.cards.pools.machine.ChaosAncientGearGiant;
+import duelistmod.cards.pools.toon.ToonGodStrike;
 import duelistmod.characters.TheDuelist;
 import duelistmod.enums.EnemyDuelistCounter;
 import duelistmod.enums.EnemyDuelistFlag;
@@ -78,8 +74,7 @@ import duelistmod.relics.NaturiaRelic;
 import duelistmod.relics.VampiricPendant;
 import duelistmod.variables.Tags;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -103,7 +98,7 @@ public class AnyDuelist {
         if (giant instanceof EarthGiant) {
             DuelistCard dc = (DuelistCard)giant;
             if (dc.tributes > 0) {
-                AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dc, -dc.magicNumber, true));
+                dc.modifyGiantTributes(-dc.magicNumber);
             }
         }
     };
@@ -111,11 +106,12 @@ public class AnyDuelist {
     private static final BiConsumer<AbstractCard, AbstractCard> monsterCalcs = (checkCard, cardPlayed) -> {
         boolean checks = (checkCard instanceof GiantRex && cardPlayed.hasTag(Tags.DINOSAUR)) ||
                          (checkCard instanceof ChaosAncientGearGiant) && cardPlayed.hasTag(Tags.MACHINE) ||
+                         (checkCard instanceof ToonGodStrike) && cardPlayed.hasTag(Tags.TOON) ||
                          (checkCard instanceof ArmageddonDragonEmp) && cardPlayed.hasTag(Tags.DRAGON);
         if (checks) {
             DuelistCard dc = (DuelistCard)checkCard;
             if (dc.tributes > 0) {
-                AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dc, -dc.magicNumber, true));
+                dc.modifyGiantTributes(-dc.magicNumber);
             }
         }
     };
@@ -239,7 +235,7 @@ public class AnyDuelist {
             boolean effectResets = DuelistMod.getMonsterSetting(MonsterType.SPIDER, MonsterType.spiderResetKey, MonsterType.spiderDefaultReset);
             if (this.player != null) {
                 DuelistMod.spidersPlayedThisCombat++;
-                if (DuelistMod.spidersPlayedThisCombat > spidersToPlayForTempHp) {
+                if (DuelistMod.spidersPlayedThisCombat >= spidersToPlayForTempHp) {
                     DuelistCard.gainTempHP(tempHpConfig);
                     if (effectResets) {
                         DuelistMod.spidersPlayedThisCombat = 0;
@@ -247,7 +243,7 @@ public class AnyDuelist {
                 }
             } else if (this.enemy != null) {
                 this.enemy.counters.compute(EnemyDuelistCounter.SPIDER, (k,v)->v==null?1:v+1);
-                if (this.enemy.counters.getOrDefault(EnemyDuelistCounter.SPIDER, 0) > spidersToPlayForTempHp) {
+                if (this.enemy.counters.getOrDefault(EnemyDuelistCounter.SPIDER, 0) >= spidersToPlayForTempHp) {
                     DuelistCard.gainTempHP(this.enemy, this.enemy, tempHpConfig);
                     if (effectResets) {
                         this.enemy.counters.put(EnemyDuelistCounter.SPIDER, 0);
@@ -261,7 +257,7 @@ public class AnyDuelist {
             int tempHpAmt = DuelistMod.getMonsterSetting(MonsterType.BUG, MonsterType.bugTempHpKey, MonsterType.bugDefaultTempHp);
             if (this.player != null) {
                 DuelistMod.bugsPlayedThisCombat++;
-                if (DuelistMod.bugsPlayedThisCombat > bugsToPlay) {
+                if (DuelistMod.bugsPlayedThisCombat >= bugsToPlay) {
                     DuelistCard.gainTempHP(tempHpAmt);
                     Boolean effectResets = DuelistMod.getMonsterSetting(MonsterType.BUG, MonsterType.bugResetKey);
                     boolean effectReset = effectResets == null ? MonsterType.bugDefaultReset : effectResets;
@@ -271,7 +267,7 @@ public class AnyDuelist {
                 }
             } else if (this.enemy != null) {
                 this.enemy.counters.compute(EnemyDuelistCounter.BUG, (k,v)->v==null?1:v+1);
-                if (this.enemy.counters.getOrDefault(EnemyDuelistCounter.BUG, 0) > bugsToPlay) {
+                if (this.enemy.counters.getOrDefault(EnemyDuelistCounter.BUG, 0) >= bugsToPlay) {
                     DuelistCard.gainTempHP(this.enemy, this.enemy, tempHpAmt);
                     Boolean effectResets = DuelistMod.getMonsterSetting(MonsterType.BUG, MonsterType.bugResetKey);
                     boolean effectReset = effectResets == null ? MonsterType.bugDefaultReset : effectResets;
@@ -548,9 +544,86 @@ public class AnyDuelist {
 
     public int cardsPlayedThisTurn() {
         if (this.enemy != null) {
-            return this.enemy.cardsPlayedThisTurn;
+            return this.enemy.cardsPlayedThisTurn.size();
         }
         return this.player != null ? AbstractDungeon.actionManager.cardsPlayedThisTurn.size() : 0;
+    }
+
+    public ArrayList<AbstractCard> getCardsPlayedThisTurn() {
+        if (this.enemy != null) {
+            return this.enemy.cardsPlayedThisTurn;
+        }
+        return this.player != null ? AbstractDungeon.actionManager.cardsPlayedThisTurn : new ArrayList<>();
+    }
+
+    public HashMap<Integer, List<AbstractCard>> getCardsPlayedByTurnThisCombat() {
+        if (this.enemy != null) {
+            return this.enemy.cardsPlayedByTurnThisCombat;
+        }
+        return this.player != null ? DuelistMod.cardsPlayedByTurnThisCombat : new HashMap<>();
+    }
+
+    public ArrayList<DuelistCard> getAllSummonedCardsThisTurn() {
+        if (this.enemy != null) {
+            return this.enemy.allSummonedCardsThisTurn;
+        }
+        return this.player != null ? DuelistMod.allSummonedCardsThisTurn : new ArrayList<>();
+    }
+
+    public ArrayList<DuelistCard> getAllSummonedCardsThisCombat() {
+        if (this.enemy != null) {
+            return this.enemy.allSummonedCardsThisCombat;
+        }
+        return this.player != null ? DuelistMod.allSummonedCardsThisCombat : new ArrayList<>();
+    }
+
+    public ArrayList<DuelistCard> getAllTributedCardsThisTurn() {
+        if (this.enemy != null) {
+            return this.enemy.allTributedCardsThisTurn;
+        }
+        return this.player != null ? DuelistMod.allTributedCardsThisTurn : new ArrayList<>();
+    }
+
+    public ArrayList<DuelistCard> getAllTributedCardsThisCombat() {
+        if (this.enemy != null) {
+            return this.enemy.allTributedCardsThisCombat;
+        }
+        return this.player != null ? DuelistMod.allTributedCardsThisCombat : new ArrayList<>();
+    }
+
+    public ArrayList<DuelistCard> getAllTributedCardsThisRun() {
+        if (this.enemy != null) {
+            return this.enemy.allTributedCardsThisCombat;
+        }
+        return this.player != null ? DuelistMod.allTributedCardsThisRun : new ArrayList<>();
+    }
+
+    public int getRevengeTriggersThisTurn() {
+        if (this.enemy != null) {
+            return this.enemy.revengeTriggersThisTurn;
+        }
+        return this.player != null ? DuelistMod.revengeTriggersThisTurn : 0;
+    }
+
+    public int getRevengeTriggersThisCombat() {
+        if (this.enemy != null) {
+            return this.enemy.revengeTriggersThisCombat;
+        }
+        return this.player != null ? DuelistMod.revengeTriggersThisCombat : 0;
+    }
+
+    public int getRevengeTriggersThisRun() {
+        if (this.enemy != null) {
+            return this.enemy.revengeTriggersThisCombat;
+        }
+        return this.player != null ? DuelistMod.revengeTriggersThisRun : 0;
+    }
+
+    public HashSet<UUID> getTardyOrcsDrawnThisTurn() {
+        if (this.enemy != null) {
+            return this.enemy.tardyOrcsDrawnThisTurn;
+        }
+        return this.player != null ? DuelistMod.tardyOrcsDrawnThisTurn : new HashSet<>();
     }
 
     public List<AbstractOrb> orbsChanneledThisCombat() {
@@ -569,6 +642,10 @@ public class AnyDuelist {
 
     public ArrayList<AbstractCard> getCardsPlayedCombat() {
         return this.player != null ? AbstractDungeon.actionManager.cardsPlayedThisCombat : this.enemy != null ? this.enemy.cardsPlayedThisCombat : new ArrayList<>();
+    }
+
+    public ArrayList<DuelistCard> getRevengeCardsTriggeredThisCombat() {
+        return this.player != null ? DuelistMod.revengeCardsTriggeredThisCombat : this.enemy != null ? this.enemy.revengeCardsTriggeredThisCombat : new ArrayList<>();
     }
 
     public List<AbstractPower> powers() {
@@ -695,6 +772,19 @@ public class AnyDuelist {
         }
     }
 
+    public void drawType(int cards, CardType type) {
+        drawType(cards, type, false);
+    }
+
+    public void drawType(int cards, CardType type, boolean bottom) {
+        AbstractGameAction draw = this.player() ? new DrawFromTypeAction(this.creature(), cards, type) : new EnemyDrawFromTypeAction(this, cards, type);
+        if (bottom) {
+            AbstractDungeon.actionManager.addToBottom(draw);
+        } else {
+            AbstractDungeon.actionManager.addToTop(draw);
+        }
+    }
+
     public void drawRare(int cards, CardRarity tag) {
         drawRare(cards, tag, false);
     }
@@ -748,6 +838,15 @@ public class AnyDuelist {
             DuelistCard.gainEnergy(amt);
         } else if (this.enemy != null) {
             this.enemy.gainEnergy(amt);
+            // TODO: Update this to use a custom action that mimics all the stuff in GainEnergyAction from the base game
+        }
+    }
+
+    public void gainTempHP(int amt) {
+        if (this.player()) {
+            DuelistCard.gainTempHP(amt);
+        } else if (this.getEnemy() != null) {
+            DuelistCard.gainTempHP(this.creature(), this.creature(), amt);
         }
     }
 
@@ -785,12 +884,12 @@ public class AnyDuelist {
 
     public void applyPower(AbstractCreature target, AbstractCreature source, AbstractPower power) {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, source, power, power.amount));
-        this.handGroup().glowCheck();
+        this.glowCheck();
     }
 
     public void applyPowerToSelf(AbstractPower power, AbstractCreature source) {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.creature(), source, power, power.amount));
-        this.handGroup().glowCheck();
+        this.glowCheck();
     }
 
     public void applyPowerToSelf(AbstractPower power) {
@@ -800,10 +899,12 @@ public class AnyDuelist {
     public void removePower(AbstractCreature target, AbstractCreature source, AbstractPower power) {
         AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, source, power, power.amount));
         if (AbstractDungeon.player != null) {
-            AbstractDungeon.player.hand.glowCheck();
+            DuelistCard.glowCheck();
         }
         if (AbstractEnemyDuelist.enemyDuelist != null) {
-            AbstractEnemyDuelist.enemyDuelist.hand.glowCheck();
+            try {
+                AbstractEnemyDuelist.enemyDuelist.hand.glowCheck();
+            } catch (Exception ignored) {}
         }
     }
 
@@ -1051,6 +1152,12 @@ public class AnyDuelist {
 
     public int getTributeCombatCount() {
         return this.player != null ? DuelistMod.tribCombatCount : this.enemy != null ? this.enemy.tributeCombatCount : 0;
+    }
+
+    public void glowCheck() {
+        try {
+            this.handGroup().glowCheck();
+        } catch (Exception ignored) {}
     }
 
     @Override

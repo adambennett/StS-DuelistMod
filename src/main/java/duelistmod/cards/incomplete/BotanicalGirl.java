@@ -73,6 +73,7 @@ public class BotanicalGirl extends DuelistCard
     @Override
     public void customOnTribute(DuelistCard tc)
     {
+        super.customOnTribute(tc);
     	AbstractDungeon.actionManager.addToTop(new FetchFromTag(1, AbstractDungeon.player.drawPile, Tags.PLANT));
     }
 

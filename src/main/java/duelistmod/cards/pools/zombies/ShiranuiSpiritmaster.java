@@ -39,7 +39,7 @@ public class ShiranuiSpiritmaster extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 2;
         this.exhaust = true;
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

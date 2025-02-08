@@ -16,6 +16,8 @@ import duelistmod.cards.pools.aqua.*;
 import duelistmod.cards.pools.beast.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.fiend.*;
+import duelistmod.cards.pools.gusto.DustStormOfGusto;
+import duelistmod.cards.pools.gusto.GustoEgul;
 import duelistmod.cards.pools.increment.*;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
@@ -43,6 +45,9 @@ import duelistmod.cards.pools.plant.PredaplantTriantis;
 import duelistmod.cards.pools.plant.PredaplantTriphyoverutum;
 import duelistmod.cards.pools.plant.PredaplantVerteAnaconda;
 import duelistmod.cards.pools.plant.Predaponics;
+import duelistmod.cards.pools.toon.CreepyConey;
+import duelistmod.cards.pools.toon.DelgTheDarkMonarch;
+import duelistmod.cards.pools.toon.EmperorOfLightning;
 import duelistmod.cards.pools.zombies.EternalSoul;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
@@ -64,7 +69,6 @@ public class PharaohPool {
 
 		// Duelist
 		cards.add(new AllySalvo());
-		cards.add(new AloofLupine());
 		cards.add(new AlphaMagnet());
 		cards.add(new AncientCrimsonApe());
 		cards.add(new AngelTrumpeter());
@@ -72,6 +76,7 @@ public class PharaohPool {
 		cards.add(new Anthrosaurus());
 		cards.add(new CitadelWhale());
 		cards.add(new Chopman());
+		cards.add(new CreepyConey());
 		cards.add(new ArmoredRat());
 		cards.add(new ArmoredStarfish());
 		cards.add(new ArmoredWhiteBear());
@@ -245,7 +250,6 @@ public class PharaohPool {
 		cards.add(new RainbowMedicine());
 		cards.add(new PredaplantVerteAnaconda());
 		cards.add(new PoisonousWinds());
-		cards.add(new GadgetSoldier());
 		cards.add(new PredaplantDarlingtoniaCobra());
 		cards.add(new PredaplantHeliamphorhynchus());
 		cards.add(new PredaplantByblisp());
@@ -257,6 +261,7 @@ public class PharaohPool {
 		cards.add(new SplendidRose());
 		cards.add(new WhiteRoseDragon());
 		cards.add(new PredaplantTriphyoverutum());
+		cards.add(new DustStormOfGusto());
 
 		// Removed base game
 		/*
@@ -349,7 +354,9 @@ public class PharaohPool {
 		cards.add(new DarkMagician());
 		cards.add(new DarkMasterZorc());
 		cards.add(new DarkSpider());
-		cards.add(new DarkfireDragon());
+		cards.add(new DarkHunter());
+		cards.add(new DarkMagicianGirl());
+
 		cards.add(new DawnKnight());
 		cards.add(new DefensiveTactics());
 		cards.add(new DiamondDust());
@@ -358,7 +365,7 @@ public class PharaohPool {
 		cards.add(new GeminiElf());
 		cards.add(new GenexAllyBirdman());
 		cards.add(new HazyFlameHydra());
-		cards.add(new HeavyMechSupportPlatform());
+		cards.add(new GustoEgul());
 		cards.add(new IcyCrevasse());
 		cards.add(new JunkWarrior());
 		cards.add(new Kuribot());
@@ -380,11 +387,13 @@ public class PharaohPool {
 		cards.add(new SwordsBurning());
 		cards.add(new Tuningware());
 		cards.add(new VoidVanishment());
-		cards.add(new WhiteNightDragon());
+
 		cards.add(new WitchBlackRose());
 		cards.add(new Electrowhip());
 		cards.add(new SkilledDarkMagician());
 		cards.add(new MobiusFrostMonarch());
+		cards.add(new DelgTheDarkMonarch());
+		cards.add(new EmperorOfLightning());
 		cards.add(new FiresOfDoomsday());
 		cards.add(new RisingEnergy());
 		cards.add(new EternalSoul());
@@ -430,8 +439,6 @@ public class PharaohPool {
 		cards.add(new CompileDriver());
 		cards.add(new ConserveBattery());
 		cards.add(new Coolheaded());
-		cards.add(new ColdSnap());
-		cards.add(new Darkness());
 		cards.add(new Defragment());
 		cards.add(new DoubleEnergy());
 		cards.add(new Dualcast());
@@ -448,7 +455,6 @@ public class PharaohPool {
 		cards.add(new MultiCast());
 		cards.add(new Rainbow());
 		cards.add(new Reboot());
-		cards.add(new Rebound());
 		cards.add(new Recursion());
 		cards.add(new ReinforcedBody());
 		cards.add(new Scrape());

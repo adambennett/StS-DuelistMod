@@ -36,7 +36,7 @@ public class DewlorenTigerKing extends DuelistCard {
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.baseSummons = this.summons = 2;
         this.originalName = this.name;
         this.damage = this.baseDamage = 12;

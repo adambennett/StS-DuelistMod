@@ -40,7 +40,7 @@ public class QuillboltHedgehog extends DuelistCard
         this.tags.add(Tags.DETONATE_DMG_SELF_DISABLED);
         this.summons = this.baseSummons = 1;
         this.misc = 0;
-        this.specialCanUseLogic = true;
+        
         this.originalName = this.name;
         this.baseDamage = this.damage = 9;
         this.baseMagicNumber = this.magicNumber = this.detonations = 2;

@@ -36,7 +36,7 @@ public class OldWhiteTurtle extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.THALASSIC);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
         this.damage = this.baseDamage = 1;
         this.block = this.baseBlock = 5;

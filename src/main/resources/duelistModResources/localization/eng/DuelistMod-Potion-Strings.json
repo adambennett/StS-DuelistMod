@@ -101,7 +101,7 @@
         },
         "theDuelist:BufferBottle": {
                 "NAME": "Ojama Bottle",
-                "DESCRIPTIONS": ["#yChannel a #yBuffer.", "#yChannel #b", " #yBuffer Orbs.", "Potentially increases all your current #yBuffs at the start of turn, and gives #yBuffer when #yEvoked.", "#bInversion: #bReducer"]
+                "DESCRIPTIONS": ["#yChannel a #yBufferOrb.", "#yChannel #b", " #yBufferOrbs.", "Potentially increases all your current #yBuffs at the start of turn, and gives #yBuffer when #yEvoked.", "#bInversion: #bReducer"]
         },
         "theDuelist:TributeBottle": {
                 "NAME": "Magic Bottle",

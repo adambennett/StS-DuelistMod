@@ -46,7 +46,7 @@ public class Monokeros extends DuelistCard
         this.isSummon = true;   
         this.misc = 0;
         this.tributes = this.baseTributes = 2;
-        this.specialCanUseLogic = true;
+
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.TIDAL);

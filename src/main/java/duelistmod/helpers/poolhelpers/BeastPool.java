@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import duelistmod.DuelistMod;
-import duelistmod.cards.BeastFangs;
 import duelistmod.cards.pools.beast.*;
 import duelistmod.cards.pools.insects.Forest;
+import duelistmod.cards.pools.gusto.*;
 
 public class BeastPool {
 
@@ -30,7 +30,6 @@ public class BeastPool {
 		beastCards.add(new BattleInstinct());
 		beastCards.add(new BazooTheSoulEater());
 		beastCards.add(new BeastBattlefieldBarrier());
-		beastCards.add(new FlyingElephant());
 		beastCards.add(new BeastRage());
 		beastCards.add(new BeastRising());
 		beastCards.add(new BeastSoulSwap());
@@ -43,6 +42,7 @@ public class BeastPool {
 		beastCards.add(new ChimeraFusion());
 		beastCards.add(new ChowChowChan());
 		beastCards.add(new Cocatorium());
+		beastCards.add(new ContactWithGusto());
 		beastCards.add(new DoomstarUlka());
 		beastCards.add(new DreamTowerOfNemleria());
 		beastCards.add(new EnragedBattleOx());
@@ -51,6 +51,7 @@ public class BeastPool {
 		beastCards.add(new FierceTigerMonghu());
 		beastCards.add(new FireFightingDarumaDoll());
 		beastCards.add(new FlowerWolf());
+		beastCards.add(new FlyingElephant());
 		beastCards.add(new Forest());
 		beastCards.add(new FrekiTheRunickFangs());
 		beastCards.add(new GiantRat());
@@ -85,16 +86,15 @@ public class BeastPool {
 		beastCards.add(new ThreeThousandNeedles());
 		beastCards.add(new ThunderUnicorn());
 		beastCards.add(new TriBrigadeArmsBucephalus());
-		beastCards.add(new TriBrigadeBarrenBlossom());
 		beastCards.add(new TriBrigadeFraktall());
 		beastCards.add(new TriBrigadeKerass());
 		beastCards.add(new TriBrigadeKitt());
 		beastCards.add(new TriBrigadeOminousOmen());
-		beastCards.add(new TriBrigadeRampantRampager());
 		beastCards.add(new TriBrigadeSilverSheller());
 		beastCards.add(new TwinHeadedBeast());
 		beastCards.add(new TwoThousandNeedles());
 		beastCards.add(new UnicornBeacon());
+		beastCards.add(new WindaarSageOfGusto());
 		beastCards.add(new YellowBaboon());
 		beastCards.add(new ZemanTheApeKing());
 

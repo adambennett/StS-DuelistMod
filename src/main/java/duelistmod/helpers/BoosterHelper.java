@@ -332,6 +332,11 @@ public class BoosterHelper
 			temp.add(new StandardPack());
 			temp.add(new StandardPack());
 			temp.add(new StandardPack());
+			temp.add(new StandardPack());
+			temp.add(new StandardPack());
+			temp.add(new StandardPack());
+			temp.add(new StandardPack());
+			temp.add(new StandardPackU());
 			temp.add(new StandardPackU());
 			temp.add(new StandardPackU());
 			temp.add(new StandardPackU());
@@ -377,7 +382,10 @@ public class BoosterHelper
 			temp.add(new MaliciousPack());
 			temp.add(new MegatypePack());
 			temp.add(new MonsterPack());
+			temp.add(new MonsterPack());
 			temp.add(new MonsterPackR());
+			temp.add(new MonsterPackR());
+			temp.add(new MonsterPackU());
 			temp.add(new MonsterPackU());
 			temp.add(new OrbPack());
 			temp.add(new OverflowPack());
@@ -387,6 +395,7 @@ public class BoosterHelper
 			temp.add(new PowerPackC());
 			temp.add(new PowerPackR());
 			temp.add(new RecklessPack());
+			temp.add(new RevengePack());
 			temp.add(new RockPack());
 			temp.add(new RockPackR());
 			temp.add(new SkillPack());

@@ -65,7 +65,7 @@ public class ReducerOrbEvokeAction extends AbstractGameAction
 	        	modCards.remove(randomNum);
     		}
     	}
-    	this.duelist.handGroup().glowCheck();
+    	this.duelist.glowCheck();
     	
     	// Set amount to 0 so update() knows to return
     	amount = 0;

@@ -87,13 +87,13 @@ public class Sparks extends DuelistCard
         this.dragonDeckCopies = 2;
         this.spellcasterDeckCopies = 2;
         this.natureDeckCopies = 3;
-        this.toonDeckCopies = 3;
+        this.toonDeckCopies = 1;
         this.creatorDeckCopies = 3;
         this.orbDeckCopies = 3;
         this.resummonDeckCopies = 2;
         this.healDeckCopies = 3;
-        this.p1DeckCopies = 5;
-        this.p2DeckCopies = 5;
+        this.p1DeckCopies = 4;
+        this.p2DeckCopies = 4;
         this.p3DeckCopies = 4;
         this.originalName = this.name;
         this.setupStartingCopies();

@@ -36,8 +36,8 @@ public class TerrorkingSalmon extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.TIDAL);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
         this.originalName = this.name;
         this.damage = this.baseDamage = 10;
         this.baseTributes = this.tributes = 3;

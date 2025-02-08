@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.orbs.*;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class ThousandEyesRestrict extends DuelistCard 
@@ -36,6 +35,7 @@ public class ThousandEyesRestrict extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
+		this.tags.add(Tags.ILLUSION_SET);
 		this.tags.add(Tags.PHARAOH_SERVANT);
 		this.tributes = this.baseTributes = 4;
 		this.showInvertValue = true;

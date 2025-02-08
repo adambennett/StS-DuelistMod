@@ -13,6 +13,7 @@ import basemod.eventUtil.util.Condition;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ModifyBlockAction;
 import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.core.OverlayMenu;
@@ -47,6 +48,7 @@ import duelistmod.events.TombNamelessPuzzle;
 import duelistmod.events.VisitFromAnubis;
 import duelistmod.interfaces.BoosterRewardRelic;
 import duelistmod.interfaces.CardRewardRelic;
+import duelistmod.interfaces.InfiniteLoopTributeModificationCheckCard;
 import duelistmod.interfaces.MillenniumItem;
 import duelistmod.interfaces.NamelessTombCard;
 import duelistmod.interfaces.ShopDupeRelic;
@@ -446,7 +448,7 @@ public class Util
 		orbConfigs.put("theDuelist:CrystalOrb", generateOrbConfigData(2, 4));
 		orbConfigs.put("theDuelist:GlassOrb", generateOrbConfigData(0, 0));
 		orbConfigs.put("theDuelist:HellfireOrb", generateOrbConfigData(2, 1));
-		orbConfigs.put("theDuelist:LightOrb", generateOrbConfigData(1, 2));
+		orbConfigs.put("theDuelist:LightOrb", generateOrbConfigData(2, 5));
 		orbConfigs.put("theDuelist:Earth", generateOrbConfigData(1, 1));
 		orbConfigs.put("theDuelist:FireOrb", generateOrbConfigData(2, 1));
 		orbConfigs.put("theDuelist:Gadget", generateOrbConfigData(2, 5));
@@ -697,6 +699,42 @@ public class Util
     public static boolean isCustomModActive(String ID) {
         return (CardCrawlGame.trial != null && CardCrawlGame.trial.dailyModIDs().contains(ID)) || ModHelper.isModEnabled(ID);
     }
+
+	public static boolean randomizerChallengeFailure(String challengeID, String failureText) {
+		if (!Util.isCustomModActive(challengeID)) {
+			return false;
+		}
+		int diffIndex = getChallengeDiffIndex();
+		boolean challengeFailure;
+		switch(diffIndex) {
+			case -1: // No difficulty set
+				return false;
+			case 1:  // Bronze
+				challengeFailure = AbstractDungeon.cardRandomRng.random(1, 3) == 1;
+				break;
+			case 2:  // Silver
+				challengeFailure = AbstractDungeon.cardRandomRng.random(1, 2) == 1;
+				break;
+			default: // Gold, Platinum
+				challengeFailure = AbstractDungeon.cardRandomRng.random(1, diffIndex) != 1;
+		}
+		if (challengeFailure) {
+			AbstractDungeon.actionManager.addToBottom(new TalkAction(true, failureText, 1.0F, 2.0F));
+		}
+		return challengeFailure;
+	}
+
+	public static boolean summonRandomizerChallengeFailure() {
+		return randomizerChallengeFailure("theDuelist:SummonRandomizer", Strings.configFailedSummonActionText);
+	}
+
+	public static boolean tributeRandomizerChallengeFailure() {
+		return randomizerChallengeFailure("theDuelist:TributeRandomizer", Strings.configFailedTribActionText);
+	}
+
+	public static boolean incrementRandomizerChallengeFailure() {
+		return randomizerChallengeFailure("theDuelist:MaxSummonChallenge", Strings.configFailedIncActionText);
+	}
     
     public static int factorial(int n) 
     {
@@ -1301,16 +1339,18 @@ public class Util
 	public static void genesisDragonHelper()
 	{
 		ArrayList<AbstractCard> genesisDragsToAdd = new ArrayList<>();
+		int existingDragons = 0;
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 		{
 			if (c instanceof GenesisDragon)
 			{
+				existingDragons++;
 				int genesisRoll = AbstractDungeon.cardRandomRng.random(1, 10);
 				if (genesisRoll < 4 && !c.upgraded) { genesisDragsToAdd.add(c.makeStatEquivalentCopy()); }
 				else if (genesisRoll == 1) { genesisDragsToAdd.add(c.makeStatEquivalentCopy()); }
 			}
 		}
-		if (genesisDragsToAdd.size() > 0) { AbstractDungeon.player.masterDeck.group.addAll(genesisDragsToAdd); }
+		if (existingDragons < 1000 && genesisDragsToAdd.size() > 0) { AbstractDungeon.player.masterDeck.group.addAll(genesisDragsToAdd); }
 	}
 
 	public static void unlockAllRelics(ArrayList<AbstractRelic> relics)
@@ -1767,12 +1807,14 @@ public class Util
 		DuelistMod.loadedUniqueMonstersThisRunList = "";
 		DuelistMod.loadedSpellsThisRunList = "";
 		DuelistMod.loadedTrapsThisRunList = "";
+		DuelistMod.loadedTributesThisRunList = "";
 		DuelistMod.entombedCardsThisRunList = "";
 		DuelistMod.entombedCustomCardProperites = "";
 		DuelistMod.uniqueMonstersThisRun.clear();
 		DuelistMod.uniqueSpellsThisRun.clear();
 		DuelistMod.uniqueTrapsThisRun.clear();
 		DuelistMod.entombedCards.clear();
+		DuelistMod.allTributedCardsThisRun.clear();
 	}
 
 	public static void fillCardsPlayedThisRunLists()
@@ -1880,6 +1922,26 @@ public class Util
 					}
 				}
 			} catch (PatternSyntaxException e) { e.printStackTrace(); Util.log("Util.fillCardsPlayedThisRunLists() is getting a PatternSyntaxException for the entire string of Entombed cards. Entombed cards probably are not loading properly."); }
+		}
+
+		if (DuelistMod.loadedTributesThisRunList != null && !DuelistMod.loadedTributesThisRunList.equals(""))
+		{
+			DuelistMod.allTributedCardsThisRun.clear();
+			String[] savedStrings = DuelistMod.loadedTributesThisRunList.split("~");
+			for (String s : savedStrings) {
+				if (DuelistMod.mapForRunCardsLoading.containsKey(s))
+				{
+					if (DuelistMod.mapForRunCardsLoading.get(s) instanceof DuelistCard)
+					{
+						DuelistMod.allTributedCardsThisRun.add((DuelistCard) DuelistMod.mapForRunCardsLoading.get(s).makeStatEquivalentCopy());
+					}
+					else { Util.log("fillCardsPlayedThisRunLists found " + s + " in the map, but it was not a DuelistCard!"); }
+				}
+				else
+				{
+					Util.log("fillCardsPlayedThisRunLists did not find " + s + " in the map!");
+				}
+			}
 		}
 	}
 
@@ -2283,7 +2345,7 @@ public class Util
 			{
 				if (options.isSummonChangeCombatCheck())
 				{
-					dC.modifySummons(randomNum);
+					dC.modifySummonsForCombat(randomNum);
 				}
 				else
 				{
@@ -2300,7 +2362,7 @@ public class Util
 			{
 				if (options.isTributeChangeCombatCheck())
 				{
-					dC.modifyTributes(-randomNum);
+					dC.modifyTributesForCombat(-randomNum);
 				}
 				else
 				{
@@ -2378,6 +2440,7 @@ public class Util
 	public static int modifyTributesForApexFeralTerritorial(AnyDuelist duelist, AbstractCard card, int tributes) {
 		boolean hasFeralCard = false;
 		boolean hasTerritorialCard = false;
+		boolean cardInHand =  false;
 		for (AbstractCard c : duelist.hand()) {
 			if (c.hasTag(FERAL)) {
 				hasFeralCard = true;
@@ -2385,12 +2448,15 @@ public class Util
 			if (c.hasTag(TERRITORIAL) && c instanceof DuelistCard && ((DuelistCard)c).isTerritorial()) {
 				hasTerritorialCard = true;
 			}
+			if (c.uuid.equals(card.uuid)) {
+				cardInHand = true;
+			}
 		}
-		if (hasFeralCard && !card.hasTag(Tags.BEAST)) {
+		if (hasFeralCard && !card.hasTag(Tags.BEAST) && !card.hasTag(Tags.FERAL) && cardInHand) {
 			tributes += DuelistMod.beastFeralBump;
 		}
 		boolean cardIsTerritorial = card.hasTag(TERRITORIAL) && card instanceof DuelistCard && ((DuelistCard)card).isTerritorial();
-		if (hasTerritorialCard && !cardIsTerritorial) {
+		if (hasTerritorialCard && !cardIsTerritorial && cardInHand) {
 			tributes *= DuelistMod.beastTerritorialMultiplier;
 		}
 
@@ -2398,28 +2464,35 @@ public class Util
 			tributes = 0;
 		}
 
-		if (card instanceof CyberEndDragon) {
-			CyberEndDragon cyberEndDragon = (CyberEndDragon) card;
-			if (cyberEndDragon.tributeCondition()) {
-				return Math.max(card.magicNumber, 0);
+		if (card instanceof InfiniteLoopTributeModificationCheckCard) {
+			if (card instanceof CyberEndDragon) {
+				CyberEndDragon cyberEndDragon = (CyberEndDragon) card;
+				if (cyberEndDragon.tributeCondition()) {
+					tributes = card.magicNumber;
+				}
 			}
-		}
 
-		if (card instanceof AtomicScrapDragon) {
-			AtomicScrapDragon atomicScrapDragon = (AtomicScrapDragon) card;
-			int reduce = atomicScrapDragon.tributeReduction();
-			tributes -= reduce;
+			if (card instanceof AtomicScrapDragon) {
+				AtomicScrapDragon atomicScrapDragon = (AtomicScrapDragon) card;
+				tributes -= atomicScrapDragon.tributeReduction();
+			}
 		}
 
 		if (duelist.hasPower(UnicornBeaconPower.POWER_ID) && duelist.getPower(UnicornBeaconPower.POWER_ID).amount > 0) {
 			return 0;
 		}
 
-		return Math.max(tributes, 0);
+		return tributes;
 	}
 
 	public static boolean apexLogicCheck(AbstractCard card) {
 		AnyDuelist duelist = AnyDuelist.from(card);
+		try {
+			if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
+				return false;
+			}
+		} catch (Exception ignored) {}
+
 		boolean isApex = (card.hasTag(Tags.APEX) && card instanceof DuelistCard && ((DuelistCard)card).isApex()) || (duelist.hasRelic(ApexToken.ID) && card.hasTag(Tags.BEAST));
 		boolean finalApexLogicCheck = isApex && (AbstractDungeon.actionManager.cardsPlayedThisTurn == null || AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty() || AbstractDungeon.actionManager.cardsPlayedThisTurn.stream().allMatch(c -> c.uuid.equals(card.uuid)));
 		if (finalApexLogicCheck && Util.deckIs("Beast Deck") && Util.getChallengeLevel() > 3) {
@@ -2491,14 +2564,6 @@ public class Util
 		BaseMod.addPower(Dragonscales.class, Dragonscales.POWER_ID);
 		BaseMod.addPower(DrillBarnaclePower.class, DrillBarnaclePower.POWER_ID);
 		BaseMod.addPower(EmperorPower.class, EmperorPower.POWER_ID);
-		BaseMod.addPower(EnemyBoosterDragonPower.class, EnemyBoosterDragonPower.POWER_ID);
-		BaseMod.addPower(EnemyEnergyPower.class, EnemyEnergyPower.POWER_ID);
-		BaseMod.addPower(EnemyExodiaPower.class, EnemyExodiaPower.POWER_ID);
-		BaseMod.addPower(EnemyHandPower.class, EnemyHandPower.POWER_ID);
-		BaseMod.addPower(EnemyDrawPilePower.class, EnemyDrawPilePower.POWER_ID);
-		BaseMod.addPower(EnemyMiraclePower.class, EnemyMiraclePower.POWER_ID);
-		BaseMod.addPower(EnemySummonsPower.class, EnemySummonsPower.POWER_ID);
-		BaseMod.addPower(EnemyTotemPower.class, EnemyTotemPower.POWER_ID);
 		BaseMod.addPower(EvokeSicknessPower.class, EvokeSicknessPower.POWER_ID);
 		BaseMod.addPower(ExodiaPower.class, ExodiaPower.POWER_ID);
 		BaseMod.addPower(ExodiaRenewalPower.class, ExodiaRenewalPower.POWER_ID);
@@ -2602,11 +2667,6 @@ public class Util
 		BaseMod.addPower(SwordsRevealPower.class, SwordsRevealPower.POWER_ID);
 		BaseMod.addPower(TimeWizardPower.class, TimeWizardPower.POWER_ID);
 		BaseMod.addPower(TombLooterPower.class, TombLooterPower.POWER_ID);
-		BaseMod.addPower(ToonBriefcasePower.class, ToonBriefcasePower.POWER_ID);
-		BaseMod.addPower(ToonCannonPower.class, ToonCannonPower.POWER_ID);
-		BaseMod.addPower(ToonKingdomPower.class, ToonKingdomPower.POWER_ID);
-		BaseMod.addPower(ToonRollbackPower.class, ToonRollbackPower.POWER_ID);
-		BaseMod.addPower(ToonWorldPower.class, ToonWorldPower.POWER_ID);
 		BaseMod.addPower(TotemDragonPower.class, TotemDragonPower.POWER_ID);
 		BaseMod.addPower(TrapHolePower.class, TrapHolePower.POWER_ID);
 		BaseMod.addPower(TributeSicknessPower.class, TributeSicknessPower.POWER_ID);
@@ -2674,6 +2734,19 @@ public class Util
 		BaseMod.addPower(RedRisingDragonPower.class, RedRisingDragonPower.POWER_ID);
 		BaseMod.addPower(BeastFrenzyPower.class, BeastFrenzyPower.POWER_ID);
 		BaseMod.addPower(BeastRisingPower.class, BeastRisingPower.POWER_ID);
+		BaseMod.addPower(DampDebuff.class, DampDebuff.POWER_ID);
+		BaseMod.addPower(BannerOfCouragePower.class, BannerOfCouragePower.POWER_ID);
+		BaseMod.addPower(ShadowToonPower.class, ShadowToonPower.POWER_ID);
+		BaseMod.addPower(ThereCanBeOnlyOnePower.class, ThereCanBeOnlyOnePower.POWER_ID);
+		BaseMod.addPower(TimeWizardOfTomorrowPower.class, TimeWizardOfTomorrowPower.POWER_ID);
+		BaseMod.addPower(ToadallyAwesomePower.class, ToadallyAwesomePower.POWER_ID);
+		BaseMod.addPower(ToonBriefcasePower.class, ToonBriefcasePower.POWER_ID);
+		BaseMod.addPower(ToonCannonPower.class, ToonCannonPower.POWER_ID);
+		BaseMod.addPower(ToonKingdomPower.class, ToonKingdomPower.POWER_ID);
+		BaseMod.addPower(ToonRollbackPower.class, ToonRollbackPower.POWER_ID);
+		BaseMod.addPower(ToonWorldPower.class, ToonWorldPower.POWER_ID);
+		BaseMod.addPower(TemporaryToonWorldPower.class, TemporaryToonWorldPower.POWER_ID);
+		BaseMod.addPower(RevengeRallyPower.class, RevengeRallyPower.POWER_ID);
 	}
 
 }

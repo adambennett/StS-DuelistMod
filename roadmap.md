@@ -52,7 +52,7 @@ Balance Changes:
 Card Pools:
 - Properly setup all base game card additions for all pools
 - Filter/update basic card set for each deck
-- Completely Redesign: Standard, Toon, Warrior, Megatype, Creator, Ascended I, Ascended II
+- Completely Redesign: Warrior, Ascended I, Ascended II
 - Moderately Rework: Spellcaster, Fiend, Insect
 - Design and Implement: Ascended III, Pharaoh IV, Pharaoh V
 

@@ -35,8 +35,8 @@ public class Geartown extends DuelistCard
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes = 2;
         this.baseMagicNumber = this.magicNumber = 2;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;

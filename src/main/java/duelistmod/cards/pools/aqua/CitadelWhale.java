@@ -35,8 +35,8 @@ public class CitadelWhale extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.misc = 0;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
+
+        
         this.originalName = this.name;
         this.block = this.baseBlock = 10;
         this.summons = this.baseSummons = 3;

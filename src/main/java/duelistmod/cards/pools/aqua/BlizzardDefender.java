@@ -121,18 +121,6 @@ public class BlizzardDefender extends DuelistCard
         }
     }
 
-    @Override
-    public void customOnTribute(DuelistCard tc)
-    {
-    	
-    }
-
-
-	
-
-
-
-	
 	@Override
     public AbstractCard makeCopy() { return new BlizzardDefender(); }
 	

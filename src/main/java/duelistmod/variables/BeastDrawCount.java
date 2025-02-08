@@ -79,7 +79,7 @@ public class BeastDrawCount extends DynamicVariable {
 
     public static int countBeasts(AbstractCard card) {
         AnyDuelist duelist = AnyDuelist.from(card);
-        List<Integer> beastDrawsByTurn = duelist.player() ? DuelistMod.beastsDrawnByTurn : duelist.getEnemy() != null ? DuelistMod.enemyBeastsDrawnByTurn : null;
+        List<Integer> beastDrawsByTurn = duelist.player() ? DuelistMod.beastsDrawnByTurnThisCombat : duelist.getEnemy() != null ? DuelistMod.enemyBeastsDrawnByTurnThisCombat : null;
         int sumOfBeasts = 0;
         int magic = card instanceof ThousandNeedles ? ((ThousandNeedles) card).secondMagic : card.magicNumber;
         if (beastDrawsByTurn != null) {

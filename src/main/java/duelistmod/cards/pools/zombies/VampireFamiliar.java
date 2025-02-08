@@ -40,7 +40,7 @@ public class VampireFamiliar extends DuelistCard
         this.selfRetain = true;
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 2;
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

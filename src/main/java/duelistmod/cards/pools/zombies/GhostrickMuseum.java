@@ -39,7 +39,7 @@ public class GhostrickMuseum extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 5;
         this.exhaust = true;
-        this.specialCanUseLogic = true;
+        
     }
 
     // Actions the card should do.

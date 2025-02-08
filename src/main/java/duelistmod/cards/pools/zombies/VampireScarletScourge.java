@@ -41,8 +41,8 @@ public class VampireScarletScourge extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 1;
         this.baseBlock = this.block = 8; 
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
     }
 
     // Actions the card should do.

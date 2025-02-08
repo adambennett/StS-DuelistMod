@@ -41,8 +41,8 @@ public class SkullFlame extends DuelistCard
         this.baseTributes = this.tributes = 3;
         this.baseDamage = this.damage = 12; 
         this.baseMagicNumber = this.magicNumber = 4;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
     }
 
     // Actions the card should do.

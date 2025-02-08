@@ -39,8 +39,8 @@ public class SouleatingOviraptor extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 4;
         this.baseDamage = this.damage = 36; 
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
     }
 
     // Actions the card should do.

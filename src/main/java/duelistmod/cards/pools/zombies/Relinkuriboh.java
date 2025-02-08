@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class Relinkuriboh extends DuelistCard 
@@ -35,6 +34,7 @@ public class Relinkuriboh extends DuelistCard
 	public Relinkuriboh() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
+		this.tags.add(Tags.ILLUSION_SET);
 		this.tags.add(Tags.FIEND);
 		this.tags.add(Tags.KURIBOH);
 		this.tags.add(Tags.INCREMENT_DECK);

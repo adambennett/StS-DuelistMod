@@ -39,8 +39,8 @@ public class SoulAbsorbingBone extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 2;
         this.baseMagicNumber = this.magicNumber = 10;        
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
     }
 
     // Actions the card should do.

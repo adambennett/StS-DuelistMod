@@ -40,7 +40,7 @@ public class GhostOgre extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 4; 
-        this.specialCanUseLogic = true;
+
     }
     
     @Override

@@ -224,7 +224,8 @@ public class PersistentDuelistData {
                     config.getBool("tierScoresEnabled"),
                     config.getBool("webButtons)"),
                     config.getBool("allowLocaleUpload"),
-                    config.getBool("logMetricsScoresToDevConsole")
+                    config.getBool("logMetricsScoresToDevConsole"),
+                    true
             );
 
             String relicConfigMapJSON = config.getString("relicCanSpawnConfigMap");
@@ -344,7 +345,7 @@ public class PersistentDuelistData {
             loadLegacyMonsterConfig(monsterConfigs, MonsterType.ROCK, MonsterType.rockBlockKey, config.getInt("rockBlock"));
             loadLegacyMonsterConfig(monsterConfigs, MonsterType.SPELLCASTER, MonsterType.spellcasterBlockKey, config.getInt("spellcasterBlockOnAttack"));
             loadLegacyMonsterConfig(monsterConfigs, MonsterType.SUPERHEAVY, MonsterType.superheavyDexKey, config.getInt("superheavyDex"));
-            loadLegacyMonsterConfig(monsterConfigs, MonsterType.TOON_POOL, MonsterType.toonVulnKey, config.getInt("toonVuln"));
+            loadLegacyMonsterConfig(monsterConfigs, MonsterType.TOON_POOL, MonsterType.toonRevengeKey, config.getInt("toonVuln"));
             loadLegacyMonsterConfig(monsterConfigs, MonsterType.WARRIOR, MonsterType.warriorEnableKey, config.getBool("enableWarriorTributeEffect"));
             loadLegacyMonsterConfig(monsterConfigs, MonsterType.WARRIOR, MonsterType.warriorNumTributesKey, config.getInt("warriorTributeEffectTriggersPerCombat"));
             loadLegacyMonsterConfig(monsterConfigs, MonsterType.WARRIOR, MonsterType.warriorTriggersPerCombatKey, config.getInt("warriorSynergyTributeNeededToTrigger"));

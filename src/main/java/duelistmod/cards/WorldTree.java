@@ -68,6 +68,7 @@ public class WorldTree extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
+            this.isInnate = true;
         	this.upgradeMagicNumber(1); this.upgradeSecondMagic(8);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();

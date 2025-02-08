@@ -40,7 +40,7 @@ public class MermaidKnight extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.WARRIOR);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+        
         this.originalName = this.name;
         this.damage = this.baseDamage = 6;
         this.baseSummons = this.summons = 1;

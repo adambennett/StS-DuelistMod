@@ -2,39 +2,32 @@ package duelistmod.cards.pools.machine;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
+import java.util.List;
 
-public class ChaosAncientGearGiant extends DuelistCard 
-{
-    // TEXT DECLARATION
+public class ChaosAncientGearGiant extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("ChaosAncientGearGiant");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("ChaosAncientGearGiant.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
-    // /STAT DECLARATION/
 
-    public ChaosAncientGearGiant() 
-    {
+    public ChaosAncientGearGiant() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 50;
@@ -49,79 +42,63 @@ public class ChaosAncientGearGiant extends DuelistCard
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute();
-    	attack(m);
-    	if (this.tributes == 0)
-    	{
-    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 12 - this.tributes, true));
-    		this.rawDescription = this.originalDescription;
-    		this.initializeDescription();    		
-    	}
-    	else
-    	{
-    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 12 - this.tributes, true));
-    	}
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
     @Override
-    public void triggerOnOtherCardPlayed(AbstractCard c) 
-    {
-    	if (c.hasTag(Tags.MACHINE) && this.tributes > 0)
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
-    	}
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        tribute();
+        if (targets.size() > 0) {
+            attack(targets.get(0));
+        }
+        this.resetGiantTributes();
+        postDuelistUseCard(owner, targets);
     }
-    
+
     @Override
-    public void onEnemyUseCardWhileInHand(AbstractCard c)
-    {
-    	if (c.hasTag(Tags.MACHINE) && this.tributes > 0)
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
-    	}
+    public void triggerOnOtherCardPlayed(AbstractCard c) {
+        if (c.hasTag(Tags.MACHINE)) {
+            this.modifyGiantTributes(-this.magicNumber);
+        }
     }
-    
+
     @Override
-    public void onEnemyUseCardWhileInDiscard(AbstractCard c)
-    {
-    	if (c.hasTag(Tags.MACHINE) && this.tributes > 0)
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
-    	}
+    public void onEnemyUseCardWhileInHand(AbstractCard c) {
+        if (c.hasTag(Tags.MACHINE)) {
+            this.modifyGiantTributes(-this.magicNumber);
+        }
     }
-    
+
     @Override
-    public void onEnemyUseCardWhileInDraw(AbstractCard c)
-    {
-    	if (c.hasTag(Tags.MACHINE) && this.tributes > 0)
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
-    	}
+    public void onEnemyUseCardWhileInDiscard(AbstractCard c) {
+        if (c.hasTag(Tags.MACHINE)) {
+            this.modifyGiantTributes(-this.magicNumber);
+        }
     }
-    
-    // Upgraded stats.
+
     @Override
-    public void upgrade() 
-    {
-    	 if (!this.upgraded) 
-    	 {
-             this.upgradeName();
-             this.upgradeDamage(10);
-             this.rawDescription = UPGRADE_DESCRIPTION;
+    public void onEnemyUseCardWhileInDraw(AbstractCard c) {
+        if (c.hasTag(Tags.MACHINE)) {
+            this.modifyGiantTributes(-this.magicNumber);
+        }
+    }
+
+    @Override
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeDamage(10);
+            this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
-             this.initializeDescription();
-         }
+            this.initializeDescription();
+        }
     }
 
+    @Override
+    public AbstractCard makeCopy() {
+        return new ChaosAncientGearGiant();
+    }
 
-
-
-
-
-	
-	@Override
-    public AbstractCard makeCopy() { return new ChaosAncientGearGiant(); }
-	
 }

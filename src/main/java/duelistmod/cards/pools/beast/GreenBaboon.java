@@ -39,7 +39,7 @@ public class GreenBaboon extends DuelistCard {
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 4;
-        this.baseMagicNumber = this.magicNumber = 8;
+        this.baseMagicNumber = this.magicNumber = 6;
     }
 
     @Override

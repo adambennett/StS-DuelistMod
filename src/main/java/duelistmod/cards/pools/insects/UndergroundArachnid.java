@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.insects;
 
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,6 +13,9 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UndergroundArachnid extends DuelistCard 
 {
@@ -44,6 +48,13 @@ public class UndergroundArachnid extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);
         this.tags.add(Tags.SPIDER);
+    }
+
+    @Override
+    public List<TooltipInfo> getCustomTooltips() {
+        List<TooltipInfo> retVal = new ArrayList<>();
+        retVal.add(new TooltipInfo("Spider", "The #b3rd #ySpider you play each combat gives you #b7 #yTemporary #yHP."));
+        return retVal;
     }
 
     @Override

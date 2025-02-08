@@ -43,8 +43,8 @@ public class TotemDragon extends DuelistCard
         this.tags.add(Tags.DRAGON);
         this.baseTributes = this.tributes = 3;
         this.baseMagicNumber = this.magicNumber = 3;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
         this.enemyIntent = AbstractMonster.Intent.BUFF;
     }
 

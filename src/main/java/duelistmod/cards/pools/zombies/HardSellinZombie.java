@@ -43,7 +43,7 @@ public class HardSellinZombie extends DuelistCard
         this.baseSummons = this.summons = 1;
         this.baseMagicNumber = this.magicNumber = 1;
         this.exhaust = true;
-        this.specialCanUseLogic = true;
+        
     }
 
     // Actions the card should do.

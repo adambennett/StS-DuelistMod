@@ -37,8 +37,8 @@ public class MachineKingPrototype extends DuelistCard
 
     public MachineKingPrototype() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.MACHINE);
 		this.tributes = this.baseTributes = 6;

@@ -39,7 +39,7 @@ public class MadSwordBeast extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage 				= 7;		// dmg
         this.summons = this.baseSummons				= 1;		// summons       
-        this.specialCanUseLogic = true;							// for any summon or tribute card
+        							// for any summon or tribute card
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DINOSAUR);
         this.tags.add(Tags.STAMPEDING);

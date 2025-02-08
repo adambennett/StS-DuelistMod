@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -28,7 +27,7 @@ public class BusterBladerDDS extends DynamicDamageCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
 
     public BusterBladerDDS() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -50,12 +49,18 @@ public class BusterBladerDDS extends DynamicDamageCard {
 	@Override
 	public int damageFunction() {
         AnyDuelist duelist = AnyDuelist.from(this);
+        int total = 0;
 		if (duelist.hasPower(SummonPower.POWER_ID)) {
 			SummonPower pow = (SummonPower) duelist.getPower(SummonPower.POWER_ID);
 			int dragons = pow.getNumberOfTypeSummonedForTributes(Tags.DRAGON, this.tributes);
-			return this.magicNumber * dragons;
+			total = this.magicNumber * dragons;
 		}
-		return 0;
+        for (DuelistCard c : duelist.getAllTributedCardsThisCombat()) {
+            if (c.hasTag(Tags.DRAGON)) {
+                total += this.magicNumber;
+            }
+        }
+		return Math.max(0, total);
 	}
 
     @Override
@@ -71,7 +76,6 @@ public class BusterBladerDDS extends DynamicDamageCard {
 				this.upgradeDamage(4);
 			}
             this.upgradeMagicNumber(2);
-			this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

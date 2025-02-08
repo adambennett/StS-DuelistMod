@@ -8,9 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class BusterDrake extends DuelistCard 
@@ -57,7 +55,7 @@ public class BusterDrake extends DuelistCard
     			DuelistCard dc = (DuelistCard)c;
     			if (dc.isTributeCard())
     			{
-    				dc.modifyTributes(-this.magicNumber);
+    				dc.modifyTributesForCombat(-this.magicNumber);
     			}
     		}
     	}

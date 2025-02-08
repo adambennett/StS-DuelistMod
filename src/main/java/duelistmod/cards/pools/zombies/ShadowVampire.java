@@ -42,7 +42,7 @@ public class ShadowVampire extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 1;
         this.magicNumber = this.baseMagicNumber = 2;
-        this.specialCanUseLogic = true;
+
     }
     
     @Override

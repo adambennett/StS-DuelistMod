@@ -40,10 +40,10 @@
       "DESCRIPTION": "Increase your maximum #ySummons by the number given."
     },
     {
-	 "PROPER_NAME": "Buffer",
+	 "PROPER_NAME": "BufferOrb",
       "NAMES": [
-        "buffer",
-		"Buffer"
+        "bufferorb",
+		"BufferOrb"
       ],     
       "DESCRIPTION": "#yOrb: At the start of turn, have a #b10% chance to increase all of your buffs by #b1. You have a #b70% chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain #b1 #yBuffer."
     },
@@ -89,7 +89,7 @@
         "toon",
 		"toons"
       ],      
-      "DESCRIPTION": "Can only be played if #yToon #yWorld is active. If you Tribute a Toon monster using another Toon, apply #b1 #yVulnerable to ALL enemies."
+      "DESCRIPTION": "Can only be played if #yToon #yWorld is active. When you #yTribute a #yToon for another #yToon, trigger the #yRevenge effect of a random card in your hand."
     },
      {
 	  "PROPER_NAME": "Magnet",
@@ -181,7 +181,7 @@
 	  "Glitches",
 	  "glitches"
     ],    
-    "DESCRIPTION": "#yOrb: At the start of turn, apply #b4 #yGreased to ALL enemies. NL #yEvoke: Fill your hand with random Tokens."
+    "DESCRIPTION": "#yOrb: At the start of turn, apply #b4 #yGrease to ALL enemies. NL #yEvoke: Fill your hand with random Tokens."
   },
   {
    "PROPER_NAME": "Shadow",
@@ -325,7 +325,7 @@
       "Smoke",
 	  "smoke"
     ],   
-    "DESCRIPTION": "#yOrb: Whenver you draw a monster, increase its damage by #b4. NL #yEvoke: Sum the energy and tribute cost of all cards in your hand. Deal damage to ALL enemies equal to #b2x this sum."
+    "DESCRIPTION": "#yOrb: Whenever you draw a monster, increase its damage by #b4. NL #yEvoke: Sum the energy and tribute cost of all cards in your hand. Deal damage to ALL enemies equal to #b2x this sum."
   },
   {
     "PROPER_NAME": "Storm",
@@ -333,7 +333,7 @@
       "Storm",
 	  "storm"
     ],   
-    "DESCRIPTION": "#yOrb: Add a #yRandomized Power card to your hand at the start of turn. NL #yEvoke: Gain #b2 of the Storm buff."
+    "DESCRIPTION": "#yOrb: Add a #yRandomized Power card to your hand at the start of turn. NL #yEvoke: For the rest of combat, whenever you play a Power, channel #b2 Lightning."
   },
   {
     "PROPER_NAME": "Invert",
@@ -343,7 +343,7 @@
 	  "inversion",
 	  "Inversion"
     ],   
-    "DESCRIPTION": "#yInvert is the same as #yEvoke, except that you also #yChannel an Orb that is the 'opposite' of the one you #yEvoked."
+    "DESCRIPTION": "#yEvokes your rightmost Orb and #yChannels its inversion."
   },
   {
     "PROPER_NAME": "Naturia",
@@ -485,7 +485,7 @@
       "Giant",
 	  "giant"
     ],   
-    "DESCRIPTION": "#yGiants are powerful monsters with high costs and unique cost reduction effects that trigger from any pile in combat. When played, these cost reductions are reset. All #yGiants are #yExempt (not able to be #ySpecial #ySummoned)."
+    "DESCRIPTION": "#yGiants are powerful cards with high costs and unique cost reduction effects that trigger from any pile in combat. When played, these cost reductions are reset. All #yGiants are #yExempt (not able to be #ySpecial #ySummoned)."
   },
   {
     "PROPER_NAME": "Void",
@@ -549,7 +549,7 @@
       "Light",
 	  "light"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, have a #b5% chance to increase your #yMax #yHP by #b1. NL #yEvoke: Permanently enhances all your other channeled orbs by #b2."
+    "DESCRIPTION": "Orb: At the start of turn: gain #b2 #yTemporary #yHP. NL #yEvoke: Gain #b5 #yTemporary #yHP."
   },
   {
   "PROPER_NAME": "Alien",
@@ -1079,7 +1079,7 @@
       "Feral",
       "feral"
     ],
-    "DESCRIPTION": "While you have a #yFeral card in hand, all #ynon-Beast cards cost #b2 more #yTributes."
+    "DESCRIPTION": "While you have a #yFeral card in hand, all #ynon-Beast cards without #yFeral cost #b2 more #yTributes."
   },
   {
     "PROPER_NAME": "Territorial",
@@ -1130,6 +1130,27 @@
       "revenge"
     ],
     "DESCRIPTION": "If you took unblocked attack damage last turn, trigger the given effect."
+  },
+  {
+    "PROPER_NAME": "Gusto",
+    "NAMES": [
+      "Gusto",
+      "gusto",
+      "Daigusto"
+    ],
+    "DESCRIPTION": "At the end of your turn, #yTribute ALL #yGusto monsters that are not #ySpellcasters. NL When you #yTribute a #yGusto monster, gain #b1 #yBlock."
+  },
+  {
+    "PROPER_NAME": "Level Up",
+    "NAMES": [
+      "Level Up",
+      "level up",
+      "Level_Up"
+    ],
+    "DESCRIPTION": "Changes card to the next #yLV for this combat.",
+    "MULTIWORD_KEY": "Level_Up",
+    "FORMATTED_DISPLAY": "*Level *Up",
+    "BASE_KEYWORD": "level up"
   },
   {
     "PROPER_NAME": "Special Summon",

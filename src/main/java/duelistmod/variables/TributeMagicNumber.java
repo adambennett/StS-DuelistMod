@@ -28,23 +28,6 @@ public class TributeMagicNumber extends DynamicVariable {
     public boolean isModified(AbstractCard card) {
         if (card instanceof DuelistCard) {
             DuelistCard dc = (DuelistCard)card;
-            AnyDuelist duelist = AnyDuelist.from(dc);
-            int base = dc.tributes;
-            if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
-                boolean inDeck = duelist.masterDeck().contains(card);
-                if (!inDeck) {
-                    CardGroup singleCardViewPopup = null;
-                    try {
-                        singleCardViewPopup = ReflectionHacks.getPrivate(CardCrawlGame.cardPopup, SingleCardViewPopup.class, "group");
-                    } catch (Exception ignored) {}
-                    boolean inPopupView = CardCrawlGame.dungeon != null && AbstractDungeon.player != null && (singleCardViewPopup == null || !singleCardViewPopup.contains(card)) && !duelist.masterDeck().contains(card) && !duelist.hand().contains(card) && !duelist.drawPile().contains(card) && !duelist.discardPile().contains(card) && !TheDuelist.cardPool.contains(card) && !AbstractDungeon.colorlessCardPool.contains(card) && !duelist.exhaustPile().contains(card) && !duelist.resummonPile().contains(card) && !DynamicTextBlocks.ExhaustViewFixField.exhaustViewCopy.get(card);
-                    if (!inPopupView) {
-                        int mod = base + dc.checkModifyTributeCostForAbstracts(duelist, base);
-                        mod = Util.modifyTributesForApexFeralTerritorial(duelist, dc, mod);
-                        return dc.isTributesModified || mod != base;
-                    }
-                }
-            }
             return dc.isTributesModified;
         }
         return false;
@@ -54,23 +37,7 @@ public class TributeMagicNumber extends DynamicVariable {
     public int value(AbstractCard card) {
         if (!(card instanceof DuelistCard)) return 0;
         DuelistCard dc = (DuelistCard)card;
-        AnyDuelist duelist = AnyDuelist.from(dc);
-        int tributes = dc.tributes;
-        if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
-            boolean inDeck = duelist.masterDeck().contains(card);
-            if (!inDeck) {
-                CardGroup singleCardViewPopup = null;
-                try {
-                    singleCardViewPopup = ReflectionHacks.getPrivate(CardCrawlGame.cardPopup, SingleCardViewPopup.class, "group");
-                } catch (Exception ignored) {}
-                boolean inPopupView = CardCrawlGame.dungeon != null && AbstractDungeon.player != null && (singleCardViewPopup == null || !singleCardViewPopup.contains(card)) && !duelist.masterDeck().contains(card) && !duelist.hand().contains(card) && !duelist.drawPile().contains(card) && !duelist.discardPile().contains(card) && !TheDuelist.cardPool.contains(card) && !AbstractDungeon.colorlessCardPool.contains(card) && !duelist.exhaustPile().contains(card) && !duelist.resummonPile().contains(card) && !DynamicTextBlocks.ExhaustViewFixField.exhaustViewCopy.get(card);
-                if (!inPopupView) {
-                    tributes += dc.checkModifyTributeCostForAbstracts(duelist, tributes);
-                    tributes = Util.modifyTributesForApexFeralTerritorial(duelist, dc, tributes);
-                }
-            }
-        }
-        return tributes;
+        return dc.tributes;
     }
 
     @Override

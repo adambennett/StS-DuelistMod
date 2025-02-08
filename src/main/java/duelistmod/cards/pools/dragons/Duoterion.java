@@ -37,8 +37,8 @@ public class Duoterion extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block 				= 6;		// blk
         this.tributes = this.baseTributes 			= 3;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
+        							// for any summon or tribute card
+        
         this.baseMagicNumber = this.magicNumber 	= 4;		//       
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);

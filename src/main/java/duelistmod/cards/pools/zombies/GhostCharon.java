@@ -47,9 +47,9 @@ public class GhostCharon extends DuelistCard
         this.exhaust = true;
         this.purgeOnUse = true;
         this.isEthereal = true;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
-        this.useTributeCanUse = true;
+
+        
+        
     }
 
     // Actions the card should do.

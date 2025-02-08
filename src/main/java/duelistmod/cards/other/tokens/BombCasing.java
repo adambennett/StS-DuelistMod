@@ -56,9 +56,6 @@ public class BombCasing extends TokenCard
     	summon(); 
     }
     @Override public AbstractCard makeCopy() { return new BombCasing(); }
-    
-    @Override
-    public void customOnTribute(DuelistCard tc) {}
 
 	@Override public void upgrade() 
 	{

@@ -43,8 +43,8 @@ public class FrontlineObserver extends DuelistCard
         this.baseDamage = this.damage = this.origDam = 10;
         this.tributes = this.baseTributes = 1;
         this.baseSecondMagic = this.secondMagic = this.frstTurnDam = 16;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;

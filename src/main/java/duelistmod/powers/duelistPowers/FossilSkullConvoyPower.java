@@ -1,7 +1,6 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -11,8 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.pools.zombies.FossilSkullConvoy;
 
-public class FossilSkullConvoyPower extends NoStackDuelistPower
-{	
+public class FossilSkullConvoyPower extends NoStackDuelistPower {
 	public AbstractCreature source;
 
     public static final String POWER_ID = DuelistMod.makeID("FossilSkullConvoyPower");
@@ -20,17 +18,15 @@ public class FossilSkullConvoyPower extends NoStackDuelistPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("FossilSkullConvoyPower.png");
-	
-    public AbstractCard fsc;
+
+	private boolean isUpgraded;
     
-	public FossilSkullConvoyPower(AbstractCard card) 
-	{ 
-		this(card, AbstractDungeon.player, AbstractDungeon.player);
+	public FossilSkullConvoyPower(boolean isUpgraded) {
+		this(AbstractDungeon.player, AbstractDungeon.player, isUpgraded);
 	}
 	
-	public FossilSkullConvoyPower(AbstractCard card, AbstractCreature owner, AbstractCreature source) 
-	{ 
-		//super(owner, source, stacks);
+	public FossilSkullConvoyPower(AbstractCreature owner, AbstractCreature source, boolean isUpgraded) {
+		super(owner, source);
 		this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;        
@@ -39,25 +35,32 @@ public class FossilSkullConvoyPower extends NoStackDuelistPower
         this.canGoNegative = false;
         this.img = new Texture(IMG);
         this.source = source;
-        this.fsc = card;
+		this.isUpgraded = isUpgraded;
 		updateDescription();
-	}
-	
-	public FossilSkullConvoyPower(AbstractCreature owner, AbstractCreature source) 
-	{ 
-		this(new FossilSkullConvoy(), AbstractDungeon.player, AbstractDungeon.player);
-	}
-	
-	@Override
-	public void atStartOfTurn()
-	{
-		AbstractMonster rand = AbstractDungeon.getRandomMonster();
-		if (rand != null) { DuelistCard.resummon(new FossilSkullConvoy(), rand); }
 	}
 
 	@Override
-	public void updateDescription()
-	{
-		this.description = DESCRIPTIONS[0];
+	public void atStartOfTurn() {
+		AbstractMonster rand = AbstractDungeon.getRandomMonster();
+		if (rand != null) {
+			FossilSkullConvoy card = new FossilSkullConvoy();
+			if (this.isUpgraded) {
+				card.upgrade();
+			}
+			DuelistCard.resummon(card, rand);
+		}
+	}
+
+	@Override
+	public void updateDescription() {
+		this.description = DESCRIPTIONS[this.isUpgraded ? 1 : 0];
+	}
+
+	public boolean isUpgraded() {
+		return isUpgraded;
+	}
+
+	public void setUpgraded(boolean upgraded) {
+		isUpgraded = upgraded;
 	}
 }

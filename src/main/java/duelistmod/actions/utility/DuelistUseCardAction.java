@@ -16,11 +16,15 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.ToonBriefcaseAction;
+import duelistmod.cards.pools.toon.StanleysSketchbook;
 import duelistmod.characters.TheDuelist;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
+import duelistmod.powers.duelistPowers.ToonBriefcasePower;
+import duelistmod.variables.Tags;
 
 public class DuelistUseCardAction extends UseCardAction {
     private final AbstractCard targetCard;
@@ -32,6 +36,17 @@ public class DuelistUseCardAction extends UseCardAction {
             AbstractCard c = StSLib.getMasterDeckEquivalent(card);
             if (c != null) {
                 AbstractDungeon.player.masterDeck.removeCard(c);
+            }
+        }
+        if (card instanceof StanleysSketchbook) {
+            StanleysSketchbook sk = (StanleysSketchbook) card;
+            boolean remove = sk.updateOnPlay();
+            AbstractCard c = StSLib.getMasterDeckEquivalent(card);
+            if (c instanceof StanleysSketchbook) {
+                ((StanleysSketchbook) c).updateOnPlay();
+                if (remove) {
+                    AbstractDungeon.player.masterDeck.removeCard(c);
+                }
             }
         }
         this.targetCard = card;
@@ -87,7 +102,7 @@ public class DuelistUseCardAction extends UseCardAction {
                 }
                 else { this.isDone = true; }               
                 AbstractDungeon.player.hand.applyPowers();
-                AbstractDungeon.player.hand.glowCheck();
+                DuelistCard.glowCheck();
                 AbstractDungeon.player.cardInUse = null;
                 return;
             }
@@ -98,7 +113,17 @@ public class DuelistUseCardAction extends UseCardAction {
                 tickDuration();
                 return;
             }
-            if (!this.exhaustCard) {
+
+            boolean exhaustThis = false;
+            ToonBriefcasePower toonBriefcasePower = null;
+            if (this.targetCard.hasTag(Tags.TOON) && AbstractDungeon.player.hasPower(ToonBriefcasePower.POWER_ID)) {
+                toonBriefcasePower = (ToonBriefcasePower) AbstractDungeon.player.getPower(ToonBriefcasePower.POWER_ID);
+                if (toonBriefcasePower.getToonsPlayedThisTurn().size() == toonBriefcasePower.getAmountCheck() - 1) {
+                    exhaustThis = true;
+                }
+            }
+
+            if (!this.exhaustCard && !exhaustThis) {
                 if (this.reboundCard) {
                     AbstractDungeon.player.hand.moveToDeck(this.targetCard, false);
                 }
@@ -109,20 +134,13 @@ public class DuelistUseCardAction extends UseCardAction {
                     AbstractDungeon.player.hand.moveToHand(this.targetCard);
                     AbstractDungeon.player.onCardDrawOrDiscard();
                 }
-                else if (this.targetCard instanceof DuelistCard)
-                {
+                else if (this.targetCard instanceof DuelistCard) {
                 	DuelistCard dc = (DuelistCard)this.targetCard;
-                	
-                	if (dc.sendToGraveyard)
-                	{
-                		moveToGroup(this.targetCard, true);
-                	}
-                	else if (dc.sendToMasterDeck)
-                	{
-                		moveToGroup(this.targetCard, false);
-                	}
-                	else
-                	{
+                	if (dc.sendToGraveyard) {
+                		moveToGroup(this.targetCard, CardPiles.GRAVEYARD);
+                	} else if (dc.sendToMasterDeck) {
+                		moveToGroup(this.targetCard, CardPiles.MASTER_DECK);
+                	} else {
                 		 AbstractDungeon.player.hand.moveToDiscardPile(this.targetCard);
                 	}
                 }
@@ -150,6 +168,9 @@ public class DuelistUseCardAction extends UseCardAction {
                 this.targetCard.dontTriggerOnUseCard = false;
             }
             this.addToBot(new HandCheckAction());
+            if (toonBriefcasePower != null && exhaustThis && toonBriefcasePower.getToonsPlayedThisTurn().size() == toonBriefcasePower.getAmountCheck()) {
+                this.addToBot(new ToonBriefcaseAction(AnyDuelist.from(AbstractDungeon.player), toonBriefcasePower.getToonsPlayedThisTurn()));
+            }
         }
         this.tickDuration();
     }
@@ -166,13 +187,18 @@ public class DuelistUseCardAction extends UseCardAction {
          c.stopGlowing();
          group.removeCard(c);
     }
+
+    public enum CardPiles { GRAVEYARD, MASTER_DECK, DRAW_PILE }
     
-    public void moveToGroup(final AbstractCard c, boolean grave) {
+    public void moveToGroup(final AbstractCard c, CardPiles cardPile) {
     	resetCardBeforeMoving(c, AbstractDungeon.player.hand);
         c.shrink();
         c.darken(false);
-        if (grave) { grave(c);}
-        else { deck(c); }
+        if (cardPile == CardPiles.GRAVEYARD) { grave(c);}
+        else if (cardPile == CardPiles.MASTER_DECK) { deck(c); }
+        else if (cardPile == CardPiles.DRAW_PILE) {
+            AbstractDungeon.player.drawPile.addToRandomSpot(c);
+        }
     }
 
     public void grave(final AbstractCard card) {

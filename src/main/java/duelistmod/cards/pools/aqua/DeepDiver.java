@@ -44,8 +44,8 @@ public class DeepDiver extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 2;
         this.baseSecondMagic = this.secondMagic = 3;
         this.tributes = this.baseTributes = 1;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.exhaust = true;

@@ -36,7 +36,7 @@ public class BlastWithChain extends DuelistCard
     public BlastWithChain() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.damage = this.baseDamage = 18;
+        this.damage = this.baseDamage = 12;
         this.tags.add(Tags.TRAP);
     }
 

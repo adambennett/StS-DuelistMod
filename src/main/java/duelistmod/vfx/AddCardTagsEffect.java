@@ -49,7 +49,7 @@ public class AddCardTagsEffect extends AbstractGameEffect {
             this.duration -= Gdx.graphics.getDeltaTime();
             this.updateBlackScreenColor();
         }*/
-        if (!AbstractDungeon.isScreenUp && !this.selected.isEmpty()) {
+        if (!this.selected.isEmpty()) {
             for (final AbstractCard c : this.selected) {
                 AbstractDungeon.effectsQueue.add(new UpgradeShineEffect(Settings.WIDTH / 2.0f, Settings.HEIGHT / 2.0f));
                 addTagToCard(c, this.tag);

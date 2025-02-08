@@ -36,15 +36,13 @@ import duelistmod.cards.other.tokens.SuperExplodingToken;
 import duelistmod.cards.pools.insects.Bixi;
 import duelistmod.cards.pools.insects.WeakBixi;
 import duelistmod.cards.pools.machine.Jinzo;
+import duelistmod.cards.pools.toon.StanleysSketchbook;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.dto.PuzzleConfigData;
 import duelistmod.dto.TwoNums;
 import duelistmod.enums.StartingDeck;
 import duelistmod.orbs.enemy.EnemyLightning;
 import duelistmod.patches.TheDuelistEnum;
-import duelistmod.powers.ToonKingdomPower;
-import duelistmod.powers.ToonWorldPower;
-import duelistmod.relics.MillenniumEye;
 import duelistmod.relics.MillenniumPuzzle;
 import duelistmod.relics.MillenniumSymbol;
 import duelistmod.variables.Tags;
@@ -340,24 +338,13 @@ public class PuzzleHelper
 						}
 						break;
 					case BEAST:
-						// No start of combat effect
+                    case TOON:
+                        // No start of combat effect
 						break;
 					case CREATOR:
 						PuzzleHelper.creatorEffects();
 						break;
-					case TOON:
-						if (config.getApplyToonWorld() != null && config.getApplyToonWorld()) {
-							int amt = bonus ? 2 : 1;
-							if (weakEffects) amt++;
-
-							if (bonus) {
-								DuelistCard.applyPowerToSelf(new ToonKingdomPower(p, p, amt));
-							} else if (!AbstractDungeon.player.hasRelic(MillenniumEye.ID) && !AbstractDungeon.player.hasPower(ToonWorldPower.POWER_ID)) {
-								DuelistCard.applyPowerToSelf(new ToonWorldPower(p, p, amt));
-							}
-						}
-						break;
-					case RANDOM_SMALL:
+                    case RANDOM_SMALL:
 					case RANDOM_BIG:
 					case RANDOM_UPGRADE:
 					case METRONOME:
@@ -400,6 +387,15 @@ public class PuzzleHelper
 			}
 			DuelistMod.puzzleEffectRanThisCombat = true;
 		}
+	}
+
+	public static AbstractCard getStanleySketchbook() {
+		PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
+		if (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID) && StartingDeck.currentDeck.equals(StartingDeck.TOON) && config.getAddBixi() != null && config.getAddBixi()) {
+			int magic = Util.getChallengeLevel() > 9 ? 5 : 10;
+			return new StanleysSketchbook(magic);
+		}
+		return null;
 	}
 
 	public static boolean isWeakEffects() {

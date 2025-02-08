@@ -9,7 +9,7 @@
 			"At the start of combat, #ySummon #b1 #yDragon Token and choose #b", " of #b6 additional effects.",
 			"At the start of combat, #ySummon #b1 Nature Token, and gain #b1 Vine and #b1 Leaf.", " #yPoison or #yConstricted to a random enemy. #ySummon #b1 random Nature Token.",
 			"At the start of next combat, #ySummon #b1 #ySpellcaster Token and have a #b", "% chance to #yChannel a random Orb.",
-			"At the start of combat, #ySummon #b1 #yToon Token and gain #yToon #yWorld.",
+			"At the start of combat, #ySummon #b1 #yToon Token. At the start of the run, add a copy of #yStanley's #ySketchbook to your deck.",
 			"At the start of combat, #ySummon #b1 #yZombie Token and #yChannel a #yShadow orb.",
 			"At the start of combat, #ySummon #b1 #yAqua Token and #yOverflow a card in your draw pile.",
 			"At the start of combat, sum up the total #yTribute cost of all monsters in your draw pile and increase the damage of a random monster in you draw pile by that much for the rest of combat. #ySummon #b1 #yFiend Token.",
@@ -22,7 +22,7 @@
 			"At the start of combat, #yIncrement and #ySummon #b1 for each Act.",
 			"At the start of combat, #ySummon #b2 #yPuzzle Tokens and add a random combination of #yRandomized copies of #bJinzo, #bTrap #bHole and #bUltimate #bOffering to your hand.",
 			"At the start of combat, #ySummon a random amount of #yBonanza Tokens and gain a random #yBuff.",
-			"At the start of combat, #ySummon #b1 #yExodia Token. NL All cards in your starter deck have #ySoulbound and you cannot obtain any cards. NL At the start of each turn, draw the #yHead #yof #yExodia.",
+			"At the start of combat, #ySummon #b1 #yExodia Token. NL All cards in your starter deck have #ySoulbound and you cannot obtain cards (except Curses). NL At the start of each turn, draw the #yHead #yof #yExodia.",
 			"At the start of combat, #ySummon #b1 #yPuzzle Token (GIANT DECK)",
 			"At the start of combat, #ySummon #b1 #yMegatype Token.",
 			"At the start of combat, #ySummon #b1 #yMegatype Token and have a #b50% chance to #yChannel a #yShadow orb.",
@@ -48,7 +48,7 @@
 			"Increase the number of #yMillennium #yPuzzle effects you may choose by #b1.",
 			"Gain #b2 extra #yVines and #yLeaves at the start of combat.",
 			"Whenever the #yMillennium #yPuzzle channels an orb at the start of an Elite or Boss combat, channel a second copy of the same orb.",
-			"Gain #yToon #yKingdom at the start of combat instead of #yToon #yWorld.",
+			"Whenever you play #yStanley's #ySketchbook, gain #b25 #yGold.",
 			"Each combat, have a small chance to channel an additional #yShadow orb.",
 			"At the start of combat, the #yOverflow card you choose triggers twice.",
 			"Whenever you trigger the puzzle effect, a random tribute monster is added to the total #b3 times.",
@@ -295,14 +295,14 @@
 		"NAME": "Inversion Stone",
 		"FLAVOR": "A strange looking stone.",
 		"DESCRIPTIONS": [
-			"Whenever you #yInvert, #yEvoke the original Orb twice."
+			"Whenever you #yInvert, each Orb is #yEvoked twice."
 		]
 	},
 	"theDuelist:InversionEvokeRelic": {
 		"NAME": "Inversion Orb",
 		"FLAVOR": "A strange looking orb.",
 		"DESCRIPTIONS": [
-			"Whenever you #yInvert, repeat the same #yInvert action."
+			"Whenever you #yInvert an Orb, #yChannel the resulting Orb an additional time."
 		]
 	},
 	"theDuelist:NaturiaRelic": {
@@ -594,11 +594,19 @@
 			"Chooses a random type of card. For the rest of combat, all cards of this type cost #b0. Whenever you play a card of this type, trigger a random negative effect."
 		]
 	},
+	"theDuelist:ThereCanBeOnlyOneRelic": {
+		"NAME": "#1 Icon",
+		"FLAVOR": "A small metal icon shaped like the #1 symbol.",
+		"DESCRIPTIONS": [
+			"Gain",
+			"at the start of each turn. You cannot play any card that would #ySummon a monster with a type that you already have currently summoned."
+		]
+	},
 	"theDuelist:ToonRelic": {
 		"NAME": "Cartoon Statue",
 		"FLAVOR": "A small colorful statue!",
 		"DESCRIPTIONS": [
-			"When you apply #yVulnerable from #yTributing a #yToon, apply #b1 extra #yVulnerable."
+			"When you trigger #yRevenge from #yTributing a #yToon, trigger the #yRevenge effect on #b1 extra card."
 		]
 	},
 	"theDuelist:SpellcasterStone": {

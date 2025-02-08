@@ -38,8 +38,8 @@ public class GenexAllyBirdman extends DuelistCard
         this.baseDamage = this.damage = 9;
         this.tributes = this.baseTributes = 2;
         this.baseMagicNumber = this.magicNumber = 2;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;

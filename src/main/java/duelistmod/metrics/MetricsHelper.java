@@ -73,7 +73,7 @@ public class MetricsHelper
 			par.put("number_of_tributes", DuelistMod.tribRunCount);
 			par.put("playing_as_kaiba", !DuelistMod.selectedCharacterModel.isYugi());
 			par.put("customized_card_pool", DuelistMod.poolIsCustomized);
-			par.put("challenge_level", DuelistMod.challengeLevel);
+			par.put("challenge_level", Util.getChallengeLevel());
 			par.put("character_model", DuelistMod.selectedCharacterModel.getDisplayName());
 			par.put("duelist_card_choices", getNamesForCardChoices());
 		}

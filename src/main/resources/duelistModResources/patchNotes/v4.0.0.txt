@@ -1,0 +1,292 @@
+Content Updates
+-------------------
+- Replaced original enemy duelist fight with an updated encounter where the enemy duelist can actually play cards and has a hand/draw pile/energy/relics/etc.
+- Massive overhaul for the DuelistMod configuration menu, with pagination and many new options and configurations
+- Main menu option added for 'DuelistMod' to take the player directly to the new configuration menu
+- Added a Puzzle icon to the top bar during the run to allow the player to directly access the DuelistMod configuration menu without leaving the run
+- Implemented keyword icons from StSLib which allow the card text on duelist cards to have common keywords such as Exhaust, Retain, Innate, etc. removed from the description and replaced with icons
+- Added new deck: Beast Deck
+- Enabled decks: Ascended III, Pharaoh I, Pharaoh II, Pharaoh III
+- Massive Increment Deck overhaul: now starring Kuriboh cards and effects
+- Re-added "The Courier" base game relic to the reward pool when playing as The Duelist
+
+- Added 161 new Cards
+    Aloof Lupine
+    Ancient Crimson Ape
+    Andro Sphinx
+    Ankuriboh
+    Armored Rat
+    Armored White Bear
+    Assault Dog
+    Astral Kuriboh
+    Barricadeborg Blocker
+    Battle Instinct
+    Bazoo the Soul Eater
+    Beast Battlefield Barrier
+    Beast Rage
+    Beast Rising
+    Beast Soul Swap
+    Behemoth, King of All Animals
+    Berserk Gorilla
+    Big-Tusked Mammoth
+    Big-Winged Berfomet
+    Brigrand the Glory Dragon
+    Buster Gundil, Cubic Behemoth
+    Caninetaur
+    Catnipped Kitty
+    Cattle Call
+    Chimera Fusion
+    Chow Chow Chan
+    Cocatorium
+    Dark Artist
+    Doomstar Ulka
+    Dream Tower of Nemleria
+    Dreaming Nemleria
+    Earthbound Immortal Cusillu
+    Enraged Battle Ox
+    Eternal Soul
+    Fencing Fire Ferret
+    Fenrir the Nordic Wolf
+    Fierce Tiger Monghu
+    Fire Fighting Daruma Doll
+    Fires of Doomsday
+    Firewing Pegasus
+    Five Star Twilight
+    Flame Kuriboh
+    Flower Wolf
+    Freki the Runick Fangs
+    Galactikuriboh
+    Gandora
+    Generation Next
+    Giant Rat
+    Gladiator Beast Alexander
+    Gladiator Beast Dimacari
+    Gladiator Beast Essedarii
+    Gladiator Beast Samnite
+    Gladiator Beast Tygerius
+    Gravity Behemoth
+    Greedy Venom Fusion Dragon
+    Green Baboon
+    Guard Dog
+    GuardianC himera
+    Horn of the Phantom Beast
+    Howl of the Wild
+    Infernoid Tierra
+    Iron Chain Dragon
+    Karakuri Klock
+    King of the Beasts
+    Kinka-Byo
+    Kuribabylon
+    Kuribah
+    Kuribandit
+    Kuribee
+    Kuribeh
+    Kuriboo
+    Kuribot
+    Kuriphoton
+    Kurivolt
+    Lightning Tricorn
+    Linguriboh
+    Magikuriboh
+    Manticore of Darkness
+    Megalosmasher
+    Mobius, Frost Monarch
+    Multiply
+    Naturia Blessing
+    Nemleria Defender - Couette
+    Nemleria Defender - Oreiller
+    Nemleria Devourer - Reveil
+    Nemleria Louve
+    Nemleria Repette
+    Neo-Spacian Dark Panther
+    Nimble Momonga
+    Ninjitsu Art Of Transformation
+    Noble Knight's Shield-Bearer
+    Noh-P.U.N.K. Foxy Tune
+    Obedience Schooled
+    Ojama Pink
+    One-Kuri-Way
+    Pale Beast
+    Paleozoic Anomalocaris
+    Perfect Sync - A-Un
+    Performapal Barokuriboh
+    Performapal Classikuriboh
+    Performapal Kuribohble
+    Phantom Beast Rock-Lizard
+    Photon Cerberus
+    Photon Leo
+    Photon Sabre Tiger
+    Predaplant Ambulomelides
+    Predaplant Banksiogre
+    Predaplant Bufolicula
+    Predaplant Byblisp
+    Predaplant Cordyceps
+    Predaplant Darlingtonia Cobra
+    Predaplant Dragostapelia
+    Predaplant Heliamphorhynchus
+    Predaplant Moray Nepenthes
+    Predaplant Ophrys Scorpio
+    Predaplant Spider Orchid
+    Predaplant Squid Drosera
+    Predaplant Triantis
+    Predaplant Triphyoverutum
+    Predaplant Verte Anaconda
+    Predapractice
+    Propa Gandake
+    Rising Energy
+    Roaring Earth
+    Rush Recklessly
+    Sabatiel
+    Sea Koala
+    Skilled Brown Magician
+    Starving Venom Predapower Dragon
+    Super Rush Recklessly
+    Super-Nimble Mega Hamster
+    Sweet Dreams Nemleria
+    The Big Cattle Drive
+    The Big March of Animals
+    Thousand Needles
+    Three Thousand Needles
+    Thunder Unicorn
+    Toadally Awesome
+    Tomb of the Pharaoh
+    Trance Archfiend
+    Transcendent Wings
+    Tri-Brigade Arms Bucephalus
+    Tri-Brigade Bearbrumm
+    Tri-Brigade Ferrijit
+    Tri-Brigade Fraktall
+    Tri-Brigade Kerass
+    Tri-Brigade Kitt
+    Tri-Brigade Rendezvous
+    Tri-Brigade Rugal
+    Tri-Brigade Shuraig
+    Twin Headed Thunder Dragon
+    Twinheaded Beast
+    Two Thousand Needles
+    Unicorn Beacon
+    Wattcine
+    Yellow Baboon
+    Zeman the Ape King
+    Beast Metronome
+    Kuriboh Metronome
+    Beast Token
+    Ferret Token
+    
+- Re-added "Curse Royal" curse
+
+- Added 5 new Potions
+    Deck Juice
+    Beast Swarm
+    Uncommon Agility Juice
+    Rare Agility Juice
+    Pack Mentality
+    
+- Added 10 new Relics
+    Modded Duel Disk
+    Tribute Statue
+    Flame Medallion
+    Apex Token
+    Nature's Gift
+    Clawed Codex
+    Eruption Token
+    Volcano Token
+    Chronicle of Elders
+    Sphinx's Insight
+
+- Added 8 new Keywords
+    Beast
+    Feral
+    Territorial
+    Apex
+    Endure
+    Fangs
+    Arcana
+    Revenge
+
+- Added 4 new Booster Packs
+    Beast Pack
+    Rare Beast Pack
+    Feral Pack
+    Territorial Pack
+
+- Added 18 new custom BaseMod console commands
+    Block
+    Channel
+    Special Summon
+    Draw by rarity
+    Draw by tag
+    Drop
+    Duelist Score (increase/decrease)
+    Enemy duelist piles
+    Evoke
+    Heal
+    Increment
+    Invert
+    Orb Slots
+    Potion Slots
+    Summon
+    Tribute
+    TempHP
+
+Balance Updates
+-----------------
+- Added a few new cards that can appear as Nameless Tomb rewards
+- Removed "Upgrade Stone" relic
+- Removed "Summoning Anchor" relic
+- Removed "Zombie Statue" relic
+- Removed several base-game relics from the pool when playing as the Duelist
+- Aqua cards now have a chance to apply Damp to their targets
+- Frozen values modified to 50% more damage and 90% less damage from 200%/70%
+- Slight modifications to various Millennium Symbol effects
+- Millennium Coin effect now reads: "Upon pickup, gain 120 Gold for each other Millennium Item you are carrying. Gain 40 Gold whenever you pickup another Millennium Item."
+- Electric Orb now also reduces your Strength
+- HP Box max HP increase reduced from 200 -> 50
+- Millennium Prayerbook now has a limited number of uses per combat
+- Solder Token now has a limited number of uses per combat
+- Added "Apex" and "Endure" effects to several existing cards
+- Added "Erupt" effects to a few additional cards
+- Some minor changes to various Challenge Level modifiers for levels 3, 4, 5, and 6
+- Many, many card balancing changes. Too many to list :)
+
+Bug Fixes
+-----------
+- Fixed a lot of game crashes
+- Major overhaul to the systems that setup the card pool when you start a new run. These fixes will hopefully reduce the frequency of the bug where the card pool will be filled with cards from a different deck.
+- Made some improvements to various cards that deal a dynamic amount of damage to better handle damage calculation (calculating various powers like vulnerable, weak, etc. correctly)
+- Made some improvements to the various custom card-select screens to ensure that a "Cancel" button is always provided to make sure that you can't softlock the game in a card selection screen
+- Improved the logic that prevents certain Duelist events from spawning under certain conditions, i.e. Egypt Village event should only appear for Warrior deck
+
+QoL
+------
+- Replaced all instances of "Resummon" keyword with "Special Summon" keyword
+    - No functional changes - simply a name change
+- Fiend synergy tribute action that allows you to pull cards from your discard now runs as one action, i.e. tributing multiple fiends will simply allow you to move multiple cards to hand at once rather than triggering a 1-card select screen for each tribute
+- Added some helper code when running the "Highlight Path" mod to try to save your highlighted map nodes when exiting and reloading the game
+- Added some logic when the mod starts up to save all the tier scores from the server to your disk
+    - Tier scores are now only re-fetched if it's been longer than 24 hours since you last fetched them, preventing the need to make an HTTP call every time the mod starts to fetch these scores
+    - Also enables the mod to display the latest fetched tier scores when playing offline, since you now will have a copy stored locally
+- Attempted to reduce the volume of the orb-channeling sound effects for custom Duelist orbs
+- Clarified the percentage chances on many effects, especially in keyword descriptions
+- Added some logic to reduce the text size of cards with longer names
+    - Also updated various cards with artificially shortened names to be more correct now that there is more space available (for example, "A. Magnet Warrior" renamed as "Alpha the Magnet Warrior"
+- Added support for dynamic text in card descriptions, so things like plurality will be handled better on-the-fly (for example, card effect that says "Draw 1 card", magic number increases and the card text automatically updates to read "Draw 2 cards" instead of "Draw 2 card")
+- Improved the logic that controls the coloring of upgraded Tribute costs - these numbers should now more accurately reflect as red-colored when increased, and green-colored when decreased (thanks to the authors of BaseMod for adding some code to make this possible!)
+- Improved the "save slots" system when creating your own card pool
+    - Now the game will allow you to save an infinite amount of custom card pools. A new save slot will be added each time you save another one.
+- Made some improvements to the character selection screen
+    - Added new buttons and controls on the right side of the screen, including an "Unlock All Decks" toggle
+    - Fixed the logic that runs when you switch decks so that the Millennium Puzzle effects would update properly to reflect each deck's puzzle effect
+- Implemented a menu option that allows you to toggle on keyword icons, which replace various common keyword (Exhaust, Retain, etc.) text on cards with icons (Thanks to the authors of StSLib mod for making this possible!)
+
+Art/FX
+--------
+- Added animated character skins for Yugi and Kaiba
+- Added new power icons for several powers
+- Added a new death screen that shows your deck unlock progress + custom duelist scoring events
+
+Cross-Mod Support
+-----------
+- Added some code to allow for starting deck selection when playing with the following mods:
+    - Together in Spire
+    - Spire with Friends

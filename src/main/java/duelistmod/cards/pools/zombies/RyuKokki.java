@@ -40,7 +40,7 @@ public class RyuKokki extends DuelistCard
         this.baseDamage = this.damage = 10; 
         this.baseMagicNumber = this.magicNumber = 2;
         this.exhaust = true;
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

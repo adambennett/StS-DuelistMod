@@ -155,6 +155,9 @@ public class DynamicTypeCard extends DuelistCard
     	}
     }   
 	
-	@Override public void upgrade()  {}	
-	
+	@Override public void upgrade()  {}
+
+	public CardTags getTagSave() {
+		return tagSave;
+	}
 }

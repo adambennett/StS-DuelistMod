@@ -39,8 +39,8 @@ public class ShiranuiSpectralswordShade extends DuelistCard
         this.originalName = this.name;
         this.baseTributes = this.tributes = 3;
         this.baseDamage = this.damage = 37; 
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+
+        
     }
 
     // Actions the card should do.

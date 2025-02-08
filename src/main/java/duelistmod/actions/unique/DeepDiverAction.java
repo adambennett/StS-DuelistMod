@@ -117,7 +117,7 @@ public class DeepDiverAction extends AbstractGameAction
 		    			{
 			    			if (summonChangeCombatCheck)
 			    			{
-			    				dC.modifySummons(randomNum);
+			    				dC.modifySummonsForCombat(randomNum);
 			    			}
 			    			else
 			    			{
@@ -134,7 +134,7 @@ public class DeepDiverAction extends AbstractGameAction
 		    			{
 			    			if (tributeChangeCombatCheck)
 			    			{
-			    				dC.modifyTributes(-randomNum);
+			    				dC.modifyTributesForCombat(-randomNum);
 			    			}
 			    			else
 			    			{

@@ -4,10 +4,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.NoStackDuelistPower;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.characters.TheDuelist;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.CardFinderHelper;
@@ -30,6 +32,7 @@ public class NimbleMomongaPower extends NoStackDuelistPower {
     private final AnyDuelist duelist;
 
     public NimbleMomongaPower(final AbstractCreature owner, final AbstractCreature source) {
+        super(owner, source);
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
@@ -52,7 +55,13 @@ public class NimbleMomongaPower extends NoStackDuelistPower {
                     !card.hasTag(Tags.NEVER_GENERATE) && card.rarity == COMMON
             );
             if (!newList.isEmpty()) {
-                duelist.addCardsToHand(newList);
+                if (this.duelist.player()) {
+                    for (AbstractCard card : newList) {
+                        AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(card.makeStatEquivalentCopy(), false, true, true, false, false, false, false, false, 0, 0, 0, 0, 0, 0));
+                    }
+                } else if (this.duelist.getEnemy() != null) {
+                    this.duelist.addCardsToHand(newList);
+                }
             }
     	}
     }

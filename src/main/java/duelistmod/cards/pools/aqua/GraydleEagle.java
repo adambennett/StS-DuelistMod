@@ -36,7 +36,7 @@ public class GraydleEagle extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.CARDINAL);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
         this.damage = this.baseDamage = 10;
         this.baseSummons = this.summons = 2;

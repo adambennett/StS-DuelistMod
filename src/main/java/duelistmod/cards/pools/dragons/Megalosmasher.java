@@ -36,9 +36,6 @@ public class Megalosmasher extends DuelistCard {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage 				= 12;
         this.summons = this.baseSummons				= 2;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse   = false;
-        this.useBothCanUse      = false;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.DINOSAUR);

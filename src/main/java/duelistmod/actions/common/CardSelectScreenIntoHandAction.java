@@ -15,7 +15,6 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.*;
-import duelistmod.ui.DuelistCardSelectScreen;
 import duelistmod.variables.Strings;
 
 public class CardSelectScreenIntoHandAction extends AbstractGameAction
@@ -302,7 +301,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		    			{
 			    			if (summonChangeCombatCheck)
 			    			{
-			    				dC.modifySummons(randomNum);
+			    				dC.modifySummonsForCombat(randomNum);
 			    			}
 			    			else
 			    			{
@@ -319,7 +318,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		    			{
 			    			if (tributeChangeCombatCheck)
 			    			{
-			    				dC.modifyTributes(-randomNum);
+			    				dC.modifyTributesForCombat(-randomNum);
 			    			}
 			    			else
 			    			{

@@ -36,7 +36,7 @@ public class Babycerasaurus extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 8;
         this.summons = this.baseSummons	= 2;
-        this.specialCanUseLogic = true;							
+
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DINOSAUR);
         this.misc = 0;

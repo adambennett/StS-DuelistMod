@@ -39,7 +39,7 @@ public class FishborgLauncher extends DuelistCard
         this.tags.add(Tags.FLUVIAL);
         this.tags.add(Tags.IS_OVERFLOW);
         this.misc = 0;
-        this.specialCanUseLogic = true;
+
         this.originalName = this.name;
         this.block = this.baseBlock = 4;
         this.summons = this.baseSummons = 5;

@@ -1,0 +1,206 @@
+Content Updates
+-------------------
+- Toon deck overhaul - new card pool (75 cards), new mechanics, and more!
+- Re-ordered starting deck unlock order
+- Added new Boss relic - "#1 Icon"
+- Added new booster pack - Revenge Pack
+- Added 97 new Cards (thanks to Xeronax for adding 17 Gusto cards!)
+    Abaki
+    Agnimal Candle
+    Baby Raccoon Ponpoko
+    Baby Raccoon Tantan
+    Baby Spider
+    Baby Tiragon
+    Bagooska the Terrible Tapir
+    Banner of Courage
+    Blessings for Gusto
+    Bunilla
+    Bunny Token
+    Caam, Serenity of Gusto
+    Candle of Fate
+    Card of Last Will
+    Chain Dog
+    Common Attack Metronome
+    Contact With Gusto
+    Creepy Coney
+    Cyber Phoenix
+    D-Boyz
+    Daigusto Gulldos
+    Daigusto Sphreez
+    Dark Bribe
+    Dark Toon Blast
+    Delg the Dark Monarch
+    Descendant of Gusto
+    Double Attack
+    DustStorm of Gusto
+    Emperor of Lightning
+    Flamvell Baby
+    Gaia the Toon Knight
+    Goddess of Sweet Revenge
+    Gusto Codor
+    Gusto Egul
+    Gusto Falco
+    Gusto Griffin
+    Gusto Gulldo
+    Gusto Squirro
+    Gusto Thunbolt
+    Hidden Fangs of Revenge
+    Hungry Burger
+    Ice Knight
+    Infernoid Seitsemas
+    Jar Robber
+    Junk Giant
+    Manga Monster Reborn
+    Masked Sorcerer
+    Master Of Oz
+    Maxx "C"
+    Metalmorph
+    Metalzoa
+    Mimiclay
+    Mine Mole
+    Mist Valley Baby Roc
+    Musto Oracle of Gusto
+    Oops!
+    Red-Eyes Baby Dragon
+    Red-Eyes Black Metal Dragon
+    Remote Revenge
+    Revenge Metronome
+    Revenge Attack Metronome
+    Revenge Rally
+    Rose, Warrior of Revenge
+    Salamandra
+    Stanley's Sketchbook
+    Swift Birdman Joe
+    Tardy Orc
+    Tatsunootoshigo
+    There Can Be Only One
+    Time Wizard of Tomorrow
+    Toon Alligator
+    Toon Apple Magician Girl
+    Toon Baby Dragon
+    Toon Berry Magician Girl
+    Toon Black Luster Soldier
+    Toon Blue Eyes Ultimate
+    Toon Bookmark
+    Toon Buster Blader
+    Toon Chocolate Magician Girl
+    Toon Cyber Dragon
+    Toon Exodia Incarnate
+    Toon Explosion
+    Toon God Strike
+    Toon Green Baboon
+    Toon Harpie Lady
+    Toon Kiwi Magician Girl
+    Toon Kuriboh
+    Toon Legendary Fisherman
+    Toon Lemon Magician Girl
+    Toon Metalzoa
+    Toon Page-Flip
+    Toon Relinquished
+    Toon Terror
+    Transmission Gear
+    Winda, Priestess of Gusto
+    Windaar, Sage of Gusto
+    Zoa
+
+
+Balance Updates
+-----------------
+- Slight modifications to various reward pools - cards removed or added
+- Feral no longer increases the tribute cost of cards with the Feral keyword, only other cards in your hand
+- Genesis Dragon now has a hard limit of 1000 copies per deck and will not add any additional duplicates after this point
+- Toon tribute synergy effect has been changed - now when a Toon is tributed for another Toon, a random Revenge card in your hand triggers its Revenge effect
+    - Cartoon Statue relic updated to modify this effect properly
+    - Config menu updated to properly configure this effect
+- Overflow effects now trigger at the end of turn on cards that Retain, and on cards that remain in your hand due to Runic Pyramid
+- Temporary strength loss power amounts have been switched - amount of strength lost is now stackable rather than number of turns
+- Light orb effect changed to: Frost orb but Temporary HP instead of block
+- Swapped Inversions for Shadow and Light orbs: Light now inverts to Dark, Shadow now inverts to Plasma
+- Slight changes to booster pack pool chances, Standard Packs now appear slightly more often
+- Slightly adjusted starting cards in the first 3 Pharaoh decks
+- Updated Megalosmasher to prevent it from removing your Summon power, slightly reduced odds of removing buffs
+- Elemental Burst updated to trigger the effect more often
+- Cyber Dragon Nachster effects doubled (DragonScales and Artifact gain)
+- Cyber Dragon Drei now Exhausts
+- Legendary Fisherman now Exhausts
+- Removed unintended tribute effect when Legendary Fisherman tributed 7-Colored Fish
+- Green Baboon fang gain reduced from 8 -> 6
+- Tri-Brigade Rendezvous upgrade changed from 'remove Exhaust' to 'reduce Tribute cost by 2'
+- Cybernetic Revolution now requires at least 1 orb channeled to play
+- "Red-Eyes" cards all now have Feral
+- Snow Dragon has 1 extra summon, and the upgrade increases the summons by 1 now (in addition to the original effect)
+- Multiply can no longer Special Summon itself
+- Barkion Bark rarity increased from Uncommon -> Rare, base cost increased from 1 -> 2
+- Predaplant Byblisp rarity increased from Common -> Uncommon
+- Predaplant Pterapenthes summons increased from 1 -> 2, block increased from 6 -> 8, upgrade block increased from +3 -> +4
+- Predaplant Triphyoverutum is now Exempt
+- Blade Armor Ninja now either deals damage to a single target or multiple, not both
+- Cross Attack rarity reduced from Uncommon -> Common, upgrade values decreased slightly for both damage and Block
+- Tremendous Fire damage values reduced slightly
+- Block Golem temporary HP gain reduced from 3 -> 2
+- Darkness Neosphere tribute increase and strength effect both decreased by 1, strength loss is no longer permanent
+- Two new random debuffs added to the random debuff pool - "There Can Only Be One", "Random Discard"
+- Galactikuriboh now has a limited number of triggers per turn
+- Toadally Awesome now Summons instead of Tributing, Temp HP gain increased from 3 -> 5, upgrade changed from base cost upgrade to increase Temp HP gain +3
+- Buster Blader D.D.S now deals damage per Dragon tributed in combat, rather than Dragons tributed on that turn
+- Sogen upgrade now increases damage increase by 10%
+- Red Medicine rarity increased from Common -> Rare
+- Battleguard King: Endure effect changed to "At the start of next turn, gain 1 Energy"
+- Worm King: Endure effect changed to "At the start of next turn, gain 1 Energy"
+- Vendread Nightmare can no longer offer Vendread Tokens as a choice
+- Nimble Momonga now adds Ethereal and Exhaust to generated cards
+- Barrier Statue is now Exempt
+- Razord Lizard+ block now increases from 7 -> 9 (up from 7 -> 8)
+- Hidden Armory upgrade now reduces tributes by 1 too
+- Blast With Chain base damage reduced from 18 -> 12
+
+Bug Fixes
+-----------
+- Made some improvements to 'Together in Spire' crossover code to help prevent the invisible players bug
+- Fixed a game crash that occurred when playing the Metronome Deck and visiting a shop
+- Fixed a game crash issue with Atomic Scrap Dragon
+- Fixed a game crash issue with Cyber End Dragon
+- Fixed an issue where the Beast deck Millennium Puzzle effect could trigger when playing other decks
+- Made some improvements to Invert action behavior
+- Fixed an issue where enemy Duelists would not properly calculate damage when Temporary HP was applied
+- Fixed some issues with various cards not modifying tributes/summons properly, including Command Knight and Levia Dragon
+- Fixed an issue where Detonate cards would be playable when they shouldn't be when 'Restrict Summoning to Available Zones' config was enabled
+- Fixed an issue where Damp would not deal damage properly to enemies
+- Fixed an issue where 'Superheavy Scales' would not properly return to hand on stance switch
+- Fixed an issue where 'Alpha the Magnet Warrior' would not properly grant Energy when the effect was active
+- Fixed an issue where 'Spiral Flame Strike' rarity was set to Special instead of Uncommon, preventing it from appearing in various reward pools
+- Fixed an issue where Predaplant Darlingtonia Cobra was not summoning
+- Fixed an issue where Predaplant Verte Anaconda was not summoning
+- Fixed an issue where Blade Armor Ninja could crash the game if the enemies would die to the initial damage before the multi-damage attack triggered
+- Improved the implementation of Fossil Skull Convoy, upgraded version will now properly Special Summon an upgraded copy
+- Fixed an issue where Swords of Revealing Light was not tributing
+- Fixed some issues where a few integer properties were not being saved properly when exiting the run and resuming later
+- Fixed an issue where Megalosmasher was not calculating the correct odds for buff removal
+- Fixed an issue where Toadally Awesome would always apply Temp HP, even if you had Toons in hand
+- Fixed an issue where upgraded The World Tree did not actually have Innate
+- Fixed a crash that could occur during fights with enemy duelists when they attempted to add a card to their hand
+- 7-Colored Fish will no longer trigger Overflow if your draw pile is empty
+- Iron Chain Dragon power now stacks properly
+- Fixed an issue where Spiders and Bugs were triggering after one too many cards played
+- Fixed 'Cross Attack' triggering the Block and Damage effects on opposite turns (even vs. odd)
+- Fixed an issue where dealing damage through block was not properly applying damage changes (Strength, etc.)
+- Fixed a bug where the game could crash in some circumstances if you died during an event
+
+QoL
+------
+- Level Up added as a keyword and mechanics improved slightly
+- Modified Exodia deck Puzzle text slightly to clarify the extent of the effects
+- Added tooltip that appears when hovering over tier scores to help explain what they represent
+- Added new config menu option for "Metrics" menu - Show tier score tooltip - which allows you to disable the tooltip that shows when hovering over tier scores in card reward screens
+- Updated mod dependencies to the latest versions (ModTheSpire, BaseMod, StSLib, etc.)
+- Destruction Meteor -> properly renamed as Meteor of Destruction
+- Switchyard -> properly renamed as Revolving Switchyard
+- Buffer keyword replaced with BufferOrb, for clarity between the orb and the base-game buff
+
+Art/FX
+--------
+- Added new power icons for 4 powers (thanks to ascriptmaster)
+    Dreaming Nemleria
+    Kuribohrn
+    Kuriphoton
+    Kurivolt

@@ -58,7 +58,7 @@ public class MegarockDragon extends DuelistCard
 				if (c.cost > 0) { c.setCostForTurn(-c.cost); }
 			}
     	}
-    	AbstractDungeon.player.hand.glowCheck();
+        DuelistCard.glowCheck();
     }
     
     // Upgraded stats.

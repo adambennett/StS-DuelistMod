@@ -84,7 +84,7 @@ public class Storm extends DuelistOrb {
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
 		}
 		applyFocus();
-		AbstractCard randomPower = DuelistCard.returnTrulyRandomFromTypeInCombat(CardType.POWER, true);
+		AbstractCard randomPower = DuelistCard.returnTrulyRandomFromType(CardType.POWER, true);
 		RandomizedHandAction action = new RandomizedHandAction(randomPower, false, true, false, true, false, false, false, false, 1, 3, 0, 0, 0, 0);
 		action.duelist = this.owner;
 		AbstractDungeon.actionManager.addToTop(action);

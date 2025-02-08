@@ -39,8 +39,8 @@ public class CallAtlanteans extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.baseTributes = this.tributes = 2;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        
+        
         this.baseBlock = this.block = 9;
         this.misc = 0;
         this.originalName = this.name;

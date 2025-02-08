@@ -1,0 +1,34 @@
+Content Updates
+-------------------
+- Added new cards: Flying Elephant, Infernity Pawn, Infernoid Devyaty, Plasma Ball, Void Apocalypse
+
+Balance Updates
+-----------------
+- Slight modifications to various reward pools - cards removed or added
+- Wild Nature Release damage reduced from 3 -> 1
+- Removed Tribute cost from Diamond Dust, reduced damage from 16 -> 14
+- Bazoo the Soul Eater no longer Exhausts
+- Fencing Fire Ferret effect values modified slightly
+- Prevented Nemleria Louve from always generating the same Nemleria card
+- Defensive Tactics plated armor gain reduced from 4 -> 2
+- Snowdust Dragon base cost reduced from 2 -> 1, damage decreased from 18 -> 14
+- Skullgios rarity increased from Common -> Uncommon, upgrade damage increased from +3 -> +4
+- Dark Magician rarity increased from Common -> Uncommon, base cost reduced from 2 -> 1
+- Electrowhip tribute cost reduced from 3 -> 2
+- Sanga of Thunder damage decreased from 16 -> 12, tribute cost reduced from 3 -> 2, upgrade no longer reduces tribute cost by 1
+- Skilled Dark Magician switch from tribute 3 -> summon 2, damage decreased from 10 -> 4
+- Added Endure effect to Armored Rat
+
+Bug Fixes
+-----------
+- Fix issues with card glow not resetting properly to Blue in all cases
+- Improved damage effect implementation of Wild Nature Release
+- Fixed an issue where Ferret Token was not properly registered as a Beast
+- Fixed an issue where Blizzard Warrior was not channeling the correct number of Frost
+- Fixed an issue where tier score labels were not properly redirecting players to the metrics site when clicked
+- Fix Electric Burst relic description
+
+QoL
+------
+- Doom Dragon -> properly renamed as Infernity Doom Dragon
+

@@ -42,7 +42,7 @@ public class FossilSkullbuggy extends DuelistCard
         this.baseSummons = this.summons = 2;
         this.baseMagicNumber = this.magicNumber = 2;
         this.baseSecondMagic = this.secondMagic = 2;
-        this.specialCanUseLogic = true;
+
     }
 
     // Actions the card should do.

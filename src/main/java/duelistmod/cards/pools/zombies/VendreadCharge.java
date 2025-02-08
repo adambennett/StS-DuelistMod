@@ -38,7 +38,7 @@ public class VendreadCharge extends DuelistCard
         this.originalName = this.name;
         this.baseSummons = this.summons = 6;
         this.baseDamage = this.damage = 11;
-        this.specialCanUseLogic = true;
+
         this.cardsToPreview = new SpiritToken();
     }
 

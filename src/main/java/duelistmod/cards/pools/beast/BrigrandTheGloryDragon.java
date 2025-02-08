@@ -40,8 +40,6 @@ public class BrigrandTheGloryDragon extends DuelistCard {
         this.baseSummons = this.summons = 1;
         this.baseDamage = this.damage = 25;
         this.baseMagicNumber = this.magicNumber = 5;
-        this.specialCanUseLogic = true;
-        this.useBothCanUse = true;
     }
 
     @Override

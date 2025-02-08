@@ -31,7 +31,7 @@ public enum MonsterType {
     SPELLCASTER(Tags.SPELLCASTER, "Spellcaster", true),
     SPIDER(Tags.SPIDER, "Spider", "Insect", true),
     SUPERHEAVY(Tags.SUPERHEAVY, "Superheavy", "Warrior", true),
-    TOON_POOL(Tags.TOON_POOL, "Toon", "Pyro", true),
+    TOON_POOL(Tags.TOON, "Toon", "Pyro", true),
     WARRIOR(Tags.WARRIOR, "Warrior", true),
     WYRM(Tags.WYRM, "Wyrm", true),
     ZOMBIE(Tags.ZOMBIE, "Zombie", true);
@@ -120,8 +120,8 @@ public enum MonsterType {
     public static final int spellcasterDefaultBlock = 4;
     public static final String superheavyDexKey = "Dexterity per Tribute";
     public static final int superheavyDefaultDex = 1;
-    public static final String toonVulnKey = "Vulnerable per Tribute";
-    public static final int toonDefaultVuln = 1;
+    public static final String toonRevengeKey = "Vulnerable per Tribute";
+    public static final int toonDefaultRevenge = 1;
     public static final String warriorEnableKey = "Enabled Warrior Tribute Effect";
     public static final boolean warriorDefaultEnable = true;
     public static final String warriorNumTributesKey = "Number of Tributes to Trigger Effect";
@@ -213,7 +213,7 @@ public enum MonsterType {
                 config.put(superheavyDexKey, superheavyDefaultDex);
                 return config;
             case TOON_POOL:
-                config.put(toonVulnKey, toonDefaultVuln);
+                config.put(toonRevengeKey, toonDefaultRevenge);
                 return config;
             case WARRIOR:
                 config.put(warriorEnableKey, warriorDefaultEnable);
