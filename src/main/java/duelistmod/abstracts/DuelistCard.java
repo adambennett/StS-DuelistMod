@@ -2197,7 +2197,18 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	// =============== /SUPER OVERRIDE FUNCTIONS/ =======================================================================================================================================================
 
 	// =============== DUELIST FUNCTIONS =========================================================================================================================================================
-	public boolean canSpawnInBooster(BoosterPack pack) { return true; }
+	public boolean canSpawnInBooster(BoosterPack pack) {
+		/*if (this.hasTag(LIMIT_ONE_PER_DECK)) {
+			if (AbstractDungeon.player != null && AbstractDungeon.player.masterDeck != null && !AbstractDungeon.player.masterDeck.isEmpty()) {
+				for (AbstractCard inDeck : AbstractDungeon.player.masterDeck.group) {
+					if (inDeck.cardID.equals(this.cardID)) {
+						return false;
+					}
+				}
+			}
+		}*/
+		return true;
+	}
 
 	public boolean isTerritorial() { return true; }
 

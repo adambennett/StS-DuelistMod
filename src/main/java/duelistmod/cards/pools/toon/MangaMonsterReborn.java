@@ -67,8 +67,9 @@ public class MangaMonsterReborn extends DuelistCard {
         }
 
         Consumer<ArrayList<AbstractCard>> resummon = group -> {
+            if (targets.isEmpty()) return;
             for (int i = 0; i < this.magicNumber; i++) {
-                group.forEach(DuelistCard::resummon);
+                group.forEach(c -> DuelistCard.resummon(c, (AbstractMonster) targets.get(0)));
             }
         };
         if (duelist.player()) {

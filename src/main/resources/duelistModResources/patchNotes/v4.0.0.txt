@@ -10,7 +10,7 @@ Content Updates
 - Massive Increment Deck overhaul: now starring Kuriboh cards and effects
 - Re-added "The Courier" base game relic to the reward pool when playing as The Duelist
 
-- Added 160 new Cards
+- Added 161 new Cards
     Aloof Lupine
     Ancient Crimson Ape
     Andro Sphinx

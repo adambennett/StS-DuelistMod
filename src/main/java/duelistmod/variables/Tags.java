@@ -82,6 +82,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags LEGACY_DARKNESS;
 	@SpireEnum public static AbstractCard.CardTags LEGEND_BLUE_EYES;
 	@SpireEnum public static AbstractCard.CardTags LIMITED;
+	@SpireEnum public static AbstractCard.CardTags LIMIT_ONE_PER_DECK;
 	@SpireEnum public static AbstractCard.CardTags MACHINE;
 	@SpireEnum public static AbstractCard.CardTags MACHINE_DECK;
 	@SpireEnum public static AbstractCard.CardTags MAGICIANS_FORCE;
