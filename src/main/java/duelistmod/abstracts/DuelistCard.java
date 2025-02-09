@@ -687,6 +687,15 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	@SuppressWarnings("unused")
 	public void onSoulChange(int newSouls, int change) { }
 
+	@SuppressWarnings("unused")
+	public void onGainGold(int spent) { }
+
+	@SuppressWarnings("unused")
+	public void onGainGoldWhileInMasterDeck(int spent) { }
+
+	@SuppressWarnings("unused")
+	public void onSpendGoldWhileInMasterDeck(int spent) { }
+
 	public void triggerOverflowEffect()
 	{
 		DuelistMod.overflowedThisTurn = true;
@@ -3670,6 +3679,10 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public void makeSoulbound(boolean set)
 	{
 		SoulboundField.soulbound.set(this, set);
+	}
+
+	public boolean isSoulbound() {
+		return SoulboundField.soulbound.get(this);
 	}
 
 	public void makeMegatyped() {

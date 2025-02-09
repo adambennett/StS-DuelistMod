@@ -1,0 +1,38 @@
+Content Updates
+-------------------
+
+
+Balance Updates
+-----------------
+- Colossal Fighter upgrade changed from +3 damage -> -1 Tributes
+
+Bug Fixes
+-----------
+- Fixed a game crash that occurred when playing Vendread Revolution
+- Fixed a game crash that could occur on the custom run menu when enabling Challenge Mode
+- Fixed an issue where Curse Royal would continue to trigger even if you had Ectoplasm
+
+QoL
+------
+- Exodia deck no longer applies Soulbound to cards that are already Soulbound
+- Improved handling of custom run modifiers: Shiny, Draft, Sealed, Chimera, Insanity
+    - Chimera now starts you with a Duelist-specific custom deck
+    - Draft, Sealed, Chimera, Insanity will now also have a chance to replace copies of Sparks with Special Sparks
+    - If "Force Special Sparks" config option is enabled, you will now always get a copy, even with any of these custom modifiers enabled
+    - Duelist's Bane will now appear in place of Ascender's Bane on high Challenge Level when using any of these custom modifiers
+    - These custom modifiers will no longer prevent Magnet cards from being added to your deck via the config option
+    - Stanley's Sketchbook will now properly appear in your starting deck when using any of these custom modifiers
+    - These custom modifiers will no longer prevent Holiday cards from being added to your deck
+    - When playing the Exodia deck, all cards in your starting deck will become Soulbound, even when playing with any of these custom modifiers
+
+Art/FX
+--------
+
+
+Metrics
+--------
+
+
+Card Pools
+-----------
+

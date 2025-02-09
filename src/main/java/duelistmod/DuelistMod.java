@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.events.AbstractEvent;
+import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.rewards.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
@@ -126,7 +127,7 @@ import static duelistmod.enums.CardPoolType.DECK_BASIC_DEFAULT;
 public class DuelistMod 
 implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber,
 EditCharactersSubscriber, PostInitializeSubscriber, OnStartBattleSubscriber, PostBattleSubscriber,
-PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCardUseSubscriber, PostCreateStartingDeckSubscriber,
+PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCardUseSubscriber, //PostCreateStartingDeckSubscriber,
 RelicGetSubscriber, PostDrawSubscriber, PostDungeonInitializeSubscriber, OnPlayerLoseBlockSubscriber,
 PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostObtainCardSubscriber, PotionGetSubscriber, StartGameSubscriber,
 PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscriber, PreUpdateSubscriber
@@ -134,7 +135,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 
 	// Member fields
-	public static String version = "v4.1.0";
+	public static String version = "v4.1.1";
 	public static Mode modMode = Mode.PROD;
 	public static MetricsMode metricsMode = MetricsMode.PROD;
 	public static String trueVersion = version.substring(1);
@@ -2235,122 +2236,116 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		new AnyDuelist(AbstractDungeon.player).receiveCardUsed(arg0);
 	}
 
-	@Override
-	public void receivePostCreateStartingDeck(PlayerClass arg0, CardGroup arg1)
-	{
-		boolean badMods = false;
-		ArrayList<String> badModNames = new ArrayList<>();
-		badModNames.add("Insanity");
-		badModNames.add("Draft");
-		badModNames.add("SealedDeck");
-		badModNames.add("Shiny");
-		badModNames.add("Chimera");
-		for (String s : AbstractPlayer.customMods)
-		{
-			if (badModNames.contains(s))
-			{
-				badMods = true;
-				if (persistentDuelistData.GameplaySettings.getHolidayCards() && holidayDeckCard != null && addingHolidayCard && arg0.name().equals("THE_DUELIST")) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
+	//@Override
+	public static void receivePostCreateStartingDeck(PlayerClass playerClass, CardGroup deckGroup) {
+		boolean isDraftMode = ModHelper.isModEnabled("Draft");		// Draft - Draft a custom deck at run start
+		boolean isSealedMode = ModHelper.isModEnabled("SealedDeck");	// SealedDeck - Choose 10 of 30 random cards at run start
+		boolean isInsanity = ModHelper.isModEnabled("Insanity");		// Insanity - Add 50 random cards at run start
+		boolean isShiny = ModHelper.isModEnabled("Shiny");			// Shiny - Starting deck is 1 of every rare card
+		boolean isChimera = ModHelper.isModEnabled("Chimera");		// Chimera - Starting deck is a fusion of all characters
+
+		// Replace starting deck
+		// NOT running for - Draft, Sealed, Shiny, Chimera, Insanity
+		ArrayList<AbstractCard> initialStartingDeck;
+		if (!(isDraftMode || isSealedMode || isShiny || isChimera || isInsanity)) {
+			switch (StartingDeck.currentDeck) {
+				case RANDOM_BIG:
+				case RANDOM_SMALL:
+				case RANDOM_UPGRADE:
+					initialStartingDeck = StartingDeck.getStartingCardsForRandomDeck();
+					break;
+				default:
+					initialStartingDeck = new ArrayList<>(StartingDeck.currentDeck.startingDeck());
+					break;
+			}
+		} else {
+			initialStartingDeck = deckGroup.group;
+		}
+
+		// Chance to replace Sparks with Special Sparks
+		// NOT running for - Shiny
+		ArrayList<AbstractCard> duelistStartingDeck = new ArrayList<>();
+		boolean addedSpecialSparks = false;
+		if (!isShiny) {
+			for (AbstractCard c : initialStartingDeck) {
+				if (c instanceof Sparks) {
+					int roll = ThreadLocalRandom.current().nextInt(1, 20);
+					if (Util.getChallengeLevel() > 9) { roll = 2; }
+					if ((DuelistMod.persistentDuelistData.GameplaySettings.getForceSpecialSparks() && !addedSpecialSparks) || (DuelistMod.persistentDuelistData.GameplaySettings.getAllowSpecialSparks() && roll == 1)) {
+						duelistStartingDeck.add(Util.getSpecialSparksCard());
+						addedSpecialSparks = true;
+					} else {
+						duelistStartingDeck.add(c);
+					}
+				} else {
+					duelistStartingDeck.add(c);
+				}
+			}
+		} else {
+			duelistStartingDeck.addAll(initialStartingDeck);
+		}
+
+		// Force adding Special Sparks
+		if (DuelistMod.persistentDuelistData.GameplaySettings.getForceSpecialSparks() && !addedSpecialSparks) {
+			duelistStartingDeck.add(Util.getSpecialSparksCard());
+		}
+
+		// Adding Duelist's Bane || Ascender's Bane
+		boolean addedChallengeCard = false;
+		if (Util.getChallengeLevel() > 9 && duelistStartingDeck.stream().noneMatch(c -> c instanceof DuelistAscender)) {
+			DuelistCard da = new DuelistAscender();
+			duelistStartingDeck.add(da);
+			UnlockTracker.unlockCard(da.cardID);
+			addedChallengeCard = true;
+		}
+		if (AbstractDungeon.ascensionLevel >= 10 && !addedChallengeCard && duelistStartingDeck.stream().noneMatch(c -> c instanceof AscendersBane)) {
+			duelistStartingDeck.add(new AscendersBane());
+			UnlockTracker.markCardAsSeen("AscendersBane");
+		}
+
+		// Adding Magnet card
+		if (DuelistMod.getMonsterSetting(MonsterType.MAGNET, MonsterType.magnetDeckKey, MonsterType.magnetDefaultDeck)) {
+			DuelistCard magnet = Util.getRandomMagnetCard(DuelistMod.getMonsterSetting(MonsterType.MAGNET, MonsterType.magnetSuperKey, MonsterType.magnetDefaultSuper), isShiny);
+			duelistStartingDeck.add(magnet);
+		}
+
+		// Add Stanley's Sketchbook
+		AbstractCard stanleySketchbook = PuzzleHelper.getStanleySketchbook();
+		if (stanleySketchbook != null) {
+			duelistStartingDeck.add(stanleySketchbook);
+		}
+
+		// Adding Holiday card
+		if (persistentDuelistData.GameplaySettings.getHolidayCards() && holidayDeckCard != null && addingHolidayCard) {
+			duelistStartingDeck.add(holidayDeckCard.makeCopy());
+			addingHolidayCard = false;
+		}
+
+		// Process cards for Exodia deck
+		if (StartingDeck.currentDeck == StartingDeck.EXODIA) {
+			PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
+			for (AbstractCard c : duelistStartingDeck) {
+				if (c.hasTag(Tags.EXODIA_DECK_UPGRADE)) {
+					c.upgrade();
+				}
+
+				if (c instanceof DuelistCard) {
+					DuelistCard dc = (DuelistCard)c;
+					if (config.getApplySoulbound() != null && config.getApplySoulbound() && !dc.isSoulbound()) {
+						dc.makeSoulbound(true);
+						dc.rawDescription = Strings.exodiaSoulbound + dc.rawDescription;
+					}
+					dc.fixUpgradeDesc();
+					dc.initializeDescription();
+				}
 			}
 		}
-		if (!badMods)
-		{
-			if (arg0.name().equals("THE_DUELIST"))
-			{
-				ArrayList<AbstractCard> startingDeckB = new ArrayList<>();
-				ArrayList<AbstractCard> startingDeck;
-				switch (StartingDeck.currentDeck) {
-					case RANDOM_BIG:
-					case RANDOM_SMALL:
-					case RANDOM_UPGRADE:
-						startingDeck = StartingDeck.getStartingCardsForRandomDeck();
-						break;
-					default:
-						startingDeck = new ArrayList<>(StartingDeck.currentDeck.startingDeck());
-						break;
-				}
 
-				if (startingDeck.size() > 0) {
-					arg1.group.clear();
-					CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
-					boolean addedSpecialSparks = false;
-					for (AbstractCard c : startingDeck)
-					{
-						if (c instanceof Sparks) {
-							int roll = ThreadLocalRandom.current().nextInt(1, 20);
-							if (Util.getChallengeLevel() > 9) { roll = 2; }
-							if (
-								(DuelistMod.persistentDuelistData.GameplaySettings.getForceSpecialSparks() && !addedSpecialSparks) ||
-								(DuelistMod.persistentDuelistData.GameplaySettings.getAllowSpecialSparks() && roll == 1)
-							) {
-								startingDeckB.add(Util.getSpecialSparksCard());
-								addedSpecialSparks = true;
-							} else {
-								startingDeckB.add(c);
-							}
-						} else {
-							startingDeckB.add(c);
-						}
-					}
-					if (DuelistMod.persistentDuelistData.GameplaySettings.getForceSpecialSparks() && !addedSpecialSparks) {
-						startingDeckB.add(Util.getSpecialSparksCard());
-					}
-					for (AbstractCard c : startingDeckB)
-					{
-						newStartGroup.addToRandomSpot(c.makeStatEquivalentCopy());
-					}
-
-					if (Util.getChallengeLevel() > 9)
-					{
-						DuelistCard da = new DuelistAscender();
-						newStartGroup.addToRandomSpot(da);
-						UnlockTracker.unlockCard(da.cardID);
-					}
-					else if (AbstractDungeon.ascensionLevel >= 10)
-					{
-						newStartGroup.addToRandomSpot(new AscendersBane());
-						UnlockTracker.markCardAsSeen("AscendersBane");
-					}
-
-					if (DuelistMod.getMonsterSetting(MonsterType.MAGNET, MonsterType.magnetDeckKey, MonsterType.magnetDefaultDeck)) {
-						DuelistCard magnet = Util.getRandomMagnetCard(DuelistMod.getMonsterSetting(MonsterType.MAGNET, MonsterType.magnetSuperKey, MonsterType.magnetDefaultSuper));
-						newStartGroup.addToRandomSpot(magnet);
-					}
-
-					AbstractCard stanleySketchbook = PuzzleHelper.getStanleySketchbook();
-					if (stanleySketchbook != null) {
-						newStartGroup.addToRandomSpot(stanleySketchbook);
-					}
-					arg1.group.addAll(newStartGroup.group);
-					if (persistentDuelistData.GameplaySettings.getHolidayCards() && holidayDeckCard != null && addingHolidayCard) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
-					arg1.sortAlphabetically(true);
-					lastTagSummoned = StartingDeck.currentDeck.getStartingDeckTag();
-					if (lastTagSummoned == null) { lastTagSummoned = Tags.ALL; if (debug) { logger.info("starter deck has no associated card tag, so lastTagSummoned is reset to default value of ALL");}}
-
-					if (StartingDeck.currentDeck == StartingDeck.EXODIA)
-					{
-						PuzzleConfigData config = StartingDeck.currentDeck.getActiveConfig();
-						for (AbstractCard c : arg1.group)
-						{
-							if (c.hasTag(Tags.EXODIA_DECK_UPGRADE))
-							{
-								c.upgrade();
-							}
-
-							if (c instanceof DuelistCard)
-							{
-								DuelistCard dc = (DuelistCard)c;
-								if (config.getApplySoulbound() != null && config.getApplySoulbound()) {
-									dc.makeSoulbound(true);
-									dc.rawDescription = Strings.exodiaSoulbound + dc.rawDescription;
-								}
-								dc.fixUpgradeDesc();
-								dc.initializeDescription();
-							}
-						}
-					}
-				}
-			}
+		// Update input group with prepared deck
+		if (!duelistStartingDeck.isEmpty()) {
+			deckGroup.group.clear();
+			deckGroup.group.addAll(duelistStartingDeck);
+			deckGroup.sortAlphabetically(true);
 		}
 	}
 
