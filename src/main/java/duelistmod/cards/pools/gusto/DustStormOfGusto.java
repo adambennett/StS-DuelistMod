@@ -1,6 +1,7 @@
 package duelistmod.cards.pools.gusto;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -16,6 +17,7 @@ import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DustStormOfGusto extends DuelistCard {
@@ -60,15 +62,19 @@ public class DustStormOfGusto extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
+        List<AbstractCard> toRemoveFromHand = new ArrayList<>();
+        List<AbstractCard> toRemoveFromDiscard = new ArrayList<>();
         duelist.hand().forEach(card -> {
-            if (card == this) return;
-            duelist.handGroup().removeCard(card);
+            if (card == this || card.uuid == this.uuid) return;
+            toRemoveFromHand.add(card);
             addToBot(new MakeTempCardInDrawPileAction(card, 1, true, false));
         });
         duelist.discardPile().forEach(card -> {
-            duelist.discardPileGroup().removeCard(card);
+            toRemoveFromDiscard.add(card);
             addToBot(new MakeTempCardInDrawPileAction(card, 1, true, false));
         });
+        toRemoveFromHand.forEach(card -> duelist.handGroup().removeCard(card));
+        toRemoveFromDiscard.forEach(card -> duelist.discardPileGroup().removeCard(card));
         duelist.drawPileGroup().shuffle();
         if (duelist.player()) {
             applyPowerToSelf(new IntangiblePlayerPower(duelist.creature(), 1));

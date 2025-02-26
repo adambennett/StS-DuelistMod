@@ -11,6 +11,7 @@ Bug Fixes
 - Fixed a game crash that occurred when playing Vendread Revolution
 - Fixed a game crash that could occur on the custom run menu when enabling Challenge Mode
 - Fixed an issue where Curse Royal would continue to trigger even if you had Ectoplasm
+- Fixed ConcurrentModificationException that triggered when playing Dust Storm of Gusto
 
 QoL
 ------
