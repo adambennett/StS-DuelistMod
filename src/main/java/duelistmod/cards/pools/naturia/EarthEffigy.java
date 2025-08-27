@@ -39,6 +39,7 @@ public class EarthEffigy extends DuelistCard
         this.tags.add(Tags.ROCK);
         this.originalName = this.name;
         this.isSummon = true;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
