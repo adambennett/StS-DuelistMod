@@ -23,6 +23,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
@@ -31,8 +33,11 @@ import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import duelistmod.cards.curses.CurseRoyal;
 import duelistmod.cards.pools.fiend.SummonedSkull;
+import duelistmod.cards.pools.pharaoh.MirageDragonBasic;
+import duelistmod.cards.pools.pharaoh.VampireFrauleinBasic;
 import duelistmod.cards.pools.toon.ToonKingdom;
 import duelistmod.cards.pools.toon.ToonWorld;
+import duelistmod.cards.pools.warrior.ColossalFighter;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.enums.CardPoolType;
 import duelistmod.enums.DeathType;
@@ -303,6 +308,40 @@ public class TheDuelist extends CustomPlayer {
 		retVal.add(SummonedSkull.ID);
 
 		return retVal;
+	}
+
+	@Override
+	public void initializeStarterDeck() {
+		if (ModHelper.isModEnabled("Chimera")) {
+			this.masterDeck.addToTop(new MirageDragonBasic());
+			this.masterDeck.addToTop(new VampireFrauleinBasic());
+			this.masterDeck.addToTop(new Wattcine());
+			this.masterDeck.addToTop(new ColossalFighter());
+			this.masterDeck.addToTop(new Sparks());
+			this.masterDeck.addToTop(new Sparks());
+			this.masterDeck.addToTop(new Sparks());
+			this.masterDeck.addToTop(new CastleWalls());
+			this.masterDeck.addToTop(new CastleWalls());
+			this.masterDeck.addToTop(new CastleWalls());
+		}
+
+		if (ModHelper.isModEnabled("Insanity")) {
+			for (int i = 0; i < 50; i++) {
+				this.masterDeck.addToTop(AbstractDungeon.returnRandomCard().makeCopy());
+			}
+		}
+		CardGroup group;
+		if (ModHelper.isModEnabled("Shiny")) {
+			group = AbstractDungeon.getEachRare();
+			for (AbstractCard c : group.group) {
+				this.masterDeck.addToTop(c);
+			}
+		}
+
+		for (AbstractCard c : this.masterDeck.group) {
+			UnlockTracker.markCardAsSeen(c.cardID);
+		}
+		DuelistMod.receivePostCreateStartingDeck(this.chosenClass, this.masterDeck);
 	}
 
 	@Override
@@ -964,7 +1003,16 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public void gainGold(int amount) {
 		super.gainGold(amount);
+		if (hasRelic("Ectoplasm")) {
+			getRelic("Ectoplasm").flash();
+			return;
+		}
 		if (AbstractDungeon.player != null && AbstractDungeon.player.masterDeck != null && AbstractDungeon.player.masterDeck.group != null) {
+			for (AbstractCard c : this.masterDeck.group) {
+				if (c instanceof DuelistCard) {
+					((DuelistCard)c).onGainGoldWhileInMasterDeck(amount);
+				}
+			}
 			ArrayList<CurseRoyal> instances = new ArrayList<>();
 			for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
 				if (card instanceof CurseRoyal) {
@@ -977,6 +1025,48 @@ public class TheDuelist extends CustomPlayer {
 				AbstractDungeon.player.masterDeck.removeCard(curse);
 				AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(curse, Settings.WIDTH / 3.0f + displayCount, Settings.HEIGHT / 2.0f));
 				displayCount += Settings.WIDTH / 6.0f;
+			}
+		}
+
+		try {
+			if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+				for (AbstractCard c : this.hand.group) {
+					if (c instanceof DuelistCard) {
+						((DuelistCard)c).onGainGold(amount);
+					}
+				}
+				for (AbstractCard c : this.discardPile.group) {
+					if (c instanceof DuelistCard) {
+						((DuelistCard)c).onGainGold(amount);
+					}
+				}
+				for (AbstractCard c : this.drawPile.group) {
+					if (c instanceof DuelistCard) {
+						((DuelistCard)c).onGainGold(amount);
+					}
+				}
+				for (AbstractCard c : this.exhaustPile.group) {
+					if (c instanceof DuelistCard) {
+						((DuelistCard)c).onGainGold(amount);
+					}
+				}
+				for (AbstractCard c : resummonPile.group) {
+					if (c instanceof DuelistCard) {
+						((DuelistCard)c).onGainGold(amount);
+					}
+				}
+			}
+		} catch (Exception ignored) {}
+	}
+
+	@Override
+	public void loseGold(int goldAmount) {
+		super.loseGold(goldAmount);
+		if (AbstractDungeon.getCurrRoom() instanceof ShopRoom && this.masterDeck != null) {
+			for (AbstractCard c : this.masterDeck.group) {
+				if (c instanceof DuelistCard) {
+					((DuelistCard)c).onSpendGoldWhileInMasterDeck(goldAmount);
+				}
 			}
 		}
 	}

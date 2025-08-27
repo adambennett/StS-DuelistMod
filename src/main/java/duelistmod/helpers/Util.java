@@ -384,13 +384,15 @@ public class Util
 		return isVinesInstead ? new VinesPower(duelist.creature(), amount, skipConfigChecks) : new LeavesPower(duelist.creature(), amount, skipConfigChecks);
 	}
 
-	public static DuelistCard getRandomMagnetCard(boolean allowSuperMagnets) {
+	public static DuelistCard getRandomMagnetCard(boolean allowSuperMagnets, boolean onlySuperMagnets) {
 		ArrayList<DuelistCard> magnets = new ArrayList<>();
-		magnets.add(new AlphaMagnet());
-		magnets.add(new BetaMagnet());
-		magnets.add(new GammaMagnet());
-		magnets.add(new DeltaMagnet());
-		if (allowSuperMagnets) {
+		if (!onlySuperMagnets) {
+			magnets.add(new AlphaMagnet());
+			magnets.add(new BetaMagnet());
+			magnets.add(new GammaMagnet());
+			magnets.add(new DeltaMagnet());
+		}
+		if (allowSuperMagnets || onlySuperMagnets) {
 			magnets.add(new AlphaElectro());
 			magnets.add(new BetaElectro());
 			magnets.add(new GammaElectro());

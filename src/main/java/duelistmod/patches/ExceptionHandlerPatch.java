@@ -15,8 +15,6 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.logging.log4j.Logger;
 import java.util.concurrent.TimeUnit;
 
-import static duelistmod.metrics.MetricsHelper.ENDPOINT_EXCEPTION_HANDLER;
-
 public class ExceptionHandlerPatch {
 
     @SpirePatch(clz = ExceptionHandler.class, method = "handleException")

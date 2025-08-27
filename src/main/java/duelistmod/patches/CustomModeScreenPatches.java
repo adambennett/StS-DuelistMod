@@ -325,7 +325,7 @@ public class CustomModeScreenPatches {
                 Util.setChallengeLevel(0);
             }
 
-            if (currentSelection != null) {
+            if (currentSelection != null && currentSelection.relics != null && !currentSelection.relics.isEmpty()) {
                 if (!DuelistMod.playingChallenge) {
                     currentSelection.loseRelic(ChallengePuzzle.ID);
                 } else {

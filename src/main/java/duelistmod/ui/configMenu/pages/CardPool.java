@@ -109,7 +109,7 @@ public class CardPool extends SpecificConfigMenuPage implements RefreshablePage 
             DuelistMod.configSettingsLoader.save();
         }));
 
-        tooltip = "When enabled, all Ojama-related cards will be removed from the Beast Deck card pool. Disabled by default.";
+        tooltip = "When enabled, all Ojama-related cards will be removed from the Beast Deck card pool. Enabled by default.";
         settingElements.add(new DuelistLabeledToggleButton("Remove Ojamas from Beast Pool", tooltip,(DuelistMod.xLabPos + DuelistMod.xSecondCol + 100), DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont,  settings().getRemoveOjama(), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             settings().setRemoveOjama(button.enabled);
