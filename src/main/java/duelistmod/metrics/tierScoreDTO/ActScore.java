@@ -11,10 +11,10 @@ public class ActScore {
     }
 
     public Score score(int act) {
-        if (this.actScoreMap.containsKey(act)) {
-            return new Score(this.actScoreMap.get(act), false);
-        } else if (this.actScoreMap.containsKey(-1)) {
+        if (this.actScoreMap.containsKey(-1)) {
             return new Score(this.actScoreMap.get(-1), true);
+        } else if (this.actScoreMap.containsKey(act)) {
+            return new Score(this.actScoreMap.get(act), false);
         }
         return null;
     }

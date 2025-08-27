@@ -32,7 +32,7 @@ public class Metrics extends SpecificConfigMenuPage implements RefreshablePage {
     public ArrayList<IUIElement> getElements() {
         ArrayList<IUIElement> settingElements = new ArrayList<>();
 
-        String tooltip = "When enabled, tier scores appear under cards in card reward screens. NL NL Tier scores should be considered a guide for how well a card performs on average when picked during the current act with the current deck.";
+        String tooltip = "When enabled, tier scores appear under cards in card reward screens. NL NL Tier scores should be considered a guide for how well a card performs on average when picked with the current deck.";
         settingElements.add(new DuelistLabeledToggleButton("Show tier scores",tooltip, DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, settings().getTierScoresEnabled(), DuelistMod.settingsPanel,  (label) -> {}, (button) ->
         {
             settings().setTierScoresEnabled(button.enabled);

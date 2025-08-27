@@ -147,7 +147,7 @@ public class TierScoreLabel {
                     scale, scale, 0.0F, 0, 0, (int)width, (int)height, false, false);
             sb.setBlendFunction(770, 771);
             if (DuelistMod.openDropdown == null && DuelistMod.persistentDuelistData.MetricsSettings.getTooltipsEnabled()) {
-                TipHelper.renderGenericTip((float) InputHelper.mX + 60.0F * Settings.scale, (float)InputHelper.mY + 350.0F * Settings.scale, "Tier Score", "Scores range from 1-200. A score of 100 represents a completely average card, while a score of 200 represents an extremely strong card. Tier scores should be considered a guide for how well a card performs on average when picked during the current act with the current deck.");
+                TipHelper.renderGenericTip((float) InputHelper.mX + 60.0F * Settings.scale, (float)InputHelper.mY + 350.0F * Settings.scale, "Tier Score", "Scores range from 1-200. A score of 100 represents a completely average card, while a score of 200 represents an extremely strong card. Tier scores should be considered a guide for how well a card performs on average with the current deck.");
             }
         }
 
