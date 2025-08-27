@@ -15,7 +15,11 @@ Bug Fixes
 
 QoL
 ------
+- Obelisk renamed -> Obelisk the Tormentor
+- Tier scores are now pulled from 'Overall Score' rather than Act1/Act2/Act3 score depending on your current act
+    - This seems to improve score variety among the cards in most pools, especially during Act 1
 - Exodia deck no longer applies Soulbound to cards that are already Soulbound
+- Fixed tooltip for 'Remove Ojamas from Beast Deck' gameplay option to properly reflect 'enabled by default' instead of the opposite
 - Improved handling of custom run modifiers: Shiny, Draft, Sealed, Chimera, Insanity
     - Chimera now starts you with a Duelist-specific custom deck
     - Draft, Sealed, Chimera, Insanity will now also have a chance to replace copies of Sparks with Special Sparks
