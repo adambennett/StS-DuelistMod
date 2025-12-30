@@ -1185,8 +1185,8 @@
       "first strike"
     ],
     "DESCRIPTION": "If the target is undamaged and receives attack damage, trigger the given effect.",
-    "MULTIWORD_KEY": "~~FirstStrike~~",
-    "FORMATTED_DISPLAY": "*First *Strike",
+    "MULTIWORD_KEY": "~~FirstStrike~~:",
+    "FORMATTED_DISPLAY": "*First *Strike:",
     "BASE_KEYWORD": "first strike"
   }
 ]

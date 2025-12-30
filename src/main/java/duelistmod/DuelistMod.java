@@ -287,6 +287,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static String lastTimeTierScoreChecked;
 	public static String runUUID = null;
 	public static String specialSummonKeywordDescription = "";
+	public static String firstStrikeKeywordDescription = "";
 
 	// Maps and Lists
 	public static final HashMap<Integer, Texture> characterPortraits = new HashMap<>();
@@ -1685,6 +1686,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 						BaseMod.addKeyword(keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
 						if (keyword.PROPER_NAME.equals("Special Summon")) {
 							specialSummonKeywordDescription = keyword.DESCRIPTION;
+						} else if (keyword.PROPER_NAME.equals("First Strike")) {
+							firstStrikeKeywordDescription = keyword.DESCRIPTION;
 						}
 					}
 					if (keyword.MULTIWORD_KEY != null && keyword.FORMATTED_DISPLAY != null && keyword.BASE_KEYWORD != null) {

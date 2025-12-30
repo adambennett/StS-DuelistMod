@@ -4376,9 +4376,9 @@
 		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Enter Spectral. You cannot leave Spectral for the remainder of the turn."
 	},
 	"theDuelist:ColossalFighter": {
-		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Enter Wrath.",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL ~~FirstStrike~~: Apply !M! Weak to ALL enemies.",
 		"NAME": "Colossal Fighter",
-		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Enter Wrath."
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL ~~FirstStrike~~: Apply !M! Weak to ALL enemies twice."
 	},
 	"theDuelist:ComboMaster": {
 		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If this card was Retained, it deals triple damage.",
