@@ -15,6 +15,8 @@ import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
+import java.util.List;
+
 public class SuperheavyScales extends DuelistCard 
 {
 	// TEXT DECLARATION
@@ -25,9 +27,7 @@ public class SuperheavyScales extends DuelistCard
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-	// /TEXT DECLARATION/
 
-	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.UNCOMMON;
 	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.SKILL;
@@ -49,11 +49,11 @@ public class SuperheavyScales extends DuelistCard
 		this.isSummon = true;
 		this.exhaust = true;
 	}
-	
-    @Override
-    public void triggerExhaustedCardsOnStanceChange(final AbstractStance newStance) {
-        this.addToBot(new ExhaustToHandAction(this));
-    }
+
+	@Override
+	public void onSynergyTributeWhileInExhaust(List<CardTags> allMatchingTypes) {
+		this.addToBot(new ExhaustToHandAction(this));
+	}
 
 	// Actions the card should do.
 	@Override

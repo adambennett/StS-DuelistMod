@@ -99,7 +99,7 @@ public class AscendedThreePool
 		cards.add(new SpiritHarp());
 		cards.add(new MysticalElf());
 		cards.add(new FogKing());
-		cards.add(new CommandKnight());
+		//cards.add(new CommandKnight());
 		cards.add(new LegendaryFisherman());
 		cards.add(new SevenColoredFish());
 		cards.add(new IslandTurtle());

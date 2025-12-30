@@ -36,10 +36,10 @@ public class DeltaMagnet extends DuelistCard
 
     public DeltaMagnet() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 6;
+        this.baseDamage = this.damage = 4;
         this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 3;
-        this.secondMagic = this.baseSecondMagic = 2;
+        this.secondMagic = this.baseSecondMagic = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
         this.tags.add(Tags.ROCK);
@@ -68,7 +68,7 @@ public class DeltaMagnet extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

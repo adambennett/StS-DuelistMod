@@ -35,7 +35,7 @@ public class NemleriaLouve extends DuelistCard {
 
     public NemleriaLouve() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.baseMagicNumber = this.magicNumber = 3;
     	this.tags.add(Tags.TRAP);
         this.tags.add(Tags.NEMLERIA);
     	this.misc = 0;

@@ -38,10 +38,10 @@ public class Cloning extends DuelistCard
     public Cloning() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.TRAP);
-		this.tags.add(Tags.ARCANE);
         this.misc = 0;
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 1;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -51,7 +51,7 @@ public class Cloning extends DuelistCard
 		if (this.magicNumber < 1) {
 			return;
 		}
-    	ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
+    	ArrayList<AbstractCard> handCards = new ArrayList<>();
     	if (upgraded)
     	{
     		for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER)) { handCards.add(a.makeStatEquivalentCopy()); }}
@@ -86,8 +86,7 @@ public class Cloning extends DuelistCard
 
     @Override
     public void upgrade() {
-        if (canUpgrade()) 
-        {
+        if (canUpgrade()) {
         	// Name
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
@@ -101,34 +100,14 @@ public class Cloning extends DuelistCard
 			this.fixUpgradeDesc();
             this.initializeDescription();
         }        
-        else { this.upgraded = true; }
+        else {
+            this.upgraded = true;
+        }
     }
     
     @Override
-    public boolean canUpgrade()
-    {
-    	if (this.baseMagicNumber < 5)
-    	{
-    		return true;
-    	}
-    	else
-    	{
-    		return false;
-    	}
+    public boolean canUpgrade() {
+        return !this.upgraded;
     }
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
    
 }

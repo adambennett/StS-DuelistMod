@@ -197,7 +197,7 @@ public abstract class DuelistPotion extends AbstractPotion
 	
 	public boolean upgradeResummon(AbstractCard resummoningCard) { return false; }
 	
-	public void onSynergyTribute() { }
+	public void onSynergyTribute(List<AbstractCard.CardTags> allMatchingTypes) { }
 	
 	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
 	

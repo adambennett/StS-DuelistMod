@@ -38,7 +38,7 @@ public class ChimeraFusion extends DuelistCard {
     	this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 2;
         this.baseTributes = this.tributes = 2;
-    	this.setupStartingCopies();
+    	this.exhaust = true;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class ChimeraFusion extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

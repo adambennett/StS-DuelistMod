@@ -117,7 +117,7 @@ public class IncrementPool
 		incCards.add(new DigitalBug());
 		incCards.add(new ManEaterBug());
 		incCards.add(new DoomDonuts());
-		incCards.add(new FlameSwordsman());
+		//incCards.add(new FlameSwordsman());
 		incCards.add(new BrushfireKnight());
 		incCards.add(new BigFire());
 		incCards.add(new GiantTrunade());

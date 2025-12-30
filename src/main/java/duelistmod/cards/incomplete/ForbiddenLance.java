@@ -38,8 +38,8 @@ public class ForbiddenLance extends DuelistCard
     public ForbiddenLance() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.damage = this.baseDamage = 14;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.damage = this.baseDamage = 12;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ARCANE);
         this.exhaust = true;
@@ -80,7 +80,6 @@ public class ForbiddenLance extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(1);
         	this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();

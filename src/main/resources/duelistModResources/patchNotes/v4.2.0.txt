@@ -1,18 +1,89 @@
 Content Updates
 -------------------
-
+- Major Warrior deck overhaul that removes all custom stance mechanics and replaces them with an entirely new direction for Warriors. No new cards have been added but a majority of the Warrior pool cards have been modified in a major way to completely change the feel of the deck.
+- Custom stances have all been removed from the mod for now
+- New keywords: First Strike, Guarded, Nimble (Guarded and Nimble have been repurposed)
+- Removed potion "Bottled Summons" (Summon 4 Potion Tokens, Common)
 
 Balance Updates
 -----------------
+Deck Changes
+- Beast starting deck cards modified slightly
+
+Synergy Tribute Effects
+- When tributing Insects with Insects, Poison is now only applied to 1 random enemy instead of ALL enemies
+- When tributing Warriors with Warriors, the effect now gains Block and is improved by Dexterity. No more stance change effect.
+
+Cards
+- Mirror Force: has been completely redesigned
+- Forbidden Lance: damage reduced from 14 -> 12, Vulnerable reduced from 2 -> 1
+- Future Fusion: upgrade changed from (not exhaust) -> base cost reduced to 0
+- One for One: rarity changed from Uncommon -> Common, upgrade no longer increases turns by 1
+- Aloof Lupine: damage reduced to 6
+- Andro Sphinx: no longer Apex, upgrade now reduces Tributes instead of increasing number of Beasts
+- Berserk Gorilla: damage reduced 17 -> 14, summons changed to tribute 1, upgrade reduced damage increment from 5 -> 3
+- Chimera Fusion: now Exhausts, upgrade changed to remove Exhaust
+- Chow Chow Chan: draw reduced from 3 -> 2, upgrade no longer increases Summons
+- Cocatorium: upgrade Summon increment reduced from 2 -> 1
+- Dreaming Nemleria: reduced Tribute cost from 3 -> 2
+- Enraged Battle Ox: rarity changed from Common -> Uncommon, damage increased from 9 -> 10, Strength gain on Revenge is no longer permanent
+- Giant Rat: base Tribute cost increased from 12 -> 14, upgrade Block increment decreased from 15 -> 5
+- Gladiator Beast Alexander: damage decreased from 17 -> 16, Tribute cost increased from 1 -> 2, Strength gain decreased from 4 -> 3, upgrade now reduces Tributes by 1
+- Gladiator Beast Dimacari: upgrade no longer increases damage
+- Gladiator Beast Essedarii: cost reduced 2 -> 1, damage decreased 12 -> 11,
+- Gladiator Beast Samnite: reduced draw by 1
+- Guard Dog: upgrade changed to increase summons by 1
+- King of the Beasts: now Apex
+- Lightning Tricorn: cost increased to 1
+- Manticore of Darkness: base Tribute cost increased from 1 -> 3
+- Nemleria Louve: Fang gain decreased from 4 -> 3
+- Nimble Momonga: cost reduced from 2 -> 1
+- Noble Knights Shield Bearer: added Plated Armor gain effect
+- Obedience Schooled: revealed cards reduced from 4(6) -> 2(3)
+- Tri-Brigade Kitt: reduced base Summons from 3 -> 1, upgrade now increases Summons by 1
+- Windaar Sage of Gusto: base Tribute cost increased from 2 -> 3
+- Gem Elephant: upgrade no longer increases Block
+- Baby Racoon Ponpoko: cost increased from 0 -> 1, no longer Exhausts
+- Creepy Coney: cost increased from 0 -> 1, upgrade no longer increases Summons
+- Master of Oz: damaged reduced from 40 -> 35, upgrade now decreases Tribute cost instead of energy cost
+- Rose, Warrior of Revenge: upgrade no longer increases damage
+- Cloning: now Exhausts, no longer Arcane
+- Final Flame: upgrade Weak increment reduced from 2 -> 1
+- Prevent Rat: base Block reduced from 7 -> 6, overflow Block reduced from 4 -> 3
+- Silver Apples: Block per Tribute reduced from 4 -> 3, upgrade now increases this back to 4 instead of reducing energy cost to 0
+
+Relics
+- Bug Token relic effect changed to re-enable the poison-all-enemies effect when tributing insects for insects (previously this relic increased the poison applied when tributing)
+- Millennium Rod now only triggers once per combat, and the card it generates will not be made Ethereal or given Exhaust, but may have cost/tribute changes
+
+Challenge Mode
+- Challenge Level 3, Insect Deck: effect changed to possibly apply Poison to yourself instead of enemies when tributing insects (5% chance per poison event)
+- Challenge Level 3 effect has been implemented for Plant Deck
 
 
 Bug Fixes
 -----------
-
+- Fixed an issue where custom Duelist potions were not obeying their "can spawn" checks, allowing certain potions to spawn when they shouldn't
 
 QoL
 ------
-
+- Various card names have been adjusted to more-closely match their correct real life names
+    - Harpie's Feather Duster
+    - Reinforcements of the Army
+    - Superheavy Steam Train King
+    - Superheavy Big Benkei
+    - Superheavy Blue Brawler
+    - Superheavy Wagon (previously named Superheavy Daihachi)
+    - Superheavy General Coral
+    - Superheavy Ogre Shutendoji
+    - Superheavy Soulbuster Gauntlet
+    - Superheavy Soulshield Wall
+    - Superheavy Big Waraji
+    - Hayate the Earth Star
+    - Legendary Black Belt
+    - Battleguard Howling
+- Updated Megatyped keyword definition to include more applicable monster types
+- Updated project dependencies to use latest BaseMod, StSLib, and Together in Spire versions
 
 Art/FX
 --------

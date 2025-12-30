@@ -872,6 +872,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		duelistDefaults.setProperty("playerAnimationSpeed", "6");
 		duelistDefaults.setProperty("enemyAnimationSpeed", "6");
 		duelistDefaults.setProperty("flushedLightOrbForV4Update2", "FALSE");
+		duelistDefaults.setProperty("flushedWarriorConfigsForV4Point20", "FALSE");
 
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));
@@ -975,6 +976,36 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 				config.load();
 				config.setBool("flushedLightOrbForV4Update2", true);
+				configSettingsLoader.save();
+				config.save();
+			} catch (Exception ignored) {}
+		}
+
+		boolean flushingWarriorConfigs = false;
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+			config.load();
+			boolean isFlushedLightOrb = config.getBool("flushedWarriorConfigsForV4Point20");
+			if (!isFlushedLightOrb) {
+				flushingWarriorConfigs = true;
+			}
+		} catch (Exception ignored) {
+			flushingWarriorConfigs = true;
+		}
+
+		if (flushingWarriorConfigs) {
+			try {
+				PuzzleConfigData puzzleConfig = persistentDuelistData.PuzzleConfigurations.getPuzzleConfigurations().get(StartingDeck.WARRIOR.getDeckId());
+				if (puzzleConfig == null) {
+					puzzleConfig = StartingDeck.WARRIOR.getDefaultPuzzleConfig();
+				}
+				puzzleConfig.setGainVigor(false);
+				puzzleConfig.setBlurToGain(1);
+				puzzleConfig.setVigorToGain(2);
+				persistentDuelistData.PuzzleConfigurations.getPuzzleConfigurations().put(StartingDeck.WARRIOR.getDeckId(), puzzleConfig);
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.load();
+				config.setBool("flushedWarriorConfigsForV4Point20", true);
 				configSettingsLoader.save();
 				config.save();
 			} catch (Exception ignored) {}
@@ -1135,7 +1166,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pots.add(new DestructPotionPotB());
 		pots.add(new BabyPotion());
 		pots.add(new TokenPotion());
-		pots.add(new TokenPotionB());
+		//pots.add(new TokenPotionB());
 		pots.add(new DragonSoulPotion());
 		pots.add(new BottledKuriboh());
 		pots.add(new SummonFuryPotion());
@@ -1780,6 +1811,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			replacedCardPool = false;
 			BoosterHelper.refreshPool();
 		}
+		AnyDuelist.setPlayerGainedDexterityThisTurn(false);
+		AnyDuelist.setEnemyDuelistGainedDexterityThisTurn(false);
 		unblockedDamageTakenLastTurn = false;
 		unblockedDamageTakenThisTurn = false;
 		unblockedDamageTriggerCheck = false;
@@ -1886,10 +1919,15 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	}
 
 	@Override
-	public void receivePostBattle(AbstractRoom arg0)
-	{
+	public void receivePostBattle(AbstractRoom arg0) {
 		Util.genesisDragonHelper();
-		for (AbstractPotion p : AbstractDungeon.player.potions) { if (p instanceof DuelistPotion) { ((DuelistPotion)p).onEndOfBattle(); }}
+		if (AbstractDungeon.player != null && AbstractDungeon.player.potions != null) {
+			for (AbstractPotion p : AbstractDungeon.player.potions) { if (p instanceof DuelistPotion) { ((DuelistPotion)p).onEndOfBattle(); }}
+		}
+		if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null) {
+			for (AbstractRelic r : AbstractDungeon.player.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).atBattleEnd(); }}
+		}
+
 		// Reset some settings
 		beastsDrawnThisTurn = 0;
 		enemyBeastsDrawnThisTurn = 0;
@@ -2037,8 +2075,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	}
 
 	@Override
-	public void receivePostPowerApplySubscriber(AbstractPower power, AbstractCreature target, AbstractCreature source)
-	{
+	public void receivePostPowerApplySubscriber(AbstractPower power, AbstractCreature target, AbstractCreature source) {
 		if (power != null && power.owner != null) {
 			AnyDuelist duelist = AnyDuelist.from(power);
 			if (duelist.player() || duelist.getEnemy() != null) {
@@ -2100,30 +2137,26 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					}
 				}
 
-				if (power instanceof DexterityPower)
-				{
-					if (power.amount > 0)
-					{
-						if (duelist.stance() instanceof DuelistStance) {
-							DuelistStance stance = (DuelistStance) duelist.stance();
-							stance.onGainDex(power.amount);
+				if (power instanceof DexterityPower) {
+					boolean dexIncreased = power.amount > 0;
+					int amtChanged = power.amount;
+					int amtIncreased = Math.abs(power.amount);
+					if (dexIncreased) {
+						if (duelist.player()) {
+							AnyDuelist.setPlayerGainedDexterityThisTurn(true);
+						} else {
+							AnyDuelist.setEnemyDuelistGainedDexterityThisTurn(true);
 						}
-
-						for (AbstractOrb o : duelist.orbs())
-						{
-							if (o instanceof DuelistOrb)
-							{
-								((DuelistOrb)o).onGainDex(power.amount);
-							}
-						}
+						duelist.orbs()
+								.stream()
+								.filter(o -> o instanceof DuelistOrb)
+								.forEach(o -> ((DuelistOrb)o).onGainDex(amtIncreased));
 					}
-
-					for (AbstractPower pow : duelist.powers())
-					{
-						if (pow instanceof DuelistPower)
-						{
-							((DuelistPower)pow).onDexChange();
-						}
+					if (power.amount != 0) {
+						duelist.powers()
+								.stream()
+								.filter(p -> p instanceof DuelistPower)
+								.forEach(p -> ((DuelistPower)p).onDexChange(amtChanged));
 					}
 				}
 
@@ -2739,12 +2772,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 		if (duelist.player()) {
 			summonTurnCount = 0;
-		}
-
-		// Mirror Force Helper
-		if (duelist.hasPower(MirrorForcePower.POWER_ID)) {
-			MirrorForcePower instance = (MirrorForcePower) duelist.getPower(MirrorForcePower.POWER_ID);
-			instance.PLAYER_BLOCK = duelist.creature().currentBlock;
 		}
 		return true;
 	}

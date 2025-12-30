@@ -1,6 +1,5 @@
 package duelistmod.cards.pools.beast;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -33,14 +32,14 @@ public class GladiatorBeastAlexander extends DuelistCard implements EndureCard {
 
     public GladiatorBeastAlexander() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 17;
+    	this.baseDamage = this.damage = 16;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.GLADIATOR);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 1;
-        this.magicNumber = this.baseMagicNumber = 4;
+    	this.tributes = this.baseTributes = 2;
+        this.magicNumber = this.baseMagicNumber = 3;
         this.exhaust = true;
     	this.setupStartingCopies();
     }
@@ -76,7 +75,7 @@ public class GladiatorBeastAlexander extends DuelistCard implements EndureCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

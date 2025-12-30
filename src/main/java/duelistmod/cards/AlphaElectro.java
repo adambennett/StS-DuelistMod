@@ -2,92 +2,78 @@ package duelistmod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.actions.unique.MagnetEnergyGainAction;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.AlphaMagPower;
 import duelistmod.variables.Tags;
 
-public class AlphaElectro extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class AlphaElectro extends AlphaMagnet {
+
     public static final String ID = DuelistMod.makeID("AlphaElectro");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("AlphaElectro.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    // /STAT DECLARATION/
 
     public AlphaElectro() {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 16;
-        this.summons = this.baseSummons = 2;
+        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, TARGET);
+        this.baseDamage = this.damage = 14;
+        this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
         this.tags.add(Tags.ROCK);
         this.originalName = this.name;
         this.isSummon = true;
+        this.enemyIntent = AbstractMonster.Intent.ATTACK;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	summon();
-    	if (p.hasPower(AlphaMagPower.POWER_ID)) 
-    	{ 
-    		AlphaMagPower pow = (AlphaMagPower) p.getPower(AlphaMagPower.POWER_ID); 
-    		pow.electrify(3);
-    	}
-    	attack(m, AFX, this.damage);
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
+
+        summon();
+
+        if (targets.size() > 0) {
+            attack(targets.get(0), AFX, this.damage);
+        }
+
+        AlphaMagPower pow;
+        if (duelist.hasPower(AlphaMagPower.POWER_ID)) {
+            pow = (AlphaMagPower) duelist.getPower(AlphaMagPower.POWER_ID);
+        } else {
+            pow = new AlphaMagPower(owner, owner);
+        }
+        pow.electrify(2);
+
+        this.addToBot(new MagnetEnergyGainAction(owner, CardType.SKILL));
+
+        postDuelistUseCard(owner, targets);
     }
 
-    // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
         return new AlphaElectro();
     }
 
-    // Upgraded stats.
     @Override
-    public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeBaseCost(0);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.fixUpgradeDesc();
-            this.initializeDescription();
-        }
+    public boolean canUpgrade() {
+        return false;
     }
-
-	
-	
-
-
-
-
-
-
-
-
-
-
-
 
 }

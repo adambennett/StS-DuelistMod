@@ -15,10 +15,10 @@
     <!-- Dependency Properties-->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    	<BaseMod.version>5.54.1</BaseMod.version>
+    	<BaseMod.version>5.56.0</BaseMod.version>
         <SlayTheSpire.version>12-18-2022</SlayTheSpire.version>
         <ModTheSpire.version>3.30.3</ModTheSpire.version>
-        <StSLib.version>2.11.0</StSLib.version>
+        <StSLib.version>2.12.0</StSLib.version>
         <ReplayTheSpireMod.version>1.6.7</ReplayTheSpireMod.version>
         <Conspire.version>1.7.0</Conspire.version>
         <Hubris.version>0.25.1</Hubris.version>
@@ -30,8 +30,8 @@
         <GifSpire.version>2.0.1</GifSpire.version>
         <SpireWithFriends.version>3.2</SpireWithFriends.version>
         <HighlightPath.version>0.0.3</HighlightPath.version>
-        <CompendiumFilters.version>4.5.3-hotfix03</CompendiumFilters.version>
-        <TogetherInSpire.version>6.4.19</TogetherInSpire.version>
+        <CompendiumFilters.version>4.5.4-hotfix02</CompendiumFilters.version>
+        <TogetherInSpire.version>6.4.20</TogetherInSpire.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <Steam.path>B:/SteamLibrary/steamapps</Steam.path>

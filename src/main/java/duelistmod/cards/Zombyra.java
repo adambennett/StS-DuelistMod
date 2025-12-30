@@ -7,33 +7,27 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.*;
+import duelistmod.helpers.DebuffHelper;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
-import duelistmod.variables.*;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
-public class Zombyra extends DuelistCard 
-{
-    // TEXT DECLARATION
+public class Zombyra extends DuelistCard {
     public static final String ID = DuelistMod.makeID("Zombyra");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.ZOMBYRA);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 0;
-    // /STAT DECLARATION/
 
     public Zombyra() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -47,7 +41,6 @@ public class Zombyra extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 3;
     }
 
-    // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
@@ -59,14 +52,10 @@ public class Zombyra extends DuelistCard
 			DuelistCard.applyPowerToSelf(randomDebuff);
     	}
     }
-
-    // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
         return new Zombyra();
     }
-
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
@@ -77,18 +66,5 @@ public class Zombyra extends DuelistCard
             this.initializeDescription();
         }
     }
-    
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

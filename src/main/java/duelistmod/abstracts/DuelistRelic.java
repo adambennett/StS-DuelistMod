@@ -267,7 +267,7 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	
 	public int modifyReviveCost(ArrayList<AbstractCard> entombedList) { return 0; }
 	
-	public void onSynergyTribute() { }
+	public void onSynergyTribute(List<AbstractCard.CardTags> allMatchingTypes) { }
 	
 	public void onLoseArtifact() { }
 	
@@ -322,4 +322,6 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public void onAfterUseCard(AbstractCard card, UseCardAction action) {}
 
 	public void onBeastIncrement(int amtIncremented) {}
+
+	public void atBattleEnd() {}
 }

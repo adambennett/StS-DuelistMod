@@ -85,7 +85,7 @@ public class ChimeraFusionNamelessGreed extends DuelistCard implements NamelessT
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeSecondMagic(15);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

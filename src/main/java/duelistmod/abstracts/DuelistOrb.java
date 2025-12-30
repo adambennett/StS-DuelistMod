@@ -280,7 +280,7 @@ public abstract class DuelistOrb extends AbstractOrb {
 	
 	public boolean upgradeResummon(AbstractCard resummoningCard) { return false; }
 	
-	public void onSynergyTribute() { }
+	public void onSynergyTribute(List<AbstractCard.CardTags> allMatchingTypes) { }
 	
 	public void onDrawCard(AbstractCard drawnCard) { }
 	

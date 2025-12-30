@@ -29,11 +29,11 @@ public class AloofLupine extends DuelistCard {
 
     public AloofLupine() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 8;
+    	this.baseDamage = this.damage = 6;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.BEAST_DECK);
-        this.beastDeckCopies = 2;
+        this.beastDeckCopies = 1;
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;

@@ -32,6 +32,7 @@ public class KingOfTheBeasts extends DuelistCard {
     	this.baseDamage = this.damage = 20;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
+        this.tags.add(Tags.APEX);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 2;

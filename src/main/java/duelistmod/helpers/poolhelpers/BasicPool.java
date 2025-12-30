@@ -357,7 +357,6 @@ public class BasicPool
 		cards.add(new GauntletWarrior());
 		cards.add(new GaiaMidnight());
 		cards.add(new GilfordLegend());
-		cards.add(new ReinforcementsArmy());
 		cards.add(new BlockGolem());
 		cards.add(new GiantSoldierSteel());
 		cards.add(new WingedKuriboh9());
@@ -555,7 +554,6 @@ public class BasicPool
 			cards.add(new RainbowLife());
 			cards.add(new RainbowOverdragon());
 			cards.add(new RedHeadedOni());
-			cards.add(new ReinforcementsArmy());
 			cards.add(new ReleaseFromStone());
 			cards.add(new RockSunrise());
 			cards.add(new Sangan());
@@ -726,7 +724,6 @@ public class BasicPool
 			//cards.add(new GauntletWarrior());		
 			//cards.add(new GaiaMidnight());		
 			//cards.add(new GilfordLegend());
-			cards.add(new ReinforcementsArmy());
 			//cards.add(new BlockGolem());
 			//cards.add(new DokiDoki());
 			//cards.add(new GiantSoldierSteel());
@@ -751,7 +748,7 @@ public class BasicPool
 			cards.add(new SilverApples());
 			//cards.add(new DarklordSuperbia());	
 			cards.add(new LightningVortex());
-			//cards.add(new BlackPendant());	
+			//cards.add(new BlackPendant());
 			//cards.add(new LightningRodLord());	
 			cards.add(new ForbiddenLance());
 			//cards.add(new FutureFusion());
@@ -776,7 +773,7 @@ public class BasicPool
 			//cards.add(new AttackTheMoon());
 			cards.add(new EarthEffigy());
 			//cards.add(new DestroyerGolem());
-			//cards.add(new DummyGolem());
+			cards.add(new DummyGolem());
 			cards.add(new GemElephant());
 			cards.add(new GemArmadillo());
 			cards.add(new RisingEnergy());
@@ -1117,7 +1114,7 @@ public class BasicPool
 			cards.add(new PotGreed());
 			cards.add(new JarRobber());
 			cards.add(new PreventRat());
-			cards.add(new ReinforcementsArmy());
+			cards.add(new DummyGolem());
 			cards.add(new RushRecklessly());
 		}
 
@@ -1390,7 +1387,7 @@ public class BasicPool
 		cards.add(new PurplePainOni());
 		cards.add(new Raigeki());		
 		cards.add(new RainbowOverdragon());
-		cards.add(new ReinforcementsArmy());
+		cards.add(new DummyGolem());
 		cards.add(new ScrapFactory());
 		cards.add(new ShardGreed());
 		cards.add(new SlotMachine());
@@ -1803,7 +1800,7 @@ public class BasicPool
 		cards.add(new PreventRat());
 		cards.add(new Raigeki());
 		cards.add(new RainbowBridge());
-		cards.add(new ReinforcementsArmy());
+		cards.add(new DummyGolem());
 		cards.add(new Sangan());
 		cards.add(new ShardGreed());
 		cards.add(new SilverApples());	

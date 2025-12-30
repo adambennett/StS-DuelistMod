@@ -33,7 +33,7 @@ public class ChowChowChan extends DuelistCard {
 
     public ChowChowChan() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseMagicNumber = this.magicNumber = 3;
+    	this.baseMagicNumber = this.magicNumber = 2;
         this.baseSecondMagic = this.secondMagic = 6;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
@@ -86,7 +86,6 @@ public class ChowChowChan extends DuelistCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
-            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

@@ -568,7 +568,7 @@ public class Util
 		List<AbstractEvent> duelistEvents = new ArrayList<>();
 		duelistEvents.add(new MillenniumItems());
 		duelistEvents.add(new AknamkanonTomb());
-		duelistEvents.add(new EgyptVillage());
+		//duelistEvents.add(new EgyptVillage());
 		duelistEvents.add(new TombNameless());
 		duelistEvents.add(new TombNamelessPuzzle());
 		duelistEvents.add(new CardTrader());
@@ -2609,7 +2609,6 @@ public class Util
 		BaseMod.addPower(MagneticFieldPower.class, MagneticFieldPower.POWER_ID);
 		BaseMod.addPower(MillenniumSpellbookPower.class, MillenniumSpellbookPower.POWER_ID);
 		BaseMod.addPower(MiraculousDescentPower.class, MillenniumSpellbookPower.POWER_ID);
-		BaseMod.addPower(MirrorForcePower.class, MirrorForcePower.POWER_ID);
 		BaseMod.addPower(MortalityPower.class, MortalityPower.POWER_ID);
 		BaseMod.addPower(MountainPower.class, MountainPower.POWER_ID);
 		BaseMod.addPower(NaturalDisasterPower.class, NaturalDisasterPower.POWER_ID);

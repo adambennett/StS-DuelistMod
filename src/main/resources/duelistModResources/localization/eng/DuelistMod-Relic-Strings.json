@@ -122,7 +122,7 @@
 		"NAME": "Millennium Rod",
 		"FLAVOR": "Priest Seto had originally owned the Millennium Rod. Along with the other Items, it was used to resurrect Zorc Necrophades.",
 		"DESCRIPTIONS": [
-			"At the start of each turn, add a #yRandomized #ySpell to your hand."
+			"At the start of combat, add a #yRandomized #ySpell to your hand."
 		]
 	},
 	"theDuelist:MillenniumScale": {
@@ -316,7 +316,7 @@
 		"NAME": "Bug Token",
 		"FLAVOR": "A dirty token shaped like a beetle.",
 		"DESCRIPTIONS": [
-			"Whenever you apply #yPoison from #yTributing an #yInsect, add #b", " extra poison. Upon defeating Bosses and Elites, have a #b25% chance to further increase this #yPoison buff by #b1."
+			"Whenever you apply #yPoison from #yTributing an #yInsect, apply #yPoison to ALL enemies."
 		]
 	},
 	"theDuelist:ElectricToken": {
@@ -1424,8 +1424,8 @@
 			"Fiend: When triggered, the #yFiend tribute synergy effect increases the cost of all cards in discard by #b1 for the turn.",
 			"Machine: #rExplosive #rTokens always have a #b10% chance to damage you, and do not summon Bomb Casings when #yDetonated.",
 			"Warrior: [PLACEHOLDER]",
-			"Insect: #yInsect tribute synergy effect applies #yPoison to a random enemy instead of all enemies.",
-			"Plant: [PLACEHOLDER]",
+			"Insect: #yInsect tribute synergy effect may apply #yPoison to you instead of a random enemy.",
+			"Plant: #yPlant tribute synergy effect may apply #yConstricted to you instead of a random enemy.",
 			"Megatype: [PLACEHOLDER]",
 			"Increment: Whenever you #yIncrement, take #b1 damage.",
 			"Creator: [PLACEHOLDER]",

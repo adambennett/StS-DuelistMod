@@ -69,6 +69,7 @@ public class EnemyDiscardAtEndOfTurnAction extends AbstractGameAction
                     ((EndureCard)enduring).onEndure(AnyDuelist.from(this.boss));
                 }
             }
+            AnyDuelist.setEnemyDuelistGainedDexterityThisTurn(false);
             DuelistMod.enemyDuelistEnduringCards.clear();
             this.isDone = true;
         }

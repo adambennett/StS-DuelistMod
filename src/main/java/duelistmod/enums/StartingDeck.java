@@ -306,11 +306,11 @@ public enum StartingDeck {
                 builder = builder.setRandomTokenAmount(1);
                 break;
             case WARRIOR:
-                builder = builder.setTokenType("theDuelist:StanceToken");
-                builder = builder.setGainVigor(true);
+                builder = builder.setTokenType("theDuelist:WarriorToken");
+                builder = builder.setGainVigor(false);
                 builder = builder.setGainBlur(true);
-                builder = builder.setBlurToGain(2);
-                builder = builder.setVigorToGain(3);
+                builder = builder.setBlurToGain(1);
+                builder = builder.setVigorToGain(2);
                 break;
             case INSECT:
                 builder = builder.setTokenType("theDuelist:InsectToken");
@@ -774,7 +774,7 @@ public enum StartingDeck {
                 secondBlurSelector.setSelectedIndex(configOnLoad.getBlurToGain());
                 LINEBREAK();
 
-                tooltip = "When disabled, the #yMillennium #yPuzzle will not grant #yVigor. Enabled by default.";
+                tooltip = "When disabled, the #yMillennium #yPuzzle will not grant #yVigor. Disabled by default.";
                 settingElements.add(new DuelistLabeledToggleButton("Gain Vigor", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, configOnLoad.getGainVigor(), DuelistMod.settingsPanel, (label) -> {}, (button) -> {
                     PuzzleConfigData data = this.getActiveConfig();
                     data.setGainVigor(button.enabled);
@@ -1075,7 +1075,7 @@ public enum StartingDeck {
             case MACHINE:
                 return this.getDisplayName() + ": #rExplosive #rTokens always have a #b10% chance to damage you, and do not summon Bomb Casings when #yDetonated.";
             case INSECT:
-                return this.getDisplayName() + ": #yInsect tribute synergy effect applies #yPoison to a random enemy instead of all enemies.";
+                return this.getDisplayName() + ": #yInsect tribute synergy effect may apply #yPoison to you instead of a random enemy.";
             case NATURIA:
                 return this.getDisplayName() + ": Enemy resistance to #yVines is increased.";
             case INCREMENT:
@@ -1085,6 +1085,7 @@ public enum StartingDeck {
             case TOON:
                 return this.getDisplayName() + ": At the end of each Boss fight, remove ALL copies of #yToon #yWorld and #yToon #yKingdom from your deck. If you're playing on #yAscension #b20+, lose #b1 #rMax #rHP for each card removed this way.";
             case PLANT:
+                return this.getDisplayName() + ": #yPlant tribute synergy effect may apply #yConstricted to you instead of a random enemy.";
             case WARRIOR:
             case MEGATYPE:
             case CREATOR:

@@ -125,6 +125,8 @@ public enum MonsterType {
     public static final String warriorEnableKey = "Enabled Warrior Tribute Effect";
     public static final boolean warriorDefaultEnable = true;
     public static final String warriorNumTributesKey = "Number of Tributes to Trigger Effect";
+    public static final String warriorBlockTributeEffectKey = "Amount of Block to Gain";
+    public static final int warriorDefaultTributeBlockAmount = 2;
     public static final int warriorDefaultNumTributes = 1;
     public static final String warriorTriggersPerCombatKey = "Number of effect triggers per combat";
     public static final int warriorDefaultTriggersPerCombat = 1;
@@ -219,6 +221,7 @@ public enum MonsterType {
                 config.put(warriorEnableKey, warriorDefaultEnable);
                 config.put(warriorTriggersPerCombatKey, warriorDefaultTriggersPerCombat);
                 config.put(warriorNumTributesKey, warriorDefaultNumTributes);
+                config.put(warriorBlockTributeEffectKey, warriorDefaultTributeBlockAmount);
                 return config;
             case ZOMBIE:
                 config.put(zombieSoulsKey, zombieDefaultSouls);

@@ -103,6 +103,7 @@ public class Tags
 	@SpireEnum public static AbstractCard.CardTags NEVER_ETHEREAL;
 	@SpireEnum public static AbstractCard.CardTags NEVER_EXHAUST;
 	@SpireEnum public static AbstractCard.CardTags NEVER_GENERATE;
+	@SpireEnum public static AbstractCard.CardTags NINJA;
 	@SpireEnum public static AbstractCard.CardTags NOT_ADDED;
 	@SpireEnum public static AbstractCard.CardTags NO_CARD_FOR_RANDOM_DECK_POOLS;
 	@SpireEnum public static AbstractCard.CardTags NO_CREATOR;

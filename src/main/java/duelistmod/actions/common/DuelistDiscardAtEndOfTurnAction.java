@@ -64,6 +64,7 @@ public class DuelistDiscardAtEndOfTurnAction extends AbstractGameAction {
                     ((EndureCard)enduring).onEndure(AnyDuelist.from(AbstractDungeon.player));
                 }
             }
+            AnyDuelist.setPlayerGainedDexterityThisTurn(false);
             DuelistMod.enduringCards.clear();
             this.isDone = true;
         }

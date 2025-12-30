@@ -41,8 +41,7 @@ public class AlphaMagPower extends AbstractPower
         this.updateDescription();
     }
     
-    public void electrify(int amount)
-    {
+    public void electrify(int amount) {
     	this.amount = amount;
     	this.electrified = true;
     	updateDescription();

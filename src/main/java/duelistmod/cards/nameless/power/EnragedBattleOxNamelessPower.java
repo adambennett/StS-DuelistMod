@@ -16,6 +16,7 @@ import duelistmod.cards.pools.beast.EnragedBattleOx;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.StrengthUpPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -52,7 +53,7 @@ public class EnragedBattleOxNamelessPower extends DuelistCard implements Nameles
 
     @Override
     public void triggerRevenge(AnyDuelist duelist) {
-        duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
+        duelist.applyPowerToSelf(new StrengthUpPower(duelist.creature(), duelist.creature(), this.magicNumber));
     }
 
     @Override

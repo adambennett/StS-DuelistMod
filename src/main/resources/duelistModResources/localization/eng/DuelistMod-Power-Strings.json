@@ -77,10 +77,6 @@
                 "NAME": "Magic Cylinder",
                 "DESCRIPTIONS": ["Whenever you lose HP, gain a random amount of #yTemporary #yHP between #b1 and the amount of damage dealt plus #b", "." ]
         },
-        "theDuelist:MirrorForcePower": {
-                "NAME": "Mirror Force",
-                "DESCRIPTIONS": ["The next time you are attacked, deal ", "that much damage to ALL enemies.", "2x that much damage to ALL enemies." ]
-        },
         "theDuelist:ImperialPower": {
                 "NAME": "Imperial Order",
                 "DESCRIPTIONS": ["At the start of turn, set the cost of #b", " random #ySpell or #yTrap card in your hand to 0 for this turn.", " random #ySpell or #yTrap cards in your hand to 0 for this turn." ]
@@ -1591,5 +1587,13 @@
                         " turns,",
                         " #yArcana improves the #yBlock and damage of all monsters."
                 ]
+        },
+        "theDuelist:NextTurnDexterityPower": {
+                "NAME": "Next Turn Dexterity",
+                "DESCRIPTIONS": [
+                        "Gain #b",
+                        " #yDexterity next turn."
+                ]
         }
+
 }
