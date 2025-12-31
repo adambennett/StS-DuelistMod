@@ -54,9 +54,7 @@ public enum MonsterType {
         Texture t = null;
         try {
             t = new Texture(DuelistMod.makeTypeIconPath(configImgKey+".png"));
-        } catch (Exception ex) {
-            Util.logError("Error loading img for Monster Type: " + this, ex);
-        }
+        } catch (Exception ignored) {}
         this.configImg = t;
     }
 

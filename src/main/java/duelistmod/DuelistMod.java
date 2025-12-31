@@ -727,16 +727,16 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				makePath(Strings.ENERGY_ORB_DEFAULT_BLUE_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_BLUE));
 
 		// Register red for Red Medicine buff options
-		BaseMod.addColor(AbstractCardEnum.DUELIST_SPECIAL, Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE,
-				Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE, makePath(Strings.ATTACK_DEFAULT_RED),
+		BaseMod.addColor(AbstractCardEnum.DUELIST_SPECIAL, Colors.TAB_RED, Colors.TAB_RED, Colors.TAB_RED,
+				Colors.TAB_RED, Colors.TAB_RED, Colors.TAB_RED, Colors.TAB_RED, makePath(Strings.ATTACK_DEFAULT_RED),
 				makePath(Strings.SKILL_DEFAULT_RED), makePath(Strings.POWER_DEFAULT_RED),
 				makePath(Strings.ENERGY_ORB_DEFAULT_RED), makePath(Strings.ATTACK_DEFAULT_RED_PORTRAIT),
 				makePath(Strings.SKILL_DEFAULT_RED_PORTRAIT), makePath(Strings.POWER_DEFAULT_RED_PORTRAIT),
 				makePath(Strings.ENERGY_ORB_DEFAULT_RED_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_RED));
 
 		// Register CRC color for custom cards from Book of Life
-		BaseMod.addColor(AbstractCardEnum.DUELIST_CRC, Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE,
-				Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE, Colors.CARD_PURPLE, makePath(Strings.ATTACK_DEFAULT_CRC),
+		BaseMod.addColor(AbstractCardEnum.DUELIST_CRC, Colors.TEAL, Colors.TEAL, Colors.TEAL,
+				Colors.TEAL, Colors.TEAL, Colors.TEAL, Colors.TEAL, makePath(Strings.ATTACK_DEFAULT_CRC),
 				makePath(Strings.SKILL_DEFAULT_CRC), makePath(Strings.POWER_DEFAULT_CRC),
 				makePath(Strings.ENERGY_ORB_DEFAULT_CRC), makePath(Strings.ATTACK_DEFAULT_CRC_PORTRAIT),
 				makePath(Strings.SKILL_DEFAULT_CRC_PORTRAIT), makePath(Strings.POWER_DEFAULT_CRC_PORTRAIT),

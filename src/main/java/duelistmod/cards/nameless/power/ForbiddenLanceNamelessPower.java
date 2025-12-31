@@ -36,8 +36,8 @@ public class ForbiddenLanceNamelessPower extends DuelistCard implements Nameless
     public ForbiddenLanceNamelessPower() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.damage = this.baseDamage = 14 + DuelistMod.namelessTombPowerMod;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.damage = this.baseDamage = 12 + DuelistMod.namelessTombPowerMod;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ARCANE);
         this.exhaust = true;
