@@ -17,6 +17,14 @@ public class Strings
 	public static final String THE_DEFAULT_PORTRAIT = "charSelect/duelist_portrait_0.png";
 	public static final String THE_DEFAULT_SHOULDER_1 = "char/defaultCharacter/shoulder.png";
 	public static final String THE_DEFAULT_SHOULDER_2 = "char/defaultCharacter/shoulder2.png";
+
+	public static final String YUGI_CORPSE = "char/nonCombat/yugi_corpse.png";
+	public static final String YUGI_SHOULDER_ONE = "char/nonCombat/yugi_shoulder.png";
+	public static final String YUGI_SHOULDER_TWO = "char/nonCombat/yugi_shoulder2.png";
+
+	public static final String KAIBA_CORPSE = "char/nonCombat/kaiba_corpse.png";
+	public static final String KAIBA_SHOULDER_ONE = "char/nonCombat/kaiba_shoulder.png";
+	public static final String KAIBA_SHOULDER_TWO = "char/nonCombat/kaiba_shoulder2.png";
 	// =============== /CHARACTER ASSETS/ =======================================================================================================================================================
 	
 	// =============== GRAY CARD BG =========================================================================================================================================================

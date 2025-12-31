@@ -88,6 +88,7 @@ import duelistmod.variables.*;
 import duelistmod.variables.Colors;
 
 import static com.esotericsoftware.spine.AnimationState.*;
+import static duelistmod.variables.Strings.*;
 
 
 public class TheDuelist extends CustomPlayer {
@@ -143,11 +144,20 @@ public class TheDuelist extends CustomPlayer {
 
 		// =============== TEXTURES, ENERGY, LOADOUT =================
 
-		initializeClass(null, // required call to load textures and setup energy/loadout
-				DuelistMod.makePath(Strings.THE_DEFAULT_SHOULDER_1), // campfire pose
-				DuelistMod.makePath(Strings.THE_DEFAULT_SHOULDER_2), // another campfire pose
-				DuelistMod.makePath(Strings.THE_DEFAULT_CORPSE), // dead corpse
-				getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN)); // energy manager
+		NonCombatPlayerImages nonCombatPlayerImages = getNonCombatImages();
+		String campfire = nonCombatPlayerImages.campfire();
+		String campfireTwo = nonCombatPlayerImages.campfireTwo();
+		String corpse = nonCombatPlayerImages.corpse();
+
+		initializeClass(
+				null,
+				DuelistMod.makePath(campfire),
+				DuelistMod.makePath(campfireTwo),
+				DuelistMod.makePath(corpse),
+				getLoadout(),
+				20.0F, -10.0F, 220.0F, 290.0F,
+				new EnergyManager(ENERGY_PER_TURN)
+		);
 
 		// =============== /TEXTURES, ENERGY, LOADOUT/ =================
 
@@ -171,6 +181,35 @@ public class TheDuelist extends CustomPlayer {
 
 		// =============== /TEXT BUBBLE LOCATION/ =================
 
+	}
+
+	private static class NonCombatPlayerImages {
+		private final String campfire;
+		private final String campfireTwo;
+		private final String corpse;
+
+		public NonCombatPlayerImages(String campfire, String campfireTwo, String corpse) {
+			this.campfire = campfire;
+			this.campfireTwo = campfireTwo;
+			this.corpse = corpse;
+		}
+
+		public String campfire() { return this.campfire; }
+		public String campfireTwo() { return this.campfireTwo; }
+		public String corpse() { return this.corpse; }
+	}
+
+	private static NonCombatPlayerImages getNonCombatImages() {
+		switch (DuelistMod.selectedCharacterModel) {
+			case STATIC_YUGI_NEW:
+			case STATIC_YUGI_OLD:
+			case ANIM_YUGI:
+				return new NonCombatPlayerImages(YUGI_SHOULDER_ONE, YUGI_SHOULDER_TWO, YUGI_CORPSE);
+			case STATIC_KAIBA:
+			case ANIM_KAIBA:
+				return new NonCombatPlayerImages(KAIBA_SHOULDER_ONE, KAIBA_SHOULDER_TWO, KAIBA_CORPSE);
+		}
+		return new NonCombatPlayerImages(THE_DEFAULT_SHOULDER_1, THE_DEFAULT_SHOULDER_2, THE_DEFAULT_CORPSE);
 	}
 
 	private static AbstractAnimation getPlayerModel() {
