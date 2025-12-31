@@ -87,7 +87,7 @@ QoL
 
 Art/FX
 --------
-
+- Replaced campfire head images with Yugi/Kaiba specific back-of-head images
 
 Metrics
 --------
