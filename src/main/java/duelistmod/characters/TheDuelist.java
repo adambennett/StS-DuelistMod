@@ -204,10 +204,10 @@ public class TheDuelist extends CustomPlayer {
 			case STATIC_YUGI_NEW:
 			case STATIC_YUGI_OLD:
 			case ANIM_YUGI:
-				return new NonCombatPlayerImages(YUGI_SHOULDER_ONE, YUGI_SHOULDER_TWO, YUGI_CORPSE);
+				return new NonCombatPlayerImages(YUGI_SHOULDER_TWO, YUGI_SHOULDER_TWO, YUGI_CORPSE);
 			case STATIC_KAIBA:
 			case ANIM_KAIBA:
-				return new NonCombatPlayerImages(KAIBA_SHOULDER_ONE, KAIBA_SHOULDER_TWO, KAIBA_CORPSE);
+				return new NonCombatPlayerImages(KAIBA_SHOULDER_TWO, KAIBA_SHOULDER_TWO, KAIBA_CORPSE);
 		}
 		return new NonCombatPlayerImages(THE_DEFAULT_SHOULDER_1, THE_DEFAULT_SHOULDER_2, THE_DEFAULT_CORPSE);
 	}
