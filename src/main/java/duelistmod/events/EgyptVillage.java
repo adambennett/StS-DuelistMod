@@ -4,8 +4,6 @@ import java.util.*;
 
 import basemod.IUIElement;
 import basemod.eventUtil.util.Condition;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -16,6 +14,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistEvent;
 import duelistmod.cards.*;
+import duelistmod.cards.pools.warrior.*;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.EventConfigData;
 import duelistmod.helpers.Util;
@@ -55,7 +54,7 @@ public class EgyptVillage extends DuelistEvent {
 				if (c instanceof AlphaMagnet) { hasAlpha = true; if (c.upgraded) { this.alphaUpgrade = true; }}
 				if (c instanceof BetaMagnet)  { hasBeta = true; if (c.upgraded) { this.betaUpgrade = true; }}
 				if (c instanceof GammaMagnet) { hasGamma = true; if (c.upgraded) { this.gammaUpgrade = true; }}
-				if (c instanceof ValkMagnet)  { hasValk = true; if (c.upgraded) { this.valkUpgrade = true; }}
+				if (c instanceof Valkyrion)  { hasValk = true; if (c.upgraded) { this.valkUpgrade = true; }}
 			}
 
 			// Receive Alpha Electro - 0

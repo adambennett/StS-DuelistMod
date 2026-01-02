@@ -142,7 +142,7 @@ public class AscendedThreePool
 		cards.add(new Biofalcon());
 		cards.add(new SuperheavyBenkei());
 		cards.add(new SuperheavyFlutist());
-		cards.add(new SuperheavyGeneral());
+		cards.add(new SuperheavyGeneralCoral());
 		cards.add(new SuperheavyOgre());
 		cards.add(new SuperheavyScales());
 		cards.add(new SuperheavySwordsman());

@@ -94,6 +94,7 @@ import duelistmod.cards.pools.increment.TranscendentWings;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
+import duelistmod.cards.pools.oldWarrior.*;
 import duelistmod.cards.pools.pharaoh.FinalFlameBasic;
 import duelistmod.cards.pools.pharaoh.GhostrickDollBasic;
 import duelistmod.cards.pools.pharaoh.InfernityPawn;
@@ -537,7 +538,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new SuperheavyBenkei());
 		DuelistMod.myCards.add(new SuperheavyScales());
 		DuelistMod.myCards.add(new SuperheavySwordsman());
-		DuelistMod.myCards.add(new SuperheavyWaraji());
+		DuelistMod.myCards.add(new SuperheavyBigWaraji());
 		DuelistMod.myCards.add(new ThunderDragon());
 		DuelistMod.myCards.add(new TwinHeadedThunderDragon());
 		DuelistMod.myCards.add(new WingedDragonRa());
@@ -691,9 +692,9 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new ShardGreed());
 		DuelistMod.myCards.add(new StormingMirrorForce());
 		DuelistMod.myCards.add(new SuperheavyBlueBrawler());
-		DuelistMod.myCards.add(new SuperheavyDaihachi());
+		DuelistMod.myCards.add(new SuperheavyWagon());
 		DuelistMod.myCards.add(new SuperheavyFlutist());
-		DuelistMod.myCards.add(new SuperheavyGeneral());
+		DuelistMod.myCards.add(new SuperheavyGeneralCoral());
 		DuelistMod.myCards.add(new SuperheavyMagnet());
 		DuelistMod.myCards.add(new SuperheavyOgre());
 		DuelistMod.myCards.add(new SwordsBurning());
@@ -712,7 +713,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new GammaMagnet());
 		DuelistMod.myCards.add(new Mausoleum());
 		DuelistMod.myCards.add(new MillenniumShield());
-		DuelistMod.myCards.add(new ValkMagnet());
+		DuelistMod.myCards.add(new Valkyrion());
 		DuelistMod.myCards.add(new BarrelDragon());
 		DuelistMod.myCards.add(new DarkMirrorForce());
 		DuelistMod.myCards.add(new MagicCylinder());
@@ -913,7 +914,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Biofalcon());
 		DuelistMod.myCards.add(new Deskbot004());
 		DuelistMod.myCards.add(new Deskbot005());
-		DuelistMod.myCards.add(new Hayate());
+		DuelistMod.myCards.add(new HayateTheEarthStar());
 		DuelistMod.myCards.add(new Spore());
 		DuelistMod.myCards.add(new RainbowOverdragon());
 		DuelistMod.myCards.add(new RainbowGravity());

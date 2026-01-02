@@ -181,11 +181,11 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.18.0</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
             <version>1.9.20</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
 
@@ -195,7 +195,7 @@
         <finalName>DuelistMod</finalName>
         <plugins>
             <!-- AspectJ Maven Plugin -->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
                 <version>1.14.0</version>
@@ -218,7 +218,7 @@
                     </aspectLibraries>
                     <outxml>true</outxml>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>

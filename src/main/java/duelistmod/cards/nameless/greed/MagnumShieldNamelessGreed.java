@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.interfaces.NamelessTombCard;
-import duelistmod.cards.pools.warrior.MagnumShield;
+import duelistmod.cards.pools.oldWarrior.MagnumShield;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 

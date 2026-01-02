@@ -9,13 +9,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.FirstStrikeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class ColossalFighter extends DuelistCard implements FirstStrikeCard {
+public class ColossalFighter extends DuelistCard {
 
     public static final String ID = DuelistMod.makeID("ColossalFighter");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -54,17 +53,6 @@ public class ColossalFighter extends DuelistCard implements FirstStrikeCard {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
         postDuelistUseCard(owner, targets);
-    }
-
-
-    @Override
-    public void triggerFirstStrike(AnyDuelist duelist, AbstractCreature target) {
-        if (this.magicNumber > 0) {
-            weakAllEnemies(this.magicNumber, duelist);
-            if (this.upgraded) {
-                weakAllEnemies(this.magicNumber, duelist);
-            }
-        }
     }
 
     @Override

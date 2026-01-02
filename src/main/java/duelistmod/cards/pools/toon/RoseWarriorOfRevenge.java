@@ -38,6 +38,7 @@ public class RoseWarriorOfRevenge extends DuelistCard {
         this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
+        this.tags.add(Tags.ROSE);
         this.misc = 0;
         this.originalName = this.name;
     }

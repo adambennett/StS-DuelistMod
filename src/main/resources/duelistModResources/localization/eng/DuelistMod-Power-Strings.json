@@ -637,7 +637,7 @@
         },
         "theDuelist:SogenPower": {
                 "NAME": "Sogen",
-                "DESCRIPTIONS": ["#yWarriors deal #b", "% more damage and gain #b", "% more #yBlock." ]
+                "DESCRIPTIONS": ["#yWarriors deal #b", "% more damage." ]
         },
         "theDuelist:CommanderSwordsPower": {
                 "NAME": "Sword Commander",

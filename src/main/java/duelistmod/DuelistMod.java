@@ -409,6 +409,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	// Global Flags
 	public static boolean triggeringRemoteRevengeEffect = false;
+	public static boolean triggeringCombinationAttackRevengeEffect = false;
+	public static boolean triggeringCombinationAttackFirstStrikeEffect = false;
 	public static boolean machineArtifactFlipper = false;
 	public static boolean resetProg = false;
 	public static boolean checkTrap = false;
@@ -1382,7 +1384,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new Bombchain());
 		allRelics.add(new LoadedDice());
 		allRelics.add(new TokenfestPendant());
-		allRelics.add(new MagnetRelic());
+		//allRelics.add(new MagnetRelic());
 		allRelics.add(new MarkExxod());
 		allRelics.add(new MarkOfNature());
 		allRelics.add(new MerchantNecklace());
@@ -1927,9 +1929,6 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		if (AbstractDungeon.player != null && AbstractDungeon.player.potions != null) {
 			for (AbstractPotion p : AbstractDungeon.player.potions) { if (p instanceof DuelistPotion) { ((DuelistPotion)p).onEndOfBattle(); }}
 		}
-		if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null) {
-			for (AbstractRelic r : AbstractDungeon.player.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).atBattleEnd(); }}
-		}
 
 		// Reset some settings
 		beastsDrawnThisTurn = 0;
@@ -2239,11 +2238,14 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					}
 				}
 
-				for (AbstractOrb o : duelist.orbs())
-				{
-					if (o instanceof DuelistOrb)
-					{
+				for (AbstractOrb o : duelist.orbs()) {
+					if (o instanceof DuelistOrb) {
 						((DuelistOrb)o).onPowerApplied(power);
+					}
+				}
+				for (AbstractRelic r : duelist.relics()) {
+					if (r instanceof DuelistRelic) {
+						((DuelistRelic)r).onApplyPower(power);
 					}
 				}
 			}

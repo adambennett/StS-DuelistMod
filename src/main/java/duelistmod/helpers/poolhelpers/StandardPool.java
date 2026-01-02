@@ -18,6 +18,7 @@ import duelistmod.cards.pools.increment.TranscendentWings;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.AttackTheMoon;
+import duelistmod.cards.pools.oldWarrior.*;
 import duelistmod.cards.pools.plant.Predaponics;
 import duelistmod.cards.pools.spellcaster.MaskedSorcerer;
 import duelistmod.cards.pools.toon.CreepyConey;

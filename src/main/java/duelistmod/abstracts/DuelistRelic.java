@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import basemod.abstracts.CustomRelic;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
 import duelistmod.dto.AnyDuelist;
@@ -323,5 +324,5 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 
 	public void onBeastIncrement(int amtIncremented) {}
 
-	public void atBattleEnd() {}
+	public void onApplyPower(AbstractPower power) {}
 }

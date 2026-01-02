@@ -38,7 +38,7 @@ public class CyberRaider extends DuelistCard implements RevengeCard {
         this.tags.add(Tags.MACHINE); 
         this.tags.add(Tags.CYBER);
         this.summons = this.baseSummons = 1;	
-        this.baseBlock = this.block = 6;
+        this.baseBlock = this.block = 7;
         this.magicNumber = this.baseMagicNumber = 1;
         this.originalName = this.name;
     }
@@ -75,8 +75,7 @@ public class CyberRaider extends DuelistCard implements RevengeCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(2);
-            this.upgradeMagicNumber(1);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

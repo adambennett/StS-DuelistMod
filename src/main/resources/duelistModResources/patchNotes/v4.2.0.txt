@@ -82,6 +82,7 @@ QoL
     - Hayate the Earth Star
     - Legendary Black Belt
     - Battleguard Howling
+    - The Warrior Returning Alive
 - Updated Megatyped keyword definition to include more applicable monster types
 - Updated project dependencies to use latest BaseMod, StSLib, and Together in Spire versions
 

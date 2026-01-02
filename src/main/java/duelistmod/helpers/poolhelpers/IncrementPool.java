@@ -43,8 +43,8 @@ import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.DigitalBug;
 import duelistmod.cards.pools.naturia.MultiplicationOfAnts;
-import duelistmod.cards.pools.warrior.BrushfireKnight;
-import duelistmod.cards.pools.warrior.WhiteHowling;
+import duelistmod.cards.pools.oldWarrior.BrushfireKnight;
+import duelistmod.cards.pools.oldWarrior.WhiteHowling;
 import duelistmod.cards.pools.zombies.PrematureBurial;
 
 public class IncrementPool 

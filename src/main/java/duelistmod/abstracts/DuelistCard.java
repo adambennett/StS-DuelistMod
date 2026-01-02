@@ -2812,20 +2812,16 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public static void vulnAllEnemies(int amount)
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead())
-		{
-			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters)
-			{
-				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead)
-				{
-					AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, p, new VulnerablePower(monster, amount, false), amount));
+	public static void vulnAllEnemies(AnyDuelist duelist, int amount) {
+		if (duelist.player() && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+				if (monster != null && !monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) {
+					duelist.applyPower(monster, duelist.creature(), new VulnerablePower(monster, amount, false));
 				}
 			}
+		} else if (duelist.getEnemy() != null) {
+			duelist.applyPower(AbstractDungeon.player, duelist.creature(), new VulnerablePower(AbstractDungeon.player, amount, true));
 		}
-
 	}
 
 	public static void burnAllEnemies(int amount, AnyDuelist duelist) {

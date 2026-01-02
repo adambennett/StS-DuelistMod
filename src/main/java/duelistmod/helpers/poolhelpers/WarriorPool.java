@@ -5,8 +5,6 @@ import com.megacrit.cardcrawl.cards.blue.Recycle;
 import com.megacrit.cardcrawl.cards.purple.*;
 import com.megacrit.cardcrawl.cards.red.*;
 import duelistmod.DuelistMod;
-import duelistmod.cards.*;
-import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.warrior.*;
 
@@ -24,6 +22,8 @@ public class WarriorPool {
 	
 	public static ArrayList<AbstractCard> deck() {
 		ArrayList<AbstractCard> warriorCards = new ArrayList<>();
+
+		// Main pool
 		warriorCards.add(new AdvanceForce());
 		warriorCards.add(new AfterGenocide());
 		warriorCards.add(new AfterTheStorm());
@@ -38,94 +38,51 @@ public class WarriorPool {
 		warriorCards.add(new BladeArmorNinja());
 		warriorCards.add(new BladeKnight());
 		warriorCards.add(new BrilliantSpark());
-		warriorCards.add(new BrushfireKnight());
 		warriorCards.add(new BullBlader());
 		warriorCards.add(new CelticGuardian());
-		warriorCards.add(new ChaosSeed());
-		warriorCards.add(new CircleFireKings());
 		warriorCards.add(new ColossalFighter());
-		warriorCards.add(new CombinationAttack());
-		warriorCards.add(new ComboFighter());
-		warriorCards.add(new ComboMaster());
 		warriorCards.add(new CommanderSwords());
-		warriorCards.add(new CrossAttack());
 		warriorCards.add(new CrystalBlessing());
 		warriorCards.add(new CrystalTree());
 		warriorCards.add(new CubicKarma());
 		warriorCards.add(new CubicWave());
 		warriorCards.add(new CyberRaider());
-		warriorCards.add(new DarkBurningAttack());
-		warriorCards.add(new DarkBurningMagic());
-		warriorCards.add(new DarkCrusader());
 		warriorCards.add(new DarkGrepher());
 		warriorCards.add(new DarkOccultism());
-		warriorCards.add(new DawnKnight());
 		warriorCards.add(new DeltaAttacker());
-		warriorCards.add(new DokiDoki());
 		warriorCards.add(new Downbeat());
-		warriorCards.add(new DustKnight());
 		warriorCards.add(new EgoBoost());
-		warriorCards.add(new ElectromagneticShield());
-		warriorCards.add(new ElectromagneticTurtle());
-		warriorCards.add(new ElfLight());
-		warriorCards.add(new EulerCircuit());
 		warriorCards.add(new FeedbackWarrior());
-		warriorCards.add(new FightingSpirit());
-		warriorCards.add(new FlameSwordsman());
-		warriorCards.add(new Flint());
 		warriorCards.add(new FortressWarrior());
 		warriorCards.add(new GaiaFierce());
 		warriorCards.add(new GammaMagnet());
 		warriorCards.add(new GauntletWarrior());
-		warriorCards.add(new GladiatorReturn());
 		warriorCards.add(new GlowingCrossbow());
 		warriorCards.add(new GoyoChaser());
 		warriorCards.add(new GoyoDefender());
 		warriorCards.add(new GoyoEmperor());
-		warriorCards.add(new GoyoKing());
-		warriorCards.add(new GravityLash());
 		warriorCards.add(new GravityWarrior());
-		warriorCards.add(new GridRod());
 		warriorCards.add(new GuardianOrder());
-		warriorCards.add(new HardArmor());
 		warriorCards.add(new HarmonicWaves());
-		warriorCards.add(new Hayate());
-		warriorCards.add(new HeartUnderdog());
+		warriorCards.add(new HayateTheEarthStar());
 		warriorCards.add(new HerculeanPower());
 		warriorCards.add(new HeroRing());
-		warriorCards.add(new HiddenArmory());
-		warriorCards.add(new ImperialOrder());
-		warriorCards.add(new JudgeMan());
 		warriorCards.add(new LegendHeart());
 		warriorCards.add(new LegendaryBlackBelt());
 		warriorCards.add(new LegendarySword());
 		warriorCards.add(new LightLaser());
-		warriorCards.add(new LightningBlade());
-		warriorCards.add(new MagneticField());
-		warriorCards.add(new MagnumShield());
 		warriorCards.add(new MaxWarrior());
-		warriorCards.add(new MeteorDestruction());
-		warriorCards.add(new MightyWarrior());
 		warriorCards.add(new MillenniumShield());
-		warriorCards.add(new Mudballman());
 		warriorCards.add(new NinjaGrandmaster());
 		warriorCards.add(new NitroWarrior());
-		warriorCards.add(new OnslaughtFireKings());
-		warriorCards.add(new PurplePainOni());
-		warriorCards.add(new ReadyForIntercepting());
-		warriorCards.add(new ReinforceTruth());
 		warriorCards.add(new ReinforcementsArmy());
 		warriorCards.add(new RockstoneWarrior());
-		warriorCards.add(new ScrapFactory());
 		warriorCards.add(new Sogen());
 		warriorCards.add(new SoldierLady());
 		warriorCards.add(new SpiritForce());
-		warriorCards.add(new SteamTrainKing());
 		warriorCards.add(new SuperheavyBenkei());
-		warriorCards.add(new SuperheavyBlueBrawler());
-		warriorCards.add(new SuperheavyDaihachi());
+		warriorCards.add(new SuperheavyBigWaraji());
 		warriorCards.add(new SuperheavyFlutist());
-		warriorCards.add(new SuperheavyGeneral());
 		warriorCards.add(new SuperheavyMagnet());
 		warriorCards.add(new SuperheavyOgre());
 		warriorCards.add(new SuperheavyScales());
@@ -135,10 +92,9 @@ public class WarriorPool {
 		warriorCards.add(new SuperheavySoulpiercer());
 		warriorCards.add(new SuperheavySoulshield());
 		warriorCards.add(new SuperheavySwordsman());
-		warriorCards.add(new SuperheavyWaraji());
-		warriorCards.add(new SwordDragonSoul());
+		warriorCards.add(new SuperheavyWagon());
 		warriorCards.add(new SwordsConcealing());
-		warriorCards.add(new ValkMagnet());
+		warriorCards.add(new Valkyrion());
 		warriorCards.add(new WarriorReturningAlive());
 		warriorCards.add(new WeaponChange());
 		warriorCards.add(new WhiteNinja());
@@ -219,9 +175,9 @@ public class WarriorPool {
 	public static  ArrayList<AbstractCard> basic() {
 		ArrayList<AbstractCard> pool = new ArrayList<>();
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getSmallBasicSet()) {
-			pool.addAll(BasicPool.smallBasic(""));
+			pool.addAll(BasicPool.smallBasic("Warrior Deck"));
 		} else {
-			pool.addAll(BasicPool.fullBasic(""));
+			pool.addAll(BasicPool.fullBasic("Warrior Deck"));
 		}
 		return pool;
 	}

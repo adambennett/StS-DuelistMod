@@ -19,7 +19,6 @@ import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.fiend.AcidTrapHole;
 import duelistmod.cards.pools.fiend.CheerfulCoffin;
 import duelistmod.cards.pools.fiend.CosmicHorrorGangiel;
-import duelistmod.cards.pools.fiend.DarkHunter;
 import duelistmod.cards.pools.fiend.FiresOfDoomsday;
 import duelistmod.cards.pools.fiend.SkullArchfiend;
 import duelistmod.cards.pools.fiend.SlateWarrior;
@@ -31,6 +30,7 @@ import duelistmod.cards.pools.increment.TranscendentWings;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
+import duelistmod.cards.pools.oldWarrior.*;
 import duelistmod.cards.pools.pharaoh.PharaohBlessing;
 import duelistmod.cards.pools.pharaoh.RainbowMedicine;
 import duelistmod.cards.pools.pharaoh.TombOfThePharaoh;
@@ -336,7 +336,7 @@ public class BasicPool
 		cards.add(new Terraforming());
 		cards.add(new BigFire());
 		cards.add(new UltimateOffering());
-		cards.add(new ValkMagnet());
+		cards.add(new Valkyrion());
 		cards.add(new AlphaMagnet());
 		cards.add(new BetaMagnet());
 		cards.add(new GammaMagnet());
@@ -449,6 +449,7 @@ public class BasicPool
 		else if (deckName.equals("Pharaoh IV")) { cards.addAll(pharaohBasics(true, 4)); }
 		else if (deckName.equals("Pharaoh V")) { cards.addAll(pharaohBasics(true, 5)); }
 		else if (deckName.equals("Toon Deck")) { cards.addAll(toonBasics(true)); }
+		else if (deckName.equals("Warrior Deck")) { cards.addAll(warriorBasics(true)); }
 		else
 		{
 			cards.add(new FinalFlame());
@@ -640,7 +641,7 @@ public class BasicPool
 
 	public static ArrayList<AbstractCard> smallBasic(String deckName)
 	{
-		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> cards = new ArrayList<>();
 		if (deckName.equals("Dragon Deck")) { cards.addAll(dragonBasics(false)); }
 		else if (deckName.equals("Naturia Deck")) { cards.addAll(naturiaBasics(false)); }
 		else if (deckName.equals("Insect Deck")) { cards.addAll(insectBasics(false)); }
@@ -656,6 +657,7 @@ public class BasicPool
 		else if (deckName.equals("Pharaoh IV")) { cards.addAll(pharaohBasics(false, 4)); }
 		else if (deckName.equals("Pharaoh V")) { cards.addAll(pharaohBasics(false, 5)); }
 		else if (deckName.equals("Toon Deck")) { cards.addAll(toonBasics(false)); }
+		else if (deckName.equals("Warrior Deck")) { cards.addAll(warriorBasics(false)); }
 		else
 		{
 			//cards.add(new CastleWalls());
@@ -1978,5 +1980,105 @@ public class BasicPool
 			}
 		}
 		return cards;
+	}
+
+	public static ArrayList<AbstractCard> warriorBasics(boolean full) {
+		ArrayList<AbstractCard> warriorCards = new ArrayList<>();
+
+		if (full) {
+			warriorCards.add(new BrushfireKnight());
+			warriorCards.add(new ChaosSeed());
+			warriorCards.add(new CircleFireKings());
+			warriorCards.add(new CrossAttack());
+			warriorCards.add(new DarkBurningAttack());
+			warriorCards.add(new DarkBurningMagic());
+			warriorCards.add(new DokiDoki());
+			warriorCards.add(new DustKnight());
+			warriorCards.add(new ElectromagneticShield());
+			warriorCards.add(new ElfLight());
+			warriorCards.add(new EulerCircuit());
+			warriorCards.add(new FightingSpirit());
+			warriorCards.add(new GladiatorReturn());
+			warriorCards.add(new GravityLash());
+			warriorCards.add(new HeartUnderdog());
+			warriorCards.add(new ImperialOrder());
+			warriorCards.add(new LightningBlade());
+			warriorCards.add(new MagnumShield());
+			warriorCards.add(new MeteorDestruction());
+			warriorCards.add(new Mudballman());
+			warriorCards.add(new OnslaughtFireKings());
+			warriorCards.add(new PurplePainOni());
+			warriorCards.add(new SteamTrainKing());
+			warriorCards.add(new SuperheavyBlueBrawler());
+			warriorCards.add(new SwordDragonSoul());
+		}
+		warriorCards.add(new BattleguardKing());
+		warriorCards.add(new CombinationAttack());
+		warriorCards.add(new ComboFighter());
+		warriorCards.add(new ComboMaster());
+		warriorCards.add(new DawnKnight());
+		warriorCards.add(new DeltaMagnet());
+		//warriorCards.add(new ElectromagneticDragon());
+		warriorCards.add(new ElectromagneticTurtle());
+		warriorCards.add(new FlameSwordsman());
+		warriorCards.add(new Flint());
+		warriorCards.add(new ForbiddenLance());
+		warriorCards.add(new GaiaMidnight());
+		warriorCards.add(new GoyoKing());
+		warriorCards.add(new GridRod());
+		warriorCards.add(new HardArmor());
+		warriorCards.add(new HiddenArmory());
+		warriorCards.add(new Jinzo());
+		warriorCards.add(new JudgeMan());
+		//warriorCards.add(new MagnetBonding());
+		//warriorCards.add(new MagnetCircleLV2());
+		//warriorCards.add(new MagnetConversion());
+		//warriorCards.add(new MagnetForce());
+		//warriorCards.add(new MagnetInduction());
+		warriorCards.add(new MagneticField());
+		warriorCards.add(new Magnetism());
+		warriorCards.add(new MirrorForce());
+		warriorCards.add(new DarkCrusader());
+		warriorCards.add(new DarkCrusader());
+		warriorCards.add(new DarkCrusader());
+		warriorCards.add(new ReadyForIntercepting());
+		warriorCards.add(new ReinforceTruth());
+		warriorCards.add(new RemoteRevenge());
+		warriorCards.add(new SuperheavyGeneralCoral());
+		//warriorCards.add(new SuperheavyGeneralJade());
+		warriorCards.add(new YamiForm());
+
+		// Creators
+		if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) {
+			warriorCards.add(new TheCreator());
+			warriorCards.add(new DarkCreator());
+		}
+
+		// Ascension-locked cards
+		if (AbstractDungeon.ascensionLevel < 10) {
+			warriorCards.add(new DestructPotion());
+			warriorCards.add(new Wiseman());
+		}
+		if (AbstractDungeon.ascensionLevel < 15) {
+			warriorCards.add(new DianKeto());
+			warriorCards.add(new RedMedicine());
+			warriorCards.add(new Reload());
+			warriorCards.add(new ForbiddenChalice());
+		}
+
+		boolean p1Wins = StartingDeck.PHARAOH_I.getActiveConfig().getStats().getVictories().getAllRuns() > 0;
+		boolean p2Wins = StartingDeck.PHARAOH_II.getActiveConfig().getStats().getVictories().getAllRuns() > 0;
+		boolean p3Wins = StartingDeck.PHARAOH_III.getActiveConfig().getStats().getVictories().getAllRuns() > 0;
+		boolean p4Wins = StartingDeck.PHARAOH_IV.getActiveConfig().getStats().getVictories().getAllRuns() > 0;
+		boolean p5Wins = StartingDeck.PHARAOH_V.getActiveConfig().getStats().getVictories().getAllRuns() > 0;
+		if (p1Wins || p2Wins || p3Wins || p4Wins || p5Wins) {
+			warriorCards.add(new PharaohBlessing());
+			warriorCards.add(new TombOfThePharaoh());
+			if (AbstractDungeon.ascensionLevel < 15) {
+				warriorCards.add(new RainbowMedicine());
+			}
+		}
+
+		return warriorCards;
 	}
 }

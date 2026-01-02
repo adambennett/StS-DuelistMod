@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -60,7 +61,7 @@ public class BladeArmorNinja extends DuelistCard {
             attack(m);
         }
     	if (AbstractDungeon.player.stance.ID.equals("theDuelist:Samurai")) {
-            vulnAllEnemies(this.magicNumber);
+            vulnAllEnemies(AnyDuelist.from(this), this.magicNumber);
         }
     }
 

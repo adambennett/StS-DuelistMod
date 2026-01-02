@@ -30,7 +30,7 @@ public class MillenniumRod extends DuelistRelic implements MillenniumItem {
 	}
 
 	@Override
-	public void atBattleEnd() {
+	public void onVictory() {
 		this.grayscale = false;
 		this.activatedThisCombat = false;
 	}

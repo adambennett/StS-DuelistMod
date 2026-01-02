@@ -184,6 +184,18 @@ public class AnyDuelist {
         AnyDuelist.enemyDuelistGainedDexterityThisTurn = enemyDuelistGainedDexterityThisTurn;
     }
 
+    public AbstractCard getSecondLastCardPlayed() {
+        if (this.player()) {
+            return DuelistMod.secondLastCardPlayed;
+        } else if (this.getEnemy() != null) {
+            Object card = this.enemy.flags.get(EnemyDuelistFlag.SECOND_LAST_CARD_PLAYED);
+            if (card instanceof AbstractCard) {
+                return (AbstractCard) card;
+            }
+        }
+        return null;
+    }
+
     public void receiveCardUsed(AbstractCard card) {
         if (!(card instanceof DuelistCard) && this.hasRelic(MillenniumPuzzle.ID)) {
             boolean isPharaoh = false;

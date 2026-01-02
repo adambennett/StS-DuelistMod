@@ -51,7 +51,7 @@ public class PredaplantDarlingtoniaCobra extends DuelistCard implements RevengeC
 
     @Override
     public void triggerRevenge(AnyDuelist duelist) {
-        DuelistCard.vulnAllEnemies(this.magicNumber);
+        vulnAllEnemies(AnyDuelist.from(this), this.magicNumber);
     }
 
     @Override

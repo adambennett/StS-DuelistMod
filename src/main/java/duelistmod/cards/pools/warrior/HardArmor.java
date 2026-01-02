@@ -2,63 +2,65 @@ package duelistmod.cards.pools.warrior;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.RetainForTurnsPower;
 import duelistmod.variables.Tags;
 
-public class HardArmor extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
 
+public class HardArmor extends DuelistCard {
     public static final String ID = DuelistMod.makeID("HardArmor");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("HardArmor.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
-    
-    // STAT DECLARATION
+
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    // /STAT DECLARATION/
 
     public HardArmor() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.MONSTER);  
-        this.tags.add(Tags.WARRIOR); 
-        this.summons = this.baseSummons = 1;	
+        this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.WARRIOR);
+        this.summons = this.baseSummons = 1;
         this.baseBlock = this.block = 3;
         this.magicNumber = this.baseMagicNumber = 2;
         this.originalName = this.name;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	summon();
-    	block();
-    	applyPowerToSelf(new RetainForTurnsPower(p, this.magicNumber, 1));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        summon();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.block(this.block);
+        if (duelist.player()) {
+            duelist.applyPowerToSelf(new RetainForTurnsPower(duelist.creature(), this.magicNumber, 1));
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new HardArmor();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
@@ -69,16 +71,5 @@ public class HardArmor extends DuelistCard
             this.initializeDescription();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 
 }

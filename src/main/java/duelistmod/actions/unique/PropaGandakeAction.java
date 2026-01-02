@@ -16,7 +16,7 @@ public class PropaGandakeAction extends AbstractGameAction {
 	public void update() {
 		int feralOrTerritorial = (int) this.duelist.hand().stream().filter(c -> c.hasTag(Tags.FERAL) || c.hasTag(Tags.TERRITORIAL)).count();
 		if (feralOrTerritorial > 0 && this.amount > 0) {
-			DuelistCard.vulnAllEnemies(this.amount);
+			DuelistCard.vulnAllEnemies(this.duelist, this.amount);
 			DuelistCard.weakAllEnemies(this.amount, this.duelist);
 		}
 		this.isDone = true;

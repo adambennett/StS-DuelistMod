@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -48,7 +49,7 @@ public class NaturiaStinkbug extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	vulnAllEnemies(this.magicNumber);
+        vulnAllEnemies(AnyDuelist.from(this), this.magicNumber);
     	if (upgraded) { weakAllEnemies(this.magicNumber); }
     }
 

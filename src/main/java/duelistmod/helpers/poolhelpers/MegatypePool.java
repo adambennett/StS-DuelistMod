@@ -21,6 +21,7 @@ import duelistmod.cards.pools.fiend.KingYami;
 import duelistmod.cards.pools.fiend.Lajinn;
 import duelistmod.cards.pools.fiend.SummonedSkull;
 import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.oldWarrior.WhiteHowling;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.*;
 
@@ -170,7 +171,7 @@ public class MegatypePool
 		cards.add(new AlphaMagnet());
 		cards.add(new BetaMagnet());
 		cards.add(new GammaMagnet());
-		cards.add(new ValkMagnet());
+		cards.add(new Valkyrion());
 		cards.add(new PatricianDarkness());
 		cards.add(new VampireGenesis());
 		cards.add(new VampireLord());

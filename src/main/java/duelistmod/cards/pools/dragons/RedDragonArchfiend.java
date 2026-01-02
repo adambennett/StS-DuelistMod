@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -51,7 +52,7 @@ public class RedDragonArchfiend extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	vulnAllEnemies(this.magicNumber);
+    	vulnAllEnemies(AnyDuelist.from(this), this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

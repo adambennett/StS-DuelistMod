@@ -359,7 +359,9 @@
     "PROPER_NAME": "Superheavy",
     "NAMES": [
       "Superheavy",
-	  "superheavy"
+	  "superheavy",
+      "Superheavies",
+      "superheavies"
     ],   
     "DESCRIPTION": "When you #yTribute a #ySuperheavy for another #ySuperheavy, gain #b1 #yDexterity."
   },
@@ -1187,6 +1189,11 @@
     "DESCRIPTION": "If the target is undamaged and receives attack damage, trigger the given effect.",
     "MULTIWORD_KEY": "~~FirstStrike~~:",
     "FORMATTED_DISPLAY": "*First *Strike:",
+    "BASE_KEYWORD": "first strike"
+  },
+  {
+    "MULTIWORD_KEY": "~~FirstStrike~~!",
+    "FORMATTED_DISPLAY": "*First *Strike",
     "BASE_KEYWORD": "first strike"
   }
 ]
