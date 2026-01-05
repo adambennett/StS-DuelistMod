@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.purple.*;
 import com.megacrit.cardcrawl.cards.red.*;
 import duelistmod.DuelistMod;
 import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.toon.RoseWarriorOfRevenge;
 import duelistmod.cards.pools.warrior.*;
 
 import java.util.ArrayList;
@@ -23,7 +24,6 @@ public class WarriorPool {
 	public static ArrayList<AbstractCard> deck() {
 		ArrayList<AbstractCard> warriorCards = new ArrayList<>();
 
-		// Main pool
 		warriorCards.add(new AdvanceForce());
 		warriorCards.add(new AfterGenocide());
 		warriorCards.add(new AfterTheStorm());
@@ -36,7 +36,6 @@ public class WarriorPool {
 		warriorCards.add(new BattleguardRage());
 		warriorCards.add(new BetaMagnet());
 		warriorCards.add(new BladeArmorNinja());
-		warriorCards.add(new BladeKnight());
 		warriorCards.add(new BrilliantSpark());
 		warriorCards.add(new BullBlader());
 		warriorCards.add(new CelticGuardian());
@@ -49,8 +48,10 @@ public class WarriorPool {
 		warriorCards.add(new CyberRaider());
 		warriorCards.add(new DarkGrepher());
 		warriorCards.add(new DarkOccultism());
+		warriorCards.add(new DawnKnight());
 		warriorCards.add(new DeltaAttacker());
 		warriorCards.add(new Downbeat());
+		warriorCards.add(new DropOff());
 		warriorCards.add(new EgoBoost());
 		warriorCards.add(new FeedbackWarrior());
 		warriorCards.add(new FortressWarrior());
@@ -72,6 +73,7 @@ public class WarriorPool {
 		warriorCards.add(new LegendarySword());
 		warriorCards.add(new LightLaser());
 		warriorCards.add(new MaxWarrior());
+		warriorCards.add(new MagnetForce());
 		warriorCards.add(new MillenniumShield());
 		warriorCards.add(new NinjaGrandmaster());
 		warriorCards.add(new NitroWarrior());
@@ -87,21 +89,16 @@ public class WarriorPool {
 		warriorCards.add(new SuperheavyOgre());
 		warriorCards.add(new SuperheavyScales());
 		warriorCards.add(new SuperheavySoulbeads());
-		warriorCards.add(new SuperheavySoulbuster());
 		warriorCards.add(new SuperheavySoulhorns());
 		warriorCards.add(new SuperheavySoulpiercer());
 		warriorCards.add(new SuperheavySoulshield());
 		warriorCards.add(new SuperheavySwordsman());
-		warriorCards.add(new SuperheavyWagon());
 		warriorCards.add(new SwordsConcealing());
 		warriorCards.add(new Valkyrion());
 		warriorCards.add(new WarriorReturningAlive());
 		warriorCards.add(new WeaponChange());
 		warriorCards.add(new WhiteNinja());
 		warriorCards.add(new Zombyra());
-
-		//magnetCards.add(new FengshengMirror());
-		//magnetCards.add(new SuperheavySoulclaw());
 
 		if (DuelistMod.persistentDuelistData.CardPoolSettings.getBaseGameCards() && DuelistMod.isNotAllCardsPoolType()) {
 			warriorCards.add(new Rushdown());

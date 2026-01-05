@@ -1,70 +1,86 @@
 package duelistmod.cards.pools.warrior;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.MagnetCard;
+import duelistmod.actions.unique.MagnetEnergyGainAction;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
-import duelistmod.variables.*;
+import duelistmod.powers.warrior.GammaMagnetPower;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
-public class GammaMagnet extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
 
-    public static final String ID = duelistmod.DuelistMod.makeID("GammaMagnet");
+public class GammaMagnet extends MagnetCard {
+
+    public static final String ID = DuelistMod.makeID("GammaMagnet");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.GAMMA_MAGNET);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
-    
-    // STAT DECLARATION
+
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private static final int SUMMONS = 1;
-    // /STAT DECLARATION/
 
-    public GammaMagnet() 
-    {
+    public GammaMagnet() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
         this.tags.add(Tags.ROCK);
-        this.tags.add(Tags.LIMITED);
-        this.baseMagicNumber = this.magicNumber = 1;
         this.originalName = this.name;
-        this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
+        this.baseMagicNumber = this.magicNumber = 1; // monsters to draw
+        this.enemyIntent = AbstractMonster.Intent.DEFEND;
     }
 
-    // Actions the card should do.
+    public GammaMagnet(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR, CardRarity RARITY, CardTarget TARGET) {
+        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+    }
+
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	summon(p, this.summons, this);
-    	changeStanceInst("theDuelist:Guarded");
-    	drawTag(this.magicNumber, Tags.MONSTER);
-    	if (!p.hasPower(GammaMagPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p))); }
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).type == CardType.POWER) {
+            this.glowColor = Color.GOLD;
+        }
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        summon();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.drawTag(this.magicNumber, Tags.MONSTER);
+        this.addToBot(new MagnetEnergyGainAction(owner, CardType.POWER));
+        if (!owner.hasPower(GammaMagnetPower.POWER_ID)) {
+            duelist.applyPowerToSelf(new GammaMagnetPower(owner, owner), owner);
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new GammaMagnet();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
@@ -73,22 +89,14 @@ public class GammaMagnet extends DuelistCard
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
+        } else {
+            this.timesUpgraded++;
+            transformIntoElectro(new GammaElectro());
         }
     }
 
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
+    @Override
+    public boolean canUpgrade() {
+        return true;
+    }
 }

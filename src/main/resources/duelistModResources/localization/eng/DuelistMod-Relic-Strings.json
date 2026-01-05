@@ -1387,6 +1387,51 @@
 			"Whenever you play a #yDuelist card, you have a #b10% chance to draw a #ynon-Duelist card, and vice versa."
 		]
 	},
+	"theDuelist:AmuletOfGlory": {
+		"NAME": "Amulet of Glory",
+		"FLAVOR": "It hums with old teleport magic like it's always pointing you toward safety and a fight.",
+		"DESCRIPTIONS": ["Start each combat with #b1 #yDexterity and #b4 #yVigor."]
+	},
+	"theDuelist:CombatBracelet": {
+		"NAME": "Combat Bracelet",
+		"FLAVOR": "Cold metal, warm grip. Every swing feels a little more... accurate than it should.",
+		"DESCRIPTIONS": ["You have a #b25% chance to #ySpecial #ySummon a copy of the first #yWarrior you play each combat (on a random enemy)."]
+	},
+	"theDuelist:GracefulCape": {
+		"NAME": "Graceful Cape",
+		"FLAVOR": "Light as air, quiet as footsteps. You swear the Spire's stairs feel a bit less cruel.",
+		"DESCRIPTIONS": ["Whenever a #yRevenge or #yFirst #yStrike effect is triggered, gain #b1 #yDexterity."]
+	},
+	"theDuelist:ObsidianCape": {
+		"NAME": "Obsidian Cape",
+		"FLAVOR": "Dark as cooled magma. It feels sturdier the longer you keep your footing.",
+		"DESCRIPTIONS": ["At the start of turn #b3, NL gain #b2 #yBlur."]
+	},
+	"theDuelist:RegenBracelet": {
+		"NAME": "Regen Bracelet",
+		"FLAVOR": "A gentle pulse under the skin: slow, steady, and annoyingly reassuring.",
+		"DESCRIPTIONS": ["The first time you gain #yVigor each combat, heal #b5 HP."]
+	},
+	"theDuelist:RingOfEndurance": {
+		"NAME": "Ring of Endurance",
+		"FLAVOR": "A stubborn little band that refuses to let your guard drop - no matter how tired you are.",
+		"DESCRIPTIONS": ["If you have #yBlock at the end of turn, #yRetain #b1 random #yWarrior."]
+	},
+	"theDuelist:RingOfRecoil": {
+		"NAME": "Ring of Recoil",
+		"FLAVOR": "It bites back. Not much - just enough to make attackers reconsider their life choices.",
+		"DESCRIPTIONS": ["The first #b2 times you take unblocked attack damage each combat, gain #b2 #yThorns."]
+	},
+	"theDuelist:RingOfStone": {
+		"NAME": "Ring of Stone",
+		"FLAVOR": "Heavy, plain, and weirdly comforting. Like carrying a rock that never stops listening.",
+		"DESCRIPTIONS": ["The first #yGuarded effect you trigger each combat requires #b5 less #yBlock."]
+	},
+	"theDuelist:WarriorRing": {
+		"NAME": "Warrior Ring",
+		"FLAVOR": "A faint clang echoes when you slip it on. Like a training dummy somewhere just broke.",
+		"DESCRIPTIONS": ["At the start of combat, draw #b1 #yWarrior."]
+	},
 	"theDuelist:ChallengePuzzle": {
 		"NAME": "Challenge Mode",
 		"FLAVOR": "Good luck!",
@@ -1423,7 +1468,7 @@
 			"Aqua: #yAqua tribute synergy effect only triggers #b50% of the time.",
 			"Fiend: When triggered, the #yFiend tribute synergy effect increases the cost of all cards in discard by #b1 for the turn.",
 			"Machine: #rExplosive #rTokens always have a #b10% chance to damage you, and do not summon Bomb Casings when #yDetonated.",
-			"Warrior: [PLACEHOLDER]",
+			"Warrior: Whenever you gain #yDexterity, have a #b5% chance to lose #5 #yVigor.",
 			"Insect: #yInsect tribute synergy effect may apply #yPoison to you instead of a random enemy.",
 			"Plant: #yPlant tribute synergy effect may apply #yConstricted to you instead of a random enemy.",
 			"Megatype: [PLACEHOLDER]",

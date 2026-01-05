@@ -84,7 +84,6 @@ public class StandardPool {
 		cards.add(new DoubleTool());
 		cards.add(new Downbeat());
 		cards.add(new EgoBoost());
-		cards.add(new ElectromagneticShield());
 		cards.add(new Electrowhip());
 		cards.add(new FairyBox());
 		cards.add(new FeatherShot());

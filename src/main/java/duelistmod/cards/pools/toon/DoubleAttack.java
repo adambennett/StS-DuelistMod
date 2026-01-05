@@ -9,14 +9,16 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.DoubleAttackPower;
 import duelistmod.variables.Tags;
+
 import java.util.List;
 
-public class DoubleAttack extends DuelistCard implements RevengeCard {
+public class DoubleAttack extends RevengeDuelistCard {
 
     public static final String ID = DuelistMod.makeID("DoubleAttack");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -41,11 +43,11 @@ public class DoubleAttack extends DuelistCard implements RevengeCard {
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card);
+        return super.isRevengeActive(card);
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         duelist.applyPowerToSelf(new DoubleAttackPower(duelist.creature(), duelist.creature()));
     }
 

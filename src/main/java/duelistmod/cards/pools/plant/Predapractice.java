@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -30,10 +30,10 @@ public class Predapractice extends DuelistCard {
     private static final int COST = 1;
 
     public Predapractice() {
-    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.tags.add(Tags.SPELL);
-    	this.misc = 0;
-    	this.originalName = this.name;
+        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(Tags.SPELL);
+        this.misc = 0;
+        this.originalName = this.name;
         this.baseTributes = this.tributes = 2;
     }
 
@@ -48,8 +48,9 @@ public class Predapractice extends DuelistCard {
         tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         for (AbstractCard card : duelist.hand()) {
-            if (!card.uuid.equals(this.uuid) && (this.upgraded || card.hasTag(Tags.PREDAPLANT)) && card instanceof RevengeCard) {
-                ((RevengeCard)card).triggerRevenge(duelist);
+            if (!card.uuid.equals(this.uuid) && (this.upgraded || card.hasTag(Tags.PREDAPLANT)) && card instanceof RevengeDuelistCard) {
+                RevengeDuelistCard rdc = (RevengeDuelistCard) card;
+                rdc.triggerRevenge(duelist);
             }
         }
         postDuelistUseCard(owner, targets);
@@ -57,7 +58,7 @@ public class Predapractice extends DuelistCard {
 
     @Override
     public AbstractCard makeCopy() {
-    	return new Predapractice();
+        return new Predapractice();
     }
 
     @Override

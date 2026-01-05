@@ -1,97 +1,73 @@
 package duelistmod.cards.pools.warrior;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
+import com.megacrit.cardcrawl.powers.NoDrawPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class HayateTheEarthStar extends DuelistCard
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class HayateTheEarthStar extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("HayateTheEarthStar");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("Hayate.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
-    
-    // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+
+    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
-    // /STAT DECLARATION/
+    private static final int COST = 0;
 
     public HayateTheEarthStar() {
-    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 11;
-    	this.tags.add(Tags.MONSTER);
+        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.baseTributes = this.tributes = 2;
+        this.baseMagicNumber = this.magicNumber = 3; // draw warriors
+        this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.CARDINAL);
         this.tags.add(Tags.WARRIOR);
-    	this.misc = 0;
-    	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 1;
-    	this.setupStartingCopies();
+        this.originalName = this.name;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
-    {
-    	tribute();
-    	attack(m);
-    	if (p.currentHealth < p.maxHealth / 2) { changeStanceInst("theDuelist:Guarded"); }
-    }
-    
-    @Override
-    public void triggerOnGlowCheck()
-    {
-    	super.triggerOnGlowCheck();
-    	if (AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth / 2) {
-    		 this.glowColor = Color.GOLD;
-        }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        tribute();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.drawTag(this.magicNumber, Tags.WARRIOR);
+        duelist.applyPowerToSelf(new NoDrawPower(owner), owner);
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
-    	return new HayateTheEarthStar();
+        return new HayateTheEarthStar();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(4);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-    
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
 }

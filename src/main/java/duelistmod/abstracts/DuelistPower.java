@@ -14,6 +14,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.AnyGuardedCard;
+import duelistmod.dto.AnyRevengeCard;
 
 public abstract class DuelistPower extends TwoAmountPower implements OnLoseTempHpPower
 {
@@ -126,8 +128,18 @@ public abstract class DuelistPower extends TwoAmountPower implements OnLoseTempH
 		return damageAmount;
 	}
 
-	public void onRevengeTriggered(DuelistCard duelistCard) {}
-
 	public void onAddCardToHand(AbstractCard c) { }
+
+	public void onRevengeTriggered(AnyRevengeCard duelistCard) {}
+
+	public void onGuardedTrigger(AnyGuardedCard caller, List<AbstractCreature> targets) { }
+
+	public void onFirstStrikeTriggered(FirstStrikeDuelistCard card, AbstractCreature target) {}
+
+	public void onNimbleTriggered(NimbleDuelistCard card, List<AbstractCreature> targets) {}
+
+	public int modifyGuardedRequirement(int requiredBlock) {
+		return requiredBlock;
+	}
 
 }

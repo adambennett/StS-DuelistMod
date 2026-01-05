@@ -2,84 +2,78 @@ package duelistmod.cards.pools.warrior;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.FirstStrikeDuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class NinjaGrandmaster extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class NinjaGrandmaster extends FirstStrikeDuelistCard {
+
     public static final String ID = DuelistMod.makeID("NinjaGrandmaster");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("NinjaGrandmaster.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    // /STAT DECLARATION/
 
-    public NinjaGrandmaster() 
-    {
+    public NinjaGrandmaster() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.originalName = this.name;
-        this.baseDamage = this.damage = 7;
-        this.baseMagicNumber = this.magicNumber = 2;
-        this.tributes = this.baseTributes = 3;
-        this.selfRetain = true;
-        this.misc = 0;
+        this.baseDamage = this.damage = 6;
+        this.isMultiDamage = true;
+        this.summons = this.baseSummons = 2;
+        this.baseBlock = this.block = 4;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.CARDINAL);
         this.tags.add(Tags.WARRIOR);
-    }
-    
-    @Override
-    public void onRetained() {
-        this.upgradeDamage(this.magicNumber);
+        this.tags.add(Tags.NINJA);
+        this.originalName = this.name;
+        this.isSummon = true;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute(); 	
-    	attack(m);
+    public void onFirstStrikeTriggered(AnyDuelist duelist, AbstractCreature target) {
+        duelist.block(this.block);
     }
 
-    
-    // Upgraded stats.
     @Override
-    public void upgrade() 
-    {
-        if (!upgraded) 
-        {
-        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(1);
-        	this.upgradeDamage(3);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        summon();
+        firstStrikeAllEnemies();
+        postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new NinjaGrandmaster();
+    }
+
+    @Override
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-
-
-
-
-
-
-	
-	@Override
-    public AbstractCard makeCopy() { return new NinjaGrandmaster(); }
-	
 }

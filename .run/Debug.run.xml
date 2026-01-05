@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Debug" type="JarApplication">
     <option name="JAR_PATH" value="B:/SteamLibrary/steamapps/workshop/content/646570/1605060445/ModTheSpire.jar" />
-    <option name="PROGRAM_PARAMETERS" value="--debug" />
+    <option name="PROGRAM_PARAMETERS" value="--skip-launcher --skip-intro --debug" />
     <option name="WORKING_DIRECTORY" value="B:\SteamLibrary\steamapps\common\SlayTheSpire" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <method v="2" />

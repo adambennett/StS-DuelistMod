@@ -1,5 +1,6 @@
 package duelistmod.cards.pools.oldWarrior;
 
+import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -78,6 +79,8 @@ public class CrossAttack extends DuelistCard
 				this.superFlash(Color.CORAL.cpy());
 				this.target = AbstractCard.CardTarget.ENEMY;
 				this.type = AbstractCard.CardType.ATTACK;
+                this.textureImg = IMG;
+                CustomCard.imgMap.remove(IMG);
 				this.loadCardImage(IMG);
 				this.rawDescription = EXTENDED_DESCRIPTION[0];
 			} 
@@ -87,6 +90,8 @@ public class CrossAttack extends DuelistCard
 				this.superFlash(Color.LIME.cpy());
 				this.target = AbstractCard.CardTarget.SELF;
 				this.type = AbstractCard.CardType.SKILL;
+                this.textureImg = IMGB;
+                CustomCard.imgMap.remove(IMGB);
 				this.loadCardImage(IMGB);
 				this.rawDescription = EXTENDED_DESCRIPTION[1];
 			}

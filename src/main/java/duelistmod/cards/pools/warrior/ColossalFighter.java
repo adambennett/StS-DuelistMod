@@ -7,14 +7,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.FirstStrikeDuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class ColossalFighter extends DuelistCard {
+public class ColossalFighter extends FirstStrikeDuelistCard {
 
     public static final String ID = DuelistMod.makeID("ColossalFighter");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -49,10 +49,15 @@ public class ColossalFighter extends DuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         tribute();
-        if (targets != null && !targets.isEmpty()) {
-            attack(targets.get(0), this.baseAFX, this.damage);
-        }
+        firstStrikeSingleTarget(targets);
         postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public void onFirstStrikeTriggered(AnyDuelist duelist, AbstractCreature target) {
+        if (this.magicNumber > 0) {
+            weakAllEnemies(this.magicNumber, duelist);
+        }
     }
 
     @Override
@@ -63,6 +68,7 @@ public class ColossalFighter extends DuelistCard {
             } else {
                 this.upgradeName(NAME + "+");
             }
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

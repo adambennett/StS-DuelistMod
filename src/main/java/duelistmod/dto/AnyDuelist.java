@@ -1180,7 +1180,7 @@ public class AnyDuelist {
         }
     }
 
-    public boolean isArmorer() {
+    public boolean isNimble() {
         if (this.player()) {
             return isPlayerGainedDexterityThisTurn();
         } else if (this.getEnemy() != null) {

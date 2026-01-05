@@ -2,19 +2,19 @@ package duelistmod.cards.pools.warrior;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.GuardedDuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.duelistPowers.ReinforcementsPower;
 import duelistmod.variables.Tags;
 
-public class ReinforcementsArmy extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class ReinforcementsArmy extends GuardedDuelistCard {
 
     public static final String ID = DuelistMod.makeID("ReinforcementsArmy");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -22,56 +22,66 @@ public class ReinforcementsArmy extends DuelistCard
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
-    
-    // STAT DECLARATION
+
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
-    // /STAT DECLARATION/
 
     public ReinforcementsArmy() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
+        this.baseDamage = this.damage = 8;
+        this.setBaseGuardedCheck(15);
+        this.setGuardedCheck(15);
+        this.baseMagicNumber = this.magicNumber = 2;    // guarded draw amount
         this.originalName = this.name;
+        this.exhaust = true;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	applyPowerToSelf(new ReinforcementsPower(p, p));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        if (!targets.isEmpty()) {
+            attack(targets.get(0), this.baseAFX, this.damage);
+        }
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.drawTag(1, Tags.WARRIOR);
+        if (isGuardedActive(this, this.getGuardedCheck())) {
+            triggerGuarded(duelist, targets);
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public void onGuardedTriggered(AnyDuelist duelist, List<AbstractCreature> targets) {
+        if (this.magicNumber > 0) {
+            duelist.draw(this.magicNumber);
+        }
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new ReinforcementsArmy();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeDamage(2);
+            this.upgradeGuardedCheck(-3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -10,7 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.actions.unique.MagnetEnergyGainAction;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.AlphaMagPower;
+import duelistmod.powers.warrior.AlphaMagnetPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -24,6 +24,7 @@ public class AlphaElectro extends AlphaMagnet {
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -31,7 +32,7 @@ public class AlphaElectro extends AlphaMagnet {
     private static final int COST = 1;
 
     public AlphaElectro() {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, TARGET);
+        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 14;
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
@@ -53,11 +54,11 @@ public class AlphaElectro extends AlphaMagnet {
             attack(targets.get(0), AFX, this.damage);
         }
 
-        AlphaMagPower pow;
-        if (duelist.hasPower(AlphaMagPower.POWER_ID)) {
-            pow = (AlphaMagPower) duelist.getPower(AlphaMagPower.POWER_ID);
+        AlphaMagnetPower pow;
+        if (duelist.hasPower(AlphaMagnetPower.POWER_ID)) {
+            pow = (AlphaMagnetPower) duelist.getPower(AlphaMagnetPower.POWER_ID);
         } else {
-            pow = new AlphaMagPower(owner, owner);
+            pow = new AlphaMagnetPower(owner, owner);
         }
         pow.electrify(2);
 
@@ -70,6 +71,9 @@ public class AlphaElectro extends AlphaMagnet {
     public AbstractCard makeCopy() {
         return new AlphaElectro();
     }
+
+    @Override
+    public void upgrade() {}
 
     @Override
     public boolean canUpgrade() {

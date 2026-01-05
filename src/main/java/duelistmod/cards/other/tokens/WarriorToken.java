@@ -15,7 +15,7 @@ public class WarriorToken extends TokenCard {
 
     public static final String ID = DuelistMod.makeID("WarriorToken");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("BattleguardHowling.png");
+    public static final String IMG = DuelistMod.makeCardPath("WarriorToken.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;

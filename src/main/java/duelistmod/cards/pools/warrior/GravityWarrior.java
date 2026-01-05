@@ -6,19 +6,18 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.LoseStrengthPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.StrengthUpPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
 public class GravityWarrior extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("GravityWarrior");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("GravityWarrior.png");
@@ -34,12 +33,11 @@ public class GravityWarrior extends DuelistCard {
 
     public GravityWarrior() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.originalName = this.name;
         this.baseDamage = this.damage = 11;
-        this.tributes = this.baseTributes = 5;
-        this.misc = 0;
+        this.baseTributes = this.tributes = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
+        this.originalName = this.name;
     }
 
     @Override
@@ -50,33 +48,32 @@ public class GravityWarrior extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
         tribute();
-        if (targets.size() > 0) {
+        if (!targets.isEmpty()) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
-        AnyDuelist duelist = AnyDuelist.from(this);
-        if (duelist.hasPower(DexterityPower.POWER_ID)) {
-            int amt = duelist.getPower(DexterityPower.POWER_ID).amount * 2;
-            duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), amt));
-            duelist.applyPowerToSelf(new LoseStrengthPower(duelist.creature(), amt));
+        int dex = duelist.hasPower(DexterityPower.POWER_ID) ? duelist.getPower(DexterityPower.POWER_ID).amount : 0;
+        int str = Math.max(0, dex * 2);
+        if (str > 0) {
+            duelist.applyPowerToSelf(new StrengthUpPower(owner, owner, str), owner);
         }
         postDuelistUseCard(owner, targets);
     }
 
     @Override
+    public AbstractCard makeCopy() {
+        return new GravityWarrior();
+    }
+
+    @Override
     public void upgrade() {
-        if (!upgraded) {
-        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeTributes(-1);
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
-    }
-
-	@Override
-    public AbstractCard makeCopy() {
-        return new GravityWarrior();
     }
 }

@@ -8,10 +8,13 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
+
+import static duelistmod.dto.AnyGuardedCard.incGuardedCheckForTurn;
 
 public class SoldierLady extends DuelistCard {
 
@@ -34,6 +37,7 @@ public class SoldierLady extends DuelistCard {
         this.tags.add(Tags.WARRIOR);
         this.summons = this.baseSummons = 1;
         this.baseDamage = this.damage = 8;
+        this.baseMagicNumber = this.magicNumber = 4;
         this.originalName = this.name;
     }
 
@@ -49,6 +53,10 @@ public class SoldierLady extends DuelistCard {
         if (targets.size() > 0) {
             attack(targets.get(0), this.baseAFX, this.damage);
         }
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (this.magicNumber > 0) {
+            duelist.hand().forEach(c -> incGuardedCheckForTurn(c, -this.magicNumber));
+        }
         postDuelistUseCard(owner, targets);
     }
 
@@ -61,8 +69,8 @@ public class SoldierLady extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeMagicNumber(2);
             this.upgradeDamage(2);
-            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

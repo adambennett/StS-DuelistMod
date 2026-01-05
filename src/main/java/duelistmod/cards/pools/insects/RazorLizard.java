@@ -7,17 +7,16 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class RazorLizard extends DuelistCard implements RevengeCard {
+public class RazorLizard extends RevengeDuelistCard {
     public static final String ID = DuelistMod.makeID("RazorLizard");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("RazorLizard.png");
@@ -44,7 +43,7 @@ public class RazorLizard extends DuelistCard implements RevengeCard {
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         if (duelist.player()) {
             attackAllEnemies();
         } else if (duelist.getEnemy() != null) {

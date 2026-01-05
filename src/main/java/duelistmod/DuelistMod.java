@@ -13,8 +13,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.ModHelper;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.rewards.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
@@ -29,6 +31,7 @@ import duelistmod.metrics.tierScoreDTO.CardScore;
 import duelistmod.metrics.tierScoreDTO.CardTierScores;
 import duelistmod.metrics.tierScoreDTO.PoolScore;
 import duelistmod.persistence.DeckUnlockProgressDTO;
+import duelistmod.relics.warrior.*;
 import duelistmod.stances.Chaotic;
 import duelistmod.stances.Entrenched;
 import duelistmod.stances.Forsaken;
@@ -137,7 +140,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	// Member fields
 	public static String version = "v4.2.0";
 	public static Mode modMode = Mode.PROD;
-	public static MetricsMode metricsMode = MetricsMode.PROD;
+	public static MetricsMode metricsMode = MetricsMode.LOCAL;
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -411,6 +414,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	public static boolean triggeringRemoteRevengeEffect = false;
 	public static boolean triggeringCombinationAttackRevengeEffect = false;
 	public static boolean triggeringCombinationAttackFirstStrikeEffect = false;
+	public static boolean triggeringEgoBoostFirstStrikeEffect = false;
+	public static boolean triggeringDownbeatFirstStrikeEffect = false;
 	public static boolean machineArtifactFlipper = false;
 	public static boolean resetProg = false;
 	public static boolean checkTrap = false;
@@ -988,7 +993,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.load();
-			boolean isFlushedLightOrb = config.getBool("flushedWarriorConfigsForV4Point20");
+			boolean isFlushedLightOrb = config.getBool("flushedWarriorConfigsForV4Point202");
 			if (!isFlushedLightOrb) {
 				flushingWarriorConfigs = true;
 			}
@@ -1005,10 +1010,11 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				puzzleConfig.setGainVigor(false);
 				puzzleConfig.setBlurToGain(1);
 				puzzleConfig.setVigorToGain(2);
+				puzzleConfig.setTokenType("theDuelist:WarriorToken");
 				persistentDuelistData.PuzzleConfigurations.getPuzzleConfigurations().put(StartingDeck.WARRIOR.getDeckId(), puzzleConfig);
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 				config.load();
-				config.setBool("flushedWarriorConfigsForV4Point20", true);
+				config.setBool("flushedWarriorConfigsForV4Point202", true);
 				configSettingsLoader.save();
 				config.save();
 			} catch (Exception ignored) {}
@@ -1365,7 +1371,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new DuelistUrn());
 		allRelics.add(new FatMaxHPRelic());
 		allRelics.add(new GamblerChip());
-		allRelics.add(new GiftAnubis());
+		//allRelics.add(new GiftAnubis());
 		allRelics.add(new GoldenScale());
 		allRelics.add(new HauntedRelic());
 		allRelics.add(new InsectRelic());
@@ -1485,6 +1491,15 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		allRelics.add(new ChronicleOfElders());
 		allRelics.add(new SphinxInsight());
 		allRelics.add(new ThereCanBeOnlyOneRelic());
+		allRelics.add(new AmuletOfGlory());
+		allRelics.add(new CombatBracelet());
+		allRelics.add(new GracefulCape());
+		allRelics.add(new ObsidianCape());
+		allRelics.add(new RegenBracelet());
+		allRelics.add(new RingOfEndurance());
+		allRelics.add(new RingOfRecoil());
+		allRelics.add(new RingOfStone());
+		allRelics.add(new WarriorRing());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
 		for (AbstractRelic r : allRelics) {
@@ -1579,6 +1594,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		BaseMod.addDynamicVariable(new SketchbookUsesNumber());
 		BaseMod.addDynamicVariable(new EvenTributeTurnCost());
 		BaseMod.addDynamicVariable(new OddTributeTurnCost());
+		BaseMod.addDynamicVariable(new GuardedNum());
 		// ================ ORB CARDS ===================
 		DuelistCardLibrary.setupOrbCards();
 		// ================ PRIVATE LIBRARY SETUP ===================
@@ -2159,6 +2175,15 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 								.stream()
 								.filter(p -> p instanceof DuelistPower)
 								.forEach(p -> ((DuelistPower)p).onDexChange(amtChanged));
+						if (Util.getChallengeLevel() > 3 && Util.deckIs("Warrior Deck")) {
+							int roll = AbstractDungeon.cardRandomRng.random(100);
+							if (roll <= 5 && duelist.hasPower(VigorPower.POWER_ID)) {
+								AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(duelist.creature(), duelist.creature(), duelist.getPower(VigorPower.POWER_ID), 5));
+								if (duelist.hasRelic(ChallengePuzzle.ID)) {
+									duelist.getRelic(ChallengePuzzle.ID).flash();
+								}
+							}
+						}
 					}
 				}
 
@@ -3001,7 +3026,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pages.add(new PuzzleConfigs());
 		// Booster configs
 		// Power configs
-		pages.add(new StanceConfigs());
+		//pages.add(new StanceConfigs());
 		pages.add(new Randomized());
 		pages.add(new ColorlessShop());
 		pages.add(new Metrics());

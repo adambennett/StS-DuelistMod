@@ -6,18 +6,18 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.duelistPowers.ArcanaPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class ToonBlackLusterSoldier extends DuelistCard implements RevengeCard {
+public class ToonBlackLusterSoldier extends RevengeDuelistCard {
     public static final String ID = DuelistMod.makeID("ToonBlackLusterSoldier");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("ToonBlackLusterSoldier.png");
@@ -47,11 +47,11 @@ public class ToonBlackLusterSoldier extends DuelistCard implements RevengeCard {
     @Override
     public boolean isRevengeActive(DuelistCard card) {
         AnyDuelist duelist = AnyDuelist.from(this);
-        return RevengeCard.super.isRevengeActive(card) && duelist.hasPower(ArcanaPower.POWER_ID) && duelist.getPower(ArcanaPower.POWER_ID).amount > 0;
+        return super.isRevengeActive(card) && duelist.hasPower(ArcanaPower.POWER_ID) && duelist.getPower(ArcanaPower.POWER_ID).amount > 0;
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         if (duelist.hasPower(ArcanaPower.POWER_ID) && duelist.getPower(ArcanaPower.POWER_ID).amount > 0) {
             duelist.gainTempHP(duelist.getPower(ArcanaPower.POWER_ID).amount);
         }

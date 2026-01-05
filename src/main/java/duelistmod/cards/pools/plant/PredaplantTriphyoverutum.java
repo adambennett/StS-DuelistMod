@@ -10,15 +10,16 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PredaplantTriphyoverutum extends DuelistCard implements RevengeCard {
+public class PredaplantTriphyoverutum extends RevengeDuelistCard {
     public static final String ID = DuelistMod.makeID("PredaplantTriphyoverutum");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("PredaplantTriphyoverutum.png");
@@ -50,7 +51,7 @@ public class PredaplantTriphyoverutum extends DuelistCard implements RevengeCard
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         ArrayList<AbstractCard> list = findAllOfTypeForResummon(Tags.PREDAPLANT, 1);
         for (AbstractCard c : list) {
             if (duelist.player()) {

@@ -4,14 +4,13 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.AlphaMagPower;
+import duelistmod.powers.warrior.AlphaMagnetPower;
 import duelistmod.variables.*;
 
 public class SuperCrashbug extends DuelistCard 
@@ -50,7 +49,7 @@ public class SuperCrashbug extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	if (!p.hasPower(AlphaMagPower.POWER_ID)) { applyPowerToSelf(new AlphaMagPower(p, p)); }
+    	if (!p.hasPower(AlphaMagnetPower.POWER_ID)) { applyPowerToSelf(new AlphaMagnetPower(p, p)); }
     	attack(m, AFX, this.damage);
     }
 

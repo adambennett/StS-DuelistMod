@@ -5,10 +5,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
 import duelistmod.abstracts.DuelistPower;
+import duelistmod.abstracts.DynamicDamageRevengeCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.dto.AnyRevengeCard;
+import duelistmod.powers.warrior.CombinationAttackPower;
 
 public class RemoteRevengePower extends DuelistPower {
 
@@ -38,15 +40,26 @@ public class RemoteRevengePower extends DuelistPower {
 	}
 
     @Override
-    public void onRevengeTriggered(DuelistCard duelistCard) {
-        if (this.amount <= 0) return;
-
-        AnyDuelist duelist = AnyDuelist.from(duelistCard);
+    public void onRevengeTriggered(AnyRevengeCard card) {
+        AnyDuelist duelist = AnyDuelist.from(card.get());
         DuelistMod.triggeringRemoteRevengeEffect = true;
-        if (duelistCard instanceof RevengeCard) {
-            RevengeCard revengeCard = (RevengeCard) duelistCard;
-            for (int i = 0; i < this.amount; i++) {
-                revengeCard.triggerRevenge(duelist);
+        int triggers = this.amount;
+        if (duelist.hasPower(CombinationAttackPower.POWER_ID)) {
+            triggers += duelist.getPower(CombinationAttackPower.POWER_ID).amount;
+        }
+        RevengeDuelistCard rdc = null;
+        DynamicDamageRevengeCard ddrc = null;
+        Object c = card.getCard();
+        if (c instanceof RevengeDuelistCard) {
+            rdc = (RevengeDuelistCard) c;
+        } else if (c instanceof DynamicDamageRevengeCard) {
+            ddrc = (DynamicDamageRevengeCard) c;
+        }
+        for (int i = 0; i < triggers; i++) {
+            if (rdc != null) {
+                rdc.triggerRevenge(duelist);
+            } else if (ddrc != null) {
+                ddrc.triggerRevenge(duelist);
             }
         }
         DuelistMod.triggeringRemoteRevengeEffect = false;

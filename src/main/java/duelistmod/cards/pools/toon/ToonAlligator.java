@@ -8,16 +8,18 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.TemporaryToonWorldPower;
 import duelistmod.powers.ToonKingdomPower;
 import duelistmod.powers.ToonWorldPower;
 import duelistmod.variables.Tags;
+
 import java.util.List;
 
-public class ToonAlligator extends DuelistCard implements RevengeCard {
+public class ToonAlligator extends RevengeDuelistCard {
 
     public static final String ID = DuelistMod.makeID("ToonAlligator");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -50,11 +52,11 @@ public class ToonAlligator extends DuelistCard implements RevengeCard {
     @Override
     public boolean isRevengeActive(DuelistCard card) {
         AnyDuelist duelist = AnyDuelist.from(this);
-        return RevengeCard.super.isRevengeActive(card) && !duelist.hasPower(ToonWorldPower.POWER_ID) && !duelist.hasPower(ToonKingdomPower.POWER_ID);
+        return super.isRevengeActive(card) && !duelist.hasPower(ToonWorldPower.POWER_ID) && !duelist.hasPower(ToonKingdomPower.POWER_ID);
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         if (!duelist.hasPower(ToonWorldPower.POWER_ID) && !duelist.hasPower(ToonKingdomPower.POWER_ID)) {
             duelist.applyPowerToSelf(new TemporaryToonWorldPower(duelist.creature(), duelist.creature(), 1));
         }

@@ -2,79 +2,68 @@ package duelistmod.cards.pools.warrior;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SpiritForcePower;
+import duelistmod.powers.warrior.SpiritForcePower;
 import duelistmod.variables.Tags;
 
-public class SpiritForce extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class SpiritForce extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("SpiritForce");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("SpiritForce.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 3;
-    // /STAT DECLARATION/
+    private static final int COST = 2;
 
     public SpiritForce() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.originalName = this.name;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.TRAP);
-        this.baseMagicNumber = this.magicNumber = 9;
+        this.originalName = this.name;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-		applyPowerToSelf(new SpiritForcePower(p, p, this.magicNumber));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        if (this.magicNumber > 0) {
+            AnyDuelist.from(this).applyPowerToSelf(new SpiritForcePower(owner, this.magicNumber), owner);
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new SpiritForce();
     }
 
-    // Upgraded stats.
     @Override
-    public void upgrade() 
-    {
-        if (!upgraded)
-        {
-        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(3);
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-
-
-	
-
-
-
-
-
-
-
-
-
 }

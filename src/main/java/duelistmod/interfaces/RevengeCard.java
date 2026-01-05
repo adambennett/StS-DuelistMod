@@ -1,14 +1,48 @@
 package duelistmod.interfaces;
 
-import duelistmod.abstracts.DuelistCard;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.helpers.Util;
 
-public interface RevengeCard  {
+public interface RevengeCard {
 
     default boolean isRevengeActive(DuelistCard card) {
         return Util.revengeActive(card);
     }
 
-    void triggerRevenge(AnyDuelist duelist);
+    default void trigger(AnyRevengeCard card, AnyDuelist duelist) {
+        if (!DuelistMod.triggeringRemoteRevengeEffect && !DuelistMod.triggeringCombinationAttackRevengeEffect) {
+            for (AbstractPower power : duelist.powers()) {
+                if (power instanceof DuelistPower) {
+                    DuelistPower duelistPower = (DuelistPower) power;
+                    duelistPower.onRevengeTriggered(card);
+                }
+            }
+            for (AbstractRelic relic : duelist.relics()) {
+                if (relic instanceof DuelistRelic) {
+                    DuelistRelic duelistRelic = (DuelistRelic) relic;
+                    duelistRelic.onRevengeTriggered(card);
+                }
+            }
+        }
+
+        if (duelist.player()) {
+            if (!DuelistMod.triggeringRemoteRevengeEffect && !DuelistMod.triggeringCombinationAttackRevengeEffect) {
+                DuelistMod.revengeCardsTriggeredThisCombat.add((DuelistCard) card.getCard());
+            }
+            DuelistMod.revengeTriggersThisTurn++;
+            DuelistMod.revengeTriggersThisCombat++;
+            DuelistMod.revengeTriggersThisRun++;
+        } else if (duelist.getEnemy() != null) {
+            if (!DuelistMod.triggeringRemoteRevengeEffect && !DuelistMod.triggeringCombinationAttackRevengeEffect) {
+                duelist.getEnemy().revengeCardsTriggeredThisCombat.add((DuelistCard) card.getCard());
+            }
+            duelist.getEnemy().revengeTriggersThisTurn++;
+            duelist.getEnemy().revengeTriggersThisCombat++;
+        }
+    }
 }

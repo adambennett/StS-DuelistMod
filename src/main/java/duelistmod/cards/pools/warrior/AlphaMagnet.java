@@ -13,7 +13,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.MagnetCard;
 import duelistmod.actions.unique.MagnetEnergyGainAction;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.AlphaMagPower;
+import duelistmod.powers.warrior.AlphaMagnetPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
@@ -47,8 +47,8 @@ public class AlphaMagnet extends MagnetCard {
         this.enemyIntent = AbstractMonster.Intent.ATTACK;
     }
 
-    public AlphaMagnet(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR, CardTarget TARGET) {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, TARGET);
+    public AlphaMagnet(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR, CardRarity RARITY, CardTarget TARGET) {
+        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     }
     
     @Override
@@ -72,8 +72,8 @@ public class AlphaMagnet extends MagnetCard {
             attack(targets.get(0), AFX, this.damage);
         }
         this.addToBot(new MagnetEnergyGainAction(owner, CardType.ATTACK));
-        if (!owner.hasPower(AlphaMagPower.POWER_ID)) {
-            applyPower(new AlphaMagPower(owner, owner), owner);
+        if (!owner.hasPower(AlphaMagnetPower.POWER_ID)) {
+            applyPower(new AlphaMagnetPower(owner, owner), owner);
         }
         postDuelistUseCard(owner, targets);
     }
@@ -92,6 +92,7 @@ public class AlphaMagnet extends MagnetCard {
             this.fixUpgradeDesc();
             this.initializeDescription();
         } else {
+            this.timesUpgraded++;
             transformIntoElectro(new AlphaElectro());
         }
     }

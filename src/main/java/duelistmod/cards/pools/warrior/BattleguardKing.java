@@ -7,18 +7,17 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.GuardedDuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.EndureCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class BattleguardKing extends DuelistCard implements EndureCard {
+public class BattleguardKing extends GuardedDuelistCard {
+
     public static final String ID = DuelistMod.makeID("BattleguardKing");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("BattleguardKing.png");
@@ -42,6 +41,8 @@ public class BattleguardKing extends DuelistCard implements EndureCard {
         this.tags.add(Tags.WARRIOR);
         this.originalName = this.name;
         this.summons = this.baseSummons = SUMMONS;
+        this.setBaseGuardedCheck(15);
+        this.setGuardedCheck(15);
     }
 
     @Override
@@ -56,11 +57,14 @@ public class BattleguardKing extends DuelistCard implements EndureCard {
         if (targets.size() > 0) {
             attack(targets.get(0), AFX, this.damage);
         }
+        if (isGuardedActive(this, this.getGuardedCheck())) {
+            triggerGuarded(AnyDuelist.from(this), targets);
+        }
         postDuelistUseCard(owner, targets);
     }
 
     @Override
-    public void onEndure(AnyDuelist duelist) {
+    public void onGuardedTriggered(AnyDuelist duelist, List<AbstractCreature> targets) {
         duelist.applyPowerToSelf(new EnergizedBluePower(duelist.creature(), 1));
     }
 
@@ -74,10 +78,10 @@ public class BattleguardKing extends DuelistCard implements EndureCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(3);
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(2); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 }
+

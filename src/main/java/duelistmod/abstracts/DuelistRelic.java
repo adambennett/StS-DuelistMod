@@ -22,9 +22,7 @@ import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
-import duelistmod.dto.AnyDuelist;
-import duelistmod.dto.DuelistConfigurationData;
-import duelistmod.dto.RelicConfigData;
+import duelistmod.dto.*;
 import duelistmod.helpers.Util;
 import duelistmod.relics.MillenniumCoin;
 import duelistmod.rewards.BoosterPack;
@@ -323,6 +321,16 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public void onAfterUseCard(AbstractCard card, UseCardAction action) {}
 
 	public void onBeastIncrement(int amtIncremented) {}
+
+	public void onRevengeTriggered(AnyRevengeCard duelistCard) {}
+
+	public void onGuardedTrigger(AnyGuardedCard caller, List<AbstractCreature> targets) { }
+
+	public void onFirstStrikeTriggered(FirstStrikeDuelistCard card, AbstractCreature target) {}
+
+	public void onNimbleTriggered(NimbleDuelistCard card, List<AbstractCreature> targets) {}
+
+	public int modifyGuardedRequirement(int requiredBlock) { return requiredBlock; }
 
 	public void onApplyPower(AbstractPower power) {}
 }

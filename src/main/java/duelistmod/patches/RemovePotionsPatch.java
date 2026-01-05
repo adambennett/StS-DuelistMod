@@ -93,14 +93,14 @@ public class RemovePotionsPatch {
                 }
 
                 // Warrior - Stance Potion
-                if (Util.deckIs("Warrior Deck")) {
+                /*if (Util.deckIs("Warrior Deck")) {
                     __result.add("StancePotion");
-                }
+                }*/
 
                 // Warrior/Standard - Ambrosia
-                if (Util.deckIs("Warrior Deck") || Util.deckIs("Standard Deck")) {
+                /*if (Util.deckIs("Warrior Deck") || Util.deckIs("Standard Deck")) {
                     __result.add("Ambrosia");
-                }
+                }*/
 
                 // Megatype/Ascended/Pharaoh - All Unique Potions, except Stance Potion & Ambrosia
                 if (Util.deckIs("Megatype Deck") || Util.deckIs("Pharaoh I") || Util.deckIs("Pharaoh II") || Util.deckIs("Pharaoh III") || Util.deckIs("Pharaoh IV") || Util.deckIs("Pharaoh V") || Util.deckIs("Ascended I") || Util.deckIs("Ascended II") || Util.deckIs("Ascended III")) {

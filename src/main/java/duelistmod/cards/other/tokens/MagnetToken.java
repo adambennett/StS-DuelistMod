@@ -10,7 +10,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.warrior.AlphaMagnetPower;
+import duelistmod.powers.warrior.BetaMagnetPower;
+import duelistmod.powers.warrior.GammaMagnetPower;
 import duelistmod.variables.*;
 
 public class MagnetToken extends TokenCard 
@@ -54,10 +56,10 @@ public class MagnetToken extends TokenCard
     		int randomMagnetNum = AbstractDungeon.cardRandomRng.random(0, 2);
         	switch (randomMagnetNum)
         	{
-        		case 0: applyPowerToSelf(new AlphaMagPower(p, p)); break;
-        		case 1: applyPowerToSelf(new BetaMagPower(p, p)); break;
-        		case 2: applyPowerToSelf(new GammaMagPower(p, p)); break;
-        		default: applyPowerToSelf(new BetaMagPower(p, p)); break;
+				case 0: applyPowerToSelf(new AlphaMagnetPower(p, p));
+				case 1: applyPowerToSelf(new BetaMagnetPower(p, p));
+				case 2: applyPowerToSelf(new GammaMagnetPower(p, p));
+        		default: applyPowerToSelf(new BetaMagnetPower(p, p)); break;
         	}        	
     	}
     	else
@@ -66,10 +68,10 @@ public class MagnetToken extends TokenCard
         		int randomMagnetNum = AbstractDungeon.cardRandomRng.random(0, 2);
             	switch (randomMagnetNum)
             	{
-            		case 0: applyPowerToSelf(new AlphaMagPower(p, p)); break;
-            		case 1: applyPowerToSelf(new BetaMagPower(p, p)); break;
-            		case 2: applyPowerToSelf(new GammaMagPower(p, p)); break;
-            		default: applyPowerToSelf(new BetaMagPower(p, p)); break;
+					case 0: applyPowerToSelf(new AlphaMagnetPower(p, p));
+					case 1: applyPowerToSelf(new BetaMagnetPower(p, p));
+					case 2: applyPowerToSelf(new GammaMagnetPower(p, p));
+            		default: applyPowerToSelf(new BetaMagnetPower(p, p)); break;
             	}
         	}
     	}

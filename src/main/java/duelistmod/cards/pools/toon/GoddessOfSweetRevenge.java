@@ -9,14 +9,14 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.DynamicDamageCard;
+import duelistmod.abstracts.DynamicDamageRevengeCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+
 import java.util.List;
 
-public class GoddessOfSweetRevenge extends DynamicDamageCard implements RevengeCard {
+public class GoddessOfSweetRevenge extends DynamicDamageRevengeCard {
 
     public static final String ID = DuelistMod.makeID("GoddessOfSweetRevenge");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -32,22 +32,22 @@ public class GoddessOfSweetRevenge extends DynamicDamageCard implements RevengeC
     private static final int COST = 1;
 
     public GoddessOfSweetRevenge() {
-    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseBlock = this.block = 11;
+        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.baseBlock = this.block = 11;
         this.baseMagicNumber = this.magicNumber = 3;
         this.baseTributes = this.tributes = 1;
-    	this.tags.add(Tags.MONSTER);
-    	this.misc = 0;
-    	this.originalName = this.name;
+        this.tags.add(Tags.MONSTER);
+        this.misc = 0;
+        this.originalName = this.name;
     }
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0 && AnyDuelist.from(this).getRevengeTriggersThisCombat() > 0;
+        return super.isRevengeActive(card) && this.magicNumber > 0 && AnyDuelist.from(this).getRevengeTriggersThisCombat() > 0;
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         if (this.magicNumber > 0 && AnyDuelist.from(this).getRevengeTriggersThisCombat() > 0) {
             AbstractCreature target = null;
             if (duelist.player()) {
@@ -88,7 +88,7 @@ public class GoddessOfSweetRevenge extends DynamicDamageCard implements RevengeC
 
     @Override
     public AbstractCard makeCopy() {
-    	return new GoddessOfSweetRevenge();
+        return new GoddessOfSweetRevenge();
     }
 
     @Override

@@ -12,67 +12,68 @@ import duelistmod.dto.AnyDuelist;
 import duelistmod.orbs.WaterOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+
 import java.util.List;
 
 public class LegendaryFisherman extends DuelistCard {
 
-	public static final String ID = duelistmod.DuelistMod.makeID("LegendaryFisherman");
-	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-	public static final String IMG = DuelistMod.makeCardPath("Legendary_Fisherman.png");
-	public static final String NAME = cardStrings.NAME;
-	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    public static final String ID = duelistmod.DuelistMod.makeID("LegendaryFisherman");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+    public static final String IMG = DuelistMod.makeCardPath("Legendary_Fisherman.png");
+    public static final String NAME = cardStrings.NAME;
+    public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-	private static final CardRarity RARITY = CardRarity.UNCOMMON;
-	private static final CardTarget TARGET = CardTarget.SELF;
-	private static final CardType TYPE = CardType.SKILL;
-	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 1;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.SKILL;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
+    private static final int COST = 1;
 
-	public LegendaryFisherman() {
-		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.tags.add(Tags.MONSTER);
-		this.tags.add(Tags.PHARAOH_SERVANT);
+    public LegendaryFisherman() {
+        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.PHARAOH_SERVANT);
         this.tags.add(Tags.WARRIOR);
-		this.showEvokeValue = true;
-		this.showEvokeOrbCount = 1;
-		this.misc = 0;
-		this.originalName = this.name;
-		this.baseSummons = this.summons = 3;
-		this.tributes = this.baseTributes = 5;
-		this.baseBlock = this.block = 10;
-		this.exhaust = true;
-	}
+        this.showEvokeValue = true;
+        this.showEvokeOrbCount = 1;
+        this.misc = 0;
+        this.originalName = this.name;
+        this.baseSummons = this.summons = 3;
+        this.tributes = this.baseTributes = 5;
+        this.baseBlock = this.block = 10;
+        this.exhaust = true;
+    }
 
-	@Override
-	public void use(AbstractPlayer p, AbstractMonster m) {
-		duelistUseCard(p, m);
-	}
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
 
-	@Override
-	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-		preDuelistUseCard(owner, targets);
-		tribute();
-		summon();
-		block();
-		AnyDuelist.from(this).channel(new WaterOrb());
-		postDuelistUseCard(owner, targets);
-	}
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        tribute();
+        summon();
+        block();
+        AnyDuelist.from(this).channel(new WaterOrb());
+        postDuelistUseCard(owner, targets);
+    }
 
-	@Override
-	public AbstractCard makeCopy() {
-		return new LegendaryFisherman();
-	}
+    @Override
+    public AbstractCard makeCopy() {
+        return new LegendaryFisherman();
+    }
 
-	@Override
-	public void upgrade() {
-		if (!this.upgraded) {
-			this.upgradeName();
-			this.upgradeBlock(4);
-			this.rawDescription = UPGRADE_DESCRIPTION;
+    @Override
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeBlock(4);
+            this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
-			this.initializeDescription();
-		}
-	}
+            this.initializeDescription();
+        }
+    }
 
 }

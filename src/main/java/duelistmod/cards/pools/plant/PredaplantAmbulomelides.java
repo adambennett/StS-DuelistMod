@@ -10,15 +10,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PredaplantAmbulomelides extends DuelistCard implements RevengeCard {
+public class PredaplantAmbulomelides extends RevengeDuelistCard {
     public static final String ID = DuelistMod.makeID("PredaplantAmbulomelides");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("PredaplantAmbulomelides.png");
@@ -50,11 +51,11 @@ public class PredaplantAmbulomelides extends DuelistCard implements RevengeCard 
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0 && this.secondMagic > 0;
+        return super.isRevengeActive(card) && this.magicNumber > 0 && this.secondMagic > 0;
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         if (duelist.player()) {
             List<AbstractMonster> validTargets = new ArrayList<>();
             for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {

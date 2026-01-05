@@ -6,17 +6,16 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class NightmareWheel extends DuelistCard implements RevengeCard {
+public class NightmareWheel extends RevengeDuelistCard {
     private static final CardStrings cardStrings = getCardStrings();
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
@@ -41,7 +40,7 @@ public class NightmareWheel extends DuelistCard implements RevengeCard {
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         duelist.addCardToHand(this.makeStatEquivalentCopy());
         duelist.loseHp(this.magicNumber);
     }

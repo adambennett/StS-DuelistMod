@@ -2112,6 +2112,15 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new DelgTheDarkMonarch());
 		DuelistMod.myCards.add(new Abaki());
 		DuelistMod.myCards.add(new InfernoidSeitsemas());
+		DuelistMod.myCards.add(new ElectromagneticDragon());
+		DuelistMod.myCards.add(new EpsilonMagnet());
+		DuelistMod.myCards.add(new ImperionSuperconductiveBattlebot());
+		DuelistMod.myCards.add(new MagnetBonding());
+		DuelistMod.myCards.add(new MagnetCircleLV2());
+		DuelistMod.myCards.add(new MagnetConversion());
+		DuelistMod.myCards.add(new MagnetForce());
+		DuelistMod.myCards.add(new MagnetInduction());
+		DuelistMod.myCards.add(new SuperheavyGeneralJade());
 
 		DuelistMod.myCards.add(new StanleysSketchbook(10));
 		DuelistMod.myCards.add(new StanleysSketchbookAddToonWorld(false));
@@ -2571,8 +2580,8 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Summon Token", new Token());
 		DuelistMod.summonMap.put("Nature Token", new NatureToken());
 		DuelistMod.summonMap.put("Warrior Token", new WarriorToken());
-		DuelistMod.summonMap.put("Stance Token", new StanceToken());
-		DuelistMod.summonMap.put("Forsaken Token", new ForsakenToken());
+		//DuelistMod.summonMap.put("Stance Token", new StanceToken());
+		//DuelistMod.summonMap.put("Forsaken Token", new ForsakenToken());
 		DuelistMod.summonMap.put("Token", new Token());
 		DuelistMod.summonMap.put("Jam Token", new JamToken());
 		DuelistMod.summonMap.put("Castle Token", new CastleToken());
@@ -2688,9 +2697,9 @@ public class DuelistCardLibrary
 		tokens.add(new TributeToken());
 		tokens.add(new SuperExplodingToken());
 		tokens.add(new MegatypeToken());
-		tokens.add(new ForsakenToken());
+		//tokens.add(new ForsakenToken());
 		tokens.add(new WarriorToken());
-		tokens.add(new StanceToken());
+		//tokens.add(new StanceToken());
 		tokens.add(new NatureToken());
 		tokens.add(new NaturiaToken());
 		tokens.add(new RockToken());
@@ -2803,10 +2812,10 @@ public class DuelistCardLibrary
 		}
 		if (Util.deckIs("Warrior Deck"))
 		{
-			tokens.add(new StanceToken());
+			//tokens.add(new StanceToken());
 			tokens.add(new WarriorToken());
 			tokens.add(new MagnetToken());
-			tokens.add(new ForsakenToken());
+			//tokens.add(new ForsakenToken());
 		}
 		if (Util.deckIs("Machine Deck"))
 		{

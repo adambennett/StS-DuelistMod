@@ -1,111 +1,135 @@
 package duelistmod.cards.pools.warrior;
 
-import java.util.ArrayList;
-
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.CardSelectScreenResummonAction;
-import duelistmod.helpers.Util;
+import duelistmod.abstracts.GuardedMagnetCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
-import duelistmod.variables.*;
+import duelistmod.powers.warrior.*;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
-public class Valkyrion extends DuelistCard
-{
-    // TEXT DECLARATION
+import java.util.ArrayList;
+import java.util.List;
 
-    public static final String ID = duelistmod.DuelistMod.makeID("Valkyrion");
+public class Valkyrion extends GuardedMagnetCard {
+
+    public static final String ID = DuelistMod.makeID("Valkyrion");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.VALK_MAGNET);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
-    
-    // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    // /STAT DECLARATION/
 
     public Valkyrion() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 30;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.MAGNET);
+        this.tags.add(Tags.APEX);
         this.tags.add(Tags.ROCK);
-        this.tags.add(Tags.EXEMPT);
-		this.originalName = this.name;
-		this.isMultiDamage = true;
+        this.tags.add(Tags.MAGNET);
+        this.baseDamage = this.damage = 6;
+        this.baseTributes = this.tributes = 3;
+        this.setBaseGuardedCheck(20);
+        this.setGuardedCheck(20);
+        this.isMultiDamage = true;
+        this.originalName = this.name;
     }
 
-    // Actions the card should do.
+    public Valkyrion(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR, CardRarity RARITY, CardTarget TARGET) {
+        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+    }
+
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	if (p.hasPower(AlphaMagPower.POWER_ID) && p.hasPower(BetaMagPower.POWER_ID) && p.hasPower(GammaMagPower.POWER_ID))
-    	{
-    		this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AttackEffect.SLASH_DIAGONAL));
-	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, AlphaMagPower.POWER_ID, 1));
-	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, BetaMagPower.POWER_ID, 1));
-	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, GammaMagPower.POWER_ID, 1));
-        	ArrayList<DuelistCard> stances = Util.getStanceChoices(true, true, true);
-        	ArrayList<AbstractCard> abTypes = new ArrayList<>();
-        	abTypes.addAll(stances);
-        	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(abTypes, 1, false, false, false, true));
-    	}
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        tribute();
+
+        AnyDuelist duelist = AnyDuelist.from(this);
+        int magnets = 0;
+        if (duelist.hasPower(AlphaMagnetPower.POWER_ID)) magnets++;
+        if (duelist.hasPower(BetaMagnetPower.POWER_ID)) magnets++;
+        if (duelist.hasPower(GammaMagnetPower.POWER_ID)) magnets++;
+        if (duelist.hasPower(DeltaMagnetPower.POWER_ID)) magnets++;
+        if (duelist.hasPower(EpsilonMagnetPower.POWER_ID)) magnets++;
+
+        this.addToBot(new RemoveSpecificPowerAction(duelist.creature(), duelist.creature(), duelist.getPower(AlphaMagnetPower.POWER_ID)));
+        this.addToBot(new RemoveSpecificPowerAction(duelist.creature(), duelist.creature(), duelist.getPower(BetaMagnetPower.POWER_ID)));
+        this.addToBot(new RemoveSpecificPowerAction(duelist.creature(), duelist.creature(), duelist.getPower(GammaMagnetPower.POWER_ID)));
+        this.addToBot(new RemoveSpecificPowerAction(duelist.creature(), duelist.creature(), duelist.getPower(DeltaMagnetPower.POWER_ID)));
+        this.addToBot(new RemoveSpecificPowerAction(duelist.creature(), duelist.creature(), duelist.getPower(EpsilonMagnetPower.POWER_ID)));
+
+        for (int i = 0; i < magnets; i++) {
+            if (duelist.player()) {
+                this.addToBot(new DamageAllEnemiesAction(owner, this.multiDamage, DamageInfo.DamageType.NORMAL, this.baseAFX));
+            } else if (duelist.getEnemy() != null && targets != null && !targets.isEmpty()) {
+                attack(targets.get(0));
+            }
+        }
+
+        if (isGuardedActive(this, this.getGuardedCheck())) {
+            triggerGuarded(duelist, targets);
+        }
+
+        postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public void onGuardedTriggered(AnyDuelist duelist, List<AbstractCreature> targets) {
+        List<AbstractPower> magnetPowers = new ArrayList<>();
+        magnetPowers.add(new AlphaMagnetPower(duelist.creature()));
+        magnetPowers.add(new BetaMagnetPower(duelist.creature()));
+        magnetPowers.add(new GammaMagnetPower(duelist.creature()));
+        magnetPowers.add(new DeltaMagnetPower(duelist.creature()));
+        magnetPowers.add(new EpsilonMagnetPower(duelist.creature()));
+        AbstractPower power = magnetPowers.get(AbstractDungeon.cardRandomRng.random(magnetPowers.size() - 1));
+        duelist.applyPowerToSelf(power);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new Valkyrion();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
-            this.upgradeName(); 
-            this.upgradeDamage(10);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.fixUpgradeDesc();
-            this.initializeDescription();
+            this.timesUpgraded++;
+            this.upgraded = true;
+            transformIntoElectro(new Berserkion());
+        } else {
+            this.timesUpgraded++;
+            transformIntoElectro(new ImperionSuperconductiveBattlebot());
         }
     }
 
     @Override
-	public String failedCardSpecificCanUse(final AbstractPlayer p, final AbstractMonster m) { return "Need all 3 Magnets"; }
+    public boolean canUpgrade() {
+        return true;
+    }
 
     @Override
-	public boolean cardSpecificCanUse(final AbstractCreature owner) {
-		return owner.hasPower(AlphaMagPower.POWER_ID) && owner.hasPower(BetaMagPower.POWER_ID) && owner.hasPower(GammaMagPower.POWER_ID);
-	}
-    
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
+    public boolean copyUpgradeStateOnTransform() {
+        return false;
+    }
 }

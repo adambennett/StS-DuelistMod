@@ -1,40 +1,35 @@
 package duelistmod.cards.metronomes.typed;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
+import duelistmod.abstracts.MetronomeCard;
 import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class MagnetMetronome extends MetronomeCard 
-{
-    // TEXT DECLARATION
+import java.util.ArrayList;
+
+public class MagnetMetronome extends MetronomeCard {
+
     public static final String ID = getCARDID();
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     //public static final String IMG = DuelistMod.makeCardPath("MetronomeAttack.png");		// Attack
-    public static final String IMG = DuelistMod.makeCardPath("Metronome.png");				// Skill
+    public static final String IMG = DuelistMod.makeCardPath("Metronome.png");                // Skill
     //public static final String IMG = DuelistMod.makeCardPath("MetronomePower.png");		// Power
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
     public final CardTags resTag;
-    // /STAT DECLARATION/
 
     public MagnetMetronome() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -44,86 +39,66 @@ public class MagnetMetronome extends MetronomeCard
         this.tags.add(Tags.NEVER_GENERATE);
         this.tags.add(Tags.SPELL);
         this.baseMagicNumber = this.magicNumber = 1;
-        this.originalName = this.name;       
+        this.originalName = this.name;
         this.returnsMultiple = true;
         this.resTag = Tags.MAGNET;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	metronomeAction(m);
-    }
-    
-    @Override
-	public ArrayList<AbstractCard> returnCards()
-	{
-		ArrayList<AbstractCard> tmp = findAllOfTypeForResummonMetronome(this.resTag, this.magicNumber);
-		return tmp;
-	}
-    
-    public AbstractCard returnCard()
-    {
-		return new CancelCard();				
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        metronomeAction(m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public ArrayList<AbstractCard> returnCards() {
+        return findAllOfTypeForResummonMetronome(this.resTag, this.magicNumber);
+    }
+
+    public AbstractCard returnCard() {
+        return new CancelCard();
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new MagnetMetronome();
     }
 
-    // Upgraded stats.
     @Override
-    public void upgrade() 
-    {
-        if (!upgraded)
-        {
-        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-	    	else { this.upgradeName(NAME + "+"); }
+    public void upgrade() {
+        if (!upgraded) {
+            if (this.timesUpgraded > 0) {
+                this.upgradeName(NAME + "+" + this.timesUpgraded);
+            } else {
+                this.upgradeName(NAME + "+");
+            }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-    
+
     // AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
-    public static String getCARDID()
-    {
-    	return DuelistMod.makeID(getCurClassName());
-    }
-    
-	public static CardStrings getCardStrings()
-    {
-    	return CardCrawlGame.languagePack.getCardStrings(getCARDID());
-    }
-    
-    public static String getIMG()
-    {
-    	return DuelistMod.makeCardPath(getCurClassName() + ".png");
-    }
-    
-    public static String getCurClassName()
-    {
-    	return (new CurClassNameGetter()).getClassName();
+    public static String getCARDID() {
+        return DuelistMod.makeID(getCurClassName());
     }
 
-    public static class CurClassNameGetter extends SecurityManager{
-    	public String getClassName(){
-    		return getClassContext()[1].getSimpleName();
-    	}
+    public static CardStrings getCardStrings() {
+        return CardCrawlGame.languagePack.getCardStrings(getCARDID());
     }
 
-	
-	
+    public static String getIMG() {
+        return DuelistMod.makeCardPath(getCurClassName() + ".png");
+    }
 
+    public static String getCurClassName() {
+        return (new CurClassNameGetter()).getClassName();
+    }
 
-
-
-	
-
-
+    public static class CurClassNameGetter extends SecurityManager {
+        public String getClassName() {
+            return getClassContext()[1].getSimpleName();
+        }
+    }
 
 
 }

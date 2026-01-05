@@ -1,6 +1,5 @@
 package duelistmod.cards.pools.plant;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -11,15 +10,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.orbs.enemy.EnemyFrost;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class MobiusFrostMonarch extends DuelistCard implements RevengeCard {
+public class MobiusFrostMonarch extends RevengeDuelistCard {
     public static final String ID = DuelistMod.makeID("MobiusFrostMonarch");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("MobiusFrostMonarch.png");
@@ -46,11 +46,11 @@ public class MobiusFrostMonarch extends DuelistCard implements RevengeCard {
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0;
+        return super.isRevengeActive(card) && this.magicNumber > 0;
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         if (this.magicNumber > 0) {
             if (duelist.player()) {
                 int count = 0;

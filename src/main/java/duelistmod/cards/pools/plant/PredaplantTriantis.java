@@ -9,14 +9,15 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class PredaplantTriantis extends DuelistCard implements RevengeCard {
+public class PredaplantTriantis extends RevengeDuelistCard {
     public static final String ID = DuelistMod.makeID("PredaplantTriantis");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("PredaplantTriantis.png");
@@ -49,11 +50,11 @@ public class PredaplantTriantis extends DuelistCard implements RevengeCard {
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card);
+        return super.isRevengeActive(card);
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         if (this.magicNumber > 0) {
             poisonAllEnemies(duelist.creature(), this.magicNumber);
         }

@@ -9,9 +9,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.warrior.AlphaMagnetPower;
+import duelistmod.powers.warrior.BetaMagnetPower;
+import duelistmod.powers.warrior.GammaMagnetPower;
 import duelistmod.variables.Tags;
 
 public class ArcaniteMagician extends DuelistCard 
@@ -54,9 +55,9 @@ public class ArcaniteMagician extends DuelistCard
     	int randomMagnetNum = AbstractDungeon.cardRandomRng.random(0, 2);
     	switch (randomMagnetNum)
     	{
-    		case 0: applyPowerToSelf(new AlphaMagPower(p, p));
-    		case 1: applyPowerToSelf(new BetaMagPower(p, p));
-    		case 2: applyPowerToSelf(new GammaMagPower(p, p));
+    		case 0: applyPowerToSelf(new AlphaMagnetPower(p, p));
+    		case 1: applyPowerToSelf(new BetaMagnetPower(p, p));
+    		case 2: applyPowerToSelf(new GammaMagnetPower(p, p));
     	}
     }
 

@@ -7,21 +7,22 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.interfaces.RevengeCard;
-import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.cards.pools.beast.EnragedBattleOx;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.helpers.Util;
+import duelistmod.interfaces.NamelessTombCard;
+import duelistmod.interfaces.RevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.StrengthUpPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class EnragedBattleOxNamelessPower extends DuelistCard implements NamelessTombCard, RevengeCard {
+public class EnragedBattleOxNamelessPower extends RevengeDuelistCard implements NamelessTombCard {
     public static final String ID = DuelistMod.makeID("Nameless:Power:EnragedBattleOx");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("EnragedBattleOx.png");
@@ -48,11 +49,11 @@ public class EnragedBattleOxNamelessPower extends DuelistCard implements Nameles
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0;
+        return super.isRevengeActive(card) && this.magicNumber > 0;
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         duelist.applyPowerToSelf(new StrengthUpPower(duelist.creature(), duelist.creature(), this.magicNumber));
     }
 

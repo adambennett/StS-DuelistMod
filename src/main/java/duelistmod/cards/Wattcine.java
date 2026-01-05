@@ -10,15 +10,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.orbs.enemy.EnemyLightning;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class Wattcine extends DuelistCard implements RevengeCard {
+public class Wattcine extends RevengeDuelistCard {
     public static final String ID = DuelistMod.makeID("Wattcine");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("Wattcine.png");
@@ -67,11 +68,11 @@ public class Wattcine extends DuelistCard implements RevengeCard {
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card);
+        return super.isRevengeActive(card);
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         AbstractCreature target = null;
         if (duelist.player()) {
             if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {

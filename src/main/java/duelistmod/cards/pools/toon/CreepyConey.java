@@ -9,15 +9,16 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class CreepyConey extends DuelistCard implements RevengeCard {
+public class CreepyConey extends RevengeDuelistCard {
     public static final String ID = DuelistMod.makeID("CreepyConey");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("CreepyConey.png");
@@ -75,11 +76,11 @@ public class CreepyConey extends DuelistCard implements RevengeCard {
     @Override
     public boolean isRevengeActive(DuelistCard card) {
         AnyDuelist duelist = AnyDuelist.from(this);
-        return RevengeCard.super.isRevengeActive(card) && duelist.hasPower(SummonPower.POWER_ID) && duelist.getPower(SummonPower.POWER_ID).amount > 0;
+        return super.isRevengeActive(card) && duelist.hasPower(SummonPower.POWER_ID) && duelist.getPower(SummonPower.POWER_ID).amount > 0;
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         if (duelist.hasPower(SummonPower.POWER_ID) && duelist.getPower(SummonPower.POWER_ID).amount > 0) {
             int amt = duelist.getPower(SummonPower.POWER_ID).amount;
             for (int i = 0; i < amt; i++) {

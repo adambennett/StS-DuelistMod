@@ -784,7 +784,7 @@ public class Debug
 		/*
 		logger.info("theDuelist:DuelistMod:printTextForTranslation() ---> Powers");
 		String[] powerList = new String[] {"SummonPower", "DespairPower","JamPower", "ToonWorldPower",
-				"ObeliskPower", "AlphaMagPower", "BetaMagPower", "GammaMagPower", "GreedShardPower",
+				"ObeliskPower", "AlphaMagnetPower", "BetaMagnetPower", "GammaMagnetPower", "GreedShardPower",
 				"MirrorPower", "ToonBriefcasePower", "DragonCapturePower", "PotGenerosityPower", "CannonPower",
 				"CatapultPower", "BadReactionPower", "CastlePower", "EmperorPower", "MagicCylinderPower",
 				"MirrorForcePower", "ImperialPower", "SliferSkyPower", "ExodiaPower", "DarkMirrorPower",

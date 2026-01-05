@@ -35,7 +35,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.powers.watcher.CannotChangeStancePower;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.*;
@@ -74,7 +73,6 @@ import duelistmod.dto.CardConfigData;
 import duelistmod.dto.DuelistConfigurationData;
 import duelistmod.dto.LavaOrbEruptionResult;
 import duelistmod.dto.PuzzleConfigData;
-import duelistmod.enums.EnemyDuelistCounter;
 import duelistmod.enums.EnemyDuelistFlag;
 import duelistmod.enums.MonsterType;
 import duelistmod.enums.StartingDeck;
@@ -811,14 +809,7 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		}
 	}
 
-	public void postDuelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
-		if (this instanceof RevengeCard) {
-			RevengeCard rc = (RevengeCard) this;
-			if (rc.isRevengeActive(this)) {
-				rc.triggerRevenge(AnyDuelist.from(this));
-			}
-		}
-	}
+	public void postDuelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {}
 
 	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
 		DuelistMod.nonImplementedEnemyDuelistCards.put(this.cardID, this);
@@ -1948,6 +1939,8 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			}
 			dCard.baseTributes = this.baseTributes;
 			dCard.baseSummons = this.baseSummons;
+			dCard.baseSecondMagic = this.baseSecondMagic;
+			dCard.baseThirdMagic = this.baseThirdMagic;
 			dCard.turnTributeChange = this.turnTributeChange;
 			dCard.giantTribChange = this.giantTribChange;
 			dCard.combatTributeChange = this.combatTributeChange;
@@ -1963,6 +1956,9 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			dCard.isEthereal = this.isEthereal;
 			dCard.originalDescription = this.originalDescription;
 			dCard.savedTypeMods = this.savedTypeMods;
+			dCard.cardsToPreview = this.cardsToPreview;
+			dCard.keywords.clear();
+			dCard.keywords.addAll(this.keywords);
 			for (String mod : dCard.savedTypeMods) {
 				if (!mod.equals("default") && dCard.notAddedTagToDescription(mod)) {
 					dCard.rawDescription = mod + " NL " + dCard.rawDescription;
@@ -5459,7 +5455,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 			if (duelist.hasPower(FightingSpiritPower.POWER_ID)) {
 				FightingSpiritPower pow = (FightingSpiritPower) duelist.getPower(FightingSpiritPower.POWER_ID);
 				pow.onTrib();
-				pow.flash();
 			}
 		}
 	}
@@ -5573,18 +5568,18 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 					tmp.addToTop(gridCard);
 				}
 			}
-			List<RevengeCard> selectedRevengeCards = new ArrayList<>();
+			List<RevengeDuelistCard> selectedRevengeCards = new ArrayList<>();
 			while (revengeTriggers > 0 && !tmp.isEmpty()) {
 				AbstractCard random = tmp.getRandomCard(true);
 				tmp.removeCard(random);
-				if (random instanceof RevengeCard) {
-					selectedRevengeCards.add((RevengeCard) random);
+				if (random instanceof RevengeDuelistCard) {
+					selectedRevengeCards.add((RevengeDuelistCard) random);
 					revengeTriggers--;
 				}
 			}
 			if (selectedRevengeCards.isEmpty()) return;
 
-			for (RevengeCard card : selectedRevengeCards) {
+			for (RevengeDuelistCard card : selectedRevengeCards) {
 				card.triggerRevenge(duelist);
 			}
 		}
@@ -7344,15 +7339,24 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		return cards;
 	}
 
-	public static ArrayList<AbstractCard> findAllOfTypeForResummonMetronome(CardTags tag, int amtNeeded)
-	{
+	public static ArrayList<AbstractCard> findAllOfTypeForResummonMetronome(CardTags tag, int amtNeeded) {
 		return findAllOfTypeForResummonMetronome(tag, null, amtNeeded);
 	}
 
-	public static ArrayList<AbstractCard> findAllOfTypeForResummonMetronome(CardTags tag, CardTags tagsB, int amtNeeded)
-	{
+	public static ArrayList<AbstractCard> findAllOfTypeForResummonMetronome(CardTags tag, int amtNeeded, Predicate<AbstractCard> additionalChecks) {
+		return findAllOfTypeForResummonMetronome(tag, null, amtNeeded, additionalChecks);
+	}
+
+	public static ArrayList<AbstractCard> findAllOfTypeForResummonMetronome(CardTags tag, CardTags tagsB, int amtNeeded) {
+		return findAllOfTypeForResummonMetronome(tag, tagsB, amtNeeded, null);
+	}
+
+	public static ArrayList<AbstractCard> findAllOfTypeForResummonMetronome(CardTags tag, CardTags tagsB, int amtNeeded, Predicate<AbstractCard> additionalChecks) {
 		Predicate<AbstractCard> predicate = CardFinderHelper.canResummon()
 				.and(CardFinderHelper.hasTags(tag, tagsB));
+		if (additionalChecks != null) {
+			predicate = predicate.and(additionalChecks);
+		}
 		ArrayList<AbstractCard> cards = CardFinderHelper.find(amtNeeded, TheDuelist.cardPool.group, DuelistMod.myCards,
 				predicate.and(CardFinderHelper.configExclusion()));
 		// If none found, retry without the config-based exclusions.

@@ -35,7 +35,6 @@ public class SuperheavyBlueBrawler extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 10;
         this.tributes = this.baseTributes = 3;
-        this.exhaust = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
 		this.originalName = this.name;

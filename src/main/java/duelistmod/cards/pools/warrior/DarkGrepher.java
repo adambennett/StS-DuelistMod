@@ -1,83 +1,90 @@
 package duelistmod.cards.pools.warrior;
 
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.watcher.CannotChangeStancePower;
-
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
-import duelistmod.stances.Spectral;
 import duelistmod.variables.Tags;
 
-public class DarkGrepher extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class DarkGrepher extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("DarkGrepher");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("DarkGrepher.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
-    // /STAT DECLARATION/
 
-    public DarkGrepher() 
-    {
+    public DarkGrepher() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.originalName = this.name;
-        this.baseDamage = this.damage = 10;
-        this.tributes = this.baseTributes = 1;
-        this.misc = 0;
+        this.baseDamage = this.damage = 6;
+        this.isMultiDamage = true;
+        this.baseTributes = this.tributes = 3;
+        this.baseMagicNumber = this.magicNumber = 3;    // dex divisor
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.MALICIOUS);
         this.tags.add(Tags.WARRIOR);
+        this.tags.add(Tags.BAD_MAGIC);
+        this.originalName = this.name;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute(); 	
-    	attack(m);
-    	changeStanceInst("theDuelist:Spectral");
-    	applyPowerToSelf(new CannotChangeStancePower(p));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    
-    // Upgraded stats.
     @Override
-    public void upgrade() 
-    {
-        if (!upgraded) 
-        {
-        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeDamage(4);
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
+
+        tribute();
+        int dex = duelist.hasPower(DexterityPower.POWER_ID) ? duelist.getPower(DexterityPower.POWER_ID).amount : 0;
+        int divisor = this.magicNumber;
+        if (divisor <= 0) divisor = 1;
+        int hits = dex / divisor;
+
+        for (int i = 0; i < hits; i++) {
+            if (duelist.player()) {
+                this.addToBot(new DamageAllEnemiesAction(owner, this.multiDamage, DamageInfo.DamageType.NORMAL, this.baseAFX));
+            } else if (duelist.getEnemy() != null) {
+                attack(AbstractDungeon.player);
+            }
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new DarkGrepher();
+    }
+
+    @Override
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-
-
-
-
-
-
-
-
-	
-	@Override
-    public AbstractCard makeCopy() { return new DarkGrepher(); }
-	
 }

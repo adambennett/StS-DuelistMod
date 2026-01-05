@@ -72,6 +72,7 @@ import static com.megacrit.cardcrawl.cards.AbstractCard.*;
 
 public enum StartingDeck {
 
+    WARRIOR("warrior", "Warrior Deck", "Warrior", Tags.WARRIOR, Tags.WARRIOR_DECK, WarriorPool::deck, WarriorPool::basic, false, false, Tags.SUPERHEAVY),
     BEAST("beast", "Beast Deck", "Beast", Tags.BEAST, Tags.BEAST_DECK, BeastPool::deck, BeastPool::basic, false, false),
     DRAGON("dragon", "Dragon Deck", "Dragon", Tags.DRAGON, Tags.DRAGON_DECK, DragonPool::deck, DragonPool::basic, false, false),
     SPELLCASTER("spellcaster", "Spellcaster Deck", "Spellcaster", Tags.SPELLCASTER, Tags.SPELLCASTER_DECK, SpellcasterPool::deck, SpellcasterPool::basic, false, false),
@@ -83,7 +84,6 @@ public enum StartingDeck {
     INSECT("insect", "Insect Deck", "Insect", Tags.INSECT, Tags.INSECT_DECK, InsectPool::deck, InsectPool::basic, false, false),
     PLANT("plant", "Plant Deck", "Plant", Tags.PLANT, Tags.PLANT_DECK, PlantPool::deck, PlantPool::basic, false, false),
     NATURIA("naturia", "Naturia Deck", "Naturia", Tags.NATURIA, Tags.NATURIA_DECK, NaturiaPool::deck, NaturiaPool::basic, false, false,Tags.INSECT, Tags.PLANT, Tags.PREDAPLANT),
-    WARRIOR("warrior", "Warrior Deck", "Warrior", Tags.WARRIOR, Tags.WARRIOR_DECK, WarriorPool::deck, WarriorPool::basic, false, false, Tags.SUPERHEAVY),
     STANDARD("standard", "Standard Deck", "Standard", null, Tags.STANDARD_DECK, StandardPool::deck, StandardPool::basic, false, false),
     MEGATYPE("megatype", "Megatype Deck", "Megatype", Tags.MEGATYPED, Tags.MEGATYPE_DECK, MegatypePool::deck, MegatypePool::basic, false, false),
     INCREMENT("increment", "Increment Deck", "Increment", null, Tags.INCREMENT_DECK, IncrementPool::deck, IncrementPool::basic, false, false),
@@ -1087,6 +1087,7 @@ public enum StartingDeck {
             case PLANT:
                 return this.getDisplayName() + ": #yPlant tribute synergy effect may apply #yConstricted to you instead of a random enemy.";
             case WARRIOR:
+                return this.getDisplayName() + ": Whenever you gain #yDexterity, have a #b5% chance to lose #5 #yVigor.";
             case MEGATYPE:
             case CREATOR:
             case EXODIA:
