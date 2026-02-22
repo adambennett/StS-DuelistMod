@@ -1,18 +1,48 @@
 Content Updates
 -------------------
-- Major Warrior deck overhaul that removes all custom stance mechanics and replaces them with an entirely new direction for Warriors. No new cards have been added but a majority of the Warrior pool cards have been modified in a major way to completely change the feel of the deck.
-- Custom stances have all been removed from the mod for now
-- New keywords: First Strike, Guarded, Nimble (Guarded and Nimble have been repurposed)
-- Removed potion "Bottled Summons" (Summon 4 Potion Tokens, Common)
+- Major Warrior Deck Overhaul
+    - Warrior decks have been completely redesigned around a new identity.
+    - All custom Warrior stance mechanics have been removed.
+    - Existing Warrior cards have been heavily reworked to support the new identity.
+- Custom Stances Removed
+    - All custom Duelist stances have been removed from the mod for now.
+    - Stance-related tokens, configs, and UI pages have also been disabled.
+- New & Updated Keywords
+    - First Strike (new)
+    - Guarded (repurposed)
+    - Nimble (repurposed)
+- New Cards Added
+    - Electromagnetic Dragon
+    - Epsilon Magnet
+    - Magnet Bonding
+    - Magnet Circle LV2
+    - Magnet Conversion
+    - Magnet Force
+    - Magnet Induction
+    - Superheavy General Jade
+    - Vorse Raider
+- Removed Content
+    - Potion: Bottled Summons
+    - Potion: Bottled Tokens
+    - Relic: Magnet Stimulus
+    - Relic: Gift of Anubis
 
 Balance Updates
 -----------------
 Deck Changes
-- Beast starting deck cards modified slightly
+- Beast starting deck cards have been adjusted slightly for balance
+- Warrior deck synergy effects have been fully redesigned (see below)
 
 Synergy Tribute Effects
-- When tributing Insects with Insects, Poison is now only applied to 1 random enemy instead of ALL enemies
-- When tributing Warriors with Warriors, the effect now gains Block and is improved by Dexterity. No more stance change effect.
+- Insect → Insect Tributes
+    - Poison is now applied to one random enemy instead of all enemies
+    - The Bug Token relic restores the original “poison all enemies” behavior
+- Warrior → Warrior Tributes
+    - Now grants Block, scaling with Dexterity
+    - No longer triggers stance changes
+- Plant → Plant Tributes
+    - Constricted is now applied to one random enemy instead of all enemies
+    - Challenge Mode can cause Constricted to target the player instead (see below)
 
 Cards
 - Mirror Force: has been completely redesigned
@@ -54,20 +84,23 @@ Cards
 
 Relics
 - Bug Token relic effect changed to re-enable the poison-all-enemies effect when tributing insects for insects (previously this relic increased the poison applied when tributing)
-- Millennium Rod now only triggers once per combat, and the card it generates will not be made Ethereal or given Exhaust, but may have cost/tribute changes
+- Millennium Rod now only triggers once per combat, and the card it generates will not be made Ethereal or given Exhaust, but may still have cost/tribute changes
 
 Challenge Mode
-- Challenge Level 3, Insect Deck: effect changed to possibly apply Poison to yourself instead of enemies when tributing insects (5% chance per poison event)
-- Challenge Level 3 effect has been implemented for Plant Deck
-
+- Challenge Level 3, Insect Deck: Insect synergy tributes have a 5% chance to apply Poison to yourself instead of enemies
+- Challenge Level 3, Plant Deck: Plant synergy tributes have a 5% chance to apply Constricted to yourself instead of enemies
 
 Bug Fixes
 -----------
-- Fixed an issue where custom Duelist potions were not obeying their "can spawn" checks, allowing certain potions to spawn when they shouldn't
+- Fixed custom Duelist potions ignoring canSpawn() checks
+- Fixed multiple edge cases with Revenge triggering incorrectly
+- Fixed a crash that occurred when the player had the Millennium Prayerbook relic while playing the Exodia deck
+- Fixed an issue where some Duelist relics did not properly react when powers were applied
+- Fixed Vulnerable being applied incorrectly in certain enemy Duelist scenarios
 
 QoL
 ------
-- Various card names have been adjusted to more-closely match their correct real life names
+- Numerous card names updated to better match official Yu-Gi-Oh! names:
     - Harpie's Feather Duster
     - Reinforcements of the Army
     - Superheavy Steam Train King
@@ -83,8 +116,11 @@ QoL
     - Legendary Black Belt
     - Battleguard Howling
     - The Warrior Returning Alive
-- Updated Megatyped keyword definition to include more applicable monster types
-- Updated project dependencies to use latest BaseMod, StSLib, and Together in Spire versions
+- Updated Megatype keyword to include additional applicable monster types
+- Updated project dependencies:
+    - BaseMod
+    - StSLib
+    - Together in Spire
 
 Art/FX
 --------
@@ -92,8 +128,12 @@ Art/FX
 
 Metrics
 --------
-
+- Fixed a major bug on the server side that was causing the mod to take a really long time to start up
+- Implemented automatic tier score update logic for new/revamped decks
+    - Toon pool cards will start seeing tier scores after 1000 Toon runs on v4.1.1+ are logged, only runs on v4.1.1+ will be scored
+    - Warrior pool cards will start seeing tier scores after 1000 Warrior runs on v4.2.0+ are logged, only runs on v4.2.0+ will be scored
+    - Existing warrior pool tier scores have been reset
 
 Card Pools
 -----------
-
+- Electromagnetic Shield and Reinforcements of the Army removed from most basic pools
