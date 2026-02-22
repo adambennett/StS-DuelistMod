@@ -131,7 +131,7 @@ public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubi
 			}
 			tags.addAll(tagsLoc);
 		} else {
-			if (StartingDeck.currentDeck.getPrimaryType() != null) {
+			if (StartingDeck.currentDeck.getPrimaryType() != null && StartingDeck.currentDeck.getPrimaryType() != Tags.EXODIA) {
 				tags.add(StartingDeck.currentDeck.getPrimaryType());
 				CardTags rand = DuelistMod.monsterTypes.get(AbstractDungeon.cardRandomRng.random(DuelistMod.monsterTypes.size() - 1));
 				while (rand == StartingDeck.currentDeck.getPrimaryType()) {
