@@ -32,9 +32,9 @@ public class WhiteNinja extends NimbleDuelistCard {
 
     public WhiteNinja() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 6;
+        this.baseDamage = this.damage = 9;
         this.summons = this.baseSummons = 2;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
         this.tags.add(Tags.NINJA);
@@ -74,7 +74,7 @@ public class WhiteNinja extends NimbleDuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

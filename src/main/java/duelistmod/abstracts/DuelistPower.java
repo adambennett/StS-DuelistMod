@@ -142,4 +142,6 @@ public abstract class DuelistPower extends TwoAmountPower implements OnLoseTempH
 		return requiredBlock;
 	}
 
+	public void onPreUseCard(AbstractCard card) {}
+
 }

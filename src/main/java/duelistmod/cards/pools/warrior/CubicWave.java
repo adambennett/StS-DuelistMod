@@ -57,10 +57,12 @@ public class CubicWave extends GuardedDuelistCard {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
 
+        int extraBlock = 0;
         if (duelist.hasPower(DexterityPower.POWER_ID)) {
             int dex = duelist.getPower(DexterityPower.POWER_ID).amount;
             if (dex > 0) {
                 duelist.block(dex);
+                extraBlock += dex;
             }
         }
 

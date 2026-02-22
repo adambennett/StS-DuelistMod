@@ -31,7 +31,7 @@ public class WarriorReturningAlive extends DuelistCard {
 
     public WarriorReturningAlive() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 7;
+        this.baseBlock = this.block = 8;
         this.baseMagicNumber = this.magicNumber = 1; // draw warriors
         this.tags.add(Tags.SPELL);
         this.originalName = this.name;
@@ -60,7 +60,7 @@ public class WarriorReturningAlive extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

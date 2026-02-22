@@ -38,6 +38,7 @@ public class MagnetInduction extends DuelistCard {
         this.baseTributes = this.tributes = 1;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MAGNET);
+        this.exhaust = true;
         this.originalName = this.name;
     }
 

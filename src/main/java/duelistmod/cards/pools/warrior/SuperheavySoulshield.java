@@ -35,7 +35,7 @@ public class SuperheavySoulshield extends DuelistCard {
     public SuperheavySoulshield() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes = 2;
-        this.magicNumber = this.baseMagicNumber = 7;
+        this.magicNumber = this.baseMagicNumber = 5;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
         this.misc = 0;

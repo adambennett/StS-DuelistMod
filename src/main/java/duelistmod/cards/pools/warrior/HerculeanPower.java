@@ -42,9 +42,7 @@ public class HerculeanPower extends RevengeDuelistCard {
 
     @Override
     public void onRevengeTriggered(AnyDuelist duelist) {
-        if (this.magicNumber > 0) {
-            duelist.applyPowerToSelf(new VigorPower(duelist.creature(), this.magicNumber));
-        }
+        // no-op, only applies if attacking
     }
 
     @Override
@@ -57,14 +55,14 @@ public class HerculeanPower extends RevengeDuelistCard {
         preDuelistUseCard(owner, targets);
         AnyDuelist duelist = AnyDuelist.from(this);
         tribute();
-        if (duelist.hasPower(VigorPower.POWER_ID)) {
-            int vigor = duelist.getPower(VigorPower.POWER_ID).amount;
-            if (isRevengeActive(this)) {
-                vigor += this.magicNumber;
-            }
-            if (vigor > 0 && targets != null && !targets.isEmpty()) {
-                attack(targets.get(0), this.baseAFX, vigor * 2);
-            }
+        int vigor = duelist.hasPower(VigorPower.POWER_ID)
+                ? duelist.getPower(VigorPower.POWER_ID).amount
+                : 0;
+        if (isRevengeActive(this)) {
+            vigor += this.magicNumber;
+        }
+        if (vigor > 0 && targets != null && !targets.isEmpty()) {
+            attack(targets.get(0), this.baseAFX, vigor * 2);
         }
         postDuelistUseCard(owner, targets);
     }

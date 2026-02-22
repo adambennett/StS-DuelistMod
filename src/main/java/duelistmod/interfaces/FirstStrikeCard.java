@@ -11,14 +11,21 @@ import duelistmod.dto.AnyDuelist;
 
 public interface FirstStrikeCard {
 
+    /** Target may be null or dead */
     default void triggerFirstStrike(FirstStrikeDuelistCard caller, AnyDuelist duelist, AbstractCreature target) {
-        if (duelist.powers() != null && !DuelistMod.triggeringCombinationAttackFirstStrikeEffect) {
+        boolean anyPowersTriggeringNow =
+                DuelistMod.triggeringCombinationAttackFirstStrikeEffect ||
+                DuelistMod.triggeringDownbeatFirstStrikeEffect ||
+                DuelistMod.triggeringEgoBoostFirstStrikeEffect;
+        if (duelist.powers() != null && !anyPowersTriggeringNow) {
             for (AbstractPower power : duelist.powers()) {
                 if (power instanceof DuelistPower) {
                     DuelistPower dp =  (DuelistPower) power;
                     dp.onFirstStrikeTriggered(caller, target);
                 }
             }
+        }
+        if (duelist.relics() != null) {
             for (AbstractRelic relic : duelist.relics()) {
                 if (relic instanceof DuelistRelic) {
                     DuelistRelic  duelistRelic = (DuelistRelic)relic;

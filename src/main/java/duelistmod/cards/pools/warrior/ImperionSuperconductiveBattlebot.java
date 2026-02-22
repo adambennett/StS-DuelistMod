@@ -27,6 +27,7 @@ public class ImperionSuperconductiveBattlebot extends Berserkion {
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.APEX);
         this.tags.add(Tags.ROCK);
+        this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.MAGNET);
         this.tags.add(Tags.NEVER_GENERATE);
         this.baseDamage = this.damage = 7;

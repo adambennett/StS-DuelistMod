@@ -15,6 +15,8 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.logging.log4j.Logger;
 import java.util.concurrent.TimeUnit;
 
+import static duelistmod.metrics.MetricsHelper.ENDPOINT_EXCEPTION_HANDLER;
+
 public class ExceptionHandlerPatch {
 
     @SpirePatch(clz = ExceptionHandler.class, method = "handleException")
@@ -26,9 +28,9 @@ public class ExceptionHandlerPatch {
         public static void sendExceptionRequestToServer(Exception ex, String devMessage) {
             try {
                 OkHttpClient client = new OkHttpClient().newBuilder()
-                        .connectTimeout(5, TimeUnit.MINUTES)
-                        .readTimeout(5, TimeUnit.MINUTES)
-                        .writeTimeout(5, TimeUnit.MINUTES)
+                        .connectTimeout(25, TimeUnit.SECONDS)
+                        .readTimeout(10, TimeUnit.SECONDS)
+                        .writeTimeout(30, TimeUnit.SECONDS)
                         .build();
                 LoggedException exception = new LoggedException(
                         ex != null ? ExceptionUtils.getRootCauseMessage(ex) : "",
@@ -38,12 +40,20 @@ public class ExceptionHandlerPatch {
                         devMessage,
                         DuelistMod.runUUID
                 );
+
+                // Truncate too-long errors
+                String stackTrace = exception.getStackTrace();
+                if (stackTrace != null && stackTrace.length() > 50000) {
+                    stackTrace = stackTrace.substring(0, 50000) + "\n... [truncated]";
+                }
+                exception.setStackTrace(stackTrace);
+
                 Gson gson = new Gson();
                 String requestBody = gson.toJson(exception);
                 MediaType mediaType = MediaType.parse("application/json");
                 RequestBody body = RequestBody.create(requestBody, mediaType);
                 Request request = new Request.Builder()
-                        .url("https://www.server.duelistmetrics.com/logException")
+                        .url(ENDPOINT_EXCEPTION_HANDLER)
                         .method("POST", body)
                         .addHeader("Content-Type", "application/json;charset=UTF-8")
                         .build();

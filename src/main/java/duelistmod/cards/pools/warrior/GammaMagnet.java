@@ -28,7 +28,7 @@ public class GammaMagnet extends MagnetCard {
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -39,6 +39,7 @@ public class GammaMagnet extends MagnetCard {
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
+        this.tags.add(Tags.WARRIOR);
         this.tags.add(Tags.ROCK);
         this.originalName = this.name;
         this.isSummon = true;

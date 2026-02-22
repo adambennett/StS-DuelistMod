@@ -2,83 +2,74 @@ package duelistmod.cards.pools.warrior;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
-import duelistmod.actions.unique.MagnetEnergyGainAction;
-import duelistmod.dto.AnyDuelist;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.warrior.AlphaMagnetPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class AlphaElectro extends AlphaMagnet {
+public class VorseRaider extends DuelistCard {
 
-    public static final String ID = DuelistMod.makeID("AlphaElectro");
+    public static final String ID = DuelistMod.makeID("VorseRaider");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("AlphaElectro.png");
+    public static final String IMG = DuelistMod.makeCardPath("Vorse_Raider.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
 
-    public AlphaElectro() {
+    public VorseRaider() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 14;
-        this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.MAGNET);
         this.tags.add(Tags.WARRIOR);
-        this.tags.add(Tags.ROCK);
+        this.tags.add(Tags.WARRIOR_DECK);
+        this.superheavyDeckCopies = 1;
+        this.baseDamage = this.damage = 8;
+        this.summons = this.baseSummons = 1;
         this.originalName = this.name;
         this.isSummon = true;
         this.enemyIntent = AbstractMonster.Intent.ATTACK;
+        this.setupStartingCopies();
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
-        AnyDuelist duelist = AnyDuelist.from(this);
-
         summon();
-
-        if (targets.size() > 0) {
+        if (!targets.isEmpty()) {
             attack(targets.get(0), AFX, this.damage);
         }
-
-        AlphaMagnetPower pow;
-        if (duelist.hasPower(AlphaMagnetPower.POWER_ID)) {
-            pow = (AlphaMagnetPower) duelist.getPower(AlphaMagnetPower.POWER_ID);
-        } else {
-            pow = new AlphaMagnetPower(owner, owner);
-        }
-        pow.electrify(2);
-
-        this.addToBot(new MagnetEnergyGainAction(owner, CardType.SKILL));
-
         postDuelistUseCard(owner, targets);
     }
 
     @Override
-    public AbstractCard makeCopy() {
-        return new AlphaElectro();
-    }
+    public AbstractCard makeCopy() { return new VorseRaider(); }
 
     @Override
-    public void upgrade() {}
-
-    @Override
-    public boolean canUpgrade() {
-        return false;
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeSummons(1);
+            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.fixUpgradeDesc();
+            this.initializeDescription();
+        }
     }
-
 }

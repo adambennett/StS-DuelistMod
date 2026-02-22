@@ -507,9 +507,9 @@
 		"NAME": "Dragons"
 	},
 	"theDuelist:DrivenDaredevil": {
-		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Strength to an enemy.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Strength to the enemy.",
 		"NAME": "Driven Daredevil",
-		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Strength to an enemy."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Strength to the enemy."
 	},
 	"theDuelist:EarthOrbCard": {
 		"DESCRIPTION": "Channel an Earth Orb.",
@@ -7520,9 +7520,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Aqua NL Tribute !duelist:TRIB! NL Increment !duelist:M!. NL Deal !D! damage. NL Overflow !M! - Gain !duelist:M! *Temporary *HP."
 	},
 	"theDuelist:GeneralGantal": {
-		"DESCRIPTION": "Aqua Warrior NL Tribute !duelist:TRIB! NL Freeze an enemy. At the start of the next !M! turns, Freeze the targeted enemy again.",
+		"DESCRIPTION": "{@@}Aqua Warrior NL Tribute !duelist:TRIB! NL Freeze an enemy. At the start of {!M!|1=|@=the }next {!M!|1=|@=!M! }turn{!M!|1=|@=s}, Freeze the targeted enemy again. NL Exhaust.",
 		"NAME": "General Gantala of the Ice",
-		"UPGRADE_DESCRIPTION": "Aqua Warrior NL Tribute !duelist:TRIB! NL Freeze an enemy. At the start of the next !M! turns, Freeze the targeted enemy again."
+		"UPGRADE_DESCRIPTION": "{@@}Aqua Warrior NL Tribute !duelist:TRIB! NL Freeze an enemy. At the start of {!M!|1=|@=the }next {!M!|1=|@=!M! }turn{!M!|1=|@=s}, Freeze the targeted enemy again."
 	},
 	"theDuelist:GiantPairfish": {
 		"DESCRIPTION": "Giant Aqua Wyrm NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the Tribute cost of this card by !M! each time you Overflow.",
@@ -10952,9 +10952,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain [E] [E] NL Guarded !duelist:G!: Gain [E] next turn. NL Exhaust."
 	},
 	"theDuelist:CrystalBlessing": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Double your Vigor. NL Guarded !duelist:G!: Gain !duelist:M! Strength for each enemy in combat. NL Exhaust.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Double your Vigor. NL Guarded !duelist:G!: Gain !M! Strength for each enemy in combat. NL Exhaust.",
 		"NAME": "Crystal Blessing",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Double your Vigor. NL Guarded !duelist:G!: Gain !duelist:M! Strength for each enemy in combat. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Double your Vigor. NL Guarded !duelist:G!: Gain !M! Strength for each enemy in combat. NL Exhaust."
 	},
 	"theDuelist:CrystalTree": {
 		"DESCRIPTION": "The first time you lose HP each turn, gain Vigor equal to 10% of your remaining HP.",
@@ -10976,20 +10976,25 @@
 		"NAME": "Dark Crusader",
 		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
+	"theDuelist:VorseRaider": {
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"NAME": "Vorse Raider",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage."
+	},
 	"theDuelist:DarkGrepher": {
 		"DESCRIPTION": "Malicious NL Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies once for every !M! Dexterity you have.",
 		"NAME": "Dark Grepher",
 		"UPGRADE_DESCRIPTION": "Malicious NL Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies once for every !M! Dexterity you have."
 	},
 	"theDuelist:DarkOccultism": {
-		"DESCRIPTION": "Whenever you gain Dexterity, take 1 damage then gain !M! Block.",
+		"DESCRIPTION": "The first time you play a Spell each turn, ALL enemies lose HP equal to your Vigor.",
 		"NAME": "Dark Occultism",
-		"UPGRADE_DESCRIPTION": "Whenever you gain Dexterity, take 1 damage then gain !M! Block."
+		"UPGRADE_DESCRIPTION": "Innate NL The first time you play a Spell each turn, ALL enemies lose HP equal to your Vigor."
 	},
 	"theDuelist:DawnKnight": {
-		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Guarded !duelist:G!: Apply !M! Weak to a random enemy.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Guarded !duelist:G!: Apply !M! Weak.",
 		"NAME": "Dawn Knight",
-		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Guarded !duelist:G!: Apply !M! Weak to a random enemy."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Guarded !duelist:G!: Apply !M! Weak."
 	},
 	"theDuelist:DeltaAttacker": {
 		"DESCRIPTION": "Deal !D! damage to ALL enemies, then repeat for each Warrior you currently have summoned. NL Guarded !duelist:G!: Gain !B! Block each time damage is dealt.",
@@ -10997,14 +11002,14 @@
 		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies, then repeat for each Warrior you currently have summoned. NL Guarded !duelist:G!: Gain !B! Block each time damage is dealt."
 	},
 	"theDuelist:DeltaMagnet": {
-		"DESCRIPTION": "{@@}Rock NL Summon !duelist:SUMM! NL Gain !B! Block !M! time{!M!|1=|@=s}. NL If the previous card played was a Rock, NL gain [E]",
+		"DESCRIPTION": "{@@}Rock Warrior NL Summon !duelist:SUMM! NL Gain !B! Block !M! time{!M!|1=|@=s}. NL If the previous card played was a Rock, NL gain [E]",
 		"NAME": "Delta the Magnet Warrior",
-		"UPGRADE_DESCRIPTION": "{@@}Rock NL Summon !duelist:SUMM! NL Gain !B! Block !M! time{!M!|1=|@=s}. NL If the previous card played was a Rock, NL gain [E]"
+		"UPGRADE_DESCRIPTION": "{@@}Rock Warrior NL Summon !duelist:SUMM! NL Gain !B! Block !M! time{!M!|1=|@=s}. NL If the previous card played was a Rock, NL gain [E]"
 	},
 	"theDuelist:EpsilonMagnet": {
-		"DESCRIPTION": "{@@}Rock NL Summon !duelist:SUMM! NL Gain !B! Block !M! time{!M!|1=|@=s}. NL If the previous card played was a Rock, NL gain [E]",
+		"DESCRIPTION": "{@@}Rock Warrior NL Summon !duelist:SUMM! NL Gain !B! Block !M! time{!M!|1=|@=s}. NL If the previous card played was a Rock, NL gain [E]",
 		"NAME": "Epsilon the Magnet Warrior",
-		"UPGRADE_DESCRIPTION": "{@@}Rock NL Summon !duelist:SUMM! NL Gain !B! Block !M! time{!M!|1=|@=s}. NL If the previous card played was a Rock, NL gain [E]"
+		"UPGRADE_DESCRIPTION": "{@@}Rock Warrior NL Summon !duelist:SUMM! NL Gain !B! Block !M! time{!M!|1=|@=s}. NL If the previous card played was a Rock, NL gain [E]"
 	},
 	"theDuelist:Downbeat": {
 		"DESCRIPTION": "{@@}~~FirstStrike~~! effects are triggered !M! additional time{!M!|1=|@=s}.",
@@ -11042,9 +11047,9 @@
 		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL ~~FirstStrike~~: Gain !B! Block."
 	},
 	"theDuelist:GlowingCrossbow": {
-		"DESCRIPTION": "Deal !D! damage. NL ~~FirstStrike~~: Apply !M! Vulnerable.",
+		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Vigor. NL ~~FirstStrike~~: Apply !M! Vulnerable.",
 		"NAME": "Glowing Crossbow",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL ~~FirstStrike~~: Apply !M! Vulnerable."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! Vigor. NL ~~FirstStrike~~: Apply !M! Vulnerable."
 	},
 	"theDuelist:GravityWarrior": {
 		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain Strength equal to twice your Dexterity until the end of turn.",
@@ -11059,7 +11064,7 @@
 	"theDuelist:HarmonicWaves": {
 		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Vigor at the start of next turn. NL Exhaust.",
 		"NAME": "Harmonic Waves",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! Vigor at the start of next turn. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! Vigor at the start of next turn."
 	},
 	"theDuelist:HayateTheEarthStar": {
 		"DESCRIPTION": "{@@}Cardinal NL Tribute !duelist:TRIB! NL Draw !M! Warrior{!M!|1=|@=s}. You cannot draw additional cards this turn.",
@@ -11087,9 +11092,9 @@
 		"UPGRADE_DESCRIPTION": "Gain !M! Vigor. NL Nimble: Draw a Warrior."
 	},
 	"theDuelist:LightLaser": {
-		"DESCRIPTION": "Tribute X NL Deal !D! damage to ALL enemies twice. At the start of next turn, gain X Dexterity until the end of turn. NL Revenge: Gain X Vigor.",
+		"DESCRIPTION": "Tribute X NL Deal !D! damage. NL Revenge: Apply X Vulnerable.",
 		"NAME": "Light Laser",
-		"UPGRADE_DESCRIPTION": "Tribute X NL Deal !D! damage to ALL enemies twice. At the start of next turn, gain X Dexterity until the end of turn. NL Revenge: Gain X Vigor."
+		"UPGRADE_DESCRIPTION": "Tribute X NL Deal !D! damage. NL Revenge: Apply X Vulnerable."
 	},
 	"theDuelist:MagnetBonding": {
 		"DESCRIPTION": "{@@}Add !M! random Magnet card{!M!|1=|@=s} into your hand. {!M!|1=It|@=They} cost{!M!|1=s|@=} 0 this turn. NL Exhaust.",
@@ -11157,9 +11162,9 @@
 		"UPGRADE_DESCRIPTION": "Rock Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Guarded !duelist:G!: Gain Plated Armor equal to half your Dexterity."
 	},
 	"theDuelist:SpiritForce": {
-		"DESCRIPTION": "Whenever you gain Dexterity or Strength, gain !M! Block.",
+		"DESCRIPTION": "Whenever you gain Dexterity or Vigor, gain !M! Block.",
 		"NAME": "Spirit Force",
-		"UPGRADE_DESCRIPTION": "Whenever you gain Dexterity or Strength, gain !M! Block."
+		"UPGRADE_DESCRIPTION": "Whenever you gain Dexterity or Vigor, gain !M! Block."
 	},
 	"theDuelist:SuperheavyBenkei": {
 		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. Guarded !duelist:G!: Gain Vigor equal to unblocked damage dealt.",
@@ -11232,19 +11237,19 @@
 		"UPGRADE_DESCRIPTION": "{@@}Superheavy NL Tribute !duelist:TRIB! NL ~~SpecialS~~ a second copy of the next !M! Skill{!M!|1=|@=s} you play. NL Exhaust."
 	},
 	"theDuelist:Valkyrion": {
-		"DESCRIPTION": "Apex Rock NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Magnet you have, then lose all Magnets. NL Guarded !duelist:G!: Gain a random Magnet.",
+		"DESCRIPTION": "Apex Rock Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Magnet you have, then lose all Magnets. NL Guarded !duelist:G!: Gain a random Magnet.",
 		"NAME": "Valkyrion the Magna Warrior",
-		"UPGRADE_DESCRIPTION": "Apex Rock NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Magnet you have, then lose all Magnets. NL Guarded !duelist:G!: Gain a random Magnet."
+		"UPGRADE_DESCRIPTION": "Apex Rock Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Magnet you have, then lose all Magnets. NL Guarded !duelist:G!: Gain a random Magnet."
 	},
 	"theDuelist:Berserkion": {
-		"DESCRIPTION": "Apex Rock NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Magnet you have, then lose all Magnets. NL Guarded !duelist:G!: Gain a random Magnet.",
+		"DESCRIPTION": "Apex Rock Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Magnet you have, then lose all Magnets. NL Guarded !duelist:G!: Gain a random Magnet.",
 		"NAME": "Berserkion the Electromagna",
-		"UPGRADE_DESCRIPTION": "Apex Rock NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Magnet you have, then lose all Magnets. NL Guarded !duelist:G!: Gain a random Magnet."
+		"UPGRADE_DESCRIPTION": "Apex Rock Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Magnet you have, then lose all Magnets. NL Guarded !duelist:G!: Gain a random Magnet."
 	},
 	"theDuelist:ImperionSuperconductiveBattlebot": {
-		"DESCRIPTION": "Apex Rock NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Magnet you have, then lose all Magnets. NL Guarded !duelist:G!: Gain a random Magnet.",
+		"DESCRIPTION": "Apex Rock Machine NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Magnet you have, then lose all Magnets. NL Guarded !duelist:G!: Gain a random Magnet.",
 		"NAME": "Superconductive Battlebot",
-		"UPGRADE_DESCRIPTION": "Apex Rock NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Magnet you have, then lose all Magnets. NL Guarded !duelist:G!: Gain a random Magnet."
+		"UPGRADE_DESCRIPTION": "Apex Rock Machine NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Magnet you have, then lose all Magnets. NL Guarded !duelist:G!: Gain a random Magnet."
 	},
 	"theDuelist:WarriorReturningAlive": {
 		"DESCRIPTION": "{@@}Gain !B! Block. NL Draw !M! Warrior{!M!|1=|@=s}.",
@@ -11262,38 +11267,38 @@
 		"UPGRADE_DESCRIPTION": "Cardinal NL Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Nimble: Gain !M! Blur."
 	},
 	"theDuelist:Zombyra": {
-		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Siphon !M! Temporary HP from an enemy.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Siphon !M! *Temporary *HP from an enemy.",
 		"NAME": "Zombyra the Dark",
-		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Siphon !M! Temporary HP from an enemy."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Siphon !M! *Temporary *HP from an enemy."
 	},
 	"theDuelist:AlphaMagnet": {
-		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, gain [E]",
+		"DESCRIPTION": "Rock Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, gain [E]",
 		"NAME": "Alpha the Magnet Warrior",
-		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, gain [E]"
+		"UPGRADE_DESCRIPTION": "Rock Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, gain [E]"
 	},
 	"theDuelist:BetaMagnet": {
-		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Gain !B! Block. NL If the previous card played was a Skill, NL gain [E]",
+		"DESCRIPTION": "Rock Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL If the previous card played was a Skill, NL gain [E]",
 		"NAME": "Beta the Magnet Warrior",
-		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Gain !B! Block. NL If the previous card played was a Skill, NL gain [E]"
+		"UPGRADE_DESCRIPTION": "Rock Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL If the previous card played was a Skill, NL gain [E]"
 	},
 	"theDuelist:GammaMagnet": {
-		"DESCRIPTION": "{@@}Rock NL Summon !duelist:SUMM! NL Draw !M! monster{!M!|1=|@=s}. NL If the previous card played was a Power, gain [E]",
+		"DESCRIPTION": "{@@}Rock Warrior NL Summon !duelist:SUMM! NL Draw !M! monster{!M!|1=|@=s}. NL If the previous card played was a Power, gain [E]",
 		"NAME": "Gamma the Magnet Warrior",
-		"UPGRADE_DESCRIPTION": "{@@}Rock NL Summon !duelist:SUMM! NL Draw !M! monster{!M!|1=|@=s}. NL If the previous card played was a Power, gain [E]"
+		"UPGRADE_DESCRIPTION": "{@@}Rock Warrior NL Summon !duelist:SUMM! NL Draw !M! monster{!M!|1=|@=s}. NL If the previous card played was a Power, gain [E]"
 	},
 	"theDuelist:AlphaElectro": {
-		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, gain [E]",
+		"DESCRIPTION": "Rock Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, gain [E]",
 		"NAME": "Alpha the Electromagnet Warrior",
-		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, gain [E]"
+		"UPGRADE_DESCRIPTION": "Rock Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, gain [E]"
 	},
 	"theDuelist:BetaElectro": {
-		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Gain !B! Block. NL If the previous card played was a Skill, NL gain [E]",
+		"DESCRIPTION": "Rock Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL If the previous card played was a Skill, NL gain [E]",
 		"NAME": "Beta the Electromagnet Warrior",
-		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Gain !B! Block. NL If the previous card played was a Skill, NL gain [E]"
+		"UPGRADE_DESCRIPTION": "Rock Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL If the previous card played was a Skill, NL gain [E]"
 	},
 	"theDuelist:GammaElectro": {
-		"DESCRIPTION": "{@@}Rock NL Summon !duelist:SUMM! NL Draw !M! monster{!M!|1=|@=s}. NL If the previous card played was a Power, gain [E]",
+		"DESCRIPTION": "{@@}Rock Warrior NL Summon !duelist:SUMM! NL Draw !M! monster{!M!|1=|@=s}. NL If the previous card played was a Power, gain [E]",
 		"NAME": "Gamma the Electromagnet Warrior",
-		"UPGRADE_DESCRIPTION": "{@@}Rock NL Summon !duelist:SUMM! NL Draw !M! monster{!M!|1=|@=s}. NL If the previous card played was a Power, gain [E]"
+		"UPGRADE_DESCRIPTION": "{@@}Rock Warrior NL Summon !duelist:SUMM! NL Draw !M! monster{!M!|1=|@=s}. NL If the previous card played was a Power, gain [E]"
 	}
 }

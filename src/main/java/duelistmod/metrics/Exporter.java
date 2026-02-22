@@ -95,7 +95,8 @@ public class Exporter {
                     Util.log("Could not add extra Duelist Cards to DuelistMod export!");
                     Util.log(ex.toString());
                 }
-            } else if (!modInfo.Name.equals("Duelist Mod")) {
+            }
+            /*else if (!modInfo.Name.equals("Duelist Mod")) {
                 boolean add = true;
                 if (this.moduleVersions.containsKey(modInfo.ID)) {
                     List<String> trackedVersions = new ArrayList<>(this.moduleVersions.get(modInfo.ID));
@@ -106,7 +107,7 @@ public class Exporter {
                     mods.add(new ModExportData(modInfo));
                     numMods++;
                 }
-            }
+            }*/
         }
         return numMods;
     }

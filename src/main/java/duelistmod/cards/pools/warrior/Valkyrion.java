@@ -42,6 +42,7 @@ public class Valkyrion extends GuardedMagnetCard {
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.APEX);
         this.tags.add(Tags.ROCK);
+        this.tags.add(Tags.WARRIOR);
         this.tags.add(Tags.MAGNET);
         this.baseDamage = this.damage = 6;
         this.baseTributes = this.tributes = 3;

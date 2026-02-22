@@ -68,8 +68,8 @@ public class DawnKnight extends GuardedDuelistCard {
 
     @Override
     public void onGuardedTriggered(AnyDuelist duelist, List<AbstractCreature> targets) {
-        AbstractMonster mon = AbstractDungeon.getMonsters().getRandomMonster(true);
-        if (mon != null && this.magicNumber > 0) {
+        if (!targets.isEmpty() && this.magicNumber > 0) {
+            AbstractCreature mon = targets.get(0);
             duelist.applyPower(mon, duelist.creature(), new WeakPower(mon, this.magicNumber, false));
         }
     }

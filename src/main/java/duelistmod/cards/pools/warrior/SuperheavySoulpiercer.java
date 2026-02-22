@@ -33,10 +33,10 @@ public class SuperheavySoulpiercer extends FirstStrikeDuelistCard {
 
     public SuperheavySoulpiercer() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 14;
+        this.baseDamage = this.damage = 10;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
-        this.baseTributes = this.tributes = 2;
+        this.baseTributes = this.tributes = 1;
         this.originalName = this.name;
     }
 
@@ -69,7 +69,7 @@ public class SuperheavySoulpiercer extends FirstStrikeDuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(4);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

@@ -139,7 +139,6 @@ public class DuelistDropdown extends DropdownMenu implements IUIElement {
                 }
                 for (int i = 0; i < this.rows.size(); i++) {
                     String rowText = (String) hbField2.get(this.rows.get(i));
-                    Util.log("Checking if dropdown row value (" + rowText + ") matches check text (" + text + ")");
                     if (rowText.equals(text)) {
                         index = i;
                         break;

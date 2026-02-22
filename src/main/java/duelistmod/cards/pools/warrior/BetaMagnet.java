@@ -40,6 +40,7 @@ public class BetaMagnet extends MagnetCard {
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
+        this.tags.add(Tags.WARRIOR);
         this.tags.add(Tags.ROCK);
         this.originalName = this.name;
         this.isSummon = true;

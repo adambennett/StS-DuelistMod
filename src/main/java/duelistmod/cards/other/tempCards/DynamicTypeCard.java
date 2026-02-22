@@ -1,25 +1,26 @@
 package duelistmod.cards.other.tempCards;
 
-import java.util.ArrayList;
-
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.AddCardTagsToListAction;
 import duelistmod.cards.*;
-import duelistmod.cards.incomplete.*;
-import duelistmod.cards.other.tokens.*;
-import duelistmod.cards.pools.warrior.DarkCrusader;
-import duelistmod.helpers.Util;
+import duelistmod.cards.incomplete.RainbowGravity;
+import duelistmod.cards.incomplete.RockSunrise;
+import duelistmod.cards.other.tokens.SummonToken;
+import duelistmod.cards.other.tokens.TributeToken;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.GreedShardPower;
+import duelistmod.powers.RainbowCapturePower;
+import duelistmod.powers.SummonPower;
 import duelistmod.powers.duelistPowers.RockSunrisePower;
 import duelistmod.variables.Tags;
+
+import java.util.ArrayList;
 
 public class DynamicTypeCard extends DuelistCard 
 {
@@ -103,22 +104,7 @@ public class DynamicTypeCard extends DuelistCard
     		tribute(p, 1, false, randMon);
     		if (DuelistMod.debug) { DuelistMod.logger.info("Tribute Token just called tribute with this randomly generated monster: " + randMon.originalName + " :: and tagSave was: " + tagSave.toString()); }
     	}
-    	
-    	if (this.callCard instanceof DarkCrusader)
-    	{
-    		if (this.tagSave.equals(Tags.WARRIOR)) 
-    		{ 
-    			DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new WarriorToken());
-    			summon(p, this.magicNumber, tok); 
-    		}
-    		else if (this.tagSave.equals(Tags.SUPERHEAVY)) 
-    		{ 
-    			DuelistCard tok = DuelistCardLibrary.getTokenInCombat(new SuperheavyToken());
-    			summon(p, this.magicNumber, tok); 
-    		}
-    		else { Util.log("How'd you choose something besides Warrior or Superheavy for Dark Crusader??"); }
-    	}
-    	
+
     	if (this.callCard instanceof RainbowGravity)
     	{
     		ArrayList<AbstractCard> monstersToModify = new ArrayList<AbstractCard>();

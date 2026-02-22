@@ -42,13 +42,15 @@ public abstract class NimbleDuelistCard extends DuelistCard {
         if (duelist.powers() != null) {
             for (AbstractPower power : duelist.powers()) {
                 if (power instanceof DuelistPower) {
-                    DuelistPower dp =  (DuelistPower) power;
+                    DuelistPower dp = (DuelistPower) power;
                     dp.onNimbleTriggered(this, targets);
                 }
             }
+        }
+        if (duelist.relics() != null) {
             for (AbstractRelic relic : duelist.relics()) {
                 if (relic instanceof DuelistRelic) {
-                    DuelistRelic  duelistRelic = (DuelistRelic)relic;
+                    DuelistRelic duelistRelic = (DuelistRelic)relic;
                     duelistRelic.onNimbleTriggered(this, targets);
                 }
             }

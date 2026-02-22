@@ -1,18 +1,19 @@
 package duelistmod.powers.warrior;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPower;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.variables.Tags;
 
 public class DarkOccultismPower extends DuelistPower {
 
@@ -22,6 +23,7 @@ public class DarkOccultismPower extends DuelistPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     private final AnyDuelist duelist;
+    private boolean activatedThisTurn = false;
 
     public DarkOccultismPower(final AbstractCreature owner, int blockGain) {
         this.name = NAME;
@@ -36,18 +38,33 @@ public class DarkOccultismPower extends DuelistPower {
     }
 
     @Override
-    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-        if (target == this.owner && power != null && DexterityPower.POWER_ID.equals(power.ID) && power.amount > 0) {
-            flash();
-            AbstractDungeon.actionManager.addToBottom(
-                    new DamageAction(this.owner, new DamageInfo(this.owner, 1, DamageInfo.DamageType.THORNS))
-            );
-            AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this.owner, this.owner, this.amount));
+    public void onPreUseCard(AbstractCard card) {
+        if (!this.activatedThisTurn && card.hasTag(Tags.SPELL)) {
+            this.activatedThisTurn = true;
+            if (this.duelist.hasPower(VigorPower.POWER_ID)) {
+                int amt = this.duelist.getPower(VigorPower.POWER_ID).amount;
+                if (amt > 0) {
+                    if (this.duelist.player()) {
+                        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+                            if (monster != null && !monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) {
+                                AbstractDungeon.actionManager.addToBottom(new LoseHPAction(monster, this.duelist.creature(), amt, AbstractGameAction.AttackEffect.NONE));
+                            }
+                        }
+                    } else {
+                        AbstractDungeon.actionManager.addToBottom(new LoseHPAction(AbstractDungeon.player, this.duelist.creature(), amt, AbstractGameAction.AttackEffect.NONE));
+                    }
+                }
+            }
         }
     }
 
     @Override
+    public void atStartOfTurn() {
+        this.activatedThisTurn = false;
+    }
+
+    @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0];
     }
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.metrics.builders.*;
 
-class ColorExportData {
+public class ColorExportData {
     public AbstractCard.CardColor color;
     public String id;
     public String name;

@@ -1601,7 +1601,7 @@
         "theDuelist:SpiritForcePower": {
                 "NAME": "Spirit Force",
                 "DESCRIPTIONS": [
-                        "Whenever you gain #yDexterity or #yStrength, gain #b",
+                        "Whenever you gain #yDexterity or #yVigor, gain #b",
                         " #yBlock."
                 ]
         },
@@ -1649,8 +1649,7 @@
         "theDuelist:DarkOccultismPower": {
                 "NAME": "Dark Occultism",
                 "DESCRIPTIONS": [
-                        "Whenever you gain Dexterity, take 1 damage and then gain ",
-                        " Block."
+                        "The first time you play a #ySpell each turn, ALL enemies lose HP equal to your #yVigor."
                 ]
         },
         "theDuelist:DownbeatPower": {

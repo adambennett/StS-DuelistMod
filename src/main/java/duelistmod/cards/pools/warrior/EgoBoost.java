@@ -8,11 +8,15 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
+import duelistmod.characters.TheDuelist;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.helpers.CardFinderHelper;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.warrior.EgoBoostPower;
 import duelistmod.variables.Tags;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EgoBoost extends DuelistCard {
@@ -49,6 +53,20 @@ public class EgoBoost extends DuelistCard {
         preDuelistUseCard(owner, targets);
         if (this.magicNumber > 0) {
             AnyDuelist.from(this).applyPowerToSelf(new EgoBoostPower(owner, this.magicNumber), owner);
+        }
+        ArrayList<AbstractCard> randomCards = CardFinderHelper.find(
+                1,
+                TheDuelist.cardPool.group,
+                DuelistMod.myCards,
+                CardFinderHelper.hasAnyTags(Tags.WARRIOR)
+        );
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.player()) {
+            DuelistCard.addCardsToHand(randomCards);
+        } else if (duelist.getEnemy() != null) {
+            for (AbstractCard c : randomCards) {
+                duelist.getEnemy().addCardToHand(AbstractEnemyDuelist.fromCard(c));
+            }
         }
         postDuelistUseCard(owner, targets);
     }

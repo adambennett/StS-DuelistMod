@@ -9,23 +9,23 @@
         },
         "theDuelist:SealedPack": {
                 "NAME": "Small Booster",
-                "DESCRIPTIONS": ["Open a #yLegend #yof #yBlue #yEyes booster pack. Add #b", " #yRandomized cards from this set to your hand."]
+                "DESCRIPTIONS": ["Add #b", " #yRandomized cards from the #yLegend #yof #yBlue #yEyes set to your hand."]
         },
         "theDuelist:SealedPackB": {
                 "NAME": "Small Pack",
-                "DESCRIPTIONS": ["Open a booster pack containing cards from #yPharaoh's #yServant and #yMetal #yRaiders. Add #b", " #yRandomized cards from either of these sets to your hand."]
+                "DESCRIPTIONS": ["Add #b", " #yRandomized cards from either the #yPharaoh's #yServant or #yMetal #yRaiders set to your hand."]
         },
         "theDuelist:SealedPackC": {
                 "NAME": "Themed Booster",
-                "DESCRIPTIONS": ["Open a booster pack containing cards of the last type that you #ySummoned. NL Add #b", " #yRandomized cards from this type to your hand."]
+                "DESCRIPTIONS": ["Add #b", " #yRandomized cards of the last type that you #ySummoned to your hand."]
         },
         "theDuelist:SealedPackD": {
                 "NAME": "Large Booster",
-                "DESCRIPTIONS": ["Open a #b", " card booster pack. Cards are #yRandomized. Guaranteed to receive at least one #yRare card."]
+                "DESCRIPTIONS": ["Add #b", " #yRandomized cards to your hand. Guaranteed to receive at least one #yRare card."]
         },
         "theDuelist:SealedPackE": {
                 "NAME": "Upgraded Booster",
-                "DESCRIPTIONS": ["Open a #b", " card booster pack. Cards are #yRandomized and #yUpgraded. Guaranteed to receive one #yRare card."]
+                "DESCRIPTIONS": ["Add #b", " #yRandomized and #yUpgraded cards to your hand. Guaranteed to receive at least one #yRare card."]
         },
         "theDuelist:OrbBottle": {
                 "NAME": "Foggy Bottle",
@@ -185,7 +185,7 @@
         },
         "theDuelist:ReducerPotion": {
                 "NAME": "Imperial Potion",
-                "DESCRIPTIONS": ["Gain #b", " #yReductionist. Reduce your #yMax #ySummons by #b", "."]
+                "DESCRIPTIONS": ["Gain #b", " #yReductionist."]
         },
         "theDuelist:BarricadePotion": {
                 "NAME": "Barricade Potion",
@@ -332,11 +332,11 @@
                 "DESCRIPTIONS": ["#ySpecial #ySummon #b", " random #yBeasts on random enemies."]
         },
         "theDuelist:AgilityJuiceUncommon": {
-                "NAME": "Uncommon Agility Juice",
+                "NAME": "Agility Juice (U)",
                 "DESCRIPTIONS": ["Draw #b", " #yUncommon card.", " #yUncommon cards."]
         },
         "theDuelist:AgilityJuiceRare": {
-                "NAME": "Rare Agility Juice",
+                "NAME": "Agility Juice (R)",
                 "DESCRIPTIONS": ["Draw #b", " #yRare card.", " #yRare cards."]
         },
         "theDuelist:PackMentalityPotion": {

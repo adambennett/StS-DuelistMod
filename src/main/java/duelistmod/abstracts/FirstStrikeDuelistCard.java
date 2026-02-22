@@ -20,8 +20,10 @@ public abstract class FirstStrikeDuelistCard extends DuelistCard implements Firs
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     }
 
+    /** Target may be null or dead */
     public abstract void onFirstStrikeTriggered(AnyDuelist duelist, AbstractCreature target);
 
+    /** Target may be null or dead */
     public final void triggerFirstStrike(FirstStrikeDuelistCard caller, AnyDuelist duelist, AbstractCreature target) {
         onFirstStrikeTriggered(duelist, target);
         FirstStrikeCard.super.triggerFirstStrike(caller, duelist, target);

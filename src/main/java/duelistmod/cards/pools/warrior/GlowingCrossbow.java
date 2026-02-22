@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.FirstStrikeDuelistCard;
 import duelistmod.dto.AnyDuelist;
@@ -35,14 +36,14 @@ public class GlowingCrossbow extends FirstStrikeDuelistCard {
     public GlowingCrossbow() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 7;
-        this.baseMagicNumber = this.magicNumber = 2;    // vulnerable
+        this.baseMagicNumber = this.magicNumber = 2;    // vulnerable & vigor
         this.tags.add(Tags.SPELL);
         this.originalName = this.name;
     }
 
     @Override
     public void onFirstStrikeTriggered(AnyDuelist duelist, AbstractCreature target) {
-        if (this.magicNumber > 0) {
+        if (this.magicNumber > 0 && target != null && !target.isDeadOrEscaped()) {
             duelist.applyPower(target, duelist.creature(), new VulnerablePower(target, this.magicNumber, !duelist.player()));
         }
     }
@@ -56,6 +57,10 @@ public class GlowingCrossbow extends FirstStrikeDuelistCard {
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
         firstStrikeSingleTarget(targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (this.magicNumber > 0) {
+            duelist.applyPowerToSelf(new VigorPower(duelist.creature(), this.magicNumber));
+        }
         postDuelistUseCard(owner, targets);
     }
 

@@ -140,7 +140,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	// Member fields
 	public static String version = "v4.2.0";
 	public static Mode modMode = Mode.PROD;
-	public static MetricsMode metricsMode = MetricsMode.LOCAL;
+	public static UploadMode uploadMode = UploadMode.SKIP;
+	public static MetricsMode metricsMode = MetricsMode.PROD;
 	public static String trueVersion = version.substring(1);
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
@@ -1078,7 +1079,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		CustomConsoleCommandHelper.setupCommands();
 
 		// Encounters
-		if (DuelistMod.persistentDuelistData.GameplaySettings.getEnemyDuelists()) {
+		if (persistentDuelistData.GameplaySettings.getEnemyDuelists()) {
 			BaseMod.addEliteEncounter(TheCity.ID, new MonsterInfo("theDuelist:OppositeDuelistEnemy", 4.0F));
 		}
 
@@ -1095,7 +1096,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		//relicAndPotionByDeckData = getRelicsAndPotionsForAllDecks();
 
 		// Upload any untracked mod info to metrics server (card/relic/potion/creature/keyword data)
-		ExportUploader.uploadInfoJSON();
+		if (uploadMode == UploadMode.UPLOAD) {
+			ExportUploader.uploadInfoJSON();
+		}
 
 		// Check tier scores
 		Map<String, Map<String, Map<Integer, Integer>>> cardTierScores = MetricsHelper.getTierScores();
@@ -1174,7 +1177,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		pots.add(new DestructPotionPot());
 		pots.add(new DestructPotionPotB());
 		pots.add(new BabyPotion());
-		pots.add(new TokenPotion());
+		//pots.add(new TokenPotion());
 		//pots.add(new TokenPotionB());
 		pots.add(new DragonSoulPotion());
 		pots.add(new BottledKuriboh());
@@ -1722,15 +1725,15 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	public void receiveEditSounds()
 	{
-        addSound("theDuelist:TimeToDuel", DuelistMod.makeCharAudioPath("CharSelect.ogg"));
-        addSound("theDuelist:TimeToDuelB", DuelistMod.makeCharAudioPath("CharSelectB.ogg"));
-        addSound("theDuelist:AirChannel", DuelistMod.makeCharAudioPath("AirChannelLow.ogg"));
-        addSound("theDuelist:GateChannel", DuelistMod.makeCharAudioPath("GateChannelLow.ogg"));
-        addSound("theDuelist:MudChannel", DuelistMod.makeCharAudioPath("MudChannelLow.ogg"));
-        addSound("theDuelist:MetalChannel", DuelistMod.makeCharAudioPath("MetalChannelLow.ogg"));
-        addSound("theDuelist:FireChannel", DuelistMod.makeCharAudioPath("FireChannelLow.ogg"));
-        addSound("theDuelist:ResummonWhoosh", DuelistMod.makeCharAudioPath("ResummonWhoosh.ogg"));
-		addSound("theDuelist:ShadowChannel", DuelistMod.makeCharAudioPath("ShadowChannelLow.ogg"));
+        addSound("theDuelist:TimeToDuel", makeCharAudioPath("CharSelect.ogg"));
+        addSound("theDuelist:TimeToDuelB", makeCharAudioPath("CharSelectB.ogg"));
+        addSound("theDuelist:AirChannel", makeCharAudioPath("AirChannelLow.ogg"));
+        addSound("theDuelist:GateChannel", makeCharAudioPath("GateChannelLow.ogg"));
+        addSound("theDuelist:MudChannel", makeCharAudioPath("MudChannelLow.ogg"));
+        addSound("theDuelist:MetalChannel", makeCharAudioPath("MetalChannelLow.ogg"));
+        addSound("theDuelist:FireChannel", makeCharAudioPath("FireChannelLow.ogg"));
+        addSound("theDuelist:ResummonWhoosh", makeCharAudioPath("ResummonWhoosh.ogg"));
+		addSound("theDuelist:ShadowChannel", makeCharAudioPath("ShadowChannelLow.ogg"));
     }
 
     private static void addSound(String id, String path) {
@@ -2334,7 +2337,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 				if (c instanceof Sparks) {
 					int roll = ThreadLocalRandom.current().nextInt(1, 20);
 					if (Util.getChallengeLevel() > 9) { roll = 2; }
-					if ((DuelistMod.persistentDuelistData.GameplaySettings.getForceSpecialSparks() && !addedSpecialSparks) || (DuelistMod.persistentDuelistData.GameplaySettings.getAllowSpecialSparks() && roll == 1)) {
+					if ((persistentDuelistData.GameplaySettings.getForceSpecialSparks() && !addedSpecialSparks) || (persistentDuelistData.GameplaySettings.getAllowSpecialSparks() && roll == 1)) {
 						duelistStartingDeck.add(Util.getSpecialSparksCard());
 						addedSpecialSparks = true;
 					} else {
@@ -2349,7 +2352,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 
 		// Force adding Special Sparks
-		if (DuelistMod.persistentDuelistData.GameplaySettings.getForceSpecialSparks() && !addedSpecialSparks) {
+		if (persistentDuelistData.GameplaySettings.getForceSpecialSparks() && !addedSpecialSparks) {
 			duelistStartingDeck.add(Util.getSpecialSparksCard());
 		}
 
@@ -2367,8 +2370,8 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 		}
 
 		// Adding Magnet card
-		if (DuelistMod.getMonsterSetting(MonsterType.MAGNET, MonsterType.magnetDeckKey, MonsterType.magnetDefaultDeck)) {
-			DuelistCard magnet = Util.getRandomMagnetCard(DuelistMod.getMonsterSetting(MonsterType.MAGNET, MonsterType.magnetSuperKey, MonsterType.magnetDefaultSuper), isShiny);
+		if (getMonsterSetting(MonsterType.MAGNET, MonsterType.magnetDeckKey, MonsterType.magnetDefaultDeck)) {
+			DuelistCard magnet = Util.getRandomMagnetCard(getMonsterSetting(MonsterType.MAGNET, MonsterType.magnetSuperKey, MonsterType.magnetDefaultSuper), isShiny);
 			duelistStartingDeck.add(magnet);
 		}
 
@@ -2690,7 +2693,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					Util.logError("Error updating config file during receivePostDungeonUpdate() (B)", e);
 				}
 			}
-			if (DuelistMod.toReplacePoolWith.size() > 0)
+			if (toReplacePoolWith.size() > 0)
 			{
 				CardCrawlGame.dungeon.initializeCardPools();
 			}
@@ -2965,9 +2968,9 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 	}
 
 	public static void receiveStartRun() {
-		if (Util.getChallengeDiffIndex() > -1 && !DuelistMod.playingChallenge) {
+		if (Util.getChallengeDiffIndex() > -1 && !playingChallenge) {
 			Util.setChallengeLevel((Util.getChallengeDiffIndex() * 5) - 5);
-			DuelistMod.playingChallenge = true;
+			playingChallenge = true;
 		}
 		if (Util.getChallengeLevel() > 1) { lastMaxSummons = defaultMaxSummons = 4; }
 		poolIsCustomized = false;
@@ -3042,7 +3045,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			pageNames.add(page.getPageName());
 		}
 
-		DuelistDropdown pageSelector = new DuelistDropdown("", pageNames, Settings.scale * (DuelistMod.xLabPos + DuelistMod.xSecondCol - 30), Settings.scale * footerY, 6, null, (s, i) -> DuelistMod.paginator.setPage(s));
+		DuelistDropdown pageSelector = new DuelistDropdown("", pageNames, Settings.scale * (xLabPos + xSecondCol - 30), Settings.scale * footerY, 6, null, (s, i) -> paginator.setPage(s));
 		paginator = new DuelistPaginator(2,3, 50,50, settingsPages, pages, pageNames, pageSelector);
 		Pager nextPageBtn = new Pager(rightArrow, pagerRightX, pagerY, 100, 100, true, paginator);
 		Pager prevPageBtn = new Pager(leftArrow, pagerLeftX, pagerY, 100, 100, false, paginator);
@@ -3292,7 +3295,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 			if (!potions.containsKey(deckName)) {
 				potions.put(deckName, new ArrayList<>());
 			}
-			for (DuelistRelic relic : DuelistMod.allDuelistRelics) {
+			for (DuelistRelic relic : allDuelistRelics) {
 				boolean canSpawn = true;
 				try { canSpawn = relic.canSpawn(); } catch (Exception ignored) {
 					canSpawnUnchecked.add(relic.relicId);
@@ -3301,7 +3304,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 					relics.get(deckName).add(relic.relicId);
 				}
 			}
-			for (DuelistPotion potion : DuelistMod.allDuelistPotionsForOutput) {
+			for (DuelistPotion potion : allDuelistPotionsForOutput) {
 				boolean canSpawn = true;
 				try { canSpawn = potion.canSpawn(); } catch (Exception ignored) {
 					canSpawnUncheckedPot.add(potion.ID);
@@ -3329,7 +3332,7 @@ PostUpdateSubscriber, RenderSubscriber, PostRenderSubscriber, PreRenderSubscribe
 
 	public static <T> T getMonsterSetting(MonsterType type, String setting, T defaultValue) {
 		try {
-			return (T) DuelistMod.persistentDuelistData.MonsterTypeConfigurations.getTypeConfigurations().get(type).getProperties().get(setting);
+			return (T) persistentDuelistData.MonsterTypeConfigurations.getTypeConfigurations().get(type).getProperties().get(setting);
 		} catch (Exception ex) {
 			Util.logError("Error attempting to lookup monster type settings. Type=" + type + ", setting=" + setting, ex, true);
 		}

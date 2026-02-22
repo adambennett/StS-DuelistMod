@@ -1976,7 +1976,7 @@ public class BasicPool {
             warriorCards.add(new LegendaryFisherman());
             warriorCards.add(new JunkWarrior());
             warriorCards.add(new JunkSpeeder());
-            warriorCards.add(new GeneralGantal());
+            warriorCards.add(new YamiForm());
             warriorCards.add(new FossilSkullKing());
             warriorCards.add(new FossilSkullknight());
             warriorCards.add(new MirrorForce());
@@ -2032,6 +2032,7 @@ public class BasicPool {
         warriorCards.add(new FlameSwordsman());
         warriorCards.add(new Flint());
         warriorCards.add(new GaiaMidnight());
+        warriorCards.add(new GeneralGantal());
         warriorCards.add(new GladiatorReturn());
         warriorCards.add(new GoyoKing());
         warriorCards.add(new HardArmor());
@@ -2053,7 +2054,6 @@ public class BasicPool {
         warriorCards.add(new SuperheavyGeneralCoral());
         warriorCards.add(new SuperheavyGeneralJade());
         warriorCards.add(new SuperheavyWagon());
-        warriorCards.add(new YamiForm());
 
         // Creators
         if (!DuelistMod.persistentDuelistData.CardPoolSettings.getRemoveCreator()) {

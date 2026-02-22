@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPower;
 import duelistmod.dto.AnyDuelist;
@@ -35,7 +35,7 @@ public class SpiritForcePower extends DuelistPower {
     @Override
     public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
         if (target == this.owner && power != null && power.amount > 0 && this.amount > 0) {
-            if (DexterityPower.POWER_ID.equals(power.ID) || StrengthPower.POWER_ID.equals(power.ID)) {
+            if (DexterityPower.POWER_ID.equals(power.ID) || VigorPower.POWER_ID.equals(power.ID)) {
                 flash();
                 this.duelist.block(this.amount);
             }

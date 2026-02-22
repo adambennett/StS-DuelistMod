@@ -49,9 +49,9 @@ public class ExportUploader {
             logger.info(uploadMessage);
             try {
                 OkHttpClient client = new OkHttpClient().newBuilder()
-                        .connectTimeout(5, TimeUnit.MINUTES)
-                        .readTimeout(5, TimeUnit.MINUTES)
-                        .writeTimeout(5, TimeUnit.MINUTES)
+                        .connectTimeout(30, TimeUnit.SECONDS)
+                        .readTimeout(0, TimeUnit.SECONDS)
+                        .writeTimeout(60, TimeUnit.MINUTES)
                         .build();
                 MediaType mediaType = MediaType.parse("application/json");
                 RequestBody body = RequestBody.create(data, mediaType);
@@ -77,9 +77,9 @@ public class ExportUploader {
         logger.info("UPLOADING INFO DATA FOR ORBS  TO: url=" + url + ",data=" + data);
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
-                    .connectTimeout(5, TimeUnit.MINUTES)
-                    .readTimeout(5, TimeUnit.MINUTES)
-                    .writeTimeout(5, TimeUnit.MINUTES)
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(0, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.MINUTES)
                     .build();
             MediaType mediaType = MediaType.parse("application/json");
             Gson gson = new Gson();

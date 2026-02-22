@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.helpers.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.cards.pools.warrior.*;
 import duelistmod.enums.MetricsMode;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.*;
@@ -53,7 +54,7 @@ public class CardExportData implements Comparable<CardExportData> {
 
     public void findMaxUpgrades() {
         Util.log("Checking " + this.card.cardID + " for max upgrades");
-        if (this.card instanceof DuelistCard) {
+        if (this.card instanceof DuelistCard && !(this.card instanceof MagnetCard)) {
             DuelistCard copy = (DuelistCard)card.makeStatEquivalentCopy();
             while (copy.canUpgrade()) {
                 copy.upgrade();
@@ -61,7 +62,7 @@ public class CardExportData implements Comparable<CardExportData> {
             }
             this.maxUpgrades = copy.timesUpgraded;
             Util.log("Max upgrades for " + this.card.cardID + ": " + this.maxUpgrades);
-        } else {
+        } else if (!(this.card instanceof MagnetCard)) {
             BaseGameCheck check = isBaseGameColor(this.card.color);
             if (check == BaseGameCheck.NOT_BASE_GAME) {
                 AbstractCard copy = card.makeStatEquivalentCopy();
@@ -120,17 +121,20 @@ public class CardExportData implements Comparable<CardExportData> {
             findMaxUpgrades();
             this.mod.cards.add(this);
         }
-        if (exportUpgrade && !card.upgraded && card.canUpgrade() && !(card instanceof DuelistCard)) {
-            AbstractCard copy = card.makeCopy();
-            copy.upgrade();
-            copy.displayUpgrades();
-            this.upgrade = new CardExportData(export, copy, false);
-        } else if (card.canUpgrade() && card instanceof DuelistCard && !(card instanceof OrbCard)) {
-            DuelistCard copy = (DuelistCard) card.makeStatEquivalentCopy();
-            copy.upgrade();
-            copy.displayUpgrades();
-            this.upgrade = new CardExportData(export, copy, false);
+        if (!electroCheck(card)) {
+            if (exportUpgrade && !card.upgraded && card.canUpgrade() && !(card instanceof DuelistCard)) {
+                AbstractCard copy = card.makeCopy();
+                copy.upgrade();
+                copy.displayUpgrades();
+                this.upgrade = new CardExportData(export, copy, false);
+            } else if (card.canUpgrade() && card instanceof DuelistCard && !(card instanceof OrbCard)) {
+                DuelistCard copy = (DuelistCard) card.makeStatEquivalentCopy();
+                copy.upgrade();
+                copy.displayUpgrades();
+                this.upgrade = new CardExportData(export, copy, false);
+            }
         }
+
         Util.log("Export upgrade checks finished");
         // cost
         if (card.cost == -1) {
@@ -204,6 +208,10 @@ public class CardExportData implements Comparable<CardExportData> {
                     .replace(" NL ", " ");
         }
         Util.log("Done preparing " + card.cardID + " for export");
+    }
+
+    private static boolean electroCheck(AbstractCard c) {
+        return c instanceof AlphaElectro || c instanceof BetaElectro || c instanceof GammaElectro || c instanceof Berserkion;
     }
 
     private static String combineUpgrade(String a, String b, TextMode mode) {
@@ -380,7 +388,9 @@ public class CardExportData implements Comparable<CardExportData> {
         for (AbstractCard.CardColor color : AbstractCard.CardColor.values()) {
             ArrayList<AbstractCard> cardLibrary = CardLibrary.getCardList(CardLibrary.LibraryType.valueOf(color.name()));
             for (AbstractCard c : cardLibrary) {
-                cards.add(new CardExportData(export, c.makeCopy()));
+                if (!(c instanceof MagnetCard)) {
+                    cards.add(new CardExportData(export, c.makeCopy()));
+                }
             }
         }
         // Collections.sort(cards);     // was causing issues, not needed anyway

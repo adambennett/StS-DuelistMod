@@ -2121,6 +2121,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new MagnetForce());
 		DuelistMod.myCards.add(new MagnetInduction());
 		DuelistMod.myCards.add(new SuperheavyGeneralJade());
+		DuelistMod.myCards.add(new VorseRaider());
 
 		DuelistMod.myCards.add(new StanleysSketchbook(10));
 		DuelistMod.myCards.add(new StanleysSketchbookAddToonWorld(false));

@@ -32,7 +32,7 @@ public class GuardianOrder extends DuelistCard {
 
     public GuardianOrder() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseTributes = this.tributes = 3;
+        this.baseTributes = this.tributes = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
         this.originalName = this.name;

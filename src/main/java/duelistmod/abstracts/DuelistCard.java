@@ -804,8 +804,15 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 	public void onDraw() {}
 	
 	public void preDuelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+		AnyDuelist duelist = AnyDuelist.from(this);
 		if (this instanceof EndureCard) {
-			AnyDuelist.from(this).endure(this);
+			duelist.endure(this);
+		}
+		if (duelist.powers() != null) {
+			List<DuelistPower> duelistPowers = duelist.powers().stream().filter(p -> p instanceof DuelistPower).map(p -> ((DuelistPower)p)).collect(Collectors.toList());
+			for (DuelistPower power : duelistPowers) {
+				power.onPreUseCard(this);
+			}
 		}
 	}
 
@@ -7712,12 +7719,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		tagString = temp + tagString.substring(1);
 		boolean useAN = tagString.equals("Aqua") || tagString.equals("Insect") || tagString.equals("Arcane") || tagString.equals("Ojama");
 
-		if (card instanceof DarkCrusader)
-		{
-			if (magic != 1) { res = "Summon " + magic + " " + tagString + " Tokens"; }
-			else { res = "Summon " + magic + " " + tagString + " Token"; }
-		}
-
 		if (card instanceof ShardGreed)
 		{
 			if (useAN)
@@ -7778,12 +7779,6 @@ public abstract class DuelistCard extends CustomCard implements CustomSavable <S
 		String temp = tagString.substring(0, 1).toUpperCase();
 		tagString = temp + tagString.substring(1);
 		boolean useAN = tagString.equals("Aqua") || tagString.equals("Insect") || tagString.equals("Arcane") || tagString.equals("Ojama");
-
-		if (this instanceof DarkCrusader)
-		{
-			if (magic != 1) { res = "Summon " + magic + " " + tagString + " Tokens"; }
-			else { res = "Summon " + magic + " " + tagString + " Token"; }
-		}
 
 		if (this instanceof ShardGreed)
 		{

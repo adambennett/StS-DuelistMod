@@ -32,6 +32,7 @@ public class EpsilonMagnet extends DeltaMagnet {
         this.baseMagicNumber = this.magicNumber = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
+        this.tags.add(Tags.WARRIOR);
         this.tags.add(Tags.ROCK);
         this.tags.add(Tags.NEVER_GENERATE);
         this.originalName = this.name;

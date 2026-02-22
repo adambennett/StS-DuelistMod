@@ -15,13 +15,16 @@ public interface RevengeCard {
     }
 
     default void trigger(AnyRevengeCard card, AnyDuelist duelist) {
-        if (!DuelistMod.triggeringRemoteRevengeEffect && !DuelistMod.triggeringCombinationAttackRevengeEffect) {
+        boolean noPowersTriggering = !DuelistMod.triggeringRemoteRevengeEffect && !DuelistMod.triggeringCombinationAttackRevengeEffect;
+        if (duelist.powers() != null && noPowersTriggering) {
             for (AbstractPower power : duelist.powers()) {
                 if (power instanceof DuelistPower) {
                     DuelistPower duelistPower = (DuelistPower) power;
                     duelistPower.onRevengeTriggered(card);
                 }
             }
+        }
+        if (duelist.relics() != null) {
             for (AbstractRelic relic : duelist.relics()) {
                 if (relic instanceof DuelistRelic) {
                     DuelistRelic duelistRelic = (DuelistRelic) relic;

@@ -33,9 +33,9 @@ public class FirstStrikeAction extends AbstractGameAction {
     @Override
     public void update() {
         this.isDone = true;
-        if (this.target == null || this.target.isDeadOrEscaped()) { return; }
+        boolean targetGone = this.target == null || this.target.isDeadOrEscaped();
+        boolean firstStrikeActive = this.wasFullHp && (targetGone || this.target.currentHealth < this.preHp);
 
-        boolean firstStrikeActive = this.wasFullHp && this.target.currentHealth < this.preHp;
         if (this.striker.type == CardType.ATTACK && this.duelist.hasPower(CubicKarmaPower.POWER_ID)) {
             CubicKarmaPower pow = (CubicKarmaPower) this.duelist.getPower(CubicKarmaPower.POWER_ID);
             if (pow.canTrigger()) {

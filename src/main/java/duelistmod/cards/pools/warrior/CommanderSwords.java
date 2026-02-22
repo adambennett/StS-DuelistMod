@@ -74,7 +74,7 @@ public class CommanderSwords extends GuardedDuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeGuardedCheck(-4);
+            this.upgradeGuardedCheck(-5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

@@ -32,7 +32,7 @@ public class CombinationAttack extends DuelistCard {
 
     public CombinationAttack() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseTributes = this.tributes = 2;
+        this.baseTributes = this.tributes = 1;
         this.tags.add(Tags.SPELL);
         this.exhaust = true;
         this.originalName = this.name;

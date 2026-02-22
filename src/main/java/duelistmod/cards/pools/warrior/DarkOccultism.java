@@ -33,7 +33,6 @@ public class DarkOccultism extends DuelistCard {
     public DarkOccultism() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.baseMagicNumber = this.magicNumber = 5;
         this.originalName = this.name;
     }
 
@@ -58,7 +57,7 @@ public class DarkOccultism extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.isInnate = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

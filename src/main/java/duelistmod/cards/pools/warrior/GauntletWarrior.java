@@ -27,13 +27,13 @@ public class GauntletWarrior extends FirstStrikeDuelistCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
 
     public GauntletWarrior() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 20;
         this.baseBlock = this.block = 15;
-        this.tributes = this.baseTributes = 4;
+        this.tributes = this.baseTributes = 5;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
         this.misc = 0;
