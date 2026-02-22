@@ -104,7 +104,7 @@ public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubi
 		boolean page5 = p.hasRelic(PrayerPageE.ID);
 		ArrayList<CardTags> tags = new ArrayList<>();
 		ArrayList<CardType> types = new ArrayList<>();
-		
+
 		// Special extra types for shop page
 		if (page5) {
 			ArrayList<CardTags> extraTags = new ArrayList<>();
@@ -116,11 +116,11 @@ public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubi
 			} else {
 				extraTags.add(Tags.MEGATYPED);
 				extraTags.add(Tags.ROSE);
-				extraTags.add(Tags.OJAMA);	
+				extraTags.add(Tags.OJAMA);
 			}
 			tags.addAll(extraTags);
 		}
-		
+
 		// Monster types - Page A/C or Default
 		if (page3) {
 			tags.addAll(DuelistMod.monsterTypes);
@@ -131,10 +131,11 @@ public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubi
 			}
 			tags.addAll(tagsLoc);
 		} else {
-			if (StartingDeck.currentDeck.getPrimaryType() != null && StartingDeck.currentDeck.getPrimaryType() != Tags.EXODIA) {
-				tags.add(StartingDeck.currentDeck.getPrimaryType());
+			CardTags primaryType = StartingDeck.currentDeck.getPrimaryType();
+			if (primaryType != null && DuelistMod.typeCardMap_ID.containsKey(primaryType)) {
+				tags.add(primaryType);
 				CardTags rand = DuelistMod.monsterTypes.get(AbstractDungeon.cardRandomRng.random(DuelistMod.monsterTypes.size() - 1));
-				while (rand == StartingDeck.currentDeck.getPrimaryType()) {
+				while (rand == primaryType) {
 					rand = DuelistMod.monsterTypes.get(AbstractDungeon.cardRandomRng.random(DuelistMod.monsterTypes.size() - 1));
 				}
 				tags.add(rand);
@@ -148,7 +149,7 @@ public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubi
 				tags.add(randB);
 			}
 		}
-		
+
 		// Duelist card types - Page B/D or Default
 		if (page4) {
 			ArrayList<CardTags> tagsLoc = new ArrayList<>();
@@ -186,7 +187,7 @@ public class MillenniumPrayerbook extends DuelistRelic implements VisitFromAnubi
 				typeLoc.add(CardType.SKILL);
 			}
 			types.addAll(typeLoc);
-			
+
 		}
 		ArrayList<DuelistCard> choices = DuelistCard.generateTypeCardsForPrayerbook(this, tags, types, this.cardsToHand);
 		for (AbstractCard c : choices) {
