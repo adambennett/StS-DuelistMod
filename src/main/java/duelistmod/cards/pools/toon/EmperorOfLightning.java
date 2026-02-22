@@ -10,14 +10,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.orbs.enemy.EnemyLightning;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+
 import java.util.List;
 
-public class EmperorOfLightning extends DuelistCard implements RevengeCard {
+public class EmperorOfLightning extends RevengeDuelistCard {
 
     public static final String ID = DuelistMod.makeID("EmperorOfLightning");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -45,11 +47,11 @@ public class EmperorOfLightning extends DuelistCard implements RevengeCard {
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0;
+        return super.isRevengeActive(card) && this.magicNumber > 0;
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         if (this.magicNumber > 0) {
             if (duelist.player()) {
                 int count = 0;

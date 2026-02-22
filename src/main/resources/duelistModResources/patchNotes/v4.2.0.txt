@@ -1,27 +1,140 @@
 Content Updates
 -------------------
-
+- Major Warrior Deck Overhaul
+    - Warrior decks have been completely redesigned around a new identity.
+    - All custom Warrior stance mechanics have been removed.
+    - Existing Warrior cards have been heavily reworked to support the new identity.
+- Custom Stances Removed
+    - All custom Duelist stances have been removed from the mod for now.
+    - Stance-related tokens, configs, and UI pages have also been disabled.
+- New & Updated Keywords
+    - First Strike (new)
+    - Guarded (repurposed)
+    - Nimble (repurposed)
+- New Cards Added
+    - Electromagnetic Dragon
+    - Epsilon Magnet
+    - Magnet Bonding
+    - Magnet Circle LV2
+    - Magnet Conversion
+    - Magnet Force
+    - Magnet Induction
+    - Superheavy General Jade
+    - Vorse Raider
+- Removed Content
+    - Potion: Bottled Summons
+    - Potion: Bottled Tokens
+    - Relic: Magnet Stimulus
+    - Relic: Gift of Anubis
 
 Balance Updates
 -----------------
+Deck Changes
+- Beast starting deck cards have been adjusted slightly for balance
+- Warrior deck synergy effects have been fully redesigned (see below)
 
+Synergy Tribute Effects
+- Insect → Insect Tributes
+    - Poison is now applied to one random enemy instead of all enemies
+    - The Bug Token relic restores the original “poison all enemies” behavior
+- Warrior → Warrior Tributes
+    - Now grants Block, scaling with Dexterity
+    - No longer triggers stance changes
+- Plant → Plant Tributes
+    - Constricted is now applied to one random enemy instead of all enemies
+    - Challenge Mode can cause Constricted to target the player instead (see below)
+
+Cards
+- Mirror Force: has been completely redesigned
+- Forbidden Lance: damage reduced from 14 -> 12, Vulnerable reduced from 2 -> 1
+- Future Fusion: upgrade changed from (not exhaust) -> base cost reduced to 0
+- One for One: rarity changed from Uncommon -> Common, upgrade no longer increases turns by 1
+- Aloof Lupine: damage reduced to 6
+- Andro Sphinx: no longer Apex, upgrade now reduces Tributes instead of increasing number of Beasts
+- Berserk Gorilla: damage reduced 17 -> 14, summons changed to tribute 1, upgrade reduced damage increment from 5 -> 3
+- Chimera Fusion: now Exhausts, upgrade changed to remove Exhaust
+- Chow Chow Chan: draw reduced from 3 -> 2, upgrade no longer increases Summons
+- Cocatorium: upgrade Summon increment reduced from 2 -> 1
+- Dreaming Nemleria: reduced Tribute cost from 3 -> 2
+- Enraged Battle Ox: rarity changed from Common -> Uncommon, damage increased from 9 -> 10, Strength gain on Revenge is no longer permanent
+- Giant Rat: base Tribute cost increased from 12 -> 14, upgrade Block increment decreased from 15 -> 5
+- Gladiator Beast Alexander: damage decreased from 17 -> 16, Tribute cost increased from 1 -> 2, Strength gain decreased from 4 -> 3, upgrade now reduces Tributes by 1
+- Gladiator Beast Dimacari: upgrade no longer increases damage
+- Gladiator Beast Essedarii: cost reduced 2 -> 1, damage decreased 12 -> 11,
+- Gladiator Beast Samnite: reduced draw by 1
+- Guard Dog: upgrade changed to increase summons by 1
+- King of the Beasts: now Apex
+- Lightning Tricorn: cost increased to 1
+- Manticore of Darkness: base Tribute cost increased from 1 -> 3
+- Nemleria Louve: Fang gain decreased from 4 -> 3
+- Nimble Momonga: cost reduced from 2 -> 1
+- Noble Knights Shield Bearer: added Plated Armor gain effect
+- Obedience Schooled: revealed cards reduced from 4(6) -> 2(3)
+- Tri-Brigade Kitt: reduced base Summons from 3 -> 1, upgrade now increases Summons by 1
+- Windaar Sage of Gusto: base Tribute cost increased from 2 -> 3
+- Gem Elephant: upgrade no longer increases Block
+- Baby Racoon Ponpoko: cost increased from 0 -> 1, no longer Exhausts
+- Creepy Coney: cost increased from 0 -> 1, upgrade no longer increases Summons
+- Master of Oz: damaged reduced from 40 -> 35, upgrade now decreases Tribute cost instead of energy cost
+- Rose, Warrior of Revenge: upgrade no longer increases damage
+- Cloning: now Exhausts, no longer Arcane
+- Final Flame: upgrade Weak increment reduced from 2 -> 1
+- Prevent Rat: base Block reduced from 7 -> 6, overflow Block reduced from 4 -> 3
+- Silver Apples: Block per Tribute reduced from 4 -> 3, upgrade now increases this back to 4 instead of reducing energy cost to 0
+
+Relics
+- Bug Token relic effect changed to re-enable the poison-all-enemies effect when tributing insects for insects (previously this relic increased the poison applied when tributing)
+- Millennium Rod now only triggers once per combat, and the card it generates will not be made Ethereal or given Exhaust, but may still have cost/tribute changes
+
+Challenge Mode
+- Challenge Level 3, Insect Deck: Insect synergy tributes have a 5% chance to apply Poison to yourself instead of enemies
+- Challenge Level 3, Plant Deck: Plant synergy tributes have a 5% chance to apply Constricted to yourself instead of enemies
 
 Bug Fixes
 -----------
-
+- Fixed custom Duelist potions ignoring canSpawn() checks
+- Fixed multiple edge cases with Revenge triggering incorrectly
+- Fixed a crash that occurred when the player had the Millennium Prayerbook relic while playing the Exodia deck
+- Fixed an issue where some Duelist relics did not properly react when powers were applied
+- Fixed Vulnerable being applied incorrectly in certain enemy Duelist scenarios
 
 QoL
 ------
-
+- Numerous card names updated to better match official Yu-Gi-Oh! names:
+    - Harpie's Feather Duster
+    - Reinforcements of the Army
+    - Superheavy Steam Train King
+    - Superheavy Big Benkei
+    - Superheavy Blue Brawler
+    - Superheavy Wagon (previously named Superheavy Daihachi)
+    - Superheavy General Coral
+    - Superheavy Ogre Shutendoji
+    - Superheavy Soulbuster Gauntlet
+    - Superheavy Soulshield Wall
+    - Superheavy Big Waraji
+    - Hayate the Earth Star
+    - Legendary Black Belt
+    - Battleguard Howling
+    - The Warrior Returning Alive
+- Updated Megatype keyword to include additional applicable monster types
+- Updated project dependencies:
+    - BaseMod
+    - StSLib
+    - Together in Spire
+    - EUI
 
 Art/FX
 --------
-
+- Replaced campfire head images with Yugi/Kaiba specific back-of-head images
 
 Metrics
 --------
-
+- Fixed a major bug on the server side that was causing the mod to take a really long time to start up
+- Implemented automatic tier score update logic for new/revamped decks
+    - Toon pool cards will start seeing tier scores after 1000 Toon runs on v4.1.1+ are logged, only runs on v4.1.1+ will be scored
+    - Warrior pool cards will start seeing tier scores after 1000 Warrior runs on v4.2.0+ are logged, only runs on v4.2.0+ will be scored
+    - Existing warrior pool tier scores have been reset
 
 Card Pools
 -----------
-
+- Electromagnetic Shield and Reinforcements of the Army removed from most basic pools

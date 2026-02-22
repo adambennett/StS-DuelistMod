@@ -76,7 +76,6 @@ public class GladiatorBeastSamnite extends DuelistCard implements EndureCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeSummons(1);
-            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

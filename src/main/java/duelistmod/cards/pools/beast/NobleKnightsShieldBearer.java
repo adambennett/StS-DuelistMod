@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.dto.AnyDuelist;
@@ -32,13 +33,13 @@ public class NobleKnightsShieldBearer extends DuelistCard {
     public NobleKnightsShieldBearer() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.baseBlock = this.block = 8;
-        this.baseMagicNumber = this.magicNumber = 1;
+        this.baseMagicNumber = this.magicNumber = 1;    // Dexterity gain
+        this.baseSecondMagic = this.secondMagic = 4;    // Plated Armor gain
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.summons = this.baseSummons = 1;
-    	this.setupStartingCopies();
         this.exhaust = true;
     }
 
@@ -54,6 +55,7 @@ public class NobleKnightsShieldBearer extends DuelistCard {
         block();
         AnyDuelist duelist = AnyDuelist.from(this);
         duelist.applyPowerToSelf(new DexterityPower(duelist.creature(), this.magicNumber));
+        duelist.applyPowerToSelf(new PlatedArmorPower(duelist.creature(), this.secondMagic));
         postDuelistUseCard(owner, targets);
     }
 

@@ -1,6 +1,7 @@
 package duelistmod.abstracts;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -97,7 +98,7 @@ public abstract class DuelistStance extends AbstractStance
     
     public void onSummon(DuelistCard summoned, int amountSummoned) { }
     
-    public void onSynergyTribute() { }
+    public void onSynergyTribute(List<AbstractCard.CardTags> allMatchingTypes) { }
    
     public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
     

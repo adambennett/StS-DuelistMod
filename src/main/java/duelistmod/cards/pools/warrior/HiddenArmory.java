@@ -36,7 +36,7 @@ public class HiddenArmory extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);	
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
-        this.tributes = this.baseTributes = 4;
+        this.tributes = this.baseTributes = 3;
         this.exhaust = true;
     }
 

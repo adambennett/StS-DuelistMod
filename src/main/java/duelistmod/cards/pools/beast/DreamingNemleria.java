@@ -37,7 +37,7 @@ public class DreamingNemleria extends DuelistCard {
         this.tags.add(Tags.FAIRY);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.tributes = this.baseTributes = 3;
+    	this.tributes = this.baseTributes = 2;
     }
 
     @Override

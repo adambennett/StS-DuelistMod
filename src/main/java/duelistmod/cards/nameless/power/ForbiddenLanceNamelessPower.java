@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.interfaces.NamelessTombCard;
-import duelistmod.cards.incomplete.ForbiddenLance;
+import duelistmod.cards.pools.warrior.ForbiddenLance;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -36,8 +36,8 @@ public class ForbiddenLanceNamelessPower extends DuelistCard implements Nameless
     public ForbiddenLanceNamelessPower() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.damage = this.baseDamage = 14 + DuelistMod.namelessTombPowerMod;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.damage = this.baseDamage = 12 + DuelistMod.namelessTombPowerMod;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ARCANE);
         this.exhaust = true;

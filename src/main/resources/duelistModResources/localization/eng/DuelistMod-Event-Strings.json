@@ -192,22 +192,18 @@
     ]
   },
   "theDuelist:EgyptVillage": {
-    "NAME": "Egyptian Village",
+    "NAME": "Desert Village",
     "DESCRIPTIONS": [
-      "You stumble upon an abandoned Egyptian village. What treachery awaits within?",
-	  "The village looks eerie in the distance as you move away from it..."
+      "The air turns dry and hot as you step into a narrow market street. NL Sand crunches underfoot - somehow, a whole desert has been wedged into the Spire. NL A jeweler waves you over, smiling like they’ve been expecting you. NL #y\"Adventurer! Rare bracelets, rings, and amulets... perfect for surviving harsh places.\" NL Yugi squints at the dunes. #y\"How is there even... a desert up here?\"",
+      "You slide the gold across the counter. The jeweler snaps the clasp into place with practiced ease. NL The metal feels warm for a moment, then settles - like it’s syncing to your heartbeat. NL #y\"May it serve you well\" the jeweler says, already reaching for the next display. NL You turn to leave, the sandstorm outside suddenly feeling... a little less threatening.",
+      "You shake your head and step away from the counter. NL The jeweler only shrugs, unbothered. #y\"Come back when you’re ready.\" NL As you walk out, the market sounds fade behind you, swallowed by wind and sand. NL Yugi glances back once more. #y\"I don’t like how normal that felt...\""
     ],
     "OPTIONS": [
-      "[Alpha] #gReceive #gAlpha #gthe #gElectromagnet #gWarrior.",
-      "[Beta] #gReceive #gBeta #gthe #gElectromagnet #gWarrior.",
-      "[Gamma] #gReceive #gGamma #gthe #gElectromagnet #gWarrior.",
-	  "[Delta] #gReceive #gDelta #gthe #gMagnet #gWarrior.",
-	  "[Valkyrion] #gReceive #gBerserkion #gthe #gElectromagna #gWarrior.",	 
-      "[Leave]",
-	  "[Locked] Requires: Alpha, the Magnet Warrior",
-	  "[Locked] Requires: Beta, the Magnet Warrior",
-	  "[Locked] Requires: Gamma, the Magnet Warrior",
-	  "[Locked] Requires: Valkyrion"
+      "#gBuy #gRegen #gBracelet. #rLose #r200 #rGold.",
+      "#gBuy #gAmulet #gof #gGlory. #rLose #r200 #rGold.",
+      "#gBuy #gCombat #gBracelet. #rLose #r200 #rGold.",
+      "#gBuy #gRing #gof #gRecoil. #rLose #r200 #rGold.",
+      "[Leave]"
     ]
   }
 }

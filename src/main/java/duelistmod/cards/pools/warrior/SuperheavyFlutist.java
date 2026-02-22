@@ -2,21 +2,22 @@ package duelistmod.cards.pools.warrior;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.LoseDexterityPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
-import duelistmod.variables.*;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
-public class SuperheavyFlutist extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class SuperheavyFlutist extends DuelistCard {
 
     public static final String ID = DuelistMod.makeID("SuperheavyFlutist");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -24,46 +25,47 @@ public class SuperheavyFlutist extends DuelistCard
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
-    
-    // STAT DECLARATION
+
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private static final int BLOCK = 5;
-    private static final int SUMMONS = 1;
-    // /STAT DECLARATION/
 
     public SuperheavyFlutist() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = BLOCK;
+        this.baseBlock = this.block = 6;
+        this.summons = this.baseSummons = 1;
+        this.baseMagicNumber = this.magicNumber = 2; // temp Dex
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
-        this.tags.add(Tags.GOOD_TRIB);
-        this.tags.add(Tags.REDUCED);
-		this.originalName = this.name;
-		this.summons = this.baseSummons = SUMMONS;
-		this.isSummon = true;
+        this.originalName = this.name;
+        this.isSummon = true;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	summon(p,  this.summons, this);
-    	block(this.block);
-    	changeToRandomStance(true, false);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        summon();
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.block(this.block);
+        if (this.magicNumber > 0) {
+            duelist.applyPowerToSelf(new DexterityPower(owner, this.magicNumber));
+            duelist.applyPowerToSelf(new LoseDexterityPower(owner, this.magicNumber));
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new SuperheavyFlutist();
     }
 
-    // Upgraded stats.
     @Override
     public void upgrade() {
         if (!this.upgraded) {
@@ -74,8 +76,4 @@ public class SuperheavyFlutist extends DuelistCard
             this.initializeDescription();
         }
     }
-
-
-
-
 }

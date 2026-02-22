@@ -87,7 +87,9 @@
 	  "PROPER_NAME": "Toon",
       "NAMES": [
         "toon",
-		"toons"
+		"toons",
+        "Toon",
+        "Toons"
       ],      
       "DESCRIPTION": "Can only be played if #yToon #yWorld is active. When you #yTribute a #yToon for another #yToon, trigger the #yRevenge effect of a random card in your hand."
     },
@@ -95,7 +97,9 @@
 	  "PROPER_NAME": "Magnet",
       "NAMES": [
         "magnet",
-		"magnets"
+		"magnets",
+        "Magnet",
+        "Magnets"
       ],      
       "DESCRIPTION": "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect."
     },
@@ -121,7 +125,9 @@
 	  "PROPER_NAME": "Spellcaster",
       "NAMES": [
         "spellcaster",
-		"Spellcaster"
+		"Spellcaster",
+        "spellcasters",
+        "Spellcasters"
       ],      
       "DESCRIPTION": "When you attack, if all the monsters you currently have summoned are #ySpellcasters, gain #b4 Block. You need to have at least #b1 #ySpellcaster summoned to trigger this effect."
     },
@@ -129,25 +135,31 @@
 	  "PROPER_NAME": "Insect",
       "NAMES": [
         "insect",
-		"insects"
+		"insects",
+        "Insect",
+        "Insects"
       ],     
-      "DESCRIPTION": "When you #yTribute an #yInsect monster for another #yInsect, apply #b1 #yPoison to ALL enemies."
+      "DESCRIPTION": "When you #yTribute an #yInsect monster for another #yInsect, apply #b1 #yPoison to a random enemy."
     },
      {
 	  "PROPER_NAME": "Plant",
       "NAMES": [
         "plant",
-		"plants"
+		"plants",
+        "Plant",
+        "Plants"
       ],      
-      "DESCRIPTION": "When you #yTribute a #yPlant monster for another #yPlant, apply #b1 #yConstricted to ALL enemies."
+      "DESCRIPTION": "When you #yTribute a #yPlant monster for another #yPlant, apply #b1 #yConstricted to a random enemy."
     },
      {
 	  "PROPER_NAME": "Predaplant",
       "NAMES": [
         "predaplant",
-		"predaplants"
+		"predaplants",
+        "Predaplant",
+        "Predaplants"
       ],      
-      "DESCRIPTION": "When you #yTribute a #yPredaplant monster for a #yPlant, apply #b2 #yConstricted to ALL enemies. NL When you #yTribute a #yPredaplant for another #yPredaplant, apply #b2 #yConstricted to ALL enemies and gain #b1 #yThorns. NL #yPredaplant monsters are treated as #yPlants. "
+      "DESCRIPTION": "When you #yTribute a #yPredaplant monster for another #yPredaplant, gain #b1 #yThorns. NL #yPredaplant monsters are considered #yPlants."
     },
   {
    "PROPER_NAME": "Earth",
@@ -225,7 +237,9 @@
     "PROPER_NAME": "Aqua",
     "NAMES": [
       "Aqua",
-	  "aqua"
+	  "aqua",
+      "Aquas",
+      "aquas"
     ],   
     "DESCRIPTION": "#yAqua cards have a #b15% chance to apply #yDamp to their targets. When you #yTribute an #yAqua for another #yAqua, increase the #ySummons of all monsters in your hand by #b1 for this turn."
   },
@@ -359,7 +373,9 @@
     "PROPER_NAME": "Superheavy",
     "NAMES": [
       "Superheavy",
-	  "superheavy"
+	  "superheavy",
+      "Superheavies",
+      "superheavies"
     ],   
     "DESCRIPTION": "When you #yTribute a #ySuperheavy for another #ySuperheavy, gain #b1 #yDexterity."
   },
@@ -429,7 +445,7 @@
       "Megatyped",
 	  "megatyped"
     ],   
-    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Rock, Spellcaster, Superheavy, Toon, Warrior, Wyrm, and Zombie)."
+    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Beast, Dragon, Dinosaur, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Rock, Spellcaster, Superheavy, Toon, Warrior, Wyrm, and Zombie)."
   },
   {
     "PROPER_NAME": "Exodia",
@@ -587,9 +603,11 @@
   "PROPER_NAME": "Warrior",
     "NAMES": [
       "Warrior",
-	  "warrior"
+	  "warrior",
+      "Warriors",
+      "warriors"
     ],   
-    "DESCRIPTION": "The first time you #yTribute a #yWarrior for another #yWarrior each combat, choose any #yStance to enter."
+    "DESCRIPTION": "When you #yTribute a #yWarrior for another #yWarrior, gain #b2 #yBlock. Affected by #yDexterity."
   },
   {
   "PROPER_NAME": "Unstable",
@@ -613,7 +631,15 @@
       "Nimble",
 	  "nimble"
     ],   
-    "DESCRIPTION": "In this #yStance, whenever you play a card, have a #b25% chance to reduce the cost of a random card in your hand by #b1 for the turn."
+    "DESCRIPTION": "If you have gained Dexterity this turn, trigger the given effect."
+  },
+  {
+    "PROPER_NAME": "Guarded",
+    "NAMES": [
+      "Guarded",
+      "guarded"
+    ],
+    "DESCRIPTION": "Guarded X: If played when you have at least X Block, trigger the given effect."
   },
   {
   "PROPER_NAME": "Samurai",
@@ -622,14 +648,6 @@
 	  "samurai"
     ],   
     "DESCRIPTION": "In this #yStance, #yBlock from cards is improved by #b3. Upon exiting this #yStance, gain #b1 #yDexterity."
-  },
-  {
-  "PROPER_NAME": "Guarded",
-    "NAMES": [
-      "Guarded",
-	  "guarded"
-    ],   
-    "DESCRIPTION": "When you enter this stance, gain #b1 #yBlur. Upon exiting this stance, gain #yBlock equal to your #yDexterity."
   },
   {
   "PROPER_NAME": "Meditative",
@@ -677,7 +695,9 @@
   "PROPER_NAME": "Wyrm",
     "NAMES": [
       "Wyrm",
-	  "wyrm"
+	  "wyrm",
+      "Wyrms",
+      "wyrms"
     ],   
     "DESCRIPTION": "The first time you #yTribute a #yWyrm for another each combat, double a random enemy's #yPoison."
   },
@@ -717,7 +737,7 @@
 	  "Vine",
 	  "vine"
     ],   
-    "DESCRIPTION": "At the end of turn, deal damage to ALL enemies equal to #b30% of #yVines times the number of #yNaturias currently summoned."
+    "DESCRIPTION": "At the end of turn, deal damage to ALL enemies equal to #b30% of your #yVines multiplied by the number of #yNaturias currently summoned."
   },
   {
   "PROPER_NAME": "Leaves",
@@ -994,7 +1014,9 @@
   "PROPER_NAME": "Vampire",
     "NAMES": [
       "Vampire",
-	  "vampire"
+	  "vampire",
+      "Vampires",
+      "vampires"
     ],   
     "DESCRIPTION": "Each time you play #b10 #yVampires, siphon #b5 #yTemporary #yHP from ALL enemies."
   },
@@ -1026,7 +1048,9 @@
   "PROPER_NAME": "Vendread",
     "NAMES": [
       "Vendread",
-	  "vendread"
+	  "vendread",
+      "Vendreads",
+      "vendreads"
     ],   
     "DESCRIPTION": "Each time you play #b5 #yVendread, gain #b1 #yStrength."
   },
@@ -1177,5 +1201,21 @@
     "MULTIWORD_KEY": "~~SpecialS's~~",
     "FORMATTED_DISPLAY": "*Special *Summons",
     "BASE_KEYWORD": "special summon"
+  },
+  {
+    "PROPER_NAME": "First Strike",
+    "NAMES": [
+      "First Strike",
+      "first strike"
+    ],
+    "DESCRIPTION": "If the target is undamaged and receives attack damage, trigger the given effect.",
+    "MULTIWORD_KEY": "~~FirstStrike~~:",
+    "FORMATTED_DISPLAY": "*First *Strike:",
+    "BASE_KEYWORD": "first strike"
+  },
+  {
+    "MULTIWORD_KEY": "~~FirstStrike~~!",
+    "FORMATTED_DISPLAY": "*First *Strike",
+    "BASE_KEYWORD": "first strike"
   }
 ]

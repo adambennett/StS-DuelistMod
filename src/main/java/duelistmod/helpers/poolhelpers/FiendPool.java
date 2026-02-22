@@ -58,6 +58,7 @@ import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.pharaoh.InfernityPawn;
 import duelistmod.cards.pools.pharaoh.InfernoidDevyaty;
 import duelistmod.cards.pools.toon.DBoyz;
+import duelistmod.cards.pools.warrior.Zombyra;
 import duelistmod.cards.pools.zombies.*;
 
 public class FiendPool 

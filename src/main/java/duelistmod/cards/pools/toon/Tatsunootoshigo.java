@@ -8,13 +8,15 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
+
 import java.util.List;
 
-public class Tatsunootoshigo extends DuelistCard implements RevengeCard {
+public class Tatsunootoshigo extends RevengeDuelistCard {
     public static final String ID = DuelistMod.makeID("Tatsunootoshigo");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("Tatsunootoshigo.png");
@@ -41,11 +43,11 @@ public class Tatsunootoshigo extends DuelistCard implements RevengeCard {
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0;
+        return super.isRevengeActive(card) && this.magicNumber > 0;
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
+    public void onRevengeTriggered(AnyDuelist duelist) {
         duelist.drawTag(this.magicNumber, Tags.SPELL);
     }
 

@@ -1,82 +1,85 @@
 package duelistmod.cards.pools.warrior;
 
-import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.watcher.MantraPower;
-
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.abstracts.RevengeDuelistCard;
+import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class HerculeanPower extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class HerculeanPower extends RevengeDuelistCard {
+
     public static final String ID = DuelistMod.makeID("HerculeanPower");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("HerculeanPower.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
-    // /STAT DECLARATION/
+    private static final int COST = 2;
 
     public HerculeanPower() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.originalName = this.name;
+        this.isMultiDamage = true;
+        this.baseTributes = this.tributes = 1;
+        this.baseMagicNumber = this.magicNumber = 5;
         this.tags.add(Tags.SPELL);
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.originalName = this.name;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	 this.addToBot(new ApplyPowerAction(p, p, new MantraPower(p, this.magicNumber), this.magicNumber));
-         this.addToBot(new MakeTempCardInDrawPileAction(Util.getRandomBambooSword(this.upgraded), 1, true, true));
+    public void onRevengeTriggered(AnyDuelist duelist) {
+        // no-op, only applies if attacking
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        tribute();
+        int vigor = duelist.hasPower(VigorPower.POWER_ID)
+                ? duelist.getPower(VigorPower.POWER_ID).amount
+                : 0;
+        if (isRevengeActive(this)) {
+            vigor += this.magicNumber;
+        }
+        if (vigor > 0 && targets != null && !targets.isEmpty()) {
+            attack(targets.get(0), this.baseAFX, vigor * 2);
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new HerculeanPower();
     }
 
-    // Upgraded stats.
     @Override
-    public void upgrade() 
-    {
-        if (!upgraded)
-        {
-        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-	    	else { this.upgradeName(NAME + "+"); }
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-
-
-	
-
-
-
-
-
-
-
-
-
 }

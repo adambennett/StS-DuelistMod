@@ -43,7 +43,7 @@ public class SilverApples extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.TRAP);
 		this.originalName = this.name;
-		this.magicNumber = this.baseMagicNumber = 4;
+		this.magicNumber = this.baseMagicNumber = 3;
 		this.baseBlock = this.block = 0;
         this.enemyIntent = AbstractMonster.Intent.DEFEND;
     }
@@ -86,7 +86,7 @@ public class SilverApples extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

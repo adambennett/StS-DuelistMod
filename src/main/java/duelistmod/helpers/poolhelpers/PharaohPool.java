@@ -22,6 +22,7 @@ import duelistmod.cards.pools.increment.*;
 import duelistmod.cards.pools.insects.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
+import duelistmod.cards.pools.oldWarrior.DarkBurningAttack;
 import duelistmod.cards.pools.pharaoh.InfernityPawn;
 import duelistmod.cards.pools.pharaoh.InfernoidDevyaty;
 import duelistmod.cards.pools.pharaoh.PharaohBlessing;
@@ -212,7 +213,7 @@ public class PharaohPool {
 		cards.add(new GigaCricket());
 		cards.add(new GlowUpBloom());
 		cards.add(new CatnippedKitty());
-		cards.add(new SuperheavyGeneral());
+		cards.add(new SuperheavyGeneralCoral());
 		cards.add(new MillenniumShield());
 		cards.add(new SuperheavyBenkei());
 		cards.add(new ReadyForIntercepting());

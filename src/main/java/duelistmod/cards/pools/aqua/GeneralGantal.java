@@ -40,8 +40,9 @@ public class GeneralGantal extends DuelistCard
         
         
         this.originalName = this.name;
-        this.baseTributes = this.tributes = 1;
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.baseTributes = this.tributes = 3;
+        this.magicNumber = this.baseMagicNumber = 1;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -65,7 +66,7 @@ public class GeneralGantal extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(1);
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription(); 

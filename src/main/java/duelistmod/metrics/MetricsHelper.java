@@ -16,6 +16,7 @@ import duelistmod.enums.*;
 import duelistmod.helpers.*;
 import duelistmod.metrics.builders.*;
 import okhttp3.*;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.logging.log4j.core.util.UuidUtil;
 
 public class MetricsHelper 
@@ -128,9 +129,9 @@ public class MetricsHelper
 		List<String> output = new ArrayList<>();
 		try {
 			OkHttpClient client = new OkHttpClient().newBuilder()
-					.connectTimeout(5, TimeUnit.MINUTES)
-					.readTimeout(5, TimeUnit.MINUTES)
-					.writeTimeout(5, TimeUnit.MINUTES)
+					.connectTimeout(30, TimeUnit.SECONDS)
+					.readTimeout(1, TimeUnit.MINUTES)
+					.writeTimeout(0, TimeUnit.SECONDS)
 					.build();
 			Request request = new Request.Builder()
 					.url(ENDPOINT_LOCAL_DUELIST_VERSIONS_CHECK)
@@ -210,9 +211,9 @@ public class MetricsHelper
 
 		try {
 			OkHttpClient client = new OkHttpClient().newBuilder()
-					.connectTimeout(5, TimeUnit.MINUTES)
-					.readTimeout(5, TimeUnit.MINUTES)
-					.writeTimeout(5, TimeUnit.MINUTES)
+					.connectTimeout(10, TimeUnit.SECONDS)
+					.readTimeout(2, TimeUnit.MINUTES)
+					.writeTimeout(0, TimeUnit.SECONDS)
 					.build();
 			Request request = new Request.Builder()
 					.url(ENDPOINT_TIER_SCORES)
@@ -221,8 +222,8 @@ public class MetricsHelper
 					.build();
 			Response response = client.newCall(request).execute();
 			if (response.code() == 503) {
-				DuelistMod.logger.error("Tier scores GET request error! Code 503. It seems the Heroku metrics server is down at the moment. Check back at the beginning of next month.");
-				return new HashMap<>();
+				DuelistMod.logger.error("Tier scores GET request error! Code 503. It seems the Heroku metrics server is down at the moment. Attempting to load tier scores from your disk as a fallback...");
+				return loadFallbackTierScoresFromDisk();
 			}
 			ObjectMapper objectMapper = new ObjectMapper();
 			out = objectMapper
@@ -239,19 +240,32 @@ public class MetricsHelper
 			Util.log("Execution time to retrieve scores from the server: " + (end - start) + "ms");
 			return out;
 		} catch (Exception ex) {
-			DuelistMod.logger.error("Tier scores GET request error! Falling back to attempt to load scores from disk...\n" + Arrays.toString(ex.getStackTrace()));
-			try {
-				out = TierScoreCacheService.deserializeTierScoresFromCache();
-				if (out != null) {
-					Util.log("Tier scores were able to be loaded from the disk.");
-					return out;
-				}
-				Util.log("Tier scores could not be loaded from the server or from the disk. Scores will not be enabled.");
-			} catch (Exception e) {
-				Util.log("Tier scores could not be loaded from the server or from the disk. Scores will not be enabled.");
-			}
-			return new HashMap<>();
+            DuelistMod.logger.error("Tier scores GET request error! Falling back to attempt to load scores from disk...\n{}", Arrays.toString(ex.getStackTrace()));
+			return loadFallbackTierScoresFromDisk();
 		}
+	}
+
+	private static Map<String, Map<String, Map<Integer, Integer>>> loadFallbackTierScoresFromDisk() {
+		try {
+			Map<String, Map<String, Map<Integer, Integer>>> out = TierScoreCacheService.deserializeTierScoresFromCache();
+			if (out != null) {
+				String dateStr = "unknown";
+				try {
+					long timestamp = Long.parseLong(DuelistMod.lastTimeTierScoreChecked);
+					Calendar cal = Calendar.getInstance();
+					cal.setTimeInMillis(timestamp);
+					dateStr = (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.YEAR);
+				} catch (Exception ignored) {}
+				Util.log("Tier scores loaded from disk successfully. Tier scores will be enabled. Score data on your disk was last updated on " + dateStr);
+				return out;
+			}
+			Util.log("Tier score data could not be found on disk.");
+			Util.log("Tier scores could not be loaded from the server or disk and will not be enabled.");
+		} catch (Exception e) {
+			Util.log("Exception while reading tier score data from disk: " + ExceptionUtils.getStackTrace(e));
+			Util.log("Tier scores could not be loaded from the server or disk and will not be enabled.");
+		}
+		return new HashMap<>();
 	}
 
 	public static void openPlayerRuns(boolean playSound) {
@@ -273,9 +287,9 @@ public class MetricsHelper
 		List<String> output = new ArrayList<>();
 		try {
 			OkHttpClient client = new OkHttpClient().newBuilder()
-					.connectTimeout(5, TimeUnit.MINUTES)
+					.connectTimeout(30, TimeUnit.SECONDS)
 					.readTimeout(5, TimeUnit.MINUTES)
-					.writeTimeout(5, TimeUnit.MINUTES)
+					.writeTimeout(0, TimeUnit.SECONDS)
 					.build();
 			Request request = new Request.Builder()
 					.url(ENDPOINT_MOD_VERSIONS)
@@ -285,6 +299,11 @@ public class MetricsHelper
 			Response response = client.newCall(request).execute();
 			if (response.code() == 503) {
 				DuelistMod.logger.error("Metrics module versions GET request error! Code 503. It seems the Heroku metrics server is down at the moment. Check back at the beginning of next month.");
+				output.add("SERVER IS DOWN");
+				return output;
+			}
+			if (response.code() == 500) {
+				DuelistMod.logger.error("Metrics module versions GET request error! Code 500. Internal service error! Check the server code.");
 				output.add("SERVER IS DOWN");
 				return output;
 			}

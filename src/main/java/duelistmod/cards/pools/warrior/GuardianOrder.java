@@ -1,104 +1,76 @@
 package duelistmod.cards.pools.warrior;
 
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class GuardianOrder extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class GuardianOrder extends DuelistCard {
+
     public static final String ID = DuelistMod.makeID("GuardianOrder");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("GuardianOrder.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
-    // /STAT DECLARATION/
+    private static final int COST = 2;
 
-    public GuardianOrder() 
-    {
+    public GuardianOrder() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.originalName = this.name;
-        this.baseBlock = this.block = 0;
-        this.baseMagicNumber = this.magicNumber = 3;
-        this.baseTributes = this.tributes = 3;
-        this.misc = 0;
+        this.baseTributes = this.tributes = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
+        this.originalName = this.name;
     }
 
     @Override
-    public void use(final AbstractPlayer p, final AbstractMonster m) 
-    {
-    	tribute();
-        this.addToBot(new GainBlockAction(p, p, this.block));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
     @Override
-    public void applyPowers() {
-        int minus = this.misc == 52 ? 0 : 1;
-        int standardVal = (AbstractDungeon.player.hand.size() - minus) * this.magicNumber;
-        this.block = this.baseBlock = standardVal;
-        super.applyPowers();
-        int diff = this.block - standardVal;
-        this.block = ((AbstractDungeon.player.hand.size() - minus) * this.magicNumber) + diff;
-        this.isBlockModified = this.block != standardVal;
-        this.initializeDescription();
-    }
-
-    @Override
-    public void update() {
-        super.update();
-        if (AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom().phase.equals(AbstractRoom.RoomPhase.COMBAT)) {
-            this.applyPowers();
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (duelist.hasPower(VigorPower.POWER_ID)) {
+            int vigor = duelist.getPower(VigorPower.POWER_ID).amount;
+            int blk = vigor / 2;
+            if (blk > 0) {
+                duelist.block(blk);
+                duelist.block(blk);
+            }
         }
-        this.fixUpgradeDesc();
-        this.initializeDescription();
+        postDuelistUseCard(owner, targets);
     }
 
-    
-    // Upgraded stats.
     @Override
-    public void upgrade() 
-    {
-        if (!upgraded) 
-        {
-        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeTributes(2);
-        	this.upgradeMagicNumber(3);
+    public AbstractCard makeCopy() {
+        return new GuardianOrder();
+    }
+
+    @Override
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-
-
-
-
-
-
-	
-	@Override
-    public AbstractCard makeCopy() { return new GuardianOrder(); }
-	
 }

@@ -53,7 +53,7 @@ public class ResummonBranch extends DuelistRelic implements MillenniumItem
 			notAllowedCards.add("The Creator");
 			notAllowedCards.add("Dark Creator");
 			notAllowedCards.add("Gandora");
-			notAllowedCards.add("Steam Train King");
+			notAllowedCards.add("Superheavy Steam Train King");
 			ArrayList<DuelistCard> modMonsters = new ArrayList<DuelistCard>();
 			
 			for (DuelistCard c : DuelistMod.uniqueMonstersThisRun)

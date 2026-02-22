@@ -30,11 +30,11 @@ public class GladiatorBeastEssedarii extends DuelistCard implements EndureCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
 
     public GladiatorBeastEssedarii() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 12;
+    	this.baseDamage = this.damage = 11;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.GLADIATOR);
@@ -43,7 +43,6 @@ public class GladiatorBeastEssedarii extends DuelistCard implements EndureCard {
     	this.tributes = this.baseTributes = 1;
         this.baseMagicNumber = this.magicNumber = 2;
         this.exhaust = true;
-    	this.setupStartingCopies();
     }
 
     @Override

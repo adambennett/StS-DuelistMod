@@ -1911,7 +1911,7 @@
 		"NAME": "超重武者 鬼若",
 		"UPGRADE_DESCRIPTION": "超重 祭品数 !duelist:TRIB! 造成 !D! 点伤害。 NL 获得 !M! 点敏捷。"
 	},
-	"theDuelist:SuperheavyDaihachi": {
+	"theDuelist:SuperheavyWagon": {
 		"DESCRIPTION": "超重 祭品数 !duelist:TRIB! 获得 !M! 点敏捷。获得 !B! 点格挡。消耗。",
 		"NAME": "超重武者 大八",
 		"UPGRADE_DESCRIPTION": "超重 祭品数 !duelist:TRIB! 获得 !M! 点敏捷。获得 !B! 点格挡。消耗。"
@@ -1921,7 +1921,7 @@
 		"NAME": "超重武者 影法师",
 		"UPGRADE_DESCRIPTION": "超重召唤数 !duelist:SUMM! 获得 !B! 点格挡。"
 	},
-	"theDuelist:SuperheavyGeneral": {
+	"theDuelist:SuperheavyGeneralCoral": {
 		"DESCRIPTION": "超重 祭品数 !duelist:TRIB! 造成 !D! 点伤害。 NL 获得 !M! 点敏捷。消耗。",
 		"NAME": "超重辉将 珊瑚",
 		"UPGRADE_DESCRIPTION": "超重 祭品数 !duelist:TRIB! 造成 !D! 点伤害。 NL 获得 !M! 点敏捷。消耗。"
@@ -1981,7 +1981,7 @@
 		"NAME": "超重衍生物",
 		"UPGRADE_DESCRIPTION": "超重 召唤数1"
 	},
-	"theDuelist:SuperheavyWaraji": {
+	"theDuelist:SuperheavyBigWaraji": {
 		"DESCRIPTION": "超重 祭品数 !duelist:TRIB! 获得 !M! 点敏捷。消耗。",
 		"NAME": "超重武者 大草鞋",
 		"UPGRADE_DESCRIPTION": "超重 祭品数 !duelist:TRIB! 获得 !M! 点敏捷。获得 !B! 点格挡。消耗。"
@@ -2202,7 +2202,7 @@
 		"NAME": "海",
 		"UPGRADE_DESCRIPTION": "水族怪兽造成伤害提高50％，额外获得50％的格挡。"
 	},
-	"theDuelist:ValkMagnet": {
+	"theDuelist:Valkyrion": {
 		"DESCRIPTION": "如果拥有三种磁铁效果，召唤数 !duelist:SUMM! 并造成 !D! 点伤害。 NL 移除所有磁铁效果。固守。",
 		"NAME": "磁石战士 电磁武神",
 		"UPGRADE_DESCRIPTION": "如果有拥有三种磁铁效果，召唤数 !duelist:SUMM! 并造成 !D! 点伤害。固守。"
@@ -3250,7 +3250,7 @@
 		"NAME": "Deskbot005",
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
-	"theDuelist:Hayate": {
+	"theDuelist:HayateTheEarthStar": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage.",
 		"NAME": "Hayate",
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage."

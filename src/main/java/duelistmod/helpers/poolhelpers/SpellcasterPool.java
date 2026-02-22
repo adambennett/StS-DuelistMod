@@ -9,7 +9,6 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
-import duelistmod.cards.pools.aqua.CallAtlanteans;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.fiend.AlienTelepath;
 import duelistmod.cards.pools.fiend.CosmicHorrorGangiel;
@@ -21,7 +20,7 @@ import duelistmod.cards.pools.pharaoh.VoidApocalypse;
 import duelistmod.cards.pools.spellcaster.MaskedSorcerer;
 import duelistmod.cards.pools.spellcaster.PerfectSyncAUn;
 import duelistmod.cards.pools.toon.*;
-import duelistmod.cards.pools.warrior.WhiteHowling;
+import duelistmod.cards.pools.oldWarrior.WhiteHowling;
 
 public class SpellcasterPool {
 	private static String deckName = "Spellcaster Deck";

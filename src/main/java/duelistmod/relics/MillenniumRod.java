@@ -1,54 +1,58 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.MillenniumItem;
-import duelistmod.variables.*;
+import duelistmod.variables.Strings;
+import duelistmod.variables.Tags;
 
 public class MillenniumRod extends DuelistRelic implements MillenniumItem {
 
-	/*
-	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
-	 * 
-	 * Summon 1 on combat start
-	 */
-
-	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("MillenniumRod");
 	public static final String IMG = DuelistMod.makePath(Strings.M_ROD_RELIC);
 	public static final String OUTLINE = DuelistMod.makePath(Strings.M_ROD_RELIC_OUTLINE);
+	private boolean activatedThisCombat = false;
 
 	public MillenniumRod() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
 	}
 
-	// Summon 1 on turn start
 	@Override
-	public void atBattleStart() 
-	{
-		
+	public void atBattleStart() {
+		this.grayscale = false;
+		this.activatedThisCombat = false;
+	}
+
+	@Override
+	public void onVictory() {
+		this.grayscale = false;
+		this.activatedThisCombat = false;
 	}
 	
 	@Override
-	public void atTurnStart()
-	{
-		flash();
-		DuelistCard randomCard = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, false);
-		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomCard, false, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
+	public void atTurnStart() {
+		if (!this.activatedThisCombat) {
+			this.flash();
+			AbstractCard randomCard = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL, true);
+			int roll = AbstractDungeon.relicRng.random(100);
+			boolean upgrade = roll <= 5;
+			this.addToTop(new RandomizedHandAction(randomCard, upgrade, false, false, true, true, false, false, false, 0, 4, 0, 4, 0, 0));
+			this.grayscale = true;
+			this.activatedThisCombat = true;
+		}
 	}
 
-	// Description
 	@Override
 	public String getUpdatedDescription() {
 		return DESCRIPTIONS[0];
 	}
 
-	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
 		return new MillenniumRod();

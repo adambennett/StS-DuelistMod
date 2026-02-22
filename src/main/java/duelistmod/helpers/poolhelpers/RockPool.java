@@ -9,6 +9,7 @@ import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.beast.PhantomBeastRockLizard;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
+import duelistmod.cards.pools.warrior.*;
 
 public class RockPool 
 {
@@ -34,7 +35,7 @@ public class RockPool
 		cards.add(new NaturiaLandoise());
 		cards.add(new PotForbidden());
 		cards.add(new PowerGiant());
-		cards.add(new ValkMagnet());
+		cards.add(new Valkyrion());
 		cards.add(new MudGolem());
 		cards.add(new ChrysalisMole());
 		cards.add(new Blockman());

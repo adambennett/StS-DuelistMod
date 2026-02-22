@@ -1,6 +1,7 @@
 package duelistmod.abstracts;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnLoseTempHpPower;
@@ -13,7 +14,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.dto.AnyDuelist;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.dto.AnyGuardedCard;
+import duelistmod.dto.AnyRevengeCard;
 
 public abstract class DuelistPower extends TwoAmountPower implements OnLoseTempHpPower
 {
@@ -58,7 +60,7 @@ public abstract class DuelistPower extends TwoAmountPower implements OnLoseTempH
 	
 	public int modifyReviveCost(ArrayList<AbstractCard> entombedList) { return 0; }
 	
-	public void onSynergyTribute() { }
+	public void onSynergyTribute(List<AbstractCard.CardTags> allMatchingTypes) { }
 	
 	public void onGainVines() { }
 
@@ -80,7 +82,7 @@ public abstract class DuelistPower extends TwoAmountPower implements OnLoseTempH
 	
 	public void onEnemyUseCard(final AbstractCard card) { }
 	
-	public void onDexChange() { }
+	public void onDexChange(int change) { }
 	
 	public void onDetonate() { }
 	
@@ -126,8 +128,20 @@ public abstract class DuelistPower extends TwoAmountPower implements OnLoseTempH
 		return damageAmount;
 	}
 
-	public void onRevengeTriggered(DuelistCard duelistCard) {}
-
 	public void onAddCardToHand(AbstractCard c) { }
+
+	public void onRevengeTriggered(AnyRevengeCard duelistCard) {}
+
+	public void onGuardedTrigger(AnyGuardedCard caller, List<AbstractCreature> targets) { }
+
+	public void onFirstStrikeTriggered(FirstStrikeDuelistCard card, AbstractCreature target) {}
+
+	public void onNimbleTriggered(NimbleDuelistCard card, List<AbstractCreature> targets) {}
+
+	public int modifyGuardedRequirement(int requiredBlock) {
+		return requiredBlock;
+	}
+
+	public void onPreUseCard(AbstractCard card) {}
 
 }

@@ -82,6 +82,8 @@ import static com.megacrit.cardcrawl.cards.AbstractCard.*;
 
 public class AnyDuelist {
 
+    private static boolean playerGainedDexterityThisTurn = false;
+    private static boolean enemyDuelistGainedDexterityThisTurn = false;
     private final AbstractPlayer player;
     private final AbstractEnemyDuelist enemy;
 
@@ -164,6 +166,34 @@ public class AnyDuelist {
     public AnyDuelist(AbstractPlayer player, AbstractEnemyDuelist enemy) {
         this.player = player;
         this.enemy = enemy;
+    }
+
+    public static boolean isPlayerGainedDexterityThisTurn() {
+        return playerGainedDexterityThisTurn;
+    }
+
+    public static void setPlayerGainedDexterityThisTurn(boolean playerGainedDexterityThisTurn) {
+        AnyDuelist.playerGainedDexterityThisTurn = playerGainedDexterityThisTurn;
+    }
+
+    public static boolean isEnemyDuelistGainedDexterityThisTurn() {
+        return enemyDuelistGainedDexterityThisTurn;
+    }
+
+    public static void setEnemyDuelistGainedDexterityThisTurn(boolean enemyDuelistGainedDexterityThisTurn) {
+        AnyDuelist.enemyDuelistGainedDexterityThisTurn = enemyDuelistGainedDexterityThisTurn;
+    }
+
+    public AbstractCard getSecondLastCardPlayed() {
+        if (this.player()) {
+            return DuelistMod.secondLastCardPlayed;
+        } else if (this.getEnemy() != null) {
+            Object card = this.enemy.flags.get(EnemyDuelistFlag.SECOND_LAST_CARD_PLAYED);
+            if (card instanceof AbstractCard) {
+                return (AbstractCard) card;
+            }
+        }
+        return null;
     }
 
     public void receiveCardUsed(AbstractCard card) {
@@ -681,8 +711,16 @@ public class AnyDuelist {
         return this.player != null ? this.player.masterDeck.group : new ArrayList<>();
     }
 
+    public CardGroup masterDeckGroup() {
+        return this.player != null ? this.player.masterDeck : this.enemy.drawPile;
+    }
+
     public List<AbstractCard> exhaustPile() {
         return this.player != null ? this.player.exhaustPile.group : this.enemy != null ? this.enemy.exhaustPile.group : new ArrayList<>();
+    }
+
+    public CardGroup exhaustPileGroup() {
+        return this.player != null ? this.player.exhaustPile : this.enemy != null ? this.enemy.exhaustPile : null;
     }
 
     public List<AbstractCard> resummonPile() {
@@ -1139,6 +1177,27 @@ public class AnyDuelist {
                     : null;
         if (toAddTo != null) {
             toAddTo.add(card);
+        }
+    }
+
+    public boolean isNimble() {
+        if (this.player()) {
+            return isPlayerGainedDexterityThisTurn();
+        } else if (this.getEnemy() != null) {
+            return isEnemyDuelistGainedDexterityThisTurn();
+        }
+        return false;
+    }
+
+    public void gainGold(int amount) {
+        if (this.player()) {
+            AbstractDungeon.player.gainGold(amount);
+        }
+    }
+
+    public void gainGoldAction(int amount, boolean rain) {
+        if (this.player()) {
+            DuelistCard.gainGold(amount, this.creature(), rain);
         }
     }
 

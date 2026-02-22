@@ -83,7 +83,6 @@ public class MustoOracleOfGusto extends DuelistCard {
                     AbstractCreature target = targets.get(0);
                     addToBot(new StunMonsterAction((AbstractMonster)target, AbstractDungeon.player));
                 }
-                this.exhaust = true;
             };
             SelectScreenHelper.open(beastsInDiscardPile, 1, "Shuffle a Beast card", true, shuffleIntoDeckAndStun);
         }

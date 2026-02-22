@@ -37,7 +37,7 @@ public class TriBrigadeKitt extends DuelistCard {
         this.tags.add(Tags.TRI_BRIGADE);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 3;
+    	this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 2;
     	this.setupStartingCopies();
     }
@@ -65,7 +65,7 @@ public class TriBrigadeKitt extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(2);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

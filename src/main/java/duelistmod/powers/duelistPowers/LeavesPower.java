@@ -1,6 +1,7 @@
 package duelistmod.powers.duelistPowers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -88,7 +89,7 @@ public class LeavesPower extends DuelistPower
 	public void onSummon(DuelistCard c, int amt) { updateDescription(); }
 	
 	@Override
-	public void onSynergyTribute() { updateDescription(); }
+	public void onSynergyTribute(List<AbstractCard.CardTags> allMatchingTypes) { updateDescription(); }
 
 	@Override
 	public void updateDescription()

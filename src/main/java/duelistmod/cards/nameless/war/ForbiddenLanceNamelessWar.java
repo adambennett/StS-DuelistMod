@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.interfaces.NamelessTombCard;
-import duelistmod.cards.incomplete.ForbiddenLance;
+import duelistmod.cards.pools.warrior.ForbiddenLance;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 

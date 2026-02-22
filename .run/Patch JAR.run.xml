@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Patch JAR" type="JarApplication">
+    <option name="JAR_PATH" value="B:/SteamLibrary/steamapps/workshop/content/646570/1605060445/ModTheSpire.jar" />
+    <option name="PROGRAM_PARAMETERS" value="--out-jar --close-when-finished" />
+    <option name="WORKING_DIRECTORY" value="B:\SteamLibrary\steamapps\common\SlayTheSpire" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <method v="2" />
+  </configuration>
+</component>

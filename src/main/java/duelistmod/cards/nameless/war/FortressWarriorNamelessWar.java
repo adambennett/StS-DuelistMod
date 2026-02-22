@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.interfaces.NamelessTombCard;
-import duelistmod.cards.FortressWarrior;
+import duelistmod.cards.pools.warrior.FortressWarrior;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 

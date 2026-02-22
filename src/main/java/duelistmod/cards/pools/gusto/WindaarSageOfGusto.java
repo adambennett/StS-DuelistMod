@@ -40,7 +40,7 @@ public class WindaarSageOfGusto extends DuelistCard {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 20;
         this.baseBlock = this.block = 16;
-        this.baseTributes = this.tributes = 2;
+        this.baseTributes = this.tributes = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GUSTO);
         this.tags.add(Tags.SPELLCASTER);

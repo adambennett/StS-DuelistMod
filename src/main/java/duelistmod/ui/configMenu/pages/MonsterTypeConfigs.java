@@ -512,9 +512,8 @@ public class MonsterTypeConfigs extends SpecificConfigMenuPage implements Refres
     }
 
     private void warriorPage(ArrayList<IUIElement> settingElements) {
-        int amt = DuelistMod.getMonsterSetting(MonsterType.WARRIOR, MonsterType.warriorTriggersPerCombatKey, MonsterType.warriorDefaultTriggersPerCombat);
-        String sMod = amt != 1 ? "s" : "";
-        String tooltip = "When enabled, #yTributing a #yWarrior for another will allow you to choose any #yStance to enter. Limited to #b" + amt + " trigger" + sMod + " per combat. Enabled by default.";
+        int amt = DuelistMod.getMonsterSetting(MonsterType.WARRIOR, MonsterType.warriorBlockTributeEffectKey, MonsterType.warriorDefaultTributeBlockAmount);
+        String tooltip = "When enabled, #yTributing a #yWarrior for another will grant #b" + amt + " #yBlock. Enabled by default.";
         settingElements.add(new DuelistLabeledToggleButton("Enable Warrior Tribute Effect", tooltip,DuelistMod.xLabPos, DuelistMod.yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, DuelistMod.getMonsterSetting(MonsterType.WARRIOR, MonsterType.warriorEnableKey, MonsterType.warriorDefaultEnable), DuelistMod.settingsPanel, (label) -> {}, (button) ->
         {
             put(MonsterType.warriorEnableKey, button.enabled);
@@ -523,32 +522,17 @@ public class MonsterTypeConfigs extends SpecificConfigMenuPage implements Refres
 
         LINEBREAK(25);
 
-        // warriorSynergyTributeNeededToTrigger - how many times you need to tribute to trigger the stance change effect
-        settingElements.add(new ModLabel("Number of Tributes to trigger effect", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-        ArrayList<String> tributesNeededOptions = new ArrayList<>();
-        for (int i = 1; i < 1001; i++) { tributesNeededOptions.add(i+""); }
-        tooltip = "Modify the number of #yWarriors you need to #yTribute each combat in order to trigger than #yStance change effect. Set to #b1 by default.";
-        DuelistDropdown tributesNeededSelector = new DuelistDropdown(tooltip, tributesNeededOptions, Settings.scale * (DuelistMod.xLabPos + 590), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            put(MonsterType.warriorNumTributesKey, i + 1);
+        settingElements.add(new ModLabel("Amount of Block to Gain", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
+        ArrayList<String> blockAmountOptions = new ArrayList<>();
+        for (int i = 1; i < 1001; i++) { blockAmountOptions.add(i+""); }
+        tooltip = "Modify the amount of #yBlock gained. Set to #b" + MonsterType.warriorDefaultTributeBlockAmount + " by default.";
+        DuelistDropdown blockAmountSelector = new DuelistDropdown(tooltip, blockAmountOptions, Settings.scale * (DuelistMod.xLabPos + 590), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
+            put(MonsterType.warriorBlockTributeEffectKey, i + 1);
             DuelistMod.configSettingsLoader.save();
         });
-        tributesNeededSelector.setSelected(getSelected(MonsterType.warriorNumTributesKey, MonsterType.warriorDefaultNumTributes));
+        blockAmountSelector.setSelected(getSelected(MonsterType.warriorBlockTributeEffectKey, MonsterType.warriorDefaultTributeBlockAmount));
 
-        LINEBREAK(25);
-
-        // warriorTributeEffectTriggersPerCombat - how many times you can trigger the Stance-choose effect
-        settingElements.add(new ModLabel("Number of effect triggers per combat", (DuelistMod.xLabPos), (DuelistMod.yPos),DuelistMod.settingsPanel,(me)->{}));
-        ArrayList<String> effectTriggersOptions = new ArrayList<>();
-        for (int i = 0; i < 1001; i++) { effectTriggersOptions.add(i+""); }
-        tooltip = "Modify the number of times the #yWarrrior #yTribute effect can be triggered each combat. Set to #b1 by default.";
-        DuelistDropdown effectTriggersSelector = new DuelistDropdown(tooltip, effectTriggersOptions, Settings.scale * (DuelistMod.xLabPos + 590), Settings.scale * (DuelistMod.yPos + 22), (s, i) -> {
-            put(MonsterType.warriorTriggersPerCombatKey, i);
-            DuelistMod.configSettingsLoader.save();
-        });
-        effectTriggersSelector.setSelected(getSelected(MonsterType.warriorTriggersPerCombatKey, MonsterType.warriorDefaultTriggersPerCombat));
-
-        settingElements.add(effectTriggersSelector);
-        settingElements.add(tributesNeededSelector);
+        settingElements.add(blockAmountSelector);
     }
 
     private void wyrmPage(ArrayList<IUIElement> settingElements) {

@@ -2,85 +2,81 @@ package duelistmod.cards.pools.warrior;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.watcher.MantraPower;
-
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.FirstStrikeDuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
-public class GlowingCrossbow extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+import static duelistmod.dto.AnyGuardedCard.incGuardedCheckForTurn;
+
+public class GlowingCrossbow extends FirstStrikeDuelistCard {
+
     public static final String ID = DuelistMod.makeID("GlowingCrossbow");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("GlowingCrossbow.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
-    // /STAT DECLARATION/
+    private static final int COST = 1;
 
     public GlowingCrossbow() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.originalName = this.name;
+        this.baseDamage = this.damage = 7;
+        this.baseMagicNumber = this.magicNumber = 2;    // vulnerable & vigor
         this.tags.add(Tags.SPELL);
-        this.baseMagicNumber = this.magicNumber = 1;
+        this.originalName = this.name;
     }
 
-    // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	if (p.hasPower(SummonPower.POWER_ID))
-    	{
-    		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
-    		int superheavys = pow.getNumberOfTypeSummoned(Tags.SUPERHEAVY);
-    		applyPowerToSelf(new MantraPower(p, this.magicNumber * superheavys));
-    	}
+    public void onFirstStrikeTriggered(AnyDuelist duelist, AbstractCreature target) {
+        if (this.magicNumber > 0 && target != null && !target.isDeadOrEscaped()) {
+            duelist.applyPower(target, duelist.creature(), new VulnerablePower(target, this.magicNumber, !duelist.player()));
+        }
     }
 
-    // Which card to return when making a copy of this card.
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
+
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        firstStrikeSingleTarget(targets);
+        AnyDuelist duelist = AnyDuelist.from(this);
+        if (this.magicNumber > 0) {
+            duelist.applyPowerToSelf(new VigorPower(duelist.creature(), this.magicNumber));
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new GlowingCrossbow();
     }
 
-    // Upgraded stats.
     @Override
-    public void upgrade() 
-    {
-        if (!upgraded)
-        {
-        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBaseCost(1);
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
-
-
-	
-
-
-
-
-
-
-
-
-
 }

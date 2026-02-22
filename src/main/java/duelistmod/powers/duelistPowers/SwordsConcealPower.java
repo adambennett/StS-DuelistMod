@@ -61,7 +61,7 @@ public class SwordsConcealPower extends DuelistPower
     }
     
     @Override
-    public void onDexChange()
+    public void onDexChange(int change)
     {
     	updateDescription();
     }

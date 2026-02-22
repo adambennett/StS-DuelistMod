@@ -1,6 +1,7 @@
 package duelistmod.helpers.poolhelpers;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,15 +15,19 @@ import duelistmod.cards.pools.insects.ReptiliannePoison;
 import duelistmod.cards.pools.insects.VenomShot;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.LuminousMoss;
+import duelistmod.cards.pools.oldWarrior.ChaosSeed;
+import duelistmod.cards.pools.oldWarrior.LightningBlade;
+import duelistmod.cards.pools.oldWarrior.MagnumShield;
 import duelistmod.cards.pools.toon.ToonPageFlip;
 import duelistmod.cards.pools.warrior.*;
 import duelistmod.cards.pools.zombies.BloodSucker;
 import duelistmod.cards.pools.zombies.DimensionBurial;
 import duelistmod.cards.pools.zombies.MagicalGhost;
+import duelistmod.variables.Tags;
 
 public class ArcanePool {
 	public static ArrayList<AbstractCard> deck() {
-		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
+		ArrayList<AbstractCard> cards = new ArrayList<>();
 		if (AbstractDungeon.ascensionLevel < 10) {
 			cards.add(new DestructPotion());
 		} 
@@ -50,7 +55,6 @@ public class ArcanePool {
 		cards.add(new ChaosSeed());
 		cards.add(new CharcoalInpachi());
 		cards.add(new ClearKuriboh());
-		cards.add(new Cloning());
 		cards.add(new CombinationAttack());
 		cards.add(new CoreBlaster());
 		cards.add(new DarkFusion());
@@ -63,13 +67,10 @@ public class ArcanePool {
 		cards.add(new FeatherShot());
 		cards.add(new FireDarts());
 		cards.add(new FishRain());
-		cards.add(new ForbiddenLance());
 		cards.add(new FuryFire());
 		cards.add(new GamecieltheSeaTurtleKaiju());
 		cards.add(new Hinotama());
 		cards.add(new InfernoFireBlast());
-		cards.add(new LegendaryBlackBelt());
-		cards.add(new LegendarySword());
 		cards.add(new LightningBlade());
 		cards.add(new LuminousMoss());
 		cards.add(new MachineKingPrototype());
@@ -92,6 +93,7 @@ public class ArcanePool {
 		cards.add(new Wildfire());
 		cards.add(new Wiretap());
 		cards.add(new WorldTree());
+        cards = cards.stream().filter(f -> f.hasTag(Tags.ARCANE)).collect(Collectors.toCollection(ArrayList::new));
 		return cards;
 	}
 }

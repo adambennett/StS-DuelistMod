@@ -31,14 +31,14 @@ public class BerserkGorilla extends DuelistCard {
 
     public BerserkGorilla() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 17;
+    	this.baseDamage = this.damage = 14;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.BEAST);
         this.tags.add(Tags.FERAL);
         this.tags.add(Tags.TERRITORIAL);
     	this.misc = 0;
     	this.originalName = this.name;
-    	this.summons = this.baseSummons = 1;
+    	this.tributes = this.baseTributes = 1;
     	this.setupStartingCopies();
     }
 
@@ -50,7 +50,7 @@ public class BerserkGorilla extends DuelistCard {
     @Override
     public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
-        summon();
+        tribute();
         AnyDuelist duelist = AnyDuelist.from(this);
         if (duelist.player()) {
             AbstractMonster m = AbstractDungeon.getMonsters().getRandomMonster(true);
@@ -72,7 +72,7 @@ public class BerserkGorilla extends DuelistCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(5);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();

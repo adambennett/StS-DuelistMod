@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
 import com.megacrit.cardcrawl.relics.IceCream;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -18,102 +17,78 @@ import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class ScrapFactory extends DuelistCard 
-{
-	// TEXT DECLARATION
+public class ScrapFactory extends DuelistCard {
 
-	public static final String ID = duelistmod.DuelistMod.makeID("ScrapFactory");
-	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-	public static final String IMG = DuelistMod.makePath(Strings.SCRAP_FACTORY);
-	public static final String NAME = cardStrings.NAME;
-	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-	// /TEXT DECLARATION/
+    public static final String ID = duelistmod.DuelistMod.makeID("ScrapFactory");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+    public static final String IMG = DuelistMod.makePath(Strings.SCRAP_FACTORY);
+    public static final String NAME = cardStrings.NAME;
+    public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.COMMON;
-	private static final CardTarget TARGET = CardTarget.SELF;
-	private static final CardType TYPE = CardType.SKILL;
-	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-	private static final int COST = 0;
-	private static final int energy = 2;
-	// /STAT DECLARATION/
+    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.SKILL;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
+    private static final int COST = 0;
+    private static final int energy = 2;
 
-	public ScrapFactory() 
-	{
-		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.energyOnUse = 2;
-		this.tags.add(Tags.SPELL);
-		this.tags.add(Tags.ORIGINAL_DECK);  
-		this.tags.add(Tags.MACHINE);
-		this.tags.add(Tags.STANDARD_DECK);
-		this.standardDeckCopies = 1;
+    public ScrapFactory() {
+        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.energyOnUse = 2;
+        this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.ORIGINAL_DECK);
+        this.tags.add(Tags.MACHINE);
+        this.tags.add(Tags.STANDARD_DECK);
+        this.standardDeckCopies = 1;
         this.startingOriginalDeckCopies = 1;
-		this.misc = 0;
-		this.tributes = this.baseTributes = 2;
-		this.originalName = this.name;
-		this.setupStartingCopies();
-		this.enemyIntent = AbstractMonster.Intent.MAGIC;
-	}
+        this.misc = 0;
+        this.tributes = this.baseTributes = 2;
+        this.originalName = this.name;
+        this.setupStartingCopies();
+        this.enemyIntent = AbstractMonster.Intent.MAGIC;
+    }
 
-	// Actions the card should do.
-	@Override
-	public void use(AbstractPlayer p, AbstractMonster m) 
-	{
-		duelistUseCard(p, m);
-	}
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
+    }
 
-	@Override
-	public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+    @Override
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
         preDuelistUseCard(owner, targets);
-		tribute();
-		AnyDuelist.from(this).gainEnergy(energy);
-		postDuelistUseCard(owner, targets);
-	}
+        tribute();
+        AnyDuelist.from(this).gainEnergy(energy);
+        postDuelistUseCard(owner, targets);
+    }
 
-	@Override
-	public boolean shouldEnemyUse(boolean onlyCardInHand, AbstractPlayer player, AbstractEnemyDuelist enemy) {
-		if (enemy.hasRelic(IceCream.ID)) {
-			return true;
-		}
-		return !onlyCardInHand;
-	}
+    @Override
+    public boolean shouldEnemyUse(boolean onlyCardInHand, AbstractPlayer player, AbstractEnemyDuelist enemy) {
+        if (enemy.hasRelic(IceCream.ID)) {
+            return true;
+        }
+        return !onlyCardInHand;
+    }
 
-	@Override
-	public int energyGeneratedIfPlayed() {
-		return energy;
-	}
+    @Override
+    public int energyGeneratedIfPlayed() {
+        return energy;
+    }
 
-	// Which card to return when making a copy of this card.
-	@Override
-	public AbstractCard makeCopy() {
-		return new ScrapFactory();
-	}
+    @Override
+    public AbstractCard makeCopy() {
+        return new ScrapFactory();
+    }
 
-	// Upgraded stats.
-	@Override
-	public void upgrade() {
-		if (!this.upgraded) {
-			this.upgradeName();
-			this.upgradeTributes(-1);
-			this.rawDescription = UPGRADE_DESCRIPTION;
+    @Override
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeTributes(-1);
+            this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
-			this.initializeDescription();
-		}
-	}
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
+            this.initializeDescription();
+        }
+    }
 
 }

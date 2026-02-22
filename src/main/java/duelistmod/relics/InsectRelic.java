@@ -1,14 +1,11 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rooms.*;
-
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.helpers.*;
+import duelistmod.helpers.Util;
 
 public class InsectRelic extends DuelistRelic {
 
@@ -17,8 +14,7 @@ public class InsectRelic extends DuelistRelic {
 	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("InsectRelic_Outline.png");
 	
 	public InsectRelic() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
-		this.counter = 1;
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 		setDescription();
 	}
 	
@@ -33,23 +29,10 @@ public class InsectRelic extends DuelistRelic {
 	public void onEquip() {
 		setDescription();
 	}
-	
-	@Override
-    public void onVictory() {
-        if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite|| AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) {
-        	int roll = AbstractDungeon.cardRandomRng.random(1, 1);
-        	if (roll == 1)
-        	{
-        		flash();
-                setCounter(counter + 1);
-                setDescription();
-        	}
-        }
-    }
 
 	@Override
 	public String getUpdatedDescription() {
-		return DESCRIPTIONS[0] + this.counter + DESCRIPTIONS[1];
+		return DESCRIPTIONS[0];
 	}
 	
 	public void setDescription() {

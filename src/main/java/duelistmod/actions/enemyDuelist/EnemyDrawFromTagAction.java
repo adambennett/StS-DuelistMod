@@ -5,12 +5,14 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.colorless.Magnetism;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelist;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.variables.Tags;
 
 import java.util.ArrayList;
 
@@ -108,7 +110,7 @@ public class EnemyDrawFromTagAction extends AbstractGameAction
 
 		int deckSize = 0;
 		for (AbstractCard c : this.duelist.drawPile()) {
-			if (c.hasTag(tagToDraw)) {
+			if (tagMatches(tagToDraw, c)) {
 				deckSize++;
 			}
 		}
@@ -137,7 +139,7 @@ public class EnemyDrawFromTagAction extends AbstractGameAction
 				int tmp = this.amount - deckSize;
 				int taggedCardsInDiscard = 0;
 				for (AbstractCard c : this.duelist.discardPile()) {
-					if (c.hasTag(tagToDraw)) {
+					if (tagMatches(tagToDraw, c)) {
 						taggedCardsInDiscard++;
 					}
 				}
@@ -176,5 +178,11 @@ public class EnemyDrawFromTagAction extends AbstractGameAction
 				this.isDone = true;
 			}
 		}
+	}
+
+	private static boolean tagMatches(CardTags tag, AbstractCard checkCard) {
+		if (checkCard.hasTag(tag)) return true;
+		if (checkCard instanceof Magnetism && tag == Tags.MAGNET) return true;
+		return false;
 	}
 }

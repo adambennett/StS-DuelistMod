@@ -99,7 +99,7 @@ public class AscendedThreePool
 		cards.add(new SpiritHarp());
 		cards.add(new MysticalElf());
 		cards.add(new FogKing());
-		cards.add(new CommandKnight());
+		//cards.add(new CommandKnight());
 		cards.add(new LegendaryFisherman());
 		cards.add(new SevenColoredFish());
 		cards.add(new IslandTurtle());
@@ -142,7 +142,7 @@ public class AscendedThreePool
 		cards.add(new Biofalcon());
 		cards.add(new SuperheavyBenkei());
 		cards.add(new SuperheavyFlutist());
-		cards.add(new SuperheavyGeneral());
+		cards.add(new SuperheavyGeneralCoral());
 		cards.add(new SuperheavyOgre());
 		cards.add(new SuperheavyScales());
 		cards.add(new SuperheavySwordsman());

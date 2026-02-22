@@ -66,7 +66,7 @@ public class CastleWalls extends DuelistCard
         this.tags.add(Tags.PHARAOH_TWO_DECK);
         this.tags.add(Tags.PHARAOH_THREE_DECK);
         this.zombieDeckCopies = 2;
-        this.beastDeckCopies = 2;
+        this.beastDeckCopies = 3;
         this.insectDeckCopies = 2;
         this.plantDeckCopies = 2;
         this.incrementDeckCopies = 4;

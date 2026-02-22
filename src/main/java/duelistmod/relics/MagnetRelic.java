@@ -7,12 +7,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
-import duelistmod.cards.*;
+import duelistmod.cards.pools.warrior.AlphaMagnet;
+import duelistmod.cards.pools.warrior.BetaMagnet;
+import duelistmod.cards.pools.warrior.GammaMagnet;
+import duelistmod.cards.pools.warrior.Valkyrion;
 
 public class MagnetRelic extends DuelistRelic {
 
@@ -39,7 +41,7 @@ public class MagnetRelic extends DuelistRelic {
 		magnets.add(new AlphaMagnet());
 		magnets.add(new BetaMagnet());
 		magnets.add(new GammaMagnet());
-		magnets.add(new ValkMagnet());
+		magnets.add(new Valkyrion());
 		for (AbstractCard c : magnets)
 		{
 			while (upgradeChecker(c, upgrades)) { c.upgrade(); upgrades++; }
@@ -52,7 +54,7 @@ public class MagnetRelic extends DuelistRelic {
 	public boolean upgradeChecker(AbstractCard c, int upgrades)
 	{
 		if (upgrades > 1) { return false; }
-		else if (c instanceof ValkMagnet) { return false; }
+		else if (c instanceof Valkyrion) { return false; }
 		else 
 		{
 			int roll = AbstractDungeon.cardRandomRng.random(1, 3 + upgrades);

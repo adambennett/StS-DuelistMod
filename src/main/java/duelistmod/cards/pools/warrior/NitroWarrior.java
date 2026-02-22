@@ -2,81 +2,100 @@ package duelistmod.cards.pools.warrior;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.orbs.FireOrb;
+import duelistmod.abstracts.GuardedDuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class NitroWarrior extends DuelistCard 
-{
-    // TEXT DECLARATION
+import java.util.List;
+
+public class NitroWarrior extends GuardedDuelistCard {
+
     public static final String ID = DuelistMod.makeID("NitroWarrior");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("NitroWarrior.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
 
-    // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
-    // /STAT DECLARATION/
+    private static final int COST = 0;
 
-    public NitroWarrior() 
-    {
+    public NitroWarrior() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 12;
-        this.tributes = this.baseTributes = 1;
-		this.showEvokeValue = true;
-		this.showEvokeOrbCount = 1;
-        this.selfRetain = true;
+        this.baseDamage = this.damage = 10;
+        this.tributes = this.baseTributes = 4;
+        this.baseSummons = this.summons = 2;
+        this.setBaseGuardedCheck(15);
+        this.setGuardedCheck(15);
+        this.isSummon = true;
+        this.isTribute = true;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute(); 	
-    	attack(m);
-    	channel(new FireOrb());
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        duelistUseCard(p, m);
     }
 
-    
-    // Upgraded stats.
     @Override
-    public void upgrade() 
-    {
-        if (!upgraded) 
-        {
-        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeDamage(4);
+    public void duelistUseCard(AbstractCreature owner, List<AbstractCreature> targets) {
+        preDuelistUseCard(owner, targets);
+        tribute();
+        summon();
+        if (!targets.isEmpty()) {
+            attack(targets.get(0), this.baseAFX, this.damage);
+        }
+        AnyDuelist duelist = AnyDuelist.from(this);
+        duelist.gainEnergy(1);
+        if (isGuardedActive(this, this.getGuardedCheck())) {
+            triggerGuarded(duelist, targets);
+        }
+        postDuelistUseCard(owner, targets);
+    }
+
+    @Override
+    public void onGuardedTriggered(AnyDuelist duelist, List<AbstractCreature> targets) {
+        if (targets != null && !targets.isEmpty()) {
+            AbstractCreature target = targets.get(0);
+            if (target.hasPower(VulnerablePower.POWER_ID) || target.hasPower(WeakPower.POWER_ID)) {
+                duelist.gainEnergy(1);
+            }
+        }
+    }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            if (this.timesUpgraded > 0) {
+                this.upgradeName(NAME + "+" + this.timesUpgraded);
+            } else {
+                this.upgradeName(NAME + "+");
+            }
+            this.upgradeDamage(2);
+            this.upgradeGuardedCheck(-3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.fixUpgradeDesc();
             this.initializeDescription();
         }
     }
 
+    @Override
+    public AbstractCard makeCopy() {
+        return new NitroWarrior();
+    }
 
-
-
-
-
-	
-	@Override
-    public AbstractCard makeCopy() { return new NitroWarrior(); }
-	
 }

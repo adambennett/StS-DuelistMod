@@ -16,15 +16,15 @@
                 "NAME": "Obelisk, the Tormentor",
                 "DESCRIPTIONS": ["Each time you #yTribute, deal #b", " damage to ALL enemies."]
         },
-        "theDuelist:AlphaMagPower": {
+        "theDuelist:AlphaMagnetPower": {
                 "NAME": "Alpha Magnet",
                 "DESCRIPTIONS": ["", "Electrified: The next #b", " Attacks you play will also #yChannel a Lightning.", " Attack you play will also #yChannel a Lightning."]
         },
-        "theDuelist:BetaMagPower": {
+        "theDuelist:BetaMagnetPower": {
                 "NAME": "Beta Magnet",
                 "DESCRIPTIONS": ["", "Electrified: The next #b", " Skills you play will also give #b", " Skill you play will also give #b", " #yTemporary #yHP."]
         },
-        "theDuelist:GammaMagPower": {
+        "theDuelist:GammaMagnetPower": {
                 "NAME": "Gamma Magnet",
                 "DESCRIPTIONS": ["", "Electrified: The next #b", " Powers you play will also draw #b", " cards.", " card."]
         },
@@ -76,10 +76,6 @@
         "theDuelist:MagicCylinderPower": {
                 "NAME": "Magic Cylinder",
                 "DESCRIPTIONS": ["Whenever you lose HP, gain a random amount of #yTemporary #yHP between #b1 and the amount of damage dealt plus #b", "." ]
-        },
-        "theDuelist:MirrorForcePower": {
-                "NAME": "Mirror Force",
-                "DESCRIPTIONS": ["The next time you are attacked, deal ", "that much damage to ALL enemies.", "2x that much damage to ALL enemies." ]
         },
         "theDuelist:ImperialPower": {
                 "NAME": "Imperial Order",
@@ -621,35 +617,11 @@
         },
         "theDuelist:FightingSpiritPower": {
                 "NAME": "Fighting Spirit",
-                "DESCRIPTIONS": ["Whenever you #yTribute a #yWarrior for another, gain #b", " #yMantra." ]
-        },
-        "theDuelist:CubicKarmaPower": {
-                "NAME": "Cubic Karma",
-                "DESCRIPTIONS": ["At the end of each turn, enter #yChaotic." ]
-        },
-        "theDuelist:ReinforceTruthPower": {
-                "NAME": "Reinforce Truth",
-                "DESCRIPTIONS": ["Whenever you switch #yStances, gain #b", " #yDexterity for the turn." ]
-        },
-        "theDuelist:SpiritForcePower": {
-                "NAME": "Spirit Force",
-                "DESCRIPTIONS": ["Whenever you switch #yStances, gain #b", " #yTemporary #yHP." ]
-        },
-        "theDuelist:WeaponChangePower": {
-                "NAME": "Weapon Change",
-                "DESCRIPTIONS": ["Whenever you switch #yStances, draw #b", " #yWarrior.", " #yWarriors." ]
+                "DESCRIPTIONS": ["Whenever you #yTribute a #yWarrior for another, gain #b", " #yVigor." ]
         },
         "theDuelist:SogenPower": {
                 "NAME": "Sogen",
-                "DESCRIPTIONS": ["#yWarriors deal #b", "% more damage and gain #b", "% more #yBlock." ]
-        },
-        "theDuelist:CommanderSwordsPower": {
-                "NAME": "Sword Commander",
-                "DESCRIPTIONS": ["While you are #yNimble, HP loss is reduced by #b", "." ]
-        },
-        "theDuelist:CrystalTreePower": {
-                "NAME": "Crystal Tree",
-                "DESCRIPTIONS": ["While you are in any #yStance, HP loss grants #b", " #yTemporary #yHP." ]
+                "DESCRIPTIONS": ["#yWarriors deal #b", "% more damage." ]
         },
         "theDuelist:OniPower": {
                 "NAME": "Yellow-Bellied Oni",
@@ -1590,6 +1562,133 @@
                         " turn,",
                         " turns,",
                         " #yArcana improves the #yBlock and damage of all monsters."
+                ]
+        },
+        "theDuelist:NextTurnDexterityPower": {
+                "NAME": "Next Turn Dexterity",
+                "DESCRIPTIONS": [
+                        "Gain #b",
+                        " #yDexterity next turn."
+                ]
+        },
+        "theDuelist:DeltaMagnetPower": {
+                "NAME": "Delta Magnet",
+                "DESCRIPTIONS": [
+                        ""
+                ]
+        },
+        "theDuelist:EpsilonMagnetPower": {
+                "NAME": "Epsilon Magnet",
+                "DESCRIPTIONS": [
+                        ""
+                ]
+        },
+        "theDuelist:CubicKarmaPower": {
+                "NAME": "Cubic Karma",
+                "DESCRIPTIONS": [
+                        "The first Attack played each turn always triggers #yFirst #yStrike and #yGuarded effects."
+                ]
+        },
+        "theDuelist:WeaponChangePower": {
+                "NAME": "Weapon Change",
+                "DESCRIPTIONS": [
+                        "Whenever you gain #yDexterity, draw #b",
+                        " #yWarrior",
+                        ".",
+                        "s."
+                ]
+        },
+        "theDuelist:SpiritForcePower": {
+                "NAME": "Spirit Force",
+                "DESCRIPTIONS": [
+                        "Whenever you gain #yDexterity or #yVigor, gain #b",
+                        " #yBlock."
+                ]
+        },
+        "theDuelist:ReinforceTruthPower": {
+                "NAME": "Reinforce Truth",
+                "DESCRIPTIONS": [
+                        "Whenever you gain #yDexterity, gain an additional ",
+                        " #yDexterity until the end of turn."
+                ]
+        },
+        "theDuelist:LightLaserPower": {
+                "NAME": "Light Laser",
+                "DESCRIPTIONS": [
+                        "At the start of your next turn, gain #b",
+                        " #yDexterity until the end of turn."
+                ]
+        },
+        "theDuelist:CrystalTreePower": {
+                "NAME": "Crystal Tree",
+                "DESCRIPTIONS": [
+                        "Whenever you lose HP, gain #yVigor equal to 10% of your remaining HP."
+                ]
+        },
+        "theDuelist:CombinationAttackPower": {
+                "NAME": "Combination Attack",
+                "DESCRIPTIONS": [
+                        "#yFirst Strike and #yRevenge effects trigger #b",
+                        " additional time",
+                        " additional times",
+                        " this turn."
+                ]
+        },
+        "theDuelist:AdvanceForcePower": {
+                "NAME": "Advance Force",
+                "DESCRIPTIONS": [
+                        "#yWarriors cost #b0 this turn."
+                ]
+        },
+        "theDuelist:BattleguardHowlingPower": {
+                "NAME": "Battleguard Howling",
+                "DESCRIPTIONS": [
+                        "Whenever you trigger a #yGuarded effect, gain #yStrength equal to the card's cost."
+                ]
+        },
+        "theDuelist:DarkOccultismPower": {
+                "NAME": "Dark Occultism",
+                "DESCRIPTIONS": [
+                        "The first time you play a #ySpell each turn, ALL enemies lose HP equal to your #yVigor."
+                ]
+        },
+        "theDuelist:DownbeatPower": {
+                "NAME": "Downbeat",
+                "DESCRIPTIONS": [
+                        "#yFirst #yStrike effects trigger #b",
+                        " additional time.",
+                        " additional times."
+                ]
+        },
+        "theDuelist:EgoBoostPower": {
+                "NAME": "Ego Boost",
+                "DESCRIPTIONS": [
+                        "Your next #yFirst #yStrike effect triggers #b",
+                        " additional time.",
+                        " additional times."
+                ]
+        },
+        "theDuelist:HarmonicWavesPower": {
+                "NAME": "Harmonic Waves",
+                "DESCRIPTIONS": [
+                        "At the start of next turn, gain #b",
+                        " #yVigor."
+                ]
+        },
+        "theDuelist:BrilliantSparkPower": {
+                "NAME": "Brilliant Spark",
+                "DESCRIPTIONS": [
+                        "Whenever you gain #yBlock, if it exceeds your current #yBlock, gain #b",
+                        " #yVigor."
+                ]
+        },
+        "theDuelist:SuperheavyWagonPower": {
+                "NAME": "Superheavy Wagon",
+                "DESCRIPTIONS": [
+                        "#ySpecial #ySummon a copy of the next #b",
+                        " Skill",
+                        " you play.",
+                        "s"
                 ]
         }
 }

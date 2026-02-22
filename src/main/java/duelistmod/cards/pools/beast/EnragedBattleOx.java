@@ -6,17 +6,18 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.interfaces.RevengeCard;
+import duelistmod.abstracts.RevengeDuelistCard;
 import duelistmod.dto.AnyDuelist;
+import duelistmod.dto.AnyRevengeCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.StrengthUpPower;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class EnragedBattleOx extends DuelistCard implements RevengeCard {
+public class EnragedBattleOx extends RevengeDuelistCard {
     public static final String ID = DuelistMod.makeID("EnragedBattleOx");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("EnragedBattleOx.png");
@@ -24,7 +25,7 @@ public class EnragedBattleOx extends DuelistCard implements RevengeCard {
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -32,7 +33,7 @@ public class EnragedBattleOx extends DuelistCard implements RevengeCard {
 
     public EnragedBattleOx() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 10;
+    	this.baseDamage = this.damage = 9;
     	this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FERAL);
         this.tags.add(Tags.BEAST_WARRIOR);
@@ -45,12 +46,12 @@ public class EnragedBattleOx extends DuelistCard implements RevengeCard {
 
     @Override
     public boolean isRevengeActive(DuelistCard card) {
-        return RevengeCard.super.isRevengeActive(card) && this.magicNumber > 0;
+        return super.isRevengeActive(card) && this.magicNumber > 0;
     }
 
     @Override
-    public void triggerRevenge(AnyDuelist duelist) {
-        duelist.applyPowerToSelf(new StrengthPower(duelist.creature(), this.magicNumber));
+    public void onRevengeTriggered(AnyDuelist duelist) {
+        duelist.applyPowerToSelf(new StrengthUpPower(duelist.creature(), duelist.creature(), this.magicNumber));
     }
 
     @Override

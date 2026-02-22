@@ -1,13 +1,15 @@
 package duelistmod.relics.enemy;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.abstracts.DuelistRelic;
 import duelistmod.abstracts.enemyDuelist.AbstractEnemyDuelistRelic;
 import duelistmod.dto.AnyDuelist;
 import duelistmod.interfaces.MillenniumItem;
+
+import java.util.List;
 
 public class EnemyMillenniumScale extends AbstractEnemyDuelistRelic implements MillenniumItem {
 
@@ -25,7 +27,7 @@ public class EnemyMillenniumScale extends AbstractEnemyDuelistRelic implements M
 	}
 
 	@Override
-	public void onSynergyTribute() {
+	public void onSynergyTribute(List<AbstractCard.CardTags> allMatchingTypes) {
 		AnyDuelist duelist = AnyDuelist.from(this);
 		DuelistCard.gainTempHP(duelist.creature(), duelist.creature(), 3);
 	}

@@ -19,15 +19,15 @@
         "NAME": "欧贝利斯克之巨神兵",
         "DESCRIPTIONS": ["每次祭品时，对所有敌人造成#b", "点伤害。"]
 },
-"theDuelist:AlphaMagPower": {
+"theDuelist:AlphaMagnetPower": {
         "NAME": "阿尔法磁铁",
         "DESCRIPTIONS": ["无效果"]
 },
-"theDuelist:BetaMagPower": {
+"theDuelist:BetaMagnetPower": {
         "NAME": "贝塔磁铁",
         "DESCRIPTIONS": ["无效果"]
 },
-"theDuelist:GammaMagPower": {
+"theDuelist:GammaMagnetPower": {
         "NAME": "伽马磁铁",
         "DESCRIPTIONS": ["无效果"]
 },

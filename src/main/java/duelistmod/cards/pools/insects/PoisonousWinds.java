@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.statuses.Swarm;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -48,7 +49,7 @@ public class PoisonousWinds extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	poisonAllEnemies(p, this.magicNumber);
-    	vulnAllEnemies(this.secondMagic);
+        vulnAllEnemies(AnyDuelist.from(this), this.secondMagic);
     	slowAllEnemies(this.magicNumber);
     	if (upgraded) { this.addToBot(new MakeTempCardInDrawPileAction(new Swarm(), this.thirdMagic, true, true)); }
     	else { addCardToHand(new Swarm(), this.thirdMagic); }

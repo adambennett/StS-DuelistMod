@@ -17,6 +17,14 @@ public class Strings
 	public static final String THE_DEFAULT_PORTRAIT = "charSelect/duelist_portrait_0.png";
 	public static final String THE_DEFAULT_SHOULDER_1 = "char/defaultCharacter/shoulder.png";
 	public static final String THE_DEFAULT_SHOULDER_2 = "char/defaultCharacter/shoulder2.png";
+
+	public static final String YUGI_CORPSE = "char/nonCombat/yugi_corpse.png";
+	public static final String YUGI_SHOULDER_ONE = "char/nonCombat/yugi_shoulder.png";
+	public static final String YUGI_SHOULDER_TWO = "char/nonCombat/yugi_shoulder2.png";
+
+	public static final String KAIBA_CORPSE = "char/nonCombat/kaiba_corpse.png";
+	public static final String KAIBA_SHOULDER_ONE = "char/nonCombat/kaiba_shoulder.png";
+	public static final String KAIBA_SHOULDER_TWO = "char/nonCombat/kaiba_shoulder2.png";
 	// =============== /CHARACTER ASSETS/ =======================================================================================================================================================
 	
 	// =============== GRAY CARD BG =========================================================================================================================================================
@@ -527,9 +535,9 @@ public class Strings
 	// =============== POWER IMAGES =========================================================================================================================================================
 	public static final String PLACEHOLDER_POWER = "powers/PlaceholderPower.png";
 	public static final String AERO_POWER = "powers/AerodynamicsPower.png";
-	public static final String ALPHA_MAG_POWER = "powers/AlphaMagPower.png";
+	public static final String ALPHA_MAG_POWER = "powers/AlphaMagnetPower.png";
 	public static final String BAD_REACTION_POWER = "powers/BadReactionPower.png";
-	public static final String BETA_MAG_POWER = "powers/BetaMagPower.png";
+	public static final String BETA_MAG_POWER = "powers/BetaMagnetPower.png";
 	public static final String CALL_GRAVE_POWER = "powers/CallGravePower.png";
 	public static final String CANNON_SOLDIER_POWER = "powers/CannonPower.png";
 	public static final String TOON_CANNON_SOLDIER_POWER = "powers/ToonCannonPower.png";
@@ -543,7 +551,7 @@ public class Strings
 	public static final String ENERGY_TREASURE_POWER = "powers/EnergyTreasurePower.png";
 	public static final String EVOKE_SICKNESS_POWER = "powers/EvokeSicknessPower.png";
 	public static final String EXODIA_POWER = "powers/ExodiaPower.png";
-	public static final String GAMMA_MAG_POWER = "powers/GammaMagPower.png";
+	public static final String GAMMA_MAG_POWER = "powers/GammaMagnetPower.png";
 	public static final String GOBLIN_REMEDY_POWER = "powers/GoblinRemedyPower.png";
 	public static final String GRAVITY_AXE_POWER = "powers/GravityAxePower.png";
 	public static final String GREED_SHARD_POWER = "powers/GreedShardPower.png";
