@@ -121,6 +121,7 @@ QoL
     - BaseMod
     - StSLib
     - Together in Spire
+    - EUI
 
 Art/FX
 --------
