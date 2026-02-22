@@ -7,14 +7,17 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.RevengeDuelistCard;
+import duelistmod.dto.AnyDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 import java.util.List;
 
-public class DarkCrusader extends DuelistCard {
+public class DarkCrusader extends RevengeDuelistCard {
 
     public static final String ID = DuelistMod.makeID("DarkCrusader");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -36,12 +39,25 @@ public class DarkCrusader extends DuelistCard {
         this.tags.add(Tags.WARRIOR);
         this.tags.add(Tags.WARRIOR_DECK);
         this.superheavyDeckCopies = 1;
-        this.baseDamage = this.damage = 6;
+        this.baseDamage = this.damage = 5;
         this.summons = this.baseSummons = 1;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.originalName = this.name;
         this.isSummon = true;
         this.enemyIntent = AbstractMonster.Intent.ATTACK;
         this.setupStartingCopies();
+    }
+
+    @Override
+    public boolean isRevengeActive(DuelistCard card) {
+        return super.isRevengeActive(card) && this.magicNumber > 0;
+    }
+
+    @Override
+    public void onRevengeTriggered(AnyDuelist duelist) {
+        if (this.magicNumber > 0) {
+            duelist.applyPowerToSelf(new VigorPower(duelist.creature(), this.magicNumber));
+        }
     }
 
     @Override

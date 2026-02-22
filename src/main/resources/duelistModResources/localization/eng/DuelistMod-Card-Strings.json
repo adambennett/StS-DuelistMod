@@ -10972,9 +10972,9 @@
 		"UPGRADE_DESCRIPTION": "Gain Block equal to your Dexterity. NL Deal damage to ALL enemies equal to your Vigor. NL Guarded !duelist:G!: Deal damage to a random enemy equal to your current Block."
 	},
 	"theDuelist:DarkCrusader": {
-		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Gain !M! Vigor.",
 		"NAME": "Dark Crusader",
-		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Revenge: Gain !M! Vigor."
 	},
 	"theDuelist:VorseRaider": {
 		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage.",
